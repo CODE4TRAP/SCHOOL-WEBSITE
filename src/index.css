@@ -5982,3 +5982,131 @@ img {
     display: none !important;
   }
 }
+
+
+/* ========================================================
+   MOBILE RESPONSIVENESS PATCH — SCHOOL WEBSITE
+   Keep existing desktop styling; prevent narrow-screen overflow.
+   ======================================================== */
+html { max-width: 100%; overflow-x: clip; }
+body, #root { width: 100%; max-width: 100%; min-width: 0; overflow-x: clip; }
+img, video, iframe, svg { max-width: 100%; }
+button, input, select, textarea { font: inherit; }
+input, select, textarea { max-width: 100%; min-width: 0; }
+a, p, h1, h2, h3, h4, h5, h6, span, label { overflow-wrap: anywhere; }
+
+@media (max-width: 991.98px) {
+  .container, .container-fluid {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .m3-main-header .container > .d-flex {
+    align-items: flex-start !important;
+    gap: 14px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
+  }
+
+  .m3-main-header .container > .d-flex > .d-flex:first-child {
+    width: 100%;
+    min-width: 0;
+    align-items: center;
+    gap: 12px !important;
+  }
+
+  .m3-school-logo { width: 64px; height: 64px; object-fit: contain; flex-shrink: 0; }
+  .m3-school-title { font-size: clamp(1.05rem, 4vw, 1.4rem); line-height: 1.2; }
+  .school-tagline-text { font-size: .8rem; line-height: 1.4; }
+  .school-affiliation-badge { white-space: normal; line-height: 1.35; font-size: .7rem; }
+
+  .m3-main-header .container > .d-flex > .d-flex:last-child {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px !important;
+  }
+
+  .m3-main-header .m3-btn {
+    justify-content: center;
+    min-width: 0;
+    min-height: 42px;
+    padding: 9px 10px;
+    white-space: normal;
+    text-align: center;
+    font-size: .84rem;
+  }
+
+  .m3-nav-bar .container { flex-wrap: wrap; gap: 8px; }
+  .m3-mobile-toggle { min-height: 44px; touch-action: manipulation; }
+  .m3-nav-menu-wrapper { width: 100%; min-width: 0; }
+  .m3-nav-list { min-width: 0; }
+  .m3-dropdown-menu { max-width: calc(100vw - 32px); }
+  
+  .row { --bs-gutter-x: 1rem; }
+  [class*="col-"] { min-width: 0; }
+  .card, .admission-helpdesk-card, .doc-checklist-card,
+  .disclosure-table-card, .vacation-card { min-width: 0; max-width: 100%; }
+
+  .table-responsive { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  pre, code { white-space: pre-wrap; overflow-wrap: anywhere; }
+}
+
+@media (max-width: 767.98px) {
+  section, .section, .page-section, .container, .container-fluid {
+    scroll-margin-top: 76px;
+  }
+
+  .m3-school-logo { width: 54px; height: 54px; }
+  .m3-school-title { font-size: 1.02rem; margin-bottom: 4px !important; }
+  .school-tagline-text { font-size: .75rem; }
+  .school-affiliation-badge { display: inline-flex; align-items: center; gap: 4px; }
+
+  .m3-nav-menu-wrapper.show-mobile { padding: 8px 0 12px; }
+  .m3-nav-list { display: flex; flex-direction: column; align-items: stretch; gap: 2px; }
+  .m3-nav-list > li { width: 100%; min-width: 0; }
+  .m3-nav-link { width: 100%; justify-content: flex-start; min-height: 44px; text-align: left; }
+  .m3-dropdown-menu { position: static; width: 100%; max-width: 100%; box-shadow: none; margin: 2px 0 8px; }
+  .m3-dropdown-menu li a { white-space: normal; }
+
+  .admission-helpdesk-card, .doc-checklist-card,
+  .disclosure-table-card { border-radius: 14px; }
+  .helpdesk-header, .helpdesk-body, .doc-checklist-body { padding: 16px !important; }
+  .helpdesk-contact-action, .helpdesk-whatsapp-action {
+    gap: 10px;
+    padding: 12px;
+    min-width: 0;
+  }
+  .helpdesk-action-val { font-size: .9rem; overflow-wrap: anywhere; }
+  .helpdesk-action-tag { font-size: .62rem; line-height: 1.35; }
+  .helpdesk-action-btn, .helpdesk-whatsapp-btn { flex-shrink: 0; padding: 7px 9px; }
+  .helpdesk-inquiry-btn { width: 100%; justify-content: center; text-align: center; white-space: normal; }
+
+  .vacation-calendar-banner { padding: 12px; align-items: flex-start; }
+  .vacation-date-box { align-items: flex-start; flex-direction: column; }
+  .disclosure-card-header { padding: 14px 16px; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
+  .disclosure-header-title { font-size: .95rem; }
+  .doc-name-cell { gap: 8px; }
+  
+  .btn, button, input[type="submit"], input[type="button"] { min-height: 42px; }
+  input, select, textarea { font-size: 16px !important; }
+}
+
+@media (max-width: 480px) {
+  .container, .container-fluid { padding-left: 12px; padding-right: 12px; }
+  .m3-main-header .container > .d-flex > .d-flex:last-child { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .m3-main-header .m3-btn { padding: 8px 6px; font-size: .78rem; gap: 5px; }
+  .m3-main-header .m3-btn .material-symbols-outlined { font-size: 18px; }
+  .helpdesk-contact-action, .helpdesk-whatsapp-action { align-items: flex-start; }
+  .helpdesk-contact-action > .d-flex, .helpdesk-whatsapp-action > .d-flex { min-width: 0; }
+  .helpdesk-action-btn, .helpdesk-whatsapp-btn { font-size: .68rem; }
+  .doc-item-left { align-items: flex-start; gap: 10px; }
+  .doc-item-title-row { flex-wrap: wrap; gap: 6px; }
+  .vacation-card { padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
