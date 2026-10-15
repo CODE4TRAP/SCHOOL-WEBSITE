@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <radialGradient id="grad_2.svg" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.15"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="46" fill="#198754" />
+  <circle cx="50" cy="50" r="46" fill="url(#grad_2.svg)" />
+  <circle cx="50" cy="50" r="42" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.8"/>
+  <g transform="translate(50, 50)" fill="#ffffff" stroke="#ffffff">
+    
+<polygon points="0,-24 -22,-6 22,-6" fill="#ffffff" stroke="none"/>
+<rect x="-18" y="-6" width="36" height="28" fill="#ffffff" stroke="none"/>
+<rect x="-6" y="6" width="12" height="16" fill="#1E88E5" stroke="none"/>
+<rect x="-14" y="-1" width="6" height="8" fill="#1E88E5" stroke="none"/>
+<rect x="8" y="-1" width="6" height="8" fill="#1E88E5" stroke="none"/>
+<circle cx="0" cy="-12" r="3" fill="#FFC107" stroke="none"/>
+
+  </g>
+</svg>

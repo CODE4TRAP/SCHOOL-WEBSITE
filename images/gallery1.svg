@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="g1-sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+    <linearGradient id="g1-saffron" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+    <linearGradient id="g1-green" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#15803d" />
+      <stop offset="100%" stop-color="#22c55e" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="500" height="400" fill="url(#g1-sky)" />
+  <!-- Ground Grass -->
+  <path d="M0 320 Q 120 305 250 320 T 500 320 L 500 400 L 0 400 Z" fill="#16a34a" />
+  <path d="M0 340 Q 150 330 300 345 T 500 340 L 500 400 L 0 400 Z" fill="#15803d" />
+  <!-- Flag Pole -->
+  <rect x="130" y="70" width="10" height="260" rx="3" fill="#cbd5e1" filter="url(#shadow)" />
+  <circle cx="135" cy="68" r="8" fill="#f59e0b" />
+  <!-- Indian National Tricolor Flag Waving -->
+  <path d="M 140 75 Q 200 65 240 80 Q 280 95 320 80 L 320 115 Q 280 130 240 115 Q 200 100 140 115 Z" fill="url(#g1-saffron)" filter="url(#shadow)"/>
+  <path d="M 140 115 Q 200 100 240 115 Q 280 130 320 115 L 320 150 Q 280 165 240 150 Q 200 135 140 150 Z" fill="#ffffff" />
+  <path d="M 140 150 Q 200 135 240 150 Q 280 165 320 150 L 320 185 Q 280 200 240 185 Q 200 170 140 185 Z" fill="url(#g1-green)" />
+  <!-- Ashoka Chakra -->
+  <circle cx="230" cy="132" r="14" fill="none" stroke="#1e3a8a" stroke-width="2.5" />
+  <circle cx="230" cy="132" r="3" fill="#1e3a8a" />
+  <!-- Saluting Student Silhouette -->
+  <circle cx="360" cy="240" r="22" fill="#ffffff" filter="url(#shadow)"/>
+  <path d="M 340 270 Q 360 262 380 270 L 390 340 L 330 340 Z" fill="#ffffff" />
+  <path d="M 330 280 L 310 245 L 335 240" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none" />
+  <!-- Sun / Badge -->
+  <circle cx="430" cy="70" r="35" fill="#fef08a" fill-opacity="0.6" />
+  <circle cx="430" cy="70" r="25" fill="#fde047" />
+  <!-- Floating Confetti Stars -->
+  <path d="M70 100 L73 108 L81 108 L75 113 L77 121 L70 116 L63 121 L65 113 L59 108 L67 108 Z" fill="#fbbf24"/>
+  <path d="M420 180 L422 186 L428 186 L423 190 L425 196 L420 192 L415 196 L417 190 L412 186 L418 186 Z" fill="#f43f5e"/>
+  <path d="M90 200 L92 205 L97 205 L93 208 L95 213 L90 210 L85 213 L87 208 L83 205 L88 205 Z" fill="#38bdf8"/>
+</svg>

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700" />
+      <stop offset="50%" stop-color="#FFA500" />
+      <stop offset="100%" stop-color="#FF8C00" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0C58A2" />
+      <stop offset="100%" stop-color="#073361" />
+    </linearGradient>
+    <path id="textCircleTop" d="M 40,150 A 110,110 0 1,1 260,150" fill="none" />
+    <path id="textCircleBottom" d="M 255,150 A 105,105 0 0,1 45,150" fill="none" />
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Outer circle with shadow -->
+  <circle cx="150" cy="150" r="142" fill="url(#goldGrad)" filter="url(#shadow)" />
+  <circle cx="150" cy="150" r="134" fill="url(#blueGrad)" />
+  <circle cx="150" cy="150" r="126" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-dasharray="6,4" />
+  
+  <!-- Inner White Shield Background -->
+  <circle cx="150" cy="150" r="88" fill="#ffffff" />
+  <circle cx="150" cy="150" r="88" fill="none" stroke="url(#goldGrad)" stroke-width="4" />
+
+  <!-- Circular Text -->
+  <text font-family="'Poppins', 'Arial Black', sans-serif" font-size="14.5" font-weight="bold" fill="#ffffff" letter-spacing="1.5">
+    <textPath href="#textCircleTop" startOffset="50%" text-anchor="middle">
+      SWAMI SHIVANAND KIDS PLAY SCHOOL
+    </textPath>
+  </text>
+
+  <text font-family="'Poppins', sans-serif" font-size="13" font-weight="600" fill="#FFD700" letter-spacing="2">
+    <textPath href="#textCircleBottom" startOffset="50%" text-anchor="middle">
+      ★ NURTURING LITTLE MINDS ★
+    </textPath>
+  </text>
+
+  <!-- Central Crest Content -->
+  <!-- Rising Sun -->
+  <g transform="translate(150, 115)">
+    <circle cx="0" cy="0" r="28" fill="#FFA500" />
+    <!-- Sun rays -->
+    <path d="M 0,-40 L 0,-32 M 28,-28 L 22,-22 M 40,0 L 32,0 M 28,28 L 22,22 M 0,40 L 0,32 M -28,28 L -22,22 M -40,0 L -32,0 M -28,-28 L -22,-22" stroke="#FFD700" stroke-width="4" stroke-linecap="round" />
+  </g>
+
+  <!-- Open Book of Wisdom -->
+  <g transform="translate(150, 145)">
+    <!-- Book Pages -->
+    <path d="M -50,15 Q -25,5 0,15 Q 25,5 50,15 L 48,45 Q 25,35 0,45 Q -25,35 -48,45 Z" fill="#0C58A2" />
+    <path d="M -46,18 Q -25,8 -2,17 L -2,42 Q -25,33 -44,42 Z" fill="#ffffff" />
+    <path d="M 46,18 Q 25,8 2,17 L 2,42 Q 25,33 44,42 Z" fill="#ffffff" />
+    <!-- Book lines -->
+    <line x1="-38" y1="26" x2="-8" y2="23" stroke="#0C58A2" stroke-width="2" stroke-linecap="round" />
+    <line x1="-38" y1="32" x2="-10" y2="29" stroke="#0C58A2" stroke-width="2" stroke-linecap="round" />
+    <line x1="38" y1="26" x2="8" y2="23" stroke="#0C58A2" stroke-width="2" stroke-linecap="round" />
+    <line x1="38" y1="32" x2="10" y2="29" stroke="#0C58A2" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Torch / Diya of Knowledge -->
+  <g transform="translate(150, 100)">
+    <path d="M -6,15 Q 0,0 0,-10 Q 6,0 6,15 Z" fill="#FF4500" />
+    <path d="M -3,15 Q 0,4 0,-4 Q 3,4 3,15 Z" fill="#FFD700" />
+  </g>
+
+  <!-- Playful Kid ABC Blocks -->
+  <g transform="translate(150, 195)">
+    <rect x="-35" y="-10" width="22" height="20" rx="3" fill="#E63946" />
+    <text x="-24" y="5" font-family="'Poppins', sans-serif" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">A</text>
+    
+    <rect x="-10" y="-14" width="22" height="20" rx="3" fill="#2A9D8F" />
+    <text x="1" y="1" font-family="'Poppins', sans-serif" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">B</text>
+
+    <rect x="15" y="-10" width="22" height="20" rx="3" fill="#F4A261" />
+    <text x="26" y="5" font-family="'Poppins', sans-serif" font-size="13" font-weight="bold" fill="#fff" text-anchor="middle">C</text>
+  </g>
+</svg>

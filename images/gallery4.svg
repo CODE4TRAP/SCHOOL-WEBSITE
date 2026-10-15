@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="g4-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#7dd3fc" />
+    </linearGradient>
+    <linearGradient id="g4-track" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b91c1c" />
+      <stop offset="50%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#b91c1c" />
+    </linearGradient>
+    <filter id="g4-shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <rect width="500" height="400" fill="url(#g4-sky)" />
+  <!-- Athletic Track -->
+  <path d="M 0 220 C 150 200 350 200 500 220 L 500 400 L 0 400 Z" fill="url(#g4-track)" />
+  <!-- Track White Lanes -->
+  <path d="M 0 270 C 150 250 350 250 500 270" stroke="#ffffff" stroke-width="4" stroke-dasharray="16,12" fill="none" />
+  <path d="M 0 330 C 150 310 350 310 500 330" stroke="#ffffff" stroke-width="4" fill="none" />
+  <!-- Finish Line Ribbon -->
+  <path d="M 320 180 Q 360 210 400 220 L 395 240 Q 355 230 315 200 Z" fill="#facc15" filter="url(#g4-shadow)" />
+  <!-- Running Kid Winner Silhouette -->
+  <circle cx="280" cy="140" r="20" fill="#ffffff" filter="url(#g4-shadow)"/>
+  <!-- Body leaning forward -->
+  <path d="M 270 165 L 295 220 L 265 245" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <!-- Front leg reaching -->
+  <path d="M 295 220 L 330 260 L 350 260" stroke="#ffffff" stroke-width="11" stroke-linecap="round" fill="none" />
+  <!-- Back leg in stride -->
+  <path d="M 275 235 L 235 250 L 220 280" stroke="#ffffff" stroke-width="10" stroke-linecap="round" fill="none" />
+  <!-- Raised Arms (Victory) -->
+  <path d="M 275 175 L 305 130 L 330 120" stroke="#ffffff" stroke-width="9" stroke-linecap="round" fill="none" />
+  <path d="M 265 180 L 235 150 L 220 135" stroke="#ffffff" stroke-width="9" stroke-linecap="round" fill="none" />
+  <!-- Golden Trophy Icon at Top Corner -->
+  <circle cx="100" cy="100" r="50" fill="#ffffff" fill-opacity="0.2" />
+  <path d="M 80 80 L 120 80 L 115 110 Q 100 125 85 110 Z" fill="#fbbf24" filter="url(#g4-shadow)" />
+  <path d="M 95 120 L 105 120 L 105 135 L 95 135 Z" fill="#d97706" />
+  <rect x="85" y="135" width="30" height="10" rx="3" fill="#b45309" />
+  <!-- Trophy handles -->
+  <path d="M 80 85 Q 65 95 82 105" stroke="#f59e0b" stroke-width="4" fill="none" />
+  <path d="M 120 85 Q 135 95 118 105" stroke="#f59e0b" stroke-width="4" fill="none" />
+  <!-- Floating Colorful Balloons in Sky -->
+  <ellipse cx="420" cy="80" rx="18" ry="24" fill="#ef4444" />
+  <ellipse cx="445" cy="100" rx="16" ry="22" fill="#3b82f6" />
+  <ellipse cx="410" cy="115" rx="15" ry="20" fill="#10b981" />
+  <path d="M 420 104 Q 425 150 435 170" stroke="#94a3b8" stroke-width="1.5" fill="none" />
+  <path d="M 445 122 Q 440 150 435 170" stroke="#94a3b8" stroke-width="1.5" fill="none" />
+  <path d="M 410 135 Q 420 155 435 170" stroke="#94a3b8" stroke-width="1.5" fill="none" />
+</svg>

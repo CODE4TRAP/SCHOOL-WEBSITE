@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" width="1600" height="600">
+  <defs>
+    <linearGradient id="bgGrad_slider2.svg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B5E20" />
+      <stop offset="60%" stop-color="#072b4f" />
+      <stop offset="100%" stop-color="#021426" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="600" fill="url(#bgGrad_slider2.svg)" />
+
+  <!-- Playful Decorative Circles -->
+  <circle cx="150" cy="80" r="160" fill="#ffffff" fill-opacity="0.04" />
+  <circle cx="1450" cy="500" r="220" fill="#ffffff" fill-opacity="0.05" />
+  <circle cx="800" cy="300" r="400" fill="#FFD700" fill-opacity="0.03" />
+
+  <!-- Pattern / Visuals -->
+  <g transform="translate(1050, 100)" filter="url(#cardShadow)">
+    
+<rect x="0" y="0" width="450" height="400" rx="24" fill="#ffffff" />
+<rect x="15" y="15" width="420" height="260" rx="16" fill="#F1F8E9" />
+<!-- Playground Swings &amp; Slide -->
+<polygon points="120,60 100,220 140,220" fill="#388E3C" />
+<polygon points="330,60 310,220 350,220" fill="#388E3C" />
+<line x1="120" y1="80" x2="330" y2="80" stroke="#F57C00" stroke-width="8" stroke-linecap="round"/>
+<rect x="160" y="120" width="40" height="60" rx="4" fill="#0288D1"/>
+<rect x="250" y="120" width="40" height="60" rx="4" fill="#D32F2F"/>
+<!-- Text under card -->
+<text x="225" y="320" font-family="'Poppins', sans-serif" font-size="20" font-weight="bold" fill="#2E7D32" text-anchor="middle">Activity-Based Learning</text>
+<text x="225" y="350" font-family="'Poppins', sans-serif" font-size="15" fill="#666" text-anchor="middle">Playgroup • Nursery • LKG • UKG • Std I-V</text>
+
+  </g>
+
+  <!-- Left Content Box -->
+  <g transform="translate(120, 140)">
+    <!-- Badge -->
+    <rect x="0" y="0" width="280" height="42" rx="21" fill="#FFB703" />
+    <text x="140" y="27" font-family="'Poppins', sans-serif" font-size="16" font-weight="800" fill="#021426" text-anchor="middle" letter-spacing="1">
+      ★ PLAYGROUP TO PRIMARY ★
+    </text>
+
+    <!-- Heading -->
+    <text x="0" y="110" font-family="'Poppins', sans-serif" font-size="52" font-weight="900" fill="#ffffff">
+      World-Class Early Education
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="165" font-family="'Poppins', sans-serif" font-size="24" font-weight="400" fill="#e0eaff">
+      Joyful Learning Through Play, Exploration and Hands-on Creativity
+    </text>
+
+    <!-- Feature pills -->
+    <g transform="translate(0, 210)">
+      <rect x="0" y="0" width="190" height="40" rx="8" fill="#ffffff" fill-opacity="0.15" stroke="#ffffff" stroke-width="1.5" />
+      <text x="95" y="25" font-family="'Poppins', sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">✓ Smart Classrooms</text>
+
+      <rect x="205" y="0" width="190" height="40" rx="8" fill="#ffffff" fill-opacity="0.15" stroke="#ffffff" stroke-width="1.5" />
+      <text x="300" y="25" font-family="'Poppins', sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">✓ Play &amp; Activity Zone</text>
+
+      <rect x="410" y="0" width="190" height="40" rx="8" fill="#ffffff" fill-opacity="0.15" stroke="#ffffff" stroke-width="1.5" />
+      <text x="505" y="25" font-family="'Poppins', sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">✓ Caring Faculty</text>
+    </g>
+
+    <!-- Action Buttons -->
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="220" height="54" rx="27" fill="#E63946" filter="url(#cardShadow)"/>
+      <text x="110" y="34" font-family="'Poppins', sans-serif" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">Apply For Admission</text>
+
+      <rect x="240" y="0" width="200" height="54" rx="27" fill="none" stroke="#ffffff" stroke-width="2.5" />
+      <text x="340" y="34" font-family="'Poppins', sans-serif" font-size="18" font-weight="600" fill="#ffffff" text-anchor="middle">Explore Campus</text>
+    </g>
+  </g>
+</svg>

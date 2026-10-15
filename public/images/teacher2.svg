@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="t2-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef3c7" />
+      <stop offset="100%" stop-color="#fde68a" />
+    </linearGradient>
+    <linearGradient id="t2-suit" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <clipPath id="circle-clip-t2">
+      <circle cx="100" cy="100" r="95" />
+    </clipPath>
+  </defs>
+
+  <!-- Circular Base -->
+  <circle cx="100" cy="100" r="95" fill="url(#t2-bg)" />
+
+  <g clip-path="url(#circle-clip-t2)">
+    <!-- Shoulders & Suit Jacket -->
+    <path d="M 12 200 C 22 138 58 126 100 126 C 142 126 178 138 188 200 Z" fill="url(#t2-suit)" />
+    
+    <!-- White Collared Shirt -->
+    <polygon points="76,126 100,165 124,126" fill="#ffffff" />
+    <polygon points="85,126 100,145 115,126" fill="#f8fafc" />
+    
+    <!-- Gold Professional Tie -->
+    <polygon points="96,140 104,140 106,185 100,195 94,185" fill="#f59e0b" />
+    <!-- Tie Knot -->
+    <polygon points="95,138 105,138 103,148 97,148" fill="#d97706" />
+
+    <!-- Neck -->
+    <rect x="88" y="106" width="24" height="24" fill="#fcd34d" rx="3" />
+
+    <!-- Head / Face -->
+    <circle cx="100" cy="78" r="38" fill="#fde68a" />
+
+    <!-- Professional Glasses -->
+    <rect x="76" y="68" width="19" height="15" rx="3" fill="none" stroke="#0f172a" stroke-width="2.5" />
+    <rect x="105" y="68" width="19" height="15" rx="3" fill="none" stroke="#0f172a" stroke-width="2.5" />
+    <line x1="95" y1="74" x2="105" y2="74" stroke="#0f172a" stroke-width="2.5" />
+
+    <!-- Eyes Behind Glasses -->
+    <circle cx="85.5" cy="75.5" r="3" fill="#1e293b" />
+    <circle cx="114.5" cy="75.5" r="3" fill="#1e293b" />
+    <circle cx="87" cy="74" r="1" fill="#ffffff" />
+    <circle cx="116" cy="74" r="1" fill="#ffffff" />
+
+    <!-- Eyebrows -->
+    <path d="M 76 63 Q 86 59 95 64" stroke="#1e293b" stroke-width="2.8" fill="none" stroke-linecap="round" />
+    <path d="M 105 64 Q 114 59 124 63" stroke="#1e293b" stroke-width="2.8" fill="none" stroke-linecap="round" />
+
+    <!-- Cheeks -->
+    <circle cx="78" cy="88" r="4.5" fill="#fca5a5" fill-opacity="0.5" />
+    <circle cx="122" cy="88" r="4.5" fill="#fca5a5" fill-opacity="0.5" />
+
+    <!-- Confident Smile -->
+    <path d="M 91 93 Q 100 102 109 93" stroke="#b91c1c" stroke-width="2.5" fill="none" stroke-linecap="round" />
+
+    <!-- Male Professional Short Hair (Side Part) -->
+    <path d="M 62 76 C 58 45 75 36 100 36 C 122 36 138 46 138 74 C 134 52 118 44 100 46 C 85 45 68 55 62 76 Z" fill="#0f172a" />
+    <path d="M 64 68 Q 80 50 115 50" stroke="#0f172a" stroke-width="5" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Border Ring on Top -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#f59e0b" stroke-width="4" />
+</svg>
