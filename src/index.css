@@ -6208,3 +6208,70 @@ a, p, h1, h2, h3, h4, h5, h6, span, label { overflow-wrap: anywhere; }
     font-size: clamp(1.9rem, 8vw, 2.35rem) !important;
   }
 }
+
+
+/* Mobile topbar: retain a single compact desktop-style row where possible. */
+@media (max-width: 767.98px) {
+  .m3-top-bar, .top-header-strip { padding: 7px 0 !important; }
+  .topbar-container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    padding: 0 8px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+  }
+  .topbar-contact-meta, .topbar-actions {
+    display: flex !important;
+    width: auto !important;
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+  }
+  .topbar-meta-chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding: 5px 7px !important;
+    font-size: clamp(.58rem, 2.35vw, .74rem) !important;
+    line-height: 1.2 !important;
+    gap: 4px !important;
+  }
+  .topbar-chip-text {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+  }
+  .topbar-meta-chip .material-symbols-outlined,
+  .topbar-meta-chip .icon { font-size: 14px !important; }
+  .topbar-v-divider { display: none !important; }
+  .topbar-heritage-pill {
+    display: none !important;
+  }
+  .topbar-admission-btn, .topbar-utility-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    min-height: 30px !important;
+    padding: 5px 8px !important;
+    font-size: clamp(.6rem, 2.5vw, .75rem) !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+  }
+}
+@media (max-width: 380px) {
+  .topbar-container { gap: 3px !important; padding: 0 5px !important; }
+  .topbar-contact-meta, .topbar-actions { gap: 3px !important; }
+  .topbar-meta-chip { padding: 5px !important; }
+  .topbar-admission-btn, .topbar-utility-pill { padding: 5px 6px !important; }
+}
