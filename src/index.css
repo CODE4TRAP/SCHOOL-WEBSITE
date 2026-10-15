@@ -6110,3 +6110,101 @@ a, p, h1, h2, h3, h4, h5, h6, span, label { overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+
+/* MOBILE UI REFINEMENT — compact header, readable hero, no overlapping bars */
+@media (max-width: 767.98px) {
+  .m3-top-bar, .top-header-strip { padding: 12px 0 !important; }
+  .topbar-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 0 12px !important;
+    white-space: normal !important;
+  }
+  .topbar-contact-meta, .topbar-actions {
+    width: 100% !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 7px !important;
+  }
+  .topbar-meta-chip { max-width: 100%; font-size: .78rem !important; }
+  .topbar-chip-text { overflow-wrap: anywhere; }
+  .topbar-v-divider { display: none !important; }
+  .topbar-heritage-pill { max-width: 100%; white-space: normal !important; justify-content: center; text-align: center; }
+  .topbar-admission-btn, .topbar-utility-pill { min-height: 38px; justify-content: center; }
+
+  .m3-main-header .container > .d-flex {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+  }
+  .m3-main-header .container > .d-flex > .d-flex:first-child {
+    align-items: flex-start !important;
+    width: 100% !important;
+  }
+  .m3-main-header .container > .d-flex > .d-flex:first-child > * { min-width: 0; }
+  .m3-school-logo { width: 48px !important; height: 48px !important; }
+  .m3-school-title { font-size: clamp(1.02rem, 4.4vw, 1.25rem) !important; line-height: 1.25 !important; }
+  .school-tagline-text { font-size: .82rem !important; }
+  .school-affiliation-badge { white-space: normal !important; }
+
+  .m3-nav-bar { position: relative !important; z-index: 20; }
+  .m3-nav-bar .container { padding-top: 8px; padding-bottom: 8px; }
+  .m3-nav-menu-wrapper { flex-basis: 100%; }
+  .m3-mobile-toggle { display: inline-flex; align-items: center; gap: 10px; }
+  .m3-nav-menu-wrapper:not(.show-mobile) { display: none !important; }
+  .m3-nav-menu-wrapper.show-mobile { display: block !important; }
+
+  /* Keep the breaking-news strip in normal document flow; never cover its text. */
+  .latest-updates, .latest-updates-bar, .news-ticker, .ticker-container,
+  .m3-news-ticker, .announcement-ticker {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .ticker-content, .news-ticker-content, .latest-updates-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  /* The hero card and headline must shrink to the viewport instead of clipping. */
+  .hero, .hero-section, .hero-content, .hero-card, .home-hero,
+  .landing-hero, .m3-hero, .hero-inner {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  .hero h1, .hero-section h1, .hero-content h1, .hero-card h1,
+  .home-hero h1, .landing-hero h1, .m3-hero h1 {
+    font-size: clamp(2rem, 8.4vw, 2.8rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -.035em;
+    overflow-wrap: anywhere;
+  }
+  .hero p, .hero-section p, .hero-content p, .hero-card p,
+  .home-hero p, .landing-hero p, .m3-hero p {
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+  }
+  .floating-actions, .floating-whatsapp, .whatsapp-float, .whatsapp-float-btn {
+    max-width: calc(100vw - 28px);
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-container { gap: 7px !important; }
+  .topbar-meta-chip { padding: 5px 9px !important; }
+  .topbar-heritage-pill { font-size: .76rem !important; }
+  .m3-main-header .container { padding-left: 16px !important; padding-right: 16px !important; }
+  .m3-main-header .container > .d-flex > .d-flex:last-child {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .m3-main-header .m3-btn { min-height: 48px !important; font-size: .86rem !important; }
+  .hero h1, .hero-section h1, .hero-content h1, .hero-card h1,
+  .home-hero h1, .landing-hero h1, .m3-hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.35rem) !important;
+  }
+}
