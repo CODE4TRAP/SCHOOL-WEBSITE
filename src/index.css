@@ -6275,3 +6275,118 @@ a, p, h1, h2, h3, h4, h5, h6, span, label { overflow-wrap: anywhere; }
   .topbar-meta-chip { padding: 5px !important; }
   .topbar-admission-btn, .topbar-utility-pill { padding: 5px 6px !important; }
 }
+
+
+/* MOBILE POLISH v2: keep topbar usable, remove ticker overlap, improve spacing */
+@media (max-width: 767.98px) {
+  /* Two tidy rows are more usable than clipping desktop controls into one row. */
+  .topbar-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    overflow: visible !important;
+    white-space: normal !important;
+    padding: 0 12px !important;
+  }
+  .topbar-contact-meta {
+    display: flex !important;
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    min-width: 0 !important;
+  }
+  .topbar-contact-meta .topbar-meta-chip {
+    flex: 0 1 auto !important;
+    max-width: 50% !important;
+    min-width: 0 !important;
+  }
+  .topbar-contact-meta .topbar-chip-text {
+    display: block !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+  .topbar-actions {
+    display: flex !important;
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    gap: 6px !important;
+    min-width: 0 !important;
+  }
+  .topbar-heritage-pill { display: none !important; }
+  .topbar-admission-btn, .topbar-utility-pill {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    max-width: 50% !important;
+    min-height: 36px !important;
+    padding: 7px 9px !important;
+    font-size: .72rem !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* News label gets its own fixed column; ticker text scrolls only in the remaining space. */
+  .latest-updates, .latest-updates-bar, .news-ticker, .ticker-container,
+  .m3-news-ticker, .announcement-ticker {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+  .latest-updates-bar, .m3-news-ticker, .announcement-ticker {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    overflow: hidden !important;
+  }
+  .latest-updates-label, .news-ticker-label, .ticker-label {
+    position: relative !important;
+    flex: 0 0 auto !important;
+    z-index: 2 !important;
+    max-width: 44% !important;
+    margin: 0 !important;
+  }
+  .ticker-content, .news-ticker-content, .latest-updates-text {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    white-space: nowrap !important;
+  }
+
+  /* Tighter school identity block and consistent spacing on small screens. */
+  .m3-main-header .container { padding-top: 18px !important; padding-bottom: 18px !important; }
+  .m3-main-header .container > .d-flex { gap: 12px !important; }
+  .m3-school-logo { flex: 0 0 auto !important; }
+  .m3-school-title { overflow-wrap: normal !important; word-break: normal !important; }
+  .m3-main-header .container > .d-flex > .d-flex:last-child {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+    width: 100% !important;
+  }
+  .m3-main-header .m3-btn { width: 100% !important; min-width: 0 !important; }
+
+  /* Prevent floating WhatsApp control from obscuring hero copy. */
+  .floating-whatsapp, .whatsapp-float, .whatsapp-float-btn {
+    right: 14px !important;
+    bottom: 72px !important;
+    z-index: 30 !important;
+  }
+}
+@media (max-width: 380px) {
+  .topbar-container { padding: 0 8px !important; gap: 6px !important; }
+  .topbar-meta-chip { padding: 5px 6px !important; font-size: .68rem !important; }
+  .topbar-admission-btn, .topbar-utility-pill { padding: 7px 6px !important; font-size: .66rem !important; }
+  .latest-updates-label, .news-ticker-label, .ticker-label { max-width: 40% !important; font-size: .72rem !important; }
+}
