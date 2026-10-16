@@ -128,17 +128,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/about#uniform">
+                <Link to="/student-corner#uniform">
                   <i className="fas fa-chevron-right text-warning small"></i> School Uniform
                 </Link>
               </li>
               <li>
-                <Link to="/about#timings">
+                <Link to="/student-corner#timings">
                   <i className="fas fa-chevron-right text-warning small"></i> School Timing
                 </Link>
               </li>
               <li>
-                <Link to="/about#vacations">
+                <Link to="/student-corner#vacations">
                   <i className="fas fa-chevron-right text-warning small"></i> Holidays 2026
                 </Link>
               </li>

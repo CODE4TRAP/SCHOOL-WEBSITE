@@ -103,17 +103,20 @@ export default function Navbar() {
             <li className="m3-dropdown-wrapper">
               <button
                 onClick={() => toggleDropdown('student')}
-                className="m3-nav-link"
+                className={`m3-nav-link ${location.pathname.startsWith('/student') ? 'active' : ''}`}
               >
                 <span className="material-symbols-outlined fs-5">sentiment_satisfied</span>
                 <span>Student Corner</span>
                 <span className="material-symbols-outlined dropdown-arrow">expand_more</span>
               </button>
               <ul className={`m3-dropdown-menu ${openDropdown === 'student' ? 'show' : ''}`}>
-                <li><Link to="/about#moral" onClick={closeMenu}>Assembly &amp; Moral Values</Link></li>
-                <li><Link to="/about#uniform" onClick={closeMenu}>School Uniform Dress Code</Link></li>
-                <li><Link to="/about#timings" onClick={closeMenu}>Class Timing &amp; Daily Routine</Link></li>
-                <li><Link to="/about#vacations" onClick={closeMenu}>Vacations &amp; Holidays 2026</Link></li>
+                <li><Link to="/student-corner#moral" onClick={closeMenu}>Assembly &amp; Moral Education</Link></li>
+                <li><Link to="/student-corner#uniform" onClick={closeMenu}>School Uniform</Link></li>
+                <li><Link to="/student-corner#guidelines-students" onClick={closeMenu}>Guidelines For Students</Link></li>
+                <li><Link to="/student-corner#timings" onClick={closeMenu}>School Timing &amp; Routine</Link></li>
+                <li><Link to="/student-corner#attendance" onClick={closeMenu}>Attendance &amp; Leave Rules</Link></li>
+                <li><Link to="/student-corner#cca-calendar" onClick={closeMenu}>CCA Calendar 2026–27</Link></li>
+                <li><Link to="/student-corner#vacations" onClick={closeMenu}>Vacations &amp; Holidays</Link></li>
               </ul>
             </li>
 

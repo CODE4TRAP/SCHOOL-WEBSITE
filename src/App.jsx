@@ -18,6 +18,7 @@ import Facilities from './pages/Facilities';
 import Gallery from './pages/Gallery';
 import MandatoryDisclosure from './pages/MandatoryDisclosure';
 import Contact from './pages/Contact';
+import StudentCorner from './pages/StudentCorner';
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -46,6 +47,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/admission" element={<Admission />} />
+          <Route path="/student-corner" element={<StudentCorner />} />
+          <Route path="/student" element={<Navigate to="/student-corner" replace />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/mandatory-disclosure" element={<MandatoryDisclosure />} />

@@ -91,6 +91,101 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── High-Priority Quick Services & Action Deck ─── */}
+      <section className="home-quick-actions-section pb-4">
+        <div className="container">
+          <div className="row g-3">
+            {/* Card 1: Apply Online */}
+            <div className="col-lg-3 col-sm-6 col-12">
+              <Link to="/admission" className="home-quick-card home-card-blue">
+                <div>
+                  <div className="home-quick-icon-wrap">
+                    <span className="material-symbols-outlined">how_to_reg</span>
+                  </div>
+                  <div className="home-quick-content">
+                    <span className="home-quick-badge">ADMISSION 2026–27</span>
+                    <h5 className="home-quick-title">Apply Online</h5>
+                    <p className="home-quick-desc">
+                      Admissions open for Playgroup to Class V. Instant online registration.
+                    </p>
+                  </div>
+                </div>
+                <div className="home-quick-footer">
+                  <span>Register Student</span>
+                  <span className="material-symbols-outlined fs-6">arrow_forward</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Card 2: Pay Fee */}
+            <div className="col-lg-3 col-sm-6 col-12">
+              <Link to="/admission#fee-payment" className="home-quick-card home-card-emerald">
+                <div>
+                  <div className="home-quick-icon-wrap">
+                    <span className="material-symbols-outlined">payments</span>
+                  </div>
+                  <div className="home-quick-content">
+                    <span className="home-quick-badge">SAFE &amp; INSTANT</span>
+                    <h5 className="home-quick-title">Pay School Fee</h5>
+                    <p className="home-quick-desc">
+                      Pay tuition &amp; term fees securely online via UPI, Debit Card or NetBanking.
+                    </p>
+                  </div>
+                </div>
+                <div className="home-quick-footer">
+                  <span>Fee Payment Portal</span>
+                  <span className="material-symbols-outlined fs-6">arrow_forward</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Card 3: Contact & Campus Visit */}
+            <div className="col-lg-3 col-sm-6 col-12">
+              <Link to="/contact" className="home-quick-card home-card-amber">
+                <div>
+                  <div className="home-quick-icon-wrap">
+                    <span className="material-symbols-outlined">contact_support</span>
+                  </div>
+                  <div className="home-quick-content">
+                    <span className="home-quick-badge">CAMPUS DESK</span>
+                    <h5 className="home-quick-title">Contact &amp; Visit</h5>
+                    <p className="home-quick-desc">
+                      Schedule a campus visit, talk to counselors, or view GPS directions.
+                    </p>
+                  </div>
+                </div>
+                <div className="home-quick-footer">
+                  <span>Get in Touch</span>
+                  <span className="material-symbols-outlined fs-6">arrow_forward</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Card 4: Student Corner */}
+            <div className="col-lg-3 col-sm-6 col-12">
+              <Link to="/student-corner" className="home-quick-card home-card-violet">
+                <div>
+                  <div className="home-quick-icon-wrap">
+                    <span className="material-symbols-outlined">sentiment_satisfied</span>
+                  </div>
+                  <div className="home-quick-content">
+                    <span className="home-quick-badge">STUDENT LIFE</span>
+                    <h5 className="home-quick-title">Student Corner</h5>
+                    <p className="home-quick-desc">
+                      Daily bell timings, seasonal dress code, prayer assembly &amp; holiday lists.
+                    </p>
+                  </div>
+                </div>
+                <div className="home-quick-footer">
+                  <span>Explore Corner</span>
+                  <span className="material-symbols-outlined fs-6">arrow_forward</span>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Notice Board & Quick Admission Overview */}
       <section className="main-content-section" id="noticeBoardSection">
         <div className="container">
@@ -414,11 +509,12 @@ export default function Home() {
 
                 <div className="p-3 pt-0">
                   <button
-                    onClick={() => openPortal('Online School Management (OSM) Portal', '2026-27')}
+                    onClick={() => openPortal('Online School Management (OSM) Portal', '2026–27')}
                     className="bulletin-portal-btn"
                   >
                     <span className="material-symbols-outlined fs-5">lock_open</span>
                     <span>Access OSM Portal Login</span>
+                    <span className="badge bg-warning text-dark px-2 py-1 ms-2" style={{ fontSize: '10px' }}>Coming Soon</span>
                     <span className="material-symbols-outlined fs-6 ms-auto">arrow_forward</span>
                   </button>
                 </div>

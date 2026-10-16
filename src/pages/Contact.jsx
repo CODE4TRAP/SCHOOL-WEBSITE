@@ -302,32 +302,93 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Location Map Visual Card */}
-            <div className="card shadow-sm border-0 rounded-3 overflow-hidden border mb-4">
-              <div className="card-header bg-primary text-white p-3">
-                <h6 className="mb-0 fw-bold"><i className="fas fa-compass me-2 text-warning"></i> Campus Location Map</h6>
-              </div>
-              <div className="card-body p-0">
-                <iframe
-                  title="School Location Map"
-                  src="https://maps.google.com/maps?q=Sasaram%2C%20Rohtas%2C%20Bihar&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="250"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                ></iframe>
-              </div>
-              <div className="p-3 bg-light border-top d-flex justify-content-between align-items-center">
-                <span className="small text-muted"><i className="fas fa-car me-1 text-primary"></i> Ample Visitor Parking Available</span>
+            {/* Location Map Visual Card - Premium Redesign */}
+            <div className="card shadow-sm border rounded-4 overflow-hidden mb-4" style={{ borderColor: 'rgba(13, 59, 102, 0.12)' }}>
+              {/* Header Strip */}
+              <div
+                className="p-3 text-white d-flex align-items-center justify-content-between flex-wrap gap-2"
+                style={{ background: 'linear-gradient(135deg, #0d3b66 0%, #1a4f8b 100%)' }}
+              >
+                <div className="d-flex align-items-center gap-3">
+                  <div
+                    className="rounded-3 d-flex align-items-center justify-content-center"
+                    style={{ width: '42px', height: '42px', background: 'rgba(255, 255, 255, 0.15)', color: '#fbbf24' }}
+                  >
+                    <span className="material-symbols-outlined fs-5">explore</span>
+                  </div>
+                  <div>
+                    <h6 className="mb-0 fw-bold text-white d-flex align-items-center gap-2">
+                      Campus Location &amp; Navigation
+                      <span className="badge bg-warning text-dark small" style={{ fontSize: '10px', padding: '2px 8px' }}>
+                        LIVE GPS
+                      </span>
+                    </h6>
+                    <span className="small text-white-50">Sasaram, Rohtas District, Bihar &bull; NH-19 Access</span>
+                  </div>
+                </div>
                 <a
                   href="https://maps.google.com/?q=Sasaram,+Bihar"
                   target="_blank"
                   rel="noreferrer"
-                  className="btn btn-primary btn-sm"
+                  className="btn btn-warning btn-sm fw-semibold rounded-pill px-3 d-inline-flex align-items-center gap-1 shadow-sm"
                 >
-                  <i className="fas fa-directions me-1"></i> Open in Maps
+                  <span className="material-symbols-outlined fs-6">near_me</span>
+                  <span>Get Directions</span>
                 </a>
+              </div>
+
+              {/* Map Canvas with Floating Geo Coordinates */}
+              <div className="position-relative" style={{ height: '280px', background: '#e2e8f0' }}>
+                <iframe
+                  title="School Location Map"
+                  src="https://maps.google.com/maps?q=Sasaram%2C%20Rohtas%2C%20Bihar&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: 'contrast(1.02) saturate(1.05)' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                ></iframe>
+                <div
+                  className="position-absolute top-0 start-0 m-2 px-2 py-1 rounded-pill small fw-semibold text-white d-flex align-items-center gap-1 shadow-sm"
+                  style={{ background: 'rgba(15, 23, 42, 0.78)', backdropFilter: 'blur(8px)', fontSize: '11px', letterSpacing: '0.3px' }}
+                >
+                  <span className="material-symbols-outlined fs-6 text-warning">pin_drop</span>
+                  <span>24.9536&deg; N, 84.0315&deg; E</span>
+                </div>
+              </div>
+
+              {/* Campus Amenities & Parking Badges */}
+              <div className="p-3 bg-white border-top">
+                <div className="d-flex flex-wrap gap-2 mb-3">
+                  <span className="badge bg-light text-secondary border px-2 py-2 d-inline-flex align-items-center gap-1 fw-normal" style={{ fontSize: '11px' }}>
+                    <i className="fas fa-car text-primary"></i> Ample Visitor Parking
+                  </span>
+                  <span className="badge bg-light text-secondary border px-2 py-2 d-inline-flex align-items-center gap-1 fw-normal" style={{ fontSize: '11px' }}>
+                    <i className="fas fa-bus text-success"></i> School Bus Drop Bay
+                  </span>
+                  <span className="badge bg-light text-secondary border px-2 py-2 d-inline-flex align-items-center gap-1 fw-normal" style={{ fontSize: '11px' }}>
+                    <i className="fas fa-wheelchair text-info"></i> Wheelchair Ramp
+                  </span>
+                  <span className="badge bg-light text-secondary border px-2 py-2 d-inline-flex align-items-center gap-1 fw-normal" style={{ fontSize: '11px' }}>
+                    <i className="fas fa-shield-alt text-warning"></i> 24x7 Security Gate
+                  </span>
+                </div>
+
+                <div className="d-flex justify-content-between align-items-center pt-2 border-top">
+                  <span className="small text-muted d-flex align-items-center gap-1">
+                    <span className="material-symbols-outlined fs-6 text-primary">distance</span>
+                    <span>3.2 km from Sasaram Railway Station</span>
+                  </span>
+                  <a
+                    href="https://maps.google.com/?q=Sasaram,+Bihar"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="small fw-bold text-primary text-decoration-none d-flex align-items-center gap-1"
+                  >
+                    <span>Open in Google Maps</span>
+                    <span className="material-symbols-outlined fs-6">open_in_new</span>
+                  </a>
+                </div>
               </div>
             </div>
 

@@ -33,22 +33,6 @@ export default function Header() {
               </div>
             </div>
           </div>
-
-          {/* Quick Header M3 Action Buttons */}
-          <div className="d-flex align-items-center gap-2 flex-wrap">
-            <Link to="/admission#fee-payment" className="m3-btn m3-btn-tonal">
-              <span className="material-symbols-outlined">payments</span>
-              <span>Pay Fee</span>
-            </Link>
-            <Link to="/admission" className="m3-btn m3-btn-filled">
-              <span className="material-symbols-outlined">how_to_reg</span>
-              <span>Apply Online</span>
-            </Link>
-            <Link to="/contact" className="m3-btn m3-btn-outlined d-none d-sm-inline-flex">
-              <span className="material-symbols-outlined">contact_support</span>
-              <span>Contact</span>
-            </Link>
-          </div>
         </div>
       </div>
     </header>

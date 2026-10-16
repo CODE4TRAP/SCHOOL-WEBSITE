@@ -422,33 +422,43 @@ export default function About() {
                 <div className="col-md-6" id="routine">
                   <div className="m3-feature-box">
                     <div className="m3-feature-box-header m3-header-gold">
-                      <span className="material-symbols-outlined text-warning fs-4">light_mode</span>
-                      <h5>Daily Timings</h5>
+                      <span className="material-symbols-outlined text-warning fs-4">schedule</span>
+                      <h5>Wing-Wise School Timings</h5>
                     </div>
-                    <div className="m3-feature-box-body">
-                      <div className="timing-row">
-                        <span className="timing-row-label">
-                          <i className="fas fa-sun text-warning"></i> Summer (Apr – Oct)
-                        </span>
-                        <span className="timing-row-value">07:30 AM – 12:30 PM</span>
+                    <div className="m3-feature-box-body p-0">
+                      <div className="table-responsive">
+                        <table className="table table-sm table-striped mb-0" style={{ fontSize: '0.84rem' }}>
+                          <thead className="table-light">
+                            <tr>
+                              <th className="ps-3 py-2">Wing / Section</th>
+                              <th className="py-2 text-warning-emphasis">Summer</th>
+                              <th className="py-2 pe-3 text-info-emphasis">Winter</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="ps-3 py-2 fw-semibold">Playgroup &amp; Nursery</td>
+                              <td className="py-2">08:30 AM – 11:30 AM</td>
+                              <td className="py-2 pe-3">09:00 AM – 12:00 PM</td>
+                            </tr>
+                            <tr>
+                              <td className="ps-3 py-2 fw-semibold">LKG &amp; UKG (Kindergarten)</td>
+                              <td className="py-2">08:00 AM – 12:30 PM</td>
+                              <td className="py-2 pe-3">08:30 AM – 01:00 PM</td>
+                            </tr>
+                            <tr>
+                              <td className="ps-3 py-2 fw-semibold">Primary (Std I to V)</td>
+                              <td className="py-2">07:45 AM – 01:30 PM</td>
+                              <td className="py-2 pe-3">08:15 AM – 02:00 PM</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
-                      <div className="timing-row">
-                        <span className="timing-row-label">
-                          <i className="fas fa-snowflake text-info"></i> Winter (Nov – Mar)
-                        </span>
-                        <span className="timing-row-value">08:30 AM – 01:30 PM</span>
-                      </div>
-                      <div className="timing-row">
-                        <span className="timing-row-label">
-                          <i className="fas fa-bell text-primary"></i> Morning Assembly
-                        </span>
-                        <span className="timing-row-value">15 mins prayers &amp; drill</span>
-                      </div>
-                      <div className="timing-row">
-                        <span className="timing-row-label">
-                          <i className="fas fa-apple-alt text-danger"></i> Lunch &amp; Snack Break
-                        </span>
-                        <span className="timing-row-value">10:30 AM – 10:55 AM</span>
+                      <div className="p-3 bg-light border-top d-flex justify-content-between align-items-center small text-muted">
+                        <span><i className="fas fa-bell text-warning me-1"></i> Assembly: 15 mins daily</span>
+                        <Link to="/student-corner#timings" className="text-primary fw-semibold text-decoration-none">
+                          View Details &rarr;
+                        </Link>
                       </div>
                     </div>
                   </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { schoolInfo } from '../../data/content';
 
@@ -6,6 +6,8 @@ export default function AdminDashboard() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('admissions');
   const [adminUser, setAdminUser] = useState(null);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   // Stats
   const [stats, setStats] = useState({
@@ -23,21 +25,15 @@ export default function AdminDashboard() {
   const [admStatusFilter, setAdmStatusFilter] = useState('All');
   const [selectedAdmission, setSelectedAdmission] = useState(null);
 
-  // Notices State
-  const [notices, setNotices] = useState([]);
-  const [noticeLoading, setNoticeLoading] = useState(false);
-  const [showNoticeForm, setShowNoticeForm] = useState(false);
-  const [newNotice, setNewNotice] = useState({
-    title: '',
-    category: 'Admission',
-    date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-'),
-    desc: '',
-    isNew: true
-  });
-
   // Inquiries State
   const [inquiries, setInquiries] = useState([]);
   const [inqLoading, setInqLoading] = useState(false);
+
+  // Live clock
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Check Auth
   useEffect(() => {
@@ -52,7 +48,6 @@ export default function AdminDashboard() {
     }
     fetchStats();
     fetchAdmissions();
-    fetchNotices();
     fetchInquiries();
   }, [navigate]);
 
@@ -123,61 +118,6 @@ export default function AdminDashboard() {
     }
   };
 
-  // --- Notices API ---
-  const fetchNotices = async () => {
-    setNoticeLoading(true);
-    try {
-      const res = await fetch('/api/notices');
-      const data = await res.json();
-      if (data.success) setNotices(data.data);
-    } catch (err) {
-      console.error('Error fetching notices:', err);
-    } finally {
-      setNoticeLoading(false);
-    }
-  };
-
-  const handleCreateNotice = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch('/api/notices', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newNotice)
-      });
-      const data = await res.json();
-      if (data.success) {
-        setNotices(prev => [data.data, ...prev]);
-        setShowNoticeForm(false);
-        setNewNotice({
-          title: '',
-          category: 'Admission',
-          date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).replace(/\//g, '-'),
-          desc: '',
-          isNew: true
-        });
-        fetchStats();
-        alert('Notice published successfully to MongoDB & live website!');
-      }
-    } catch (err) {
-      alert('Failed to publish notice');
-    }
-  };
-
-  const deleteNotice = async (id) => {
-    if (!window.confirm('Delete this notice from website?')) return;
-    try {
-      const res = await fetch(`/api/notices/${id}`, { method: 'DELETE' });
-      const data = await res.json();
-      if (data.success) {
-        setNotices(prev => prev.filter(n => n._id !== id));
-        fetchStats();
-      }
-    } catch (err) {
-      alert('Failed to delete notice');
-    }
-  };
-
   // --- Inquiries API ---
   const fetchInquiries = async () => {
     setInqLoading(true);
@@ -223,448 +163,307 @@ export default function AdminDashboard() {
     }
   };
 
+  const navItems = [
+    { id: 'admissions', icon: 'how_to_reg', label: 'Registration Details', count: stats.totalAdmissions },
+    { id: 'inquiries', icon: 'contact_mail', label: 'Enquiries Info', count: stats.totalInquiries },
+  ];
+
+  const statusColor = (status) => {
+    switch (status) {
+      case 'Approved': return { bg: '#05966914', text: '#059669', border: '#05966930' };
+      case 'Rejected': return { bg: '#dc262614', text: '#dc2626', border: '#dc262630' };
+      case 'Contacted': return { bg: '#2563eb14', text: '#2563eb', border: '#2563eb30' };
+      default: return { bg: '#f59e0b14', text: '#f59e0b', border: '#f59e0b30' };
+    }
+  };
+
   return (
-    <div style={{ background: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Top Admin Navigation Header */}
-      <header
-        style={{
-          background: 'linear-gradient(90deg, #052445 0%, #0c58a2 100%)',
-          color: '#ffffff',
-          padding: '14px 0',
-          boxShadow: '0 4px 14px rgba(0,0,0,0.15)',
-          position: 'sticky',
-          top: 0,
-          zIndex: 100
-        }}
-      >
-        <div className="container d-flex justify-content-between align-items-center flex-wrap gap-2">
-          <div className="d-flex align-items-center gap-3">
-            <img
-              src="/images/logo.png"
-              alt="Logo"
-              style={{ width: '44px', height: '44px', background: '#fff', borderRadius: '8px', padding: '2px' }}
-            />
-            <div>
-              <h5 className="fw-bold mb-0 text-white" style={{ fontSize: '1.1rem' }}>
-                {schoolInfo.name}
-              </h5>
-              <div className="d-flex align-items-center gap-2 small text-light opacity-75">
-                <span>Admin Console</span>
-                <span>&bull;</span>
-                <span className="badge bg-success" style={{ fontSize: '0.7rem' }}>
-                  <i className="fas fa-database me-1"></i> MongoDB Atlas Connected
-                </span>
-              </div>
+    <div className="adm-shell">
+      {/* ─── SIDEBAR ─── */}
+      <aside className={`adm-sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+        <div className="adm-sidebar-brand">
+          <img src="/images/logo.png" alt="Logo" className="adm-sidebar-logo" />
+          {!sidebarCollapsed && (
+            <div className="adm-sidebar-brand-text">
+              <span className="adm-brand-name">SSA Admin</span>
+              <span className="adm-brand-sub">Registrations &amp; Enquiries</span>
+            </div>
+          )}
+        </div>
+
+        <nav className="adm-sidebar-nav">
+          <div className="adm-nav-section-label">{!sidebarCollapsed && 'Core Modules'}</div>
+          {navItems.map(item => (
+            <button
+              key={item.id}
+              className={`adm-nav-item ${activeTab === item.id ? 'active' : ''}`}
+              onClick={() => setActiveTab(item.id)}
+              title={item.label}
+            >
+              <span className="material-symbols-outlined adm-nav-icon">{item.icon}</span>
+              {!sidebarCollapsed && (
+                <>
+                  <span className="adm-nav-label">{item.label}</span>
+                  {item.count > 0 && (
+                    <span className="adm-nav-badge">{item.count}</span>
+                  )}
+                </>
+              )}
+            </button>
+          ))}
+
+          <div className="adm-nav-section-label" style={{ marginTop: '24px' }}>{!sidebarCollapsed && 'Quick Actions'}</div>
+          <Link to="/" target="_blank" rel="noreferrer" className="adm-nav-item" title="View Live Site">
+            <span className="material-symbols-outlined adm-nav-icon">language</span>
+            {!sidebarCollapsed && <span className="adm-nav-label">View Live Site</span>}
+          </Link>
+        </nav>
+
+        <div className="adm-sidebar-footer">
+          <button
+            className="adm-collapse-btn"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            title={sidebarCollapsed ? 'Expand' : 'Collapse'}
+          >
+            <span className="material-symbols-outlined">
+              {sidebarCollapsed ? 'chevron_right' : 'chevron_left'}
+            </span>
+          </button>
+        </div>
+      </aside>
+
+      {/* ─── MAIN CONTENT ─── */}
+      <div className="adm-main">
+        {/* Top Header Bar */}
+        <header className="adm-topbar">
+          <div className="adm-topbar-left">
+            <button className="adm-mobile-menu-btn" onClick={() => setSidebarCollapsed(!sidebarCollapsed)}>
+              <span className="material-symbols-outlined">menu</span>
+            </button>
+            <div className="adm-breadcrumb">
+              <span className="adm-breadcrumb-root">Admin Portal</span>
+              <span className="material-symbols-outlined adm-breadcrumb-sep">chevron_right</span>
+              <span className="adm-breadcrumb-current">
+                {activeTab === 'admissions' && 'Registration Details'}
+                {activeTab === 'inquiries' && 'Enquiries Info'}
+              </span>
             </div>
           </div>
 
-          <div className="d-flex align-items-center gap-3">
-            <span className="small text-white d-none d-md-inline">
-              <i className="fas fa-user-shield text-warning me-1"></i> {adminUser?.name || 'Administrator'}
-            </span>
-            <Link to="/" className="btn btn-outline-light btn-sm" target="_blank" rel="noreferrer">
-              <i className="fas fa-external-link-alt me-1"></i> View Live Site
-            </Link>
-            <button onClick={handleLogout} className="btn btn-warning btn-sm fw-bold">
-              <i className="fas fa-sign-out-alt me-1"></i> Log Out
+          <div className="adm-topbar-right">
+            <div className="adm-live-clock">
+              <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>schedule</span>
+              <span>{currentTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span>
+            </div>
+            <div className="adm-db-status">
+              <span className="adm-status-dot"></span>
+              <span>MongoDB Atlas</span>
+            </div>
+            <div className="adm-user-chip">
+              <div className="adm-user-avatar">
+                {(adminUser?.name || 'A').charAt(0).toUpperCase()}
+              </div>
+              <div className="adm-user-info">
+                <span className="adm-user-name">{adminUser?.name || 'Administrator'}</span>
+                <span className="adm-user-role">{adminUser?.role || 'Super Admin'}</span>
+              </div>
+            </div>
+            <button onClick={handleLogout} className="adm-logout-btn" title="Log Out">
+              <span className="material-symbols-outlined">logout</span>
             </button>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Main Admin Content Container */}
-      <div className="container py-4 flex-grow-1">
-        {/* Metric Overview Cards */}
-        <div className="row g-3 mb-4">
-          <div className="col-md-3 col-6">
-            <div className="p-3 bg-white rounded-3 border shadow-sm h-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <div>
-                  <span className="small text-muted fw-bold d-block">Total Admissions</span>
-                  <h3 className="fw-bold text-primary mb-0 mt-1">{stats.totalAdmissions}</h3>
-                </div>
-                <div style={{ width: '45px', height: '45px', borderRadius: '12px', background: '#e0f2fe', color: '#0369a1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem' }}>
-                  <i className="fas fa-user-graduate"></i>
-                </div>
+        {/* Dashboard Content Area */}
+        <div className="adm-content">
+          {/* ─── STATS OVERVIEW CARDS ─── */}
+          <div className="adm-stats-grid">
+            <div className="adm-stat-card adm-stat-blue">
+              <div className="adm-stat-icon-wrap">
+                <span className="material-symbols-outlined">how_to_reg</span>
               </div>
-              <span className="small text-warning fw-semibold mt-2 d-block">
-                <i className="fas fa-clock me-1"></i> {stats.pendingAdmissions} Pending Review
-              </span>
+              <div className="adm-stat-info">
+                <span className="adm-stat-number">{stats.totalAdmissions}</span>
+                <span className="adm-stat-label">Total Registrations</span>
+              </div>
+              <div className="adm-stat-footer">
+                <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>pending_actions</span>
+                <span>{stats.pendingAdmissions} Pending Review</span>
+              </div>
+            </div>
+
+            <div className="adm-stat-card adm-stat-emerald">
+              <div className="adm-stat-icon-wrap">
+                <span className="material-symbols-outlined">verified</span>
+              </div>
+              <div className="adm-stat-info">
+                <span className="adm-stat-number">
+                  {admissions.filter(a => a.status === 'Approved').length}
+                </span>
+                <span className="adm-stat-label">Approved Registrations</span>
+              </div>
+              <div className="adm-stat-footer">
+                <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>check_circle</span>
+                <span>Confirmed Seats</span>
+              </div>
+            </div>
+
+            <div className="adm-stat-card adm-stat-amber">
+              <div className="adm-stat-icon-wrap">
+                <span className="material-symbols-outlined">contact_mail</span>
+              </div>
+              <div className="adm-stat-info">
+                <span className="adm-stat-number">{stats.totalInquiries}</span>
+                <span className="adm-stat-label">Parent Enquiries</span>
+              </div>
+              <div className="adm-stat-footer">
+                <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>mark_email_unread</span>
+                <span>{stats.newInquiries || inquiries.filter(i => i.status === 'New').length} New Enquiries</span>
+              </div>
+            </div>
+
+            <div className="adm-stat-card adm-stat-violet">
+              <div className="adm-stat-icon-wrap">
+                <span className="material-symbols-outlined">cloud_done</span>
+              </div>
+              <div className="adm-stat-info">
+                <span className="adm-stat-number" style={{ fontSize: '1.4rem' }}>Cloud DB</span>
+                <span className="adm-stat-label">MongoDB Atlas</span>
+              </div>
+              <div className="adm-stat-footer">
+                <span className="adm-status-dot" style={{ width: '8px', height: '8px' }}></span>
+                <span>Cluster Online</span>
+              </div>
             </div>
           </div>
 
-          <div className="col-md-3 col-6">
-            <div className="p-3 bg-white rounded-3 border shadow-sm h-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <div>
-                  <span className="small text-muted fw-bold d-block">Active Circulars</span>
-                  <h3 className="fw-bold text-success mb-0 mt-1">{stats.totalNotices}</h3>
-                </div>
-                <div style={{ width: '45px', height: '45px', borderRadius: '12px', background: '#dcfce7', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem' }}>
-                  <i className="fas fa-bullhorn"></i>
-                </div>
-              </div>
-              <span className="small text-muted mt-2 d-block">Live on Notice Board</span>
-            </div>
-          </div>
-
-          <div className="col-md-3 col-6">
-            <div className="p-3 bg-white rounded-3 border shadow-sm h-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <div>
-                  <span className="small text-muted fw-bold d-block">Parent Inquiries</span>
-                  <h3 className="fw-bold text-dark mb-0 mt-1">{stats.totalInquiries}</h3>
-                </div>
-                <div style={{ width: '45px', height: '45px', borderRadius: '12px', background: '#fef3c7', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem' }}>
-                  <i className="fas fa-envelope-open-text"></i>
-                </div>
-              </div>
-              <span className="small text-danger fw-semibold mt-2 d-block">
-                <i className="fas fa-bell me-1"></i> {stats.newInquiries} New Inquiries
-              </span>
-            </div>
-          </div>
-
-          <div className="col-md-3 col-6">
-            <div className="p-3 bg-white rounded-3 border shadow-sm h-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <div>
-                  <span className="small text-muted fw-bold d-block">Database</span>
-                  <h5 className="fw-bold text-success mb-0 mt-1">MongoDB Cloud</h5>
-                </div>
-                <div style={{ width: '45px', height: '45px', borderRadius: '12px', background: '#f3e8ff', color: '#7e22ce', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem' }}>
-                  <i className="fas fa-server"></i>
-                </div>
-              </div>
-              <span className="small text-success mt-2 d-block">
-                <i className="fas fa-circle me-1" style={{ fontSize: '0.6rem' }}></i> Cluster Active
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Tab Selection Navigation */}
-        <div className="tab-nav-wrapper justify-content-start mb-4">
-          <button
-            className={`tab-btn ${activeTab === 'admissions' ? 'active' : ''}`}
-            onClick={() => setActiveTab('admissions')}
-          >
-            <i className="fas fa-user-graduate me-1"></i> Admissions ({stats.totalAdmissions})
-          </button>
-          <button
-            className={`tab-btn ${activeTab === 'notices' ? 'active' : ''}`}
-            onClick={() => setActiveTab('notices')}
-          >
-            <i className="fas fa-bullhorn me-1"></i> Manage Circulars ({stats.totalNotices})
-          </button>
-          <button
-            className={`tab-btn ${activeTab === 'inquiries' ? 'active' : ''}`}
-            onClick={() => setActiveTab('inquiries')}
-          >
-            <i className="fas fa-envelope me-1"></i> Parent Inquiries ({stats.totalInquiries})
-          </button>
-        </div>
-
-        {/* ========================================================
-            TAB 1: ADMISSIONS MANAGEMENT
-            ======================================================== */}
-        {activeTab === 'admissions' && (
-          <div className="card shadow-sm border-0 rounded-3 overflow-hidden">
-            <div className="card-header bg-white p-3 border-bottom d-flex justify-content-between align-items-center flex-wrap gap-2">
-              <div className="d-flex align-items-center gap-2 flex-grow-1" style={{ maxWidth: '400px' }}>
-                <input
-                  type="text"
-                  className="form-control form-control-sm"
-                  placeholder="🔍 Search student name, app no, mobile..."
-                  value={admSearch}
-                  onChange={(e) => setAdmSearch(e.target.value)}
-                  onKeyUp={(e) => e.key === 'Enter' && fetchAdmissions()}
-                />
-                <button onClick={fetchAdmissions} className="btn btn-sm btn-primary">
-                  Search
-                </button>
-              </div>
-
-              <div className="d-flex align-items-center gap-2">
-                <span className="small text-muted">Filter:</span>
-                <select
-                  className="form-select form-select-sm"
-                  style={{ width: 'auto' }}
-                  value={admStatusFilter}
-                  onChange={(e) => {
-                    setAdmStatusFilter(e.target.value);
-                  }}
-                >
-                  <option value="All">All Statuses</option>
-                  <option value="Pending">Pending</option>
-                  <option value="Approved">Approved</option>
-                  <option value="Contacted">Contacted</option>
-                  <option value="Rejected">Rejected</option>
-                </select>
-                <button onClick={fetchAdmissions} className="btn btn-sm btn-outline-secondary" title="Refresh">
-                  <i className="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-
-            <div className="card-body p-0">
-              {admLoading ? (
-                <div className="p-5 text-center text-muted">
-                  <i className="fas fa-spinner fa-spin fa-2x mb-2"></i>
-                  <p className="small mb-0">Loading admissions from MongoDB database...</p>
-                </div>
-              ) : admissions.length === 0 ? (
-                <div className="p-5 text-center text-muted">
-                  <i className="fas fa-folder-open fa-3x mb-3 text-secondary opacity-50"></i>
-                  <h6 className="fw-bold">No Admission Records Found</h6>
-                  <p className="small mb-0">New parent online applications will appear here automatically.</p>
-                </div>
-              ) : (
-                <div className="table-responsive">
-                  <table className="custom-table mb-0">
-                    <thead>
-                      <tr>
-                        <th>App No.</th>
-                        <th>Student Name</th>
-                        <th>Class</th>
-                        <th>Date of Birth</th>
-                        <th>Father &amp; Mother</th>
-                        <th>Mobile</th>
-                        <th>Transport</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {admissions.map((adm) => (
-                        <tr key={adm._id}>
-                          <td>
-                            <strong className="badge bg-light text-primary border" style={{ fontSize: '0.82rem' }}>
-                              {adm.appNumber}
-                            </strong>
-                          </td>
-                          <td className="fw-bold text-dark">{adm.studentName}</td>
-                          <td>
-                            <span className="badge bg-primary bg-opacity-10 text-primary border" style={{ fontSize: '0.75rem' }}>
-                              {adm.applyingClass}
-                            </span>
-                          </td>
-                          <td className="small text-muted">{adm.dob}</td>
-                          <td className="small">
-                            <div><strong>F:</strong> {adm.fatherName}</div>
-                            <div className="text-muted"><strong>M:</strong> {adm.motherName}</div>
-                          </td>
-                          <td className="small">
-                            <a href={`tel:${adm.mobile}`} className="text-primary fw-semibold">{adm.mobile}</a>
-                            {adm.whatsapp && (
-                              <a
-                                href={`https://wa.me/91${adm.whatsapp}?text=Hello%20${adm.fatherName},%20regarding%20${adm.studentName}'s%20admission%20at%20Swami%20Shiwanand%20Academy`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-success ms-2"
-                                title="Chat on WhatsApp"
-                              >
-                                <i className="fab fa-whatsapp"></i>
-                              </a>
-                            )}
-                          </td>
-                          <td className="small text-muted">{adm.transportNeeded}</td>
-                          <td>
-                            <select
-                              className="form-select form-select-sm"
-                              style={{
-                                fontSize: '0.78rem',
-                                fontWeight: 600,
-                                color: adm.status === 'Approved' ? '#15803d' : adm.status === 'Rejected' ? '#b91c1c' : '#b45309',
-                                background: adm.status === 'Approved' ? '#f0fdf4' : adm.status === 'Rejected' ? '#fef2f2' : '#fffbeb'
-                              }}
-                              value={adm.status}
-                              onChange={(e) => updateAdmissionStatus(adm._id, e.target.value)}
-                            >
-                              <option value="Pending">⏳ Pending</option>
-                              <option value="Approved">✅ Approved</option>
-                              <option value="Contacted">📞 Contacted</option>
-                              <option value="Rejected">❌ Rejected</option>
-                            </select>
-                          </td>
-                          <td>
-                            <div className="d-flex gap-1">
-                              <button
-                                onClick={() => setSelectedAdmission(adm)}
-                                className="btn btn-sm btn-outline-primary py-1 px-2"
-                                title="View & Print Slip"
-                              >
-                                <i className="fas fa-print"></i>
-                              </button>
-                              <button
-                                onClick={() => deleteAdmission(adm._id)}
-                                className="btn btn-sm btn-outline-danger py-1 px-2"
-                                title="Delete Application"
-                              >
-                                <i className="fas fa-trash-alt"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* ========================================================
-            TAB 2: NOTICES MANAGEMENT
-            ======================================================== */}
-        {activeTab === 'notices' && (
-          <div>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h5 className="fw-bold text-dark mb-0">Notice Board &amp; Circulars List</h5>
-              <button
-                onClick={() => setShowNoticeForm(!showNoticeForm)}
-                className="btn btn-primary btn-sm fw-bold"
-              >
-                <i className={`fas fa-${showNoticeForm ? 'times' : 'plus'} me-1`}></i>
-                {showNoticeForm ? 'Close Form' : 'Publish New Circular'}
-              </button>
-            </div>
-
-            {/* Create Notice Form */}
-            {showNoticeForm && (
-              <div className="card shadow-sm border-0 rounded-3 mb-4 p-4 border" style={{ background: '#f8fafc' }}>
-                <h6 className="fw-bold text-primary mb-3">
-                  <i className="fas fa-bullhorn text-warning me-2"></i> Publish New School Notice
-                </h6>
-                <form onSubmit={handleCreateNotice}>
-                  <div className="row g-3">
-                    <div className="col-md-8">
-                      <label className="form-label">Notice Title <span className="text-danger">*</span></label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        required
-                        placeholder="e.g. Admission Notice for Session 2026-27"
-                        value={newNotice.title}
-                        onChange={(e) => setNewNotice({ ...newNotice, title: e.target.value })}
-                      />
-                    </div>
-                    <div className="col-md-4">
-                      <label className="form-label">Category</label>
-                      <select
-                        className="form-select"
-                        value={newNotice.category}
-                        onChange={(e) => setNewNotice({ ...newNotice, category: e.target.value })}
-                      >
-                        <option value="Admission">Admission</option>
-                        <option value="Academics">Academics</option>
-                        <option value="Events">Events</option>
-                        <option value="Recruitment">Recruitment</option>
-                        <option value="Health">Health</option>
-                        <option value="General">General</option>
-                      </select>
-                    </div>
-
-                    <div className="col-md-6">
-                      <label className="form-label">Publication Date <span className="text-danger">*</span></label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        required
-                        placeholder="DD-MM-YYYY"
-                        value={newNotice.date}
-                        onChange={(e) => setNewNotice({ ...newNotice, date: e.target.value })}
-                      />
-                    </div>
-                    <div className="col-md-6 d-flex align-items-center">
-                      <div className="form-check mt-4">
-                        <input
-                          type="checkbox"
-                          className="form-check-input"
-                          id="isNewCheck"
-                          checked={newNotice.isNew}
-                          onChange={(e) => setNewNotice({ ...newNotice, isNew: e.target.checked })}
-                        />
-                        <label className="form-check-label fw-bold small" htmlFor="isNewCheck">
-                          Mark with "NEW" flashing badge
-                        </label>
-                      </div>
-                    </div>
-
-                    <div className="col-12">
-                      <label className="form-label">Full Circular Text / Description <span className="text-danger">*</span></label>
-                      <textarea
-                        className="form-control"
-                        rows="3"
-                        required
-                        placeholder="Complete announcement text for parents and staff..."
-                        value={newNotice.desc}
-                        onChange={(e) => setNewNotice({ ...newNotice, desc: e.target.value })}
-                      ></textarea>
-                    </div>
-
-                    <div className="col-12 text-end">
-                      <button type="submit" className="btn btn-warning fw-bold px-4">
-                        <i className="fas fa-check-circle me-1"></i> Publish to MongoDB &amp; Notice Board
-                      </button>
-                    </div>
+          {/* ═══════════════════════════════════════
+              TAB 1: REGISTRATIONS MANAGEMENT
+              ═══════════════════════════════════════ */}
+          {activeTab === 'admissions' && (
+            <div className="adm-panel" style={{ animationDelay: '0.05s' }}>
+              <div className="adm-panel-header">
+                <div className="adm-panel-title-group">
+                  <span className="material-symbols-outlined adm-panel-icon">how_to_reg</span>
+                  <div>
+                    <h2 className="adm-panel-title">Registration Details &amp; Applications</h2>
+                    <p className="adm-panel-subtitle">Review student registration details, update admission approval status, and print slips</p>
                   </div>
-                </form>
-              </div>
-            )}
+                </div>
 
-            {/* Notices Table */}
-            <div className="card shadow-sm border-0 rounded-3 overflow-hidden">
-              <div className="card-body p-0">
-                {noticeLoading ? (
-                  <div className="p-5 text-center text-muted">
-                    <i className="fas fa-spinner fa-spin fa-2x mb-2"></i>
-                    <p className="small mb-0">Loading notices...</p>
+                <div className="adm-panel-actions">
+                  <div className="adm-search-box">
+                    <span className="material-symbols-outlined adm-search-icon">search</span>
+                    <input
+                      type="text"
+                      className="adm-search-input"
+                      placeholder="Search name, app no, mobile..."
+                      value={admSearch}
+                      onChange={(e) => setAdmSearch(e.target.value)}
+                      onKeyUp={(e) => e.key === 'Enter' && fetchAdmissions()}
+                    />
+                  </div>
+                  <select
+                    className="adm-filter-select"
+                    value={admStatusFilter}
+                    onChange={(e) => setAdmStatusFilter(e.target.value)}
+                  >
+                    <option value="All">All Statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                  <button onClick={fetchAdmissions} className="adm-icon-btn" title="Search / Refresh">
+                    <span className="material-symbols-outlined">refresh</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="adm-panel-body">
+                {admLoading ? (
+                  <div className="adm-empty-state">
+                    <div className="adm-spinner"></div>
+                    <p>Loading admissions from database...</p>
+                  </div>
+                ) : admissions.length === 0 ? (
+                  <div className="adm-empty-state">
+                    <span className="material-symbols-outlined adm-empty-icon">folder_open</span>
+                    <h3>No Admission Records Found</h3>
+                    <p>New parent online applications will appear here automatically.</p>
                   </div>
                 ) : (
-                  <div className="table-responsive">
-                    <table className="custom-table mb-0">
+                  <div className="adm-table-wrap">
+                    <table className="adm-table">
                       <thead>
                         <tr>
-                          <th>Date</th>
-                          <th>Category</th>
-                          <th>Title</th>
-                          <th>Description Preview</th>
-                          <th>Badge</th>
+                          <th>App No.</th>
+                          <th>Student Name</th>
+                          <th>Class</th>
+                          <th>Date of Birth</th>
+                          <th>Father & Mother</th>
+                          <th>Mobile</th>
+                          <th>Transport</th>
+                          <th>Status</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {notices.map((n) => (
-                          <tr key={n._id}>
-                            <td className="small text-muted fw-semibold" style={{ whiteSpace: 'nowrap' }}>
-                              {n.date}
+                        {admissions.map((adm, idx) => (
+                          <tr key={adm._id} style={{ animationDelay: `${idx * 0.03}s` }}>
+                            <td>
+                              <span className="adm-badge adm-badge-id">{adm.appNumber}</span>
+                            </td>
+                            <td className="adm-cell-primary">{adm.studentName}</td>
+                            <td>
+                              <span className="adm-badge adm-badge-class">{adm.applyingClass}</span>
+                            </td>
+                            <td className="adm-cell-muted">{adm.dob}</td>
+                            <td className="adm-cell-parents">
+                              <div><strong>F:</strong> {adm.fatherName}</div>
+                              <div className="adm-cell-muted"><strong>M:</strong> {adm.motherName}</div>
                             </td>
                             <td>
-                              <span className="badge bg-light text-primary border" style={{ fontSize: '0.75rem' }}>
-                                {n.category}
-                              </span>
-                            </td>
-                            <td className="fw-bold text-dark">{n.title}</td>
-                            <td className="small text-muted" style={{ maxWidth: '350px' }}>
-                              {n.desc.length > 90 ? `${n.desc.substring(0, 90)}...` : n.desc}
-                            </td>
-                            <td>
-                              {n.isNew && (
-                                <span className="badge bg-danger text-white px-2 py-1" style={{ fontSize: '0.7rem' }}>
-                                  NEW
-                                </span>
+                              <a href={`tel:${adm.mobile}`} className="adm-phone-link">{adm.mobile}</a>
+                              {adm.whatsapp && (
+                                <a
+                                  href={`https://wa.me/91${adm.whatsapp}?text=Hello%20${adm.fatherName},%20regarding%20${adm.studentName}'s%20admission%20at%20Swami%20Shiwanand%20Academy`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="adm-wa-link"
+                                  title="Chat on WhatsApp"
+                                >
+                                  <i className="fab fa-whatsapp"></i>
+                                </a>
                               )}
                             </td>
+                            <td className="adm-cell-muted">{adm.transportNeeded}</td>
                             <td>
-                              <button
-                                onClick={() => deleteNotice(n._id)}
-                                className="btn btn-sm btn-outline-danger py-1 px-2"
-                                title="Delete Notice"
+                              <select
+                                className="adm-status-select"
+                                style={{
+                                  color: statusColor(adm.status).text,
+                                  background: statusColor(adm.status).bg,
+                                  borderColor: statusColor(adm.status).border
+                                }}
+                                value={adm.status}
+                                onChange={(e) => updateAdmissionStatus(adm._id, e.target.value)}
                               >
-                                <i className="fas fa-trash-alt"></i>
-                              </button>
+                                <option value="Pending">⏳ Pending</option>
+                                <option value="Approved">✅ Approved</option>
+                                <option value="Contacted">📞 Contacted</option>
+                                <option value="Rejected">❌ Rejected</option>
+                              </select>
+                            </td>
+                            <td>
+                              <div className="adm-action-group">
+                                <button onClick={() => setSelectedAdmission(adm)} className="adm-action-btn adm-action-view" title="View & Print Slip">
+                                  <span className="material-symbols-outlined">print</span>
+                                </button>
+                                <button onClick={() => deleteAdmission(adm._id)} className="adm-action-btn adm-action-delete" title="Delete Application">
+                                  <span className="material-symbols-outlined">delete</span>
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))}
@@ -674,177 +473,196 @@ export default function AdminDashboard() {
                 )}
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* ========================================================
-            TAB 3: INQUIRIES MANAGEMENT
-            ======================================================== */}
-        {activeTab === 'inquiries' && (
-          <div className="card shadow-sm border-0 rounded-3 overflow-hidden">
-            <div className="card-body p-0">
-              {inqLoading ? (
-                <div className="p-5 text-center text-muted">
-                  <i className="fas fa-spinner fa-spin fa-2x mb-2"></i>
-                  <p className="small mb-0">Loading parent inquiries from database...</p>
+          {/* ═══════════════════════════════════════
+              TAB 2: ENQUIRIES MANAGEMENT
+              ═══════════════════════════════════════ */}
+          {activeTab === 'inquiries' && (
+            <div className="adm-panel" style={{ animationDelay: '0.05s' }}>
+              <div className="adm-panel-header">
+                <div className="adm-panel-title-group">
+                  <span className="material-symbols-outlined adm-panel-icon">contact_mail</span>
+                  <div>
+                    <h2 className="adm-panel-title">Enquiries Info &amp; Parent Messages</h2>
+                    <p className="adm-panel-subtitle">Review contact messages, student inquiries &amp; counselor followup status</p>
+                  </div>
                 </div>
-              ) : inquiries.length === 0 ? (
-                <div className="p-5 text-center text-muted">
-                  <i className="fas fa-inbox fa-3x mb-3 text-secondary opacity-50"></i>
-                  <h6 className="fw-bold">No Inquiries Found</h6>
-                  <p className="small mb-0">Messages submitted from the contact page will appear here.</p>
-                </div>
-              ) : (
-                <div className="table-responsive">
-                  <table className="custom-table mb-0">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Parent Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Child Age / Class</th>
-                        <th>Message</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {inquiries.map((inq) => (
-                        <tr key={inq._id}>
-                          <td className="small text-muted">
-                            {new Date(inq.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}
-                          </td>
-                          <td className="fw-bold text-dark">{inq.name}</td>
-                          <td className="small">
-                            <a href={`tel:${inq.phone}`} className="text-primary fw-semibold">{inq.phone}</a>
-                          </td>
-                          <td className="small text-muted">{inq.email || '—'}</td>
-                          <td className="small text-primary fw-semibold">{inq.childAge || '—'}</td>
-                          <td className="small" style={{ maxWidth: '300px' }}>{inq.message}</td>
-                          <td>
-                            <select
-                              className="form-select form-select-sm"
-                              style={{
-                                fontSize: '0.78rem',
-                                fontWeight: 600,
-                                color: inq.status === 'Responded' ? '#15803d' : inq.status === 'Archived' ? '#64748b' : '#b45309'
-                              }}
-                              value={inq.status}
-                              onChange={(e) => updateInquiryStatus(inq._id, e.target.value)}
-                            >
-                              <option value="New">🔴 New</option>
-                              <option value="Responded">🟢 Responded</option>
-                              <option value="Archived">⚪ Archived</option>
-                            </select>
-                          </td>
-                          <td>
-                            <div className="d-flex gap-1">
-                              <a
-                                href={`https://wa.me/91${inq.phone.replace(/[^0-9]/g, '')}?text=Hello%20${inq.name},%20replying%20to%20your%20inquiry%20regarding%20Swami%20Shiwanand%20Academy`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="btn btn-sm btn-outline-success py-1 px-2"
-                                title="Reply on WhatsApp"
-                              >
-                                <i className="fab fa-whatsapp"></i>
-                              </a>
-                              <button
-                                onClick={() => deleteInquiry(inq._id)}
-                                className="btn btn-sm btn-outline-danger py-1 px-2"
-                                title="Delete"
-                              >
-                                <i className="fas fa-trash-alt"></i>
-                              </button>
-                            </div>
-                          </td>
+              </div>
+
+              <div className="adm-panel-body">
+                {inqLoading ? (
+                  <div className="adm-empty-state">
+                    <div className="adm-spinner"></div>
+                    <p>Loading parent inquiries...</p>
+                  </div>
+                ) : inquiries.length === 0 ? (
+                  <div className="adm-empty-state">
+                    <span className="material-symbols-outlined adm-empty-icon">inbox</span>
+                    <h3>No Inquiries Found</h3>
+                    <p>Messages submitted from the contact page will appear here.</p>
+                  </div>
+                ) : (
+                  <div className="adm-table-wrap">
+                    <table className="adm-table">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Parent Name</th>
+                          <th>Phone</th>
+                          <th>Email</th>
+                          <th>Child Age / Class</th>
+                          <th>Message</th>
+                          <th>Status</th>
+                          <th>Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+                      </thead>
+                      <tbody>
+                        {inquiries.map((inq, idx) => (
+                          <tr key={inq._id} style={{ animationDelay: `${idx * 0.03}s` }}>
+                            <td className="adm-cell-muted">
+                              {new Date(inq.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}
+                            </td>
+                            <td className="adm-cell-primary">{inq.name}</td>
+                            <td>
+                              <a href={`tel:${inq.phone}`} className="adm-phone-link">{inq.phone}</a>
+                            </td>
+                            <td className="adm-cell-muted">{inq.email || '—'}</td>
+                            <td style={{ color: '#2563eb', fontWeight: 600 }}>{inq.childAge || '—'}</td>
+                            <td className="adm-cell-muted" style={{ maxWidth: '280px' }}>{inq.message}</td>
+                            <td>
+                              <select
+                                className="adm-status-select"
+                                style={{
+                                  color: inq.status === 'Responded' ? '#059669' : inq.status === 'Archived' ? '#64748b' : '#f59e0b',
+                                  background: inq.status === 'Responded' ? '#05966914' : inq.status === 'Archived' ? '#64748b14' : '#f59e0b14'
+                                }}
+                                value={inq.status}
+                                onChange={(e) => updateInquiryStatus(inq._id, e.target.value)}
+                              >
+                                <option value="New">🔴 New</option>
+                                <option value="Responded">🟢 Responded</option>
+                                <option value="Archived">⚪ Archived</option>
+                              </select>
+                            </td>
+                            <td>
+                              <div className="adm-action-group">
+                                <a
+                                  href={`https://wa.me/91${inq.phone.replace(/[^0-9]/g, '')}?text=Hello%20${inq.name},%20replying%20to%20your%20inquiry%20regarding%20Swami%20Shiwanand%20Academy`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="adm-action-btn adm-action-wa"
+                                  title="Reply on WhatsApp"
+                                >
+                                  <i className="fab fa-whatsapp"></i>
+                                </a>
+                                <button onClick={() => deleteInquiry(inq._id)} className="adm-action-btn adm-action-delete" title="Delete">
+                                  <span className="material-symbols-outlined">delete</span>
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
-      {/* Printable Admission Slip Modal */}
+      {/* ─── PRINTABLE ADMISSION SLIP MODAL ─── */}
       {selectedAdmission && (
-        <div className="modal-backdrop-custom" onClick={() => setSelectedAdmission(null)}>
-          <div className="modal-content-custom modal-content-lg" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header-custom">
-              <h5><i className="fas fa-file-invoice text-warning me-2"></i> Candidate Admission Record</h5>
-              <button className="modal-close-btn" onClick={() => setSelectedAdmission(null)}>
-                <i className="fas fa-times"></i>
+        <div className="adm-modal-overlay" onClick={() => setSelectedAdmission(null)}>
+          <div className="adm-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="adm-modal-header">
+              <div className="adm-modal-title-group">
+                <span className="material-symbols-outlined" style={{ color: '#f59e0b' }}>description</span>
+                <h3>Candidate Admission Record</h3>
+              </div>
+              <button className="adm-modal-close" onClick={() => setSelectedAdmission(null)}>
+                <span className="material-symbols-outlined">close</span>
               </button>
             </div>
-            <div className="modal-body-custom p-4">
-              <div className="p-4 border rounded-3 bg-white" id="officialAdmissionSlip">
-                <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-                  <div className="d-flex align-items-center gap-2">
-                    <img src="/images/logo.png" alt="Logo" style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
+
+            <div className="adm-modal-body">
+              <div className="adm-slip" id="officialAdmissionSlip">
+                <div className="adm-slip-header">
+                  <div className="adm-slip-brand">
+                    <img src="/images/logo.png" alt="Logo" className="adm-slip-logo" />
                     <div>
-                      <h5 className="fw-bold text-primary mb-0">{schoolInfo.name}</h5>
-                      <span className="small text-muted">{schoolInfo.address}</span>
+                      <h4 className="adm-slip-school">{schoolInfo.name}</h4>
+                      <span className="adm-slip-address">{schoolInfo.address}</span>
                     </div>
                   </div>
-                  <div className="text-end">
-                    <span className="badge bg-warning text-dark px-3 py-1 fw-bold fs-6">
-                      {selectedAdmission.appNumber}
-                    </span>
-                    <div className="small text-muted mt-1">Status: {selectedAdmission.status}</div>
+                  <div className="adm-slip-app-info">
+                    <span className="adm-badge adm-badge-app-no">{selectedAdmission.appNumber}</span>
+                    <span className="adm-slip-status">Status: {selectedAdmission.status}</span>
                   </div>
                 </div>
 
-                <div className="row g-3 small mb-4">
-                  <div className="col-sm-6">
-                    <strong>Student Name:</strong> <span className="fs-6 text-dark fw-bold">{selectedAdmission.studentName}</span>
+                <div className="adm-slip-grid">
+                  <div className="adm-slip-field">
+                    <span className="adm-slip-label">Student Name</span>
+                    <span className="adm-slip-value primary">{selectedAdmission.studentName}</span>
                   </div>
-                  <div className="col-sm-6">
-                    <strong>Class Applying:</strong> <span className="text-primary fw-bold">{selectedAdmission.applyingClass}</span>
+                  <div className="adm-slip-field">
+                    <span className="adm-slip-label">Class Applying</span>
+                    <span className="adm-slip-value highlight">{selectedAdmission.applyingClass}</span>
                   </div>
-                  <div className="col-sm-6">
-                    <strong>Date of Birth:</strong> {selectedAdmission.dob}
+                  <div className="adm-slip-field">
+                    <span className="adm-slip-label">Date of Birth</span>
+                    <span className="adm-slip-value">{selectedAdmission.dob}</span>
                   </div>
-                  <div className="col-sm-6">
-                    <strong>Gender:</strong> {selectedAdmission.gender}
+                  <div className="adm-slip-field">
+                    <span className="adm-slip-label">Gender</span>
+                    <span className="adm-slip-value">{selectedAdmission.gender}</span>
                   </div>
-                  <div className="col-sm-6">
-                    <strong>Father's Name:</strong> {selectedAdmission.fatherName}
+                  <div className="adm-slip-field">
+                    <span className="adm-slip-label">Father's Name</span>
+                    <span className="adm-slip-value">{selectedAdmission.fatherName}</span>
                   </div>
-                  <div className="col-sm-6">
-                    <strong>Mother's Name:</strong> {selectedAdmission.motherName}
+                  <div className="adm-slip-field">
+                    <span className="adm-slip-label">Mother's Name</span>
+                    <span className="adm-slip-value">{selectedAdmission.motherName}</span>
                   </div>
-                  <div className="col-sm-6">
-                    <strong>Mobile Contact:</strong> {selectedAdmission.mobile}
+                  <div className="adm-slip-field">
+                    <span className="adm-slip-label">Mobile Contact</span>
+                    <span className="adm-slip-value">{selectedAdmission.mobile}</span>
                   </div>
-                  <div className="col-sm-6">
-                    <strong>Transport Opted:</strong> {selectedAdmission.transportNeeded}
+                  <div className="adm-slip-field">
+                    <span className="adm-slip-label">Transport Opted</span>
+                    <span className="adm-slip-value">{selectedAdmission.transportNeeded}</span>
                   </div>
-                  <div className="col-12">
-                    <strong>Address:</strong> {selectedAdmission.address}
+                  <div className="adm-slip-field adm-slip-full">
+                    <span className="adm-slip-label">Address</span>
+                    <span className="adm-slip-value">{selectedAdmission.address}</span>
                   </div>
                 </div>
 
-                <div className="pt-3 border-top d-flex justify-content-between align-items-end text-muted small">
+                <div className="adm-slip-footer">
                   <div>
-                    <span>Application Date: {new Date(selectedAdmission.createdAt).toLocaleDateString('en-IN')}</span><br />
+                    <span>Application Date: {new Date(selectedAdmission.createdAt).toLocaleDateString('en-IN')}</span>
+                    <br />
                     <span>School Counseling Desk: {schoolInfo.phones[0]}</span>
                   </div>
-                  <div className="text-end">
-                    <div className="fw-bold text-dark">Principal / Admission Incharge</div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontWeight: 700, color: '#1f2937' }}>Principal / Admission Incharge</div>
                     <span>{schoolInfo.name}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="modal-footer-custom">
-              <button type="button" className="btn btn-secondary btn-sm" onClick={() => setSelectedAdmission(null)}>
+
+            <div className="adm-modal-footer">
+              <button className="adm-secondary-btn" onClick={() => setSelectedAdmission(null)}>
                 Close
               </button>
-              <button type="button" className="btn btn-primary btn-sm" onClick={() => window.print()}>
-                <i className="fas fa-print me-1"></i> Print Application Record
+              <button className="adm-primary-btn" onClick={() => window.print()}>
+                <span className="material-symbols-outlined">print</span>
+                <span>Print Application Record</span>
               </button>
             </div>
           </div>
