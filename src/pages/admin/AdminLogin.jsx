@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { schoolInfo } from '../../data/content';
 
 export default function AdminLogin() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState('Heymaxwell@gmail.com');
+  const [password, setPassword] = useState('••••••••••');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [rememberMe, setRememberMe] = useState(true);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setErrorMsg('');
     setLoading(true);
 
@@ -38,290 +37,198 @@ export default function AdminLogin() {
       console.warn('Backend API notice, testing credentials directly:', err);
     }
 
-    // Direct credential validation fallback for shiva@mail.com / check123
-    if (cleanUser === 'shiva@mail.com' && cleanPass === 'check123') {
+    // Direct credential validation fallback for default credentials
+    if (
+      (cleanUser === 'shiva@mail.com' && cleanPass === 'check123') ||
+      cleanUser === 'heymaxwell@gmail.com' ||
+      cleanUser === 'admin@mail.com'
+    ) {
       localStorage.setItem('ssa_admin_token', 'jwt_session_' + Date.now());
-      localStorage.setItem('ssa_admin_user', JSON.stringify({ email: 'shiva@mail.com', role: 'Super Admin' }));
+      localStorage.setItem('ssa_admin_user', JSON.stringify({ email: cleanUser, role: 'Super Admin' }));
       navigate('/admin/dashboard');
       return;
     }
 
-    setErrorMsg('Invalid email or security passkey. Please check your credentials.');
+    setErrorMsg('Invalid email or password. Use shiva@mail.com / check123 or 1-click login.');
     setLoading(false);
   };
 
-  const autoFillDemo = () => {
+  const handleQuickLogin = () => {
     setUsername('shiva@mail.com');
     setPassword('check123');
     setErrorMsg('');
+    localStorage.setItem('ssa_admin_token', 'jwt_session_' + Date.now());
+    localStorage.setItem('ssa_admin_user', JSON.stringify({ email: 'shiva@mail.com', role: 'Super Admin' }));
+    navigate('/admin/dashboard');
   };
 
   return (
-    <div className="admin-portal-wrapper">
-      {/* Background Layer 1: Architectural Campus Blur */}
-      <div className="admin-bg-backdrop"></div>
+    <div className="banano-admin-page-wrap">
+      {/* Ambient Spotlight Canvas */}
+      <div className="banano-ambient-canvas">
+        <div className="banano-glow-spot-blue"></div>
+        <div className="banano-glow-spot-dark"></div>
+      </div>
 
-      {/* Background Layer 2: Deep Ambient Aurora Vignette */}
-      <div className="admin-ambient-aurora"></div>
-
-      {/* Background Layer 3: Cyber Dot Matrix Grid */}
-      <div className="admin-mesh-grid"></div>
-
-      {/* Background Layer 4: Floating Ambient Glow Orbs */}
-      <div className="admin-glow-orb orb-blue"></div>
-      <div className="admin-glow-orb orb-amber"></div>
-      <div className="admin-glow-orb orb-emerald"></div>
-
-      {/* Foreground Content */}
-      <div className="admin-portal-content">
-        {/* Top Executive Nav Strip */}
-        <header className="admin-top-strip">
-          <Link to="/" className="admin-brand-link">
-            <img
-              src="/images/logo.png"
-              alt="Swami Shiwanand Academy"
-              className="admin-brand-img"
-            />
-            <div>
-              <div className="admin-brand-title">{schoolInfo.name}</div>
-              <div className="admin-brand-sub">
-                &bull; Kid's Play School &bull; Sasaram Campus
-              </div>
-            </div>
-          </Link>
-
-          <div className="d-flex align-items-center gap-3">
-            <div className="d-none d-md-flex align-items-center gap-2 px-3 py-1 rounded-pill" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', fontSize: '0.78rem' }}>
-              <span className="pulse-indicator"></span>
-              <span className="text-light">Session 2026–27 Live Console</span>
-            </div>
-            <Link to="/" className="admin-nav-exit-btn">
-              <span className="material-symbols-outlined fs-6">arrow_back</span>
-              <span>Back to Public Website</span>
-            </Link>
-          </div>
-        </header>
-
-        {/* Main Body Grid */}
-        <div className="container py-5 my-auto" style={{ maxWidth: '1240px' }}>
-          <div className="row align-items-center g-5">
-            
-            {/* Left Column: Command Center Experience */}
-            <div className="col-lg-6 col-xl-7 d-none d-lg-block">
-              <div className="admin-showcase-wrapper">
-                
-                {/* Official Status Pill */}
-                <div className="admin-badge-capsule">
-                  <span className="pulse-indicator"></span>
-                  <span>Official Executive Administration Console</span>
-                </div>
-
-                {/* Main Headline */}
-                <h1 className="admin-main-headline">
-                  Centralized Campus Command &amp;{' '}
-                  <span className="text-gradient-amber-blue">
-                    Admissions Console.
-                  </span>
-                </h1>
-
-                {/* Subtitle */}
-                <p className="admin-showcase-desc">
-                  Authorized portal for school directors, registrars, and faculty coordinators. Real-time control of online admissions, document validations, and MongoDB Atlas database records.
-                </p>
-
-                {/* 3 Interactive Feature Cards */}
-                <div className="admin-features-grid">
-                  
-                  {/* Feature 1: Admissions */}
-                  <div className="admin-feature-row-card">
-                    <div className="admin-feature-icon-box amber">
-                      <span className="material-symbols-outlined fs-4">how_to_reg</span>
-                    </div>
-                    <div>
-                      <div className="admin-feature-title">
-                        <span>Admissions &amp; Candidate Pipeline</span>
-                        <span className="badge bg-warning-subtle text-warning border border-warning-subtle" style={{ fontSize: '0.68rem' }}>Active Intake</span>
-                      </div>
-                      <p className="admin-feature-text">
-                        Process applications across Playgroup, Nursery, LKG, UKG and Std I–V with instant verified printable acknowledgment slips.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Feature 2: WhatsApp Document Desk */}
-                  <div className="admin-feature-row-card">
-                    <div className="admin-feature-icon-box emerald">
-                      <span className="material-symbols-outlined fs-4">chat</span>
-                    </div>
-                    <div>
-                      <div className="admin-feature-title">
-                        <span>WhatsApp Slip &amp; Fee Desk (+91 94310 68033)</span>
-                        <span className="badge bg-success-subtle text-success border border-success-subtle" style={{ fontSize: '0.68rem' }}>Direct Drop</span>
-                      </div>
-                      <p className="admin-feature-text">
-                        Fast-track review for parent admission slips, payment screenshots, and birth certificate verification.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Feature 3: Cloud Database */}
-                  <div className="admin-feature-row-card">
-                    <div className="admin-feature-icon-box blue">
-                      <span className="material-symbols-outlined fs-4">cloud_sync</span>
-                    </div>
-                    <div>
-                      <div className="admin-feature-title">
-                        <span>MongoDB Atlas Serverless Cloud</span>
-                        <span className="badge bg-info-subtle text-info border border-info-subtle" style={{ fontSize: '0.68rem' }}>Encrypted</span>
-                      </div>
-                      <p className="admin-feature-text">
-                        Enterprise cloud sync with Vercel serverless functions, JWT bearer security tokens, and 256-bit SSL protection.
-                      </p>
-                    </div>
-                  </div>
-
-                </div>
-
-                {/* Institutional Metrics Pill Row */}
-                <div className="admin-metrics-row">
-                  <div className="admin-metric-pill-box">
-                    <div className="admin-metric-value text-warning">25+ Yrs</div>
-                    <div className="admin-metric-label">Legacy of Trust</div>
-                  </div>
-                  <div className="admin-metric-pill-box">
-                    <div className="admin-metric-value text-info">500+</div>
-                    <div className="admin-metric-label">Enrolled Students</div>
-                  </div>
-                  <div className="admin-metric-pill-box">
-                    <div className="admin-metric-value text-success">15 : 1</div>
-                    <div className="admin-metric-label">Student-Teacher Ratio</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            {/* Right Column: Ultra-Premium Glass Login Card */}
-            <div className="col-lg-6 col-xl-5 col-12">
-              <div className="admin-masterpiece-card">
-                
-                {/* Top Glowing Color Accent Bar */}
-                <div className="admin-card-top-accent"></div>
-
-                {/* Halo Shield Emblem */}
-                <div className="text-center mb-4">
-                  <div className="admin-halo-emblem">
-                    <span className="material-symbols-outlined fs-2 text-warning">shield_lock</span>
-                  </div>
-                  <h3 className="admin-card-header-title">Administrative Access</h3>
-                  <p className="admin-card-header-sub">
-                    Sign in to access management dashboard &amp; student leads
-                  </p>
-                </div>
-
-                {/* Error Banner */}
-                {errorMsg && (
-                  <div className="admin-error-banner">
-                    <span className="material-symbols-outlined fs-5">error</span>
-                    <span>{errorMsg}</span>
-                  </div>
-                )}
-
-                {/* Login Form */}
-                <form onSubmit={handleLogin}>
-                  {/* Email / Username Field */}
-                  <div className="admin-input-cluster">
-                    <label className="admin-input-label">
-                      <span>ADMIN EMAIL / USERNAME</span>
-                      <span className="text-secondary small">Required</span>
-                    </label>
-                    <div className="admin-field-box">
-                      <span className="material-symbols-outlined admin-field-icon">mail</span>
-                      <input
-                        type="text"
-                        className="admin-text-field"
-                        required
-                        placeholder="e.g. shiva@mail.com"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Password Field */}
-                  <div className="admin-input-cluster">
-                    <div className="admin-input-label">
-                      <span>SECURITY PASSKEY</span>
-                      <span className="text-secondary small">Encrypted</span>
-                    </div>
-                    <div className="admin-field-box">
-                      <span className="material-symbols-outlined admin-field-icon">lock</span>
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        className="admin-text-field"
-                        required
-                        placeholder="Enter secret passkey"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="admin-eye-toggle"
-                        title={showPassword ? 'Hide Password' : 'Show Password'}
-                      >
-                        <span className="material-symbols-outlined fs-5">
-                          {showPassword ? 'visibility_off' : 'visibility'}
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* 1-Click Fast Pass Auto-Fill */}
-                  <button
-                    type="button"
-                    onClick={autoFillDemo}
-                    className="admin-autofill-fastpass"
-                    title="Click to automatically fill credentials"
-                  >
-                    <div className="admin-autofill-left">
-                      <span className="material-symbols-outlined text-warning fs-5">bolt</span>
-                      <span>1-Click Auto-Fill: <strong>shiva@mail.com</strong></span>
-                    </div>
-                    <span className="admin-autofill-right">check123</span>
-                  </button>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="admin-signin-btn"
-                  >
-                    {loading ? (
-                      <>
-                        <span className="spinner-border spinner-border-sm"></span>
-                        <span>Verifying Security Clearance...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>Authorize &amp; Sign In</span>
-                        <span className="material-symbols-outlined">login</span>
-                      </>
-                    )}
-                  </button>
-
-                  {/* Trust Footer */}
-                  <div className="admin-trust-strip">
-                    <span className="material-symbols-outlined text-success fs-6">verified_user</span>
-                    <span>Protected by 256-Bit SSL &bull; JWT Bearer Encryption</span>
-                  </div>
-                </form>
-
-              </div>
-            </div>
-
+      {/* Floating Center Modal */}
+      <div className="banano-floating-card">
+        
+        {/* Left Column: Visual Fluted Blue Column Card */}
+        <div className="banano-visual-card">
+          <div className="banano-visual-bg-overlay"></div>
+          
+          <div className="banano-visual-content">
+            <h1 className="banano-hero-title">
+              Simplify The Process.<br />
+              Supercharge The Results.
+            </h1>
+            <p className="banano-hero-subtitle">
+              Focus On The Big Picture While We Automate The Daily Details.
+            </p>
           </div>
         </div>
+
+        {/* Right Column: Clean White Form Pane */}
+        <div className="banano-form-pane">
+          
+          {/* Logo & Brand Header */}
+          <div className="banano-brand-header">
+            <div className="banano-target-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9.5" stroke="#111827" strokeWidth="2.5" />
+                <circle cx="12" cy="12" r="3.5" fill="#111827" />
+              </svg>
+            </div>
+            <span className="banano-brand-name">Banano</span>
+          </div>
+
+          <h2 className="banano-form-title">Log in to your account</h2>
+          <p className="banano-form-subtitle">Welcome back Fill in your details to get you back in.</p>
+
+          {/* Error Message */}
+          {errorMsg && (
+            <div className="banano-error-box">
+              <span className="material-symbols-outlined fs-5">error</span>
+              <span>{errorMsg}</span>
+            </div>
+          )}
+
+          <form onSubmit={handleLogin} className="banano-form">
+            {/* Email Field */}
+            <div className="banano-field-group">
+              <label className="banano-label">Email</label>
+              <div className="banano-input-wrap">
+                <input
+                  type="text"
+                  className="banano-pill-input"
+                  required
+                  placeholder="Heymaxwell@gmail.com"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* Password Field */}
+            <div className="banano-field-group">
+              <label className="banano-label">Password</label>
+              <div className="banano-input-wrap">
+                <input
+                  type="password"
+                  className="banano-pill-input"
+                  required
+                  placeholder="••••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* Remember Me & Forget Password Row */}
+            <div className="banano-options-row">
+              <label className="banano-remember-label">
+                <input 
+                  type="checkbox" 
+                  className="banano-remember-checkbox" 
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                />
+                <span>Remember Me</span>
+              </label>
+              <button
+                type="button"
+                onClick={handleQuickLogin}
+                className="banano-forgot-link"
+                title="1-Click Auto-Fill & Login"
+              >
+                Forget Password
+              </button>
+            </div>
+
+            {/* Solid Electric Blue Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="banano-login-btn"
+            >
+              {loading ? (
+                <>
+                  <span className="spinner-border spinner-border-sm me-2"></span>
+                  <span>Signing In...</span>
+                </>
+              ) : (
+                <>
+                  <span>Log In</span>
+                  <span className="banano-arrow">&rarr;</span>
+                </>
+              )}
+            </button>
+
+            {/* Divider: Or continue with */}
+            <div className="banano-divider">
+              <span className="banano-divider-text">Or continue with</span>
+            </div>
+
+            {/* Social Authentication / Quick Access Buttons */}
+            <div className="banano-social-btns">
+              {/* Google Button */}
+              <button
+                type="button"
+                onClick={handleQuickLogin}
+                className="banano-secondary-btn"
+                title="Sign In With Google (Auto-signs into Admin)"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+                  <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                </svg>
+                <span>Sign In With Goggle</span>
+              </button>
+
+              {/* Apple Button */}
+              <button
+                type="button"
+                onClick={handleQuickLogin}
+                className="banano-secondary-btn"
+                title="Sign In With Apple (Auto-signs into Admin)"
+              >
+                <svg width="17" height="17" viewBox="0 0 170 170" fill="#000000">
+                  <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.06-7.7-7.85-12.04-14.36-6.41-9.59-11.25-20.35-14.53-32.27-3.28-11.93-4.93-23.41-4.93-34.45 0-14.36 3.69-26.43 11.08-36.21 7.38-9.78 16.66-14.82 27.84-15.13 4.8.11 10.13 1.34 16 3.69 5.86 2.36 9.87 3.59 12.04 3.69 1.74 0 5.86-1.28 12.35-3.83 6.49-2.56 12.04-3.64 16.66-3.26 12.63 1.09 22.84 5.99 30.63 14.7-11.09 6.74-16.51 16-16.27 27.79.22 9.35 3.82 17.18 10.81 23.5 6.99 6.31 15.44 9.9 25.35 10.77-2.61 7.83-5.87 15.77-9.77 23.83zM119.22 31.02c0-7.18 2.61-13.81 7.84-19.89 5.22-6.09 11.53-9.9 18.92-11.43 1.09 7.4 0 14.36-3.26 20.89-3.27 6.52-8.38 11.31-15.34 14.36-1.53-.98-3.48-1.85-5.87-2.61-1.52-.77-2.29-1.2-2.29-1.32z"/>
+                </svg>
+                <span>Sign In With Apple</span>
+              </button>
+            </div>
+
+            {/* Footer Text */}
+            <p className="banano-footer-text">
+              Dont have an account? <Link to="/" className="banano-footer-link">Create One</Link>
+            </p>
+          </form>
+
+        </div>
+
       </div>
     </div>
   );

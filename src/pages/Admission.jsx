@@ -562,23 +562,68 @@ export default function Admission() {
                         </div>
                       </div>
 
-                      <div className="mt-4">
+                      {/* High-Prestige Submission Action Hub */}
+                      <div className="admission-submit-hub">
+                        {/* Declaration Notice */}
+                        <div className="submission-declaration-box">
+                          <span className="material-symbols-outlined decl-icon">verified_user</span>
+                          <div className="submission-declaration-text">
+                            <strong className="text-dark">Official Applicant Declaration:</strong> By submitting, you confirm that all student and contact details provided are authentic. No advance registration fees are charged online; our admissions desk will immediately process your registration and issue an official acknowledgment slip.
+                          </div>
+                        </div>
+
+                        {/* Master High-Impact Submit Button */}
                         <button
                           type="submit"
-                          className="btn btn-primary w-100 fw-bold py-3 fs-6 d-flex align-items-center justify-content-center gap-2"
-                          style={{
-                            background: 'linear-gradient(135deg, #0b57d0 0%, #072e5c 100%)',
-                            border: 'none',
-                            borderRadius: '14px',
-                            boxShadow: '0 6px 20px rgba(11, 87, 208, 0.25)'
-                          }}
+                          className="admission-master-submit-btn"
                         >
-                          <span className="material-symbols-outlined fs-5">send</span>
-                          Submit Admission Registration (Session 2026–27)
+                          <div className="btn-left-content">
+                            <div className="btn-icon-bubble">
+                              <span className="material-symbols-outlined fs-4">send</span>
+                            </div>
+                            <div>
+                              <div className="btn-title-main">Submit Admission Registration</div>
+                              <div className="btn-title-sub">Instant acknowledgement slip generation &bull; Document verification</div>
+                            </div>
+                          </div>
+
+                          <div className="btn-session-badge">
+                            <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px' }}>school</span>
+                            <span>Session 2026–27</span>
+                          </div>
                         </button>
-                        <div className="text-center mt-3 text-muted small d-flex align-items-center justify-content-center gap-2">
-                          <span className="material-symbols-outlined text-success fs-6">verified_user</span>
-                          <span>256-bit Encrypted Submission &bull; Verified Deepkiran Educational Trust Direct Registry</span>
+
+                        {/* 3 Guarantees & Verification Row */}
+                        <div className="submission-guarantees-grid">
+                          <div className="submission-guarantee-chip">
+                            <div className="guarantee-chip-icon green">
+                              <span className="material-symbols-outlined fs-5">lock</span>
+                            </div>
+                            <div>
+                              <div className="guarantee-chip-title">256-Bit SSL Encrypted</div>
+                              <div className="guarantee-chip-sub">Direct secure transmission</div>
+                            </div>
+                          </div>
+
+                          <div className="submission-guarantee-chip">
+                            <div className="guarantee-chip-icon blue">
+                              <span className="material-symbols-outlined fs-5">receipt_long</span>
+                            </div>
+                            <div>
+                              <div className="guarantee-chip-title">Instant Printable Slip</div>
+                              <div className="guarantee-chip-sub">Download PDF with App Ref</div>
+                            </div>
+                          </div>
+
+                          <div className="submission-guarantee-chip">
+                            <div className="guarantee-chip-icon amber">
+                              <span className="material-symbols-outlined fs-5">verified</span>
+                            </div>
+                            <div>
+                              <div className="guarantee-chip-title">Deepkiran Trust Direct</div>
+                              <div className="guarantee-chip-sub">Verified institutional registry</div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
