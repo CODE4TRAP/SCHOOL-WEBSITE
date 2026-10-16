@@ -16,6 +16,7 @@ export default function Navbar() {
   };
 
   return (
+    <>
     <nav className="m3-nav-bar">
       <div className="container d-flex justify-content-between align-items-center">
         {/* Mobile Hamburger Button */}
@@ -168,5 +169,12 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
+    <nav className="mobile-app-tabbar" aria-label="Quick navigation">
+      <NavLink to="/" end className={({ isActive }) => `mobile-app-tab ${isActive ? 'active' : ''}`}><span className="material-symbols-outlined">home</span><span>Home</span></NavLink>
+      <NavLink to="/admission" className={({ isActive }) => `mobile-app-tab ${isActive ? 'active' : ''}`}><span className="material-symbols-outlined">edit_document</span><span>Admission</span></NavLink>
+      <NavLink to="/student-corner" className={({ isActive }) => `mobile-app-tab ${isActive ? 'active' : ''}`}><span className="material-symbols-outlined">school</span><span>Students</span></NavLink>
+      <NavLink to="/contact" className={({ isActive }) => `mobile-app-tab ${isActive ? 'active' : ''}`}><span className="material-symbols-outlined">call</span><span>Contact</span></NavLink>
+    </nav>
+    </>
   );
 }
