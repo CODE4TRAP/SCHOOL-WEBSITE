@@ -2875,401 +2875,721 @@ img {
 }
 
 /* ========================================================
-   BANANO-STYLE EXECUTIVE FLOATING MODAL ADMIN LOGIN
+   SWAMI SHIWANAND ACADEMY - INSTITUTIONAL ADMIN COMMAND PORTAL
    ======================================================== */
-.banano-admin-page-wrap {
+.ssa-admin-portal-universe {
   min-height: 100vh;
   width: 100%;
-  background: radial-gradient(circle at 18% 78%, #041038 0%, #080b12 45%, #05070c 100%);
   position: relative;
   overflow-x: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 24px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  padding: 30px 20px;
+  background-color: #030816;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #f8fafc;
 }
 
-/* Ambient Backdrop Glows */
-.banano-ambient-canvas {
+/* Background Twilight Campus Backdrop with Cinematic Atmosphere */
+.ssa-portal-bg {
   position: fixed;
   inset: 0;
+  background-image: url('/images/admin_campus_twilight.jpg');
+  background-size: cover;
+  background-position: center center;
+  filter: saturate(1.15) brightness(0.65);
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;
 }
 
-.banano-glow-spot-blue {
+.ssa-bg-overlay {
   position: absolute;
-  bottom: -160px;
-  left: -120px;
-  width: 720px;
-  height: 720px;
+  inset: 0;
+  background: radial-gradient(circle at 75% 20%, rgba(3, 10, 28, 0.75) 0%, rgba(2, 6, 18, 0.94) 70%, #01040d 100%);
+  backdrop-filter: blur(14px);
+}
+
+.ssa-glow-orb {
+  position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 48, 255, 0.48) 0%, rgba(0, 24, 160, 0.22) 50%, transparent 75%);
+  pointer-events: none;
   filter: blur(140px);
 }
 
-.banano-glow-spot-dark {
-  position: absolute;
-  top: -120px;
-  right: -80px;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(20, 30, 55, 0.5) 0%, transparent 70%);
-  filter: blur(120px);
+.ssa-glow-orb-gold {
+  top: -100px;
+  left: -80px;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, rgba(217, 119, 6, 0.08) 60%, transparent 80%);
 }
 
-/* The Main Floating White Card Container */
-.banano-floating-card {
+.ssa-glow-orb-sapphire {
+  bottom: -150px;
+  right: -100px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(14, 116, 244, 0.28) 0%, rgba(2, 44, 140, 0.12) 60%, transparent 80%);
+}
+
+/* Top Floating Security Header */
+.ssa-portal-topstrip {
   position: relative;
   z-index: 2;
-  background: #ffffff;
+  width: 100%;
+  max-width: 1140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ssa-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 600;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+.ssa-back-link:hover {
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(245, 158, 11, 0.5);
+  transform: translateX(-2px);
+}
+
+.ssa-security-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 9999px;
+}
+
+.ssa-status-dot.pulse-green {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: ssaPulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes ssaPulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* Master Dual-Column Glassmorphic Shell */
+.ssa-portal-card-shell {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1140px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  background: rgba(11, 20, 38, 0.75);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 28px;
   box-shadow: 
-    0 35px 85px -15px rgba(0, 0, 0, 0.7),
-    0 0 1px rgba(255, 255, 255, 0.2);
-  padding: 22px;
-  max-width: 1040px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 46% 54%;
-  gap: 24px;
+    0 35px 80px -15px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(245, 158, 11, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  overflow: hidden;
   align-items: stretch;
 }
 
-@media (max-width: 900px) {
-  .banano-floating-card {
+@media (max-width: 992px) {
+  .ssa-portal-card-shell {
     grid-template-columns: 1fr;
-    max-width: 480px;
-    padding: 16px;
+    max-width: 540px;
   }
 }
 
-/* Left Column: Dark Visual Card with Fluted Neon Columns */
-.banano-visual-card {
+/* LEFT COLUMN: School Heritage & Trust Showcase */
+.ssa-heritage-column {
   position: relative;
-  background-color: #000000;
-  background-image: url('/images/admin_visual_fluted.jpg');
-  background-size: cover;
-  background-position: center bottom;
-  border-radius: 22px;
-  overflow: hidden;
-  padding: 44px 38px 36px 38px;
+  background: linear-gradient(145deg, rgba(8, 26, 61, 0.82) 0%, rgba(3, 12, 33, 0.95) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 44px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  min-height: 560px;
+  justify-content: space-between;
 }
 
-@media (max-width: 900px) {
-  .banano-visual-card {
+@media (max-width: 992px) {
+  .ssa-heritage-column {
     display: none;
   }
 }
 
-.banano-visual-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 45%, transparent 75%);
-  pointer-events: none;
-  z-index: 1;
+.ssa-heritage-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  height: 100%;
 }
 
-.banano-visual-content {
-  position: relative;
-  z-index: 2;
+.ssa-school-brand-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
-.banano-hero-title {
-  font-size: 2.15rem;
+.ssa-logo-aura {
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  background: #ffffff;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 2px rgba(245, 158, 11, 0.45);
+  flex-shrink: 0;
+}
+
+.ssa-school-crest-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ssa-prestige-tag {
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.25) 0%, rgba(217, 119, 6, 0.12) 100%);
+  color: #fef08a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
   font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.ssa-school-title {
+  font-size: 1.45rem;
+  font-weight: 800;
   color: #ffffff;
-  margin-bottom: 14px;
-  font-family: inherit;
+  line-height: 1.2;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.3px;
 }
 
-.banano-hero-subtitle {
-  font-size: 0.94rem;
-  color: #a1a1aa;
-  line-height: 1.55;
-  max-width: 330px;
+.ssa-school-subtitle {
+  font-size: 0.8rem;
+  color: #94a3b8;
   margin: 0;
-  font-weight: 400;
 }
 
-/* Right Column: Clean White Form */
-.banano-form-pane {
-  padding: 24px 36px 20px 24px;
+/* Institutional Vision Card */
+.ssa-vision-quote-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid #f59e0b;
+  border-radius: 16px;
+  padding: 20px 22px;
+  backdrop-filter: blur(10px);
+}
+
+.ssa-quote-icon {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 32px;
+  color: rgba(245, 158, 11, 0.22);
+}
+
+.ssa-quote-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.ssa-quote-author {
+  display: flex;
+  flex-direction: column;
+}
+
+.ssa-author-name {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+.ssa-author-role {
+  font-size: 0.74rem;
+  color: #94a3b8;
+}
+
+/* Live Metrics Grid */
+.ssa-live-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.ssa-metric-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.ssa-metric-box:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.ssa-metric-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ssa-metric-icon-wrap.gold {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.ssa-metric-icon-wrap.emerald {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.ssa-metric-icon-wrap.blue {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.ssa-metric-number {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  display: block;
+}
+
+.ssa-metric-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  font-weight: 500;
+  display: block;
+}
+
+/* Heritage Footer Seal */
+.ssa-heritage-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ssa-trust-seal-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ssa-gold-crest-mini {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.3);
+  flex-shrink: 0;
+}
+
+.ssa-trust-text strong {
+  display: block;
+  font-size: 0.82rem;
+  color: #f1f5f9;
+}
+
+.ssa-trust-text p {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin: 2px 0 0 0;
+}
+
+/* RIGHT COLUMN: Executive Access Terminal */
+.ssa-auth-column {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 44px 42px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 @media (max-width: 600px) {
-  .banano-form-pane {
-    padding: 20px 12px;
+  .ssa-auth-column {
+    padding: 28px 20px;
   }
 }
 
-.banano-brand-header {
+.ssa-terminal-header {
+  margin-bottom: 24px;
+}
+
+.ssa-terminal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fef08a;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  margin-bottom: 12px;
+}
+
+.ssa-terminal-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px 0;
+}
+
+.ssa-terminal-subtitle {
+  font-size: 0.86rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Role Switcher Tabs */
+.ssa-role-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: rgba(15, 23, 42, 0.7);
+  padding: 4px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
+  gap: 4px;
+}
+
+.ssa-role-tab {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.ssa-role-tab:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ssa-role-tab.active {
+  background: linear-gradient(135deg, #0b57d0 0%, #1e40af 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(11, 87, 208, 0.4);
+}
+
+/* Error Banner */
+.ssa-error-banner {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Form Fields */
+.ssa-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ssa-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.ssa-input-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ssa-req-star {
+  color: #ef4444;
+}
+
+.ssa-input-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  transition: all 0.22s ease;
+  overflow: hidden;
+}
+
+.ssa-input-box:focus-within {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.ssa-input-icon {
+  padding-left: 14px;
+  color: #94a3b8;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.ssa-text-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 13px 14px;
+  color: #ffffff;
+  font-size: 0.94rem;
+  font-family: inherit;
+}
+
+.ssa-text-input::placeholder {
+  color: #64748b;
+}
+
+.ssa-password-eye-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  padding: 0 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.ssa-password-eye-btn:hover {
+  color: #fbbf24;
+}
+
+/* Options Row */
+.ssa-auth-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ssa-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+
+.ssa-custom-checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  accent-color: #f59e0b;
+  cursor: pointer;
+}
+
+.ssa-forgot-btn {
+  background: none;
+  border: none;
+  color: #fbbf24;
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  transition: text-decoration 0.2s ease;
+}
+
+.ssa-forgot-btn:hover {
+  text-decoration: underline;
+}
+
+/* Master Authenticate Submit Button */
+.ssa-authenticate-master-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #0b57d0 0%, #1d4ed8 50%, #d97706 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 15px 22px;
+  font-size: 0.94rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 16px;
-}
-
-.banano-target-icon {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #111827;
-}
-
-.banano-brand-name {
-  font-size: 1.22rem;
-  font-weight: 700;
-  color: #111827;
-  letter-spacing: -0.3px;
-}
-
-.banano-form-title {
-  font-size: 1.55rem;
-  font-weight: 700;
-  color: #111827;
-  text-align: center;
-  letter-spacing: -0.4px;
-  margin-bottom: 6px;
-}
-
-.banano-form-subtitle {
-  font-size: 0.88rem;
-  color: #9ca3af;
-  text-align: center;
-  margin-bottom: 24px;
-  font-weight: 400;
-}
-
-/* Form Inputs */
-.banano-field-group {
-  margin-bottom: 16px;
-}
-
-.banano-label {
-  display: block;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: #6b7280;
-  margin-bottom: 6px;
-  text-align: left;
-}
-
-.banano-input-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.banano-pill-input {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #d1d5db;
-  border-radius: 9999px;
-  padding: 12px 22px;
-  font-size: 0.92rem;
-  color: #111827;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(11, 87, 208, 0.45);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 4px;
   font-family: inherit;
 }
 
-.banano-pill-input:focus {
-  border-color: #0023e8;
-  box-shadow: 0 0 0 3px rgba(0, 35, 232, 0.12);
+.ssa-authenticate-master-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(11, 87, 208, 0.6);
+  filter: brightness(1.08);
 }
 
-.banano-pill-input::placeholder {
-  color: #9ca3af;
-}
-
-/* Remember Me & Forgot Password Row */
-.banano-options-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 14px;
-  margin-bottom: 20px;
-  font-size: 0.82rem;
-}
-
-.banano-remember-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #6b7280;
-  cursor: pointer;
-  user-select: none;
-  margin: 0;
-  font-weight: 400;
-}
-
-.banano-remember-checkbox {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  border: 1px solid #9ca3af;
-  accent-color: #0023e8;
-  cursor: pointer;
-}
-
-.banano-forgot-link {
-  color: #1d4ed8;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 0.82rem;
-  font-family: inherit;
-}
-
-.banano-forgot-link:hover {
-  text-decoration: underline;
-}
-
-/* Primary Submit Button */
-.banano-login-btn {
-  width: 100%;
-  background: #0023e8;
-  color: #ffffff;
-  border: none;
-  border-radius: 9999px;
-  padding: 13px 24px;
-  font-size: 0.94rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 35, 232, 0.35);
-  margin-bottom: 20px;
-  font-family: inherit;
-}
-
-.banano-login-btn:hover:not(:disabled) {
-  background: #001ec8;
-  box-shadow: 0 6px 18px rgba(0, 35, 232, 0.45);
-  transform: translateY(-1px);
-}
-
-.banano-login-btn:active:not(:disabled) {
+.ssa-authenticate-master-btn:active:not(:disabled) {
   transform: translateY(0);
 }
 
-.banano-login-btn:disabled {
+.ssa-authenticate-master-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-.banano-arrow {
-  font-size: 1.15rem;
-  line-height: 1;
+/* 1-Click Fast Pass Box */
+.ssa-fast-pass-box {
+  margin-top: 10px;
 }
 
-/* Divider: Or continue with */
-.banano-divider {
+.ssa-divider-line {
   display: flex;
   align-items: center;
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
-.banano-divider::before,
-.banano-divider::after {
+.ssa-divider-line::before,
+.ssa-divider-line::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.banano-divider-text {
-  padding: 0 14px;
-  color: #6b7280;
-  font-size: 0.78rem;
-  font-weight: 500;
-  white-space: nowrap;
+.ssa-divider-line span {
+  padding: 0 12px;
+  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
 }
 
-/* Quick Secondary Pill Buttons */
-.banano-social-btns {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.banano-secondary-btn {
+.ssa-instant-demo-btn {
   width: 100%;
-  background: #f3f4f6;
-  border: 1px solid transparent;
-  border-radius: 9999px;
-  padding: 12px 20px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #111827;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 14px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.18s ease;
+  text-align: left;
+  transition: all 0.2s ease;
   font-family: inherit;
 }
 
-.banano-secondary-btn:hover {
-  background: #e5e7eb;
-  color: #000000;
+.ssa-instant-demo-btn:hover {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: #fbbf24;
+  transform: translateY(-1px);
 }
 
-/* Bottom Footer */
-.banano-footer-text {
-  text-align: center;
-  font-size: 0.82rem;
-  color: #6b7280;
-  margin: 0;
+.ssa-fast-pass-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.banano-footer-link {
-  color: #1d4ed8;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.banano-footer-link:hover {
-  text-decoration: underline;
-}
-
-/* Error Alert */
-.banano-error-box {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #b91c1c;
-  border-radius: 12px;
-  padding: 10px 14px;
+.ssa-fast-pass-text strong {
   font-size: 0.84rem;
-  margin-bottom: 18px;
+  color: #fef08a;
+}
+
+.ssa-fast-pass-text span {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* Terminal Footer */
+.ssa-terminal-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  font-size: 0.74rem;
+  color: #64748b;
+  text-align: center;
 }
 
 /* ========================================================
