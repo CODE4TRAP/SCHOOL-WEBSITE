@@ -10614,3 +10614,159 @@ label {
 .home-card-emerald:hover .home-quick-footer { color: #059669; }
 .home-card-amber:hover .home-quick-footer { color: #d97706; }
 .home-card-violet:hover .home-quick-footer { color: #7c3aed; }
+
+/* Mobile application-style experience — public school website */
+@media (max-width: 767px) {
+  html { scroll-padding-top: 84px; }
+  body {
+    background: #f4f7fc;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-x: none;
+  }
+  .app-layout { min-height: 100dvh !important; }
+  .app-layout > main {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+    overflow-x: clip;
+  }
+
+  /* Keep the school identity compact at the top. */
+  .m3-nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,.96);
+    border-top: 1px solid rgba(15,23,42,.06);
+    border-bottom: 1px solid rgba(15,23,42,.08);
+    box-shadow: 0 5px 18px rgba(15,23,42,.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .m3-nav-bar > .container {
+    display: block !important;
+    max-width: 100%;
+    padding: 0 !important;
+  }
+  .m3-mobile-toggle { display: none !important; }
+  .m3-nav-menu-wrapper,
+  .m3-nav-menu-wrapper.show-mobile {
+    display: block !important;
+    width: 100%;
+    max-height: none !important;
+    overflow: visible;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+  }
+  .m3-nav-list {
+    display: flex !important;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 100%;
+    margin: 0;
+    padding: 8px 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .m3-nav-list::-webkit-scrollbar { display: none; }
+  .m3-nav-list > li {
+    flex: 0 0 auto;
+    position: relative;
+    list-style: none;
+  }
+  .m3-nav-link,
+  .m3-nav-list > li > a,
+  .m3-nav-list > li > button {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 40px;
+    padding: 0 13px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: #344054;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    box-shadow: none;
+  }
+  .m3-nav-link .material-symbols-outlined,
+  .m3-nav-link .material-icons {
+    font-size: 19px !important;
+  }
+  .m3-nav-link.active,
+  .m3-nav-list > li > a.active,
+  .m3-nav-list > li > button.active {
+    color: #0b57d0;
+    background: #e8f0fe;
+    border-color: #d4e2ff;
+  }
+
+  /* App-like spacing, cards and touch targets across all public pages. */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  section { scroll-margin-top: 84px; }
+  button, a, input, select, textarea { touch-action: manipulation; }
+  input, select, textarea {
+    font-size: 16px !important;
+    max-width: 100%;
+  }
+  img, video, iframe { max-width: 100%; }
+  .row { --bs-gutter-x: 1rem; }
+  .home-quick-actions-section { margin-top: 12px; }
+  .home-quick-card {
+    min-height: 160px;
+    padding: 16px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(16, 24, 40, .045);
+  }
+  .home-quick-icon-wrap { width: 42px; height: 42px; border-radius: 13px; }
+  .home-quick-title { font-size: 1rem; }
+  .home-quick-desc { font-size: .82rem; }
+  .card, .modal-content {
+    border-radius: 18px;
+  }
+  .btn, button.btn {
+    min-height: 44px;
+    border-radius: 12px;
+  }
+  table { display: block; max-width: 100%; overflow-x: auto; }
+  .modal-dialog {
+    margin: 12px;
+    max-width: calc(100% - 24px);
+  }
+  .modal-content { max-height: calc(100dvh - 24px); overflow-y: auto; }
+  .adm-shell { overflow-x: clip; }
+}
+
+@media (max-width: 420px) {
+  .container { padding-left: 13px; padding-right: 13px; }
+  .m3-nav-list { gap: 3px; padding: 7px 10px; }
+  .m3-nav-link,
+  .m3-nav-list > li > a,
+  .m3-nav-list > li > button { padding: 0 11px; font-size: 12px; }
+  .home-quick-card { min-height: 148px; padding: 13px; }
+}
+
+/* Respect reduced-motion preferences on touch devices. */
+@media (prefers-reduced-motion: reduce) {
+  .m3-nav-bar *, .home-quick-card, .home-quick-icon-wrap {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
