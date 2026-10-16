@@ -5971,6 +5971,525 @@ img {
   border-right: 1px solid #e2e8f0;
 }
 
+/* ========================================================
+   PRINCIPAL DESK SHOWCASE & AVATAR BADGE
+   ======================================================== */
+.principal-showcase-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(11, 87, 208, 0.06);
+}
+
+.principal-showcase-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .principal-showcase-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.principal-profile-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.principal-avatar-wrap {
+  position: relative !important;
+  display: inline-block;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+}
+
+.principal-avatar-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #f59e0b;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
+  display: block;
+}
+
+.principal-avatar-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 6px;
+  width: 34px;
+  height: 34px;
+  background: #0b57d0;
+  color: #ffffff;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(11, 87, 208, 0.4);
+}
+
+.principal-nameplate-box {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.principal-badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.principal-title-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #041e49;
+  margin-bottom: 6px;
+}
+
+.principal-divider {
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  border-radius: 3px;
+  margin: 0 auto 8px auto;
+}
+
+.principal-school-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.principal-school-sub {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.principal-location-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.73rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.principal-quote-box {
+  background: #f8fafc;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 16px 16px 0;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ========================================================
+   KEY STATISTICS, GOVERNING SOCIETY & PROSPECTUS CARDS
+   ======================================================== */
+.modern-sidebar-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 18px rgba(11, 87, 208, 0.06);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.modern-sidebar-header {
+  background: linear-gradient(135deg, #041e49 0%, #0b57d0 100%);
+  color: #ffffff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modern-sidebar-header.amber-theme {
+  background: linear-gradient(135deg, #78350f 0%, #d97706 100%);
+}
+
+.modern-sidebar-header.emerald-theme {
+  background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+}
+
+.modern-sidebar-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.modern-sidebar-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+}
+
+.modern-stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.15s ease;
+}
+
+.modern-stat-row:last-child {
+  border-bottom: none;
+}
+
+.modern-stat-row:hover {
+  background: #f8fafc;
+}
+
+.stat-row-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.stat-row-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* ========================================================
+   FACILITIES 6 FEATURE CARDS
+   ======================================================== */
+.facility-feature-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(11, 87, 208, 0.06);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+}
+
+.facility-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(11, 87, 208, 0.12);
+  border-color: #cbd5e1;
+}
+
+.facility-img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.facility-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.facility-feature-card:hover .facility-img {
+  transform: scale(1.06);
+}
+
+.facility-floating-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(4, 30, 73, 0.82);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.facility-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.facility-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #041e49;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.facility-desc {
+  font-size: 0.86rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.facility-footer {
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.facility-safe-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #ecfdf5;
+  color: #065f46;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid #a7f3d0;
+}
+
+/* ========================================================
+   MODERN FAQ ACCORDION CARD
+   ======================================================== */
+.faq-accordion-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(11, 87, 208, 0.06);
+  overflow: hidden;
+}
+
+.faq-accordion-header {
+  background: linear-gradient(135deg, #0b57d0 0%, #041e49 100%);
+  color: #ffffff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.faq-item-box {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.18s ease;
+}
+
+.faq-item-box:last-child {
+  border-bottom: none;
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.faq-question-btn:hover {
+  color: #0b57d0;
+  background: #f8fafc;
+}
+
+.faq-chevron {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  flex-shrink: 0;
+  transition: transform 0.25s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.faq-item-box.open .faq-chevron {
+  transform: rotate(180deg);
+  background: #0b57d0;
+  color: #ffffff;
+}
+
+.faq-answer-content {
+  padding: 0 20px 18px 20px;
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+/* ========================================================
+   OFFICIAL ADMISSION RECEIPT SLIP & WHATSAPP DROP BOX
+   ======================================================== */
+.admission-receipt-container {
+  background: #ffffff;
+  border: 2px solid #0b57d0;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 8px 30px rgba(11, 87, 208, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.receipt-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(11, 87, 208, 0.04);
+  letter-spacing: 8px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.receipt-top-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px dashed #cbd5e1;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.receipt-school-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.receipt-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.receipt-app-badge {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #0f172a;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.receipt-table-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 24px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .receipt-table-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.receipt-data-cell {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.receipt-data-cell.span-full {
+  grid-column: 1 / -1;
+}
+
+.receipt-cell-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.receipt-cell-value {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.receipt-auth-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 2px dashed #cbd5e1;
+  font-size: 0.8rem;
+  color: #64748b;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* WhatsApp Document Drop Callout */
+.whatsapp-drop-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid #22c55e;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 4px 18px rgba(34, 197, 94, 0.15);
+  margin-top: 24px;
+  text-align: left;
+}
+
 /* Print */
 @media print {
   .top-header-strip,

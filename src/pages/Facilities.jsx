@@ -55,28 +55,36 @@ export default function Facilities() {
 
         {/* Facilities Grid */}
         <div className="row g-4 mb-5">
-          {facilitiesList.map((facility) => (
+          {facilitiesList.map((facility, idx) => (
             <div key={facility.id} className="col-md-6 col-lg-4" id={facility.id}>
-              <div className="card h-100 shadow-sm border-0 rounded-3 overflow-hidden" style={{ border: '1px solid var(--border-color)' }}>
-                <img
-                  src={facility.img}
-                  className="card-img-top"
-                  alt={facility.title}
-                  style={{ height: '210px', objectFit: 'cover' }}
-                />
-                <div className="card-body p-4 d-flex flex-column justify-content-between">
+              <div className="facility-feature-card">
+                <div className="facility-img-wrap">
+                  <img
+                    src={facility.img}
+                    className="facility-img"
+                    alt={facility.title}
+                  />
+                  <div className="facility-floating-badge">
+                    <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px' }}>verified</span>
+                    <span>Facility {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
+                  </div>
+                </div>
+                <div className="facility-card-body">
                   <div>
-                    <h5 className="fw-bold text-primary mb-2">
-                      <i className="fas fa-check-circle text-warning me-2"></i> {facility.title}
+                    <h5 className="facility-title">
+                      <span className="material-symbols-outlined" style={{ color: '#0b57d0', fontSize: '20px' }}>check_circle</span>
+                      {facility.title}
                     </h5>
-                    <p className="small text-muted" style={{ lineHeight: '1.7' }}>
+                    <p className="facility-desc">
                       {facility.desc}
                     </p>
                   </div>
-                  <div className="pt-3 border-top mt-2">
-                    <span className="small text-primary fw-semibold">
-                      <i className="fas fa-shield-alt text-success me-1"></i> Child Safe Certified
+                  <div className="facility-footer">
+                    <span className="facility-safe-chip">
+                      <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px', color: '#059669' }}>shield</span>
+                      Child Safe Certified
                     </span>
+                    <span className="small text-muted fw-bold">Active Campus</span>
                   </div>
                 </div>
               </div>

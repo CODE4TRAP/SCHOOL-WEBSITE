@@ -215,83 +215,161 @@ export default function Admission() {
 
               <div className="card-body p-4 p-md-5">
                 {submittedReceipt ? (
-                  <div className="p-4 rounded-3 border bg-light text-center">
-                    <div style={{ width: '64px', height: '64px', background: '#dcfce7', color: '#16a34a', borderRadius: '50%', display: 'flex', alignItems: 'center', justifySelf: 'center', margin: '0 auto 16px auto', fontSize: '1.9rem', boxShadow: '0 4px 12px rgba(22, 163, 74, 0.2)' }}>
-                      <i className="fas fa-check"></i>
+                  <div className="text-center">
+                    <div style={{ width: '68px', height: '68px', background: '#dcfce7', color: '#16a34a', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px auto', fontSize: '2rem', boxShadow: '0 4px 16px rgba(22, 163, 74, 0.25)' }}>
+                      <span className="material-symbols-outlined fs-2">verified</span>
                     </div>
-                    <h4 className="fw-bold text-success mb-2">Registration Submitted Successfully!</h4>
-                    <p className="text-muted small mb-4">
-                      Thank you for applying to <strong>{schoolInfo.name}</strong>. Please preserve your official application acknowledgment below for document verification during school interaction.
+                    <h3 className="fw-bold text-success mb-2">Registration Submitted Successfully!</h3>
+                    <p className="text-muted small mb-4" style={{ maxWidth: '640px', margin: '0 auto 24px auto', lineHeight: '1.7' }}>
+                      Thank you for applying to <strong>{schoolInfo.name}</strong>. An official acknowledgment slip has been generated below. Please print or save this slip and submit it along with your payment confirmation.
                     </p>
 
-                    <div className="bg-white p-4 rounded-3 border text-start mb-4 shadow-sm" id="printableReceipt">
-                      <div className="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
-                        <div className="d-flex align-items-center gap-2">
-                          <img src="/images/logo.png" alt="Logo" style={{ width: '45px', height: '45px', objectFit: 'contain' }} />
+                    {/* Official Printable Admission Slip */}
+                    <div className="admission-receipt-container text-start mb-4" id="printableReceipt">
+                      <div className="receipt-header">
+                        <div className="receipt-school-brand">
+                          <img src="/images/logo.png" alt="Logo" className="receipt-logo" />
                           <div>
-                            <h6 className="fw-bold text-primary mb-0">{schoolInfo.name}</h6>
-                            <small className="text-muted">Application Acknowledgment Slip &bull; 2026-27</small>
+                            <h5 className="fw-bold text-primary mb-1" style={{ letterSpacing: '-0.3px' }}>{schoolInfo.name}</h5>
+                            <div className="small text-muted fw-semibold">
+                              &amp; Kid's Play School &bull; Affiliated &amp; Registered &bull; Sasaram, Bihar
+                            </div>
+                            <div className="small text-secondary mt-1">
+                              Official Online Admission Acknowledgment Slip &bull; Session 2026–27
+                            </div>
                           </div>
                         </div>
-                        <div className="text-end">
-                          <span className="badge bg-warning text-dark px-3 py-1 fw-bold fs-6">
+                        <div className="text-md-end">
+                          <span className="receipt-app-badge">
                             {submittedReceipt.appNumber}
                           </span>
-                          <div className="text-muted small mt-1">Date: {submittedReceipt.date}</div>
-                        </div>
-                      </div>
-
-                      <div className="row g-3 small">
-                        <div className="col-sm-6">
-                          <strong>Child's Full Name:</strong> {submittedReceipt.studentName}
-                        </div>
-                        <div className="col-sm-6">
-                          <strong>Class Applying For:</strong> <span className="text-primary fw-bold">{submittedReceipt.applyingClass}</span>
-                        </div>
-                        <div className="col-sm-6">
-                          <strong>Date of Birth:</strong> {submittedReceipt.dob}
-                        </div>
-                        <div className="col-sm-6">
-                          <strong>Gender:</strong> {submittedReceipt.gender}
-                        </div>
-                        <div className="col-sm-6">
-                          <strong>Father's Name:</strong> {submittedReceipt.fatherName}
-                        </div>
-                        <div className="col-sm-6">
-                          <strong>Mother's Name:</strong> {submittedReceipt.motherName}
-                        </div>
-                        <div className="col-sm-6">
-                          <strong>Contact Mobile:</strong> {submittedReceipt.mobile}
-                        </div>
-                        <div className="col-sm-6">
-                          <strong>Transport Facility:</strong> {submittedReceipt.transportNeeded}
-                        </div>
-                        <div className="col-12">
-                          <strong>Residence Address:</strong> {submittedReceipt.address}
-                        </div>
-                        {submittedReceipt.previousSchool && (
-                          <div className="col-12">
-                            <strong>Previous School:</strong> {submittedReceipt.previousSchool}
+                          <div className="text-muted small mt-2 fw-semibold">
+                            Date of Filing: <strong className="text-dark">{submittedReceipt.date}</strong>
                           </div>
-                        )}
+                        </div>
                       </div>
 
-                      <div className="mt-4 pt-3 border-top d-flex justify-content-between text-muted" style={{ fontSize: '0.78rem' }}>
-                        <span>Note: Bring original birth certificate and 4 passport photos on counseling day.</span>
-                        <span className="fw-bold text-dark">School Seal &amp; Authority</span>
+                      {/* Submitted Data Table Grid */}
+                      <div className="receipt-table-grid">
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">Candidate Name</div>
+                          <div className="receipt-cell-value text-primary">{submittedReceipt.studentName}</div>
+                        </div>
+
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">Applying For Class</div>
+                          <div className="receipt-cell-value text-dark fw-bolder">{submittedReceipt.applyingClass}</div>
+                        </div>
+
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">Date of Birth</div>
+                          <div className="receipt-cell-value">{submittedReceipt.dob || '—'}</div>
+                        </div>
+
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">Gender</div>
+                          <div className="receipt-cell-value">{submittedReceipt.gender || '—'}</div>
+                        </div>
+
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">Father's Full Name</div>
+                          <div className="receipt-cell-value">{submittedReceipt.fatherName}</div>
+                        </div>
+
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">Mother's Full Name</div>
+                          <div className="receipt-cell-value">{submittedReceipt.motherName}</div>
+                        </div>
+
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">Primary Contact Mobile</div>
+                          <div className="receipt-cell-value">{submittedReceipt.mobile}</div>
+                        </div>
+
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">WhatsApp Contact Number</div>
+                          <div className="receipt-cell-value">{submittedReceipt.whatsapp || submittedReceipt.mobile}</div>
+                        </div>
+
+                        <div className="receipt-data-cell">
+                          <div className="receipt-cell-label">School Transport Facility</div>
+                          <div className="receipt-cell-value">{submittedReceipt.transportNeeded === 'Yes' ? 'Opted (Required)' : 'Self Conveyance'}</div>
+                        </div>
+
+                        {submittedReceipt.previousSchool ? (
+                          <div className="receipt-data-cell">
+                            <div className="receipt-cell-label">Previous School Attended</div>
+                            <div className="receipt-cell-value">{submittedReceipt.previousSchool}</div>
+                          </div>
+                        ) : null}
+
+                        <div className="receipt-data-cell span-full">
+                          <div className="receipt-cell-label">Permanent / Current Residence Address</div>
+                          <div className="receipt-cell-value">{submittedReceipt.address}</div>
+                        </div>
+                      </div>
+
+                      {/* Official Verification Footnote */}
+                      <div className="receipt-auth-footer">
+                        <div>
+                          <strong className="text-dark d-block mb-1">Required for Verification:</strong>
+                          <span>Birth Certificate original copy, 4 passport photos, and Aadhaar card on interaction day.</span>
+                        </div>
+                        <div className="text-md-end">
+                          <div className="fw-bold text-primary mb-1">Swami Shiwanand Academy</div>
+                          <div className="small text-muted">Authorized Registrar / Admission Desk</div>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="d-flex justify-content-center gap-3 flex-wrap">
+                    {/* WhatsApp Document Drop Box */}
+                    <div className="whatsapp-drop-card">
+                      <div className="d-flex align-items-start gap-3 flex-wrap flex-md-nowrap">
+                        <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: '#22c55e', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(34, 197, 94, 0.35)' }}>
+                          <i className="fab fa-whatsapp fa-2x"></i>
+                        </div>
+                        <div className="flex-grow-1">
+                          <div className="d-flex align-items-center gap-2 flex-wrap">
+                            <h5 className="fw-bold text-dark mb-1" style={{ color: '#14532d' }}>Fast-Track Document Verification on WhatsApp</h5>
+                            <span className="badge bg-success text-white px-2 py-1 small">Official Desk</span>
+                          </div>
+                          <p className="small text-muted mb-3" style={{ lineHeight: '1.65' }}>
+                            Please save/print this registration slip as a PDF. Drop the <strong>PDF Slip</strong> along with your <strong>Admission Fee / Token Screenshot</strong> directly to our school office WhatsApp number: <strong className="text-dark">+91 94310 68033</strong> for instant confirmation and interaction schedule.
+                          </p>
+                          <div className="d-flex align-items-center gap-2 flex-wrap">
+                            <a
+                              href={`https://wa.me/919431068033?text=${encodeURIComponent(`Hello Swami Shiwanand Academy,\n\nI have registered my ward for Admission 2026-27.\n\n• Application No: ${submittedReceipt.appNumber}\n• Candidate Name: ${submittedReceipt.studentName}\n• Class Applying For: ${submittedReceipt.applyingClass}\n• Father's Name: ${submittedReceipt.fatherName}\n• Contact: ${submittedReceipt.mobile}\n\nPlease find attached my Registration Slip and fee screenshot for verification.`)}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="btn btn-success fw-bold d-inline-flex align-items-center gap-2 px-4 py-2"
+                              style={{ background: '#16a34a', borderColor: '#16a34a' }}
+                            >
+                              <i className="fab fa-whatsapp fs-5"></i>
+                              <span>Send Slip &amp; Screenshot via WhatsApp</span>
+                            </a>
+                            <a
+                              href="tel:+919431068033"
+                              className="btn btn-outline-success fw-bold d-inline-flex align-items-center gap-2 px-3 py-2"
+                            >
+                              <span className="material-symbols-outlined fs-6">call</span>
+                              <span>+91 94310 68033</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Actions Row */}
+                    <div className="d-flex justify-content-center gap-3 flex-wrap mt-4">
                       <button
                         onClick={() => window.print()}
-                        className="btn btn-primary d-flex align-items-center gap-2"
+                        className="btn btn-primary d-flex align-items-center gap-2 px-4 py-2"
                       >
                         <span className="material-symbols-outlined fs-6">print</span> Print Application Slip
                       </button>
                       <button
                         onClick={resetForm}
-                        className="btn btn-outline-secondary d-flex align-items-center gap-2"
+                        className="btn btn-outline-secondary d-flex align-items-center gap-2 px-3 py-2"
                       >
                         <span className="material-symbols-outlined fs-6">add_circle</span> Submit Another Application
                       </button>
@@ -967,21 +1045,28 @@ export default function Admission() {
           {/* Right Sidebar Column */}
           <div className="col-lg-4">
             {/* Download Prospectus Card */}
-            <div className="card shadow-sm border-0 rounded-3 mb-4 overflow-hidden" id="prospectus">
-              <div className="card-header bg-primary text-white p-3" style={{ background: 'var(--primary-dark)' }}>
-                <h5 className="mb-0 fw-bold"><i className="fas fa-file-pdf text-warning me-2"></i> Download Prospectus</h5>
+            <div className="modern-sidebar-card mb-4" id="prospectus">
+              <div className="modern-sidebar-header emerald-theme">
+                <div className="modern-sidebar-title">
+                  <span className="material-symbols-outlined" style={{ color: '#a7f3d0' }}>menu_book</span>
+                  School Prospectus
+                </div>
+                <span className="modern-sidebar-badge">PDF 2026</span>
               </div>
-              <div className="card-body p-4 text-center">
-                <i className="fas fa-book-reader fa-3x text-primary mb-3"></i>
-                <h6 className="fw-bold text-dark">School Information Brochure (PDF)</h6>
-                <p className="small text-muted mb-4">
-                  Download our illustrated 2026–27 prospectus containing detailed pedagogical methods, facilities, and fee breakdowns.
+              <div className="p-4 text-center">
+                <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(5, 150, 105, 0.12)', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px auto' }}>
+                  <span className="material-symbols-outlined fs-2">download_for_offline</span>
+                </div>
+                <h6 className="fw-bold text-dark mb-1">Official Information Brochure</h6>
+                <p className="small text-muted mb-4" style={{ lineHeight: '1.6' }}>
+                  Download our illustrated 2026–27 prospectus containing curriculum frameworks, facilities, and fee breakdowns.
                 </p>
                 <button
                   onClick={() => alert('Downloading official Swami Shiwanand Academy Prospectus (2026–27)... Please check your download folder.')}
-                  className="btn btn-primary w-100 fw-bold py-2 mb-2"
+                  className="btn btn-primary w-100 fw-bold py-2 d-flex align-items-center justify-content-center gap-2"
                 >
-                  <i className="fas fa-download me-1"></i> Download Prospectus
+                  <span className="material-symbols-outlined fs-6">download</span>
+                  Download Prospectus (PDF)
                 </button>
               </div>
             </div>

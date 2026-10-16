@@ -90,12 +90,8 @@ export default function About() {
                         alt="Principal - Swami Shiwanand Academy"
                         className="principal-avatar-img"
                       />
-                      <span
-                        className="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center shadow"
-                        style={{ width: '34px', height: '34px', border: '3px solid #fff' }}
-                        title="Verified Leadership"
-                      >
-                        <span className="material-symbols-outlined fs-6">verified</span>
+                      <span className="principal-avatar-badge" title="Verified Leadership">
+                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>verified</span>
                       </span>
                     </div>
 
@@ -686,34 +682,56 @@ export default function About() {
           {/* Right Sidebar Column */}
           <div className="col-lg-4">
             {/* Quick Stat Card */}
-            <div className="card shadow-sm border-0 rounded-3 mb-4 overflow-hidden" id="statistics">
-              <div className="card-header bg-primary text-white p-3" style={{ background: 'var(--primary-dark)' }}>
-                <h5 className="mb-0 fw-bold"><i className="fas fa-chart-pie text-warning me-2"></i> Key Statistics</h5>
+            <div className="modern-sidebar-card mb-4" id="statistics">
+              <div className="modern-sidebar-header">
+                <div className="modern-sidebar-title">
+                  <span className="material-symbols-outlined" style={{ color: '#f59e0b' }}>analytics</span>
+                  Key Statistics
+                </div>
+                <span className="modern-sidebar-badge">Verified</span>
               </div>
-              <div className="card-body p-4">
-                <div className="d-flex justify-content-between py-2 border-bottom">
-                  <span className="text-muted small">Year Established:</span>
-                  <strong className="text-dark">{schoolInfo.estd}</strong>
+              <div className="p-2">
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-primary">calendar_month</span>
+                    Year Established
+                  </span>
+                  <span className="stat-row-value">{schoolInfo.estd}</span>
                 </div>
-                <div className="d-flex justify-content-between py-2 border-bottom">
-                  <span className="text-muted small">Student Body:</span>
-                  <strong className="text-success">500+ Active Learners</strong>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-success">groups</span>
+                    Student Body
+                  </span>
+                  <span className="stat-row-value text-success">500+ Active Learners</span>
                 </div>
-                <div className="d-flex justify-content-between py-2 border-bottom">
-                  <span className="text-muted small">Student-Teacher Ratio:</span>
-                  <strong className="text-primary">15 : 1 (Personal Care)</strong>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-warning">person_pin</span>
+                    Student-Teacher Ratio
+                  </span>
+                  <span className="stat-row-value text-primary">15 : 1 (Personal Care)</span>
                 </div>
-                <div className="d-flex justify-content-between py-2 border-bottom">
-                  <span className="text-muted small">Campus Area:</span>
-                  <strong className="text-dark">Spacious &amp; Eco-Friendly</strong>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-info">yard</span>
+                    Campus Area
+                  </span>
+                  <span className="stat-row-value">Eco-Friendly &amp; Safe</span>
                 </div>
-                <div className="d-flex justify-content-between py-2 border-bottom">
-                  <span className="text-muted small">Classrooms:</span>
-                  <strong className="text-dark">20+ Smart Digital Rooms</strong>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-danger">devices</span>
+                    Smart Classrooms
+                  </span>
+                  <span className="stat-row-value">20+ Digital Rooms</span>
                 </div>
-                <div className="d-flex justify-content-between py-2">
-                  <span className="text-muted small">Transport Buses:</span>
-                  <strong className="text-dark">10+ GPS Enabled Fleet</strong>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-secondary">directions_bus</span>
+                    Transport Fleet
+                  </span>
+                  <span className="stat-row-value">10+ GPS Buses</span>
                 </div>
               </div>
             </div>
@@ -736,17 +754,22 @@ export default function About() {
             </div>
 
             {/* Society / Trust Info */}
-            <div className="card shadow-sm border-0 rounded-3 overflow-hidden border" id="society">
-              <div className="card-header bg-primary text-white p-3">
-                <h6 className="mb-0 fw-bold"><i className="fas fa-hands-helping text-warning me-2"></i> Governing Society</h6>
+            <div className="modern-sidebar-card" id="society">
+              <div className="modern-sidebar-header amber-theme">
+                <div className="modern-sidebar-title">
+                  <span className="material-symbols-outlined" style={{ color: '#fef08a' }}>account_balance</span>
+                  Governing Society
+                </div>
+                <span className="modern-sidebar-badge">Trust</span>
               </div>
-              <div className="card-body p-4">
-                <p className="small text-muted mb-3">
-                  <strong>{schoolInfo.name}</strong> is operated and managed by <strong>{schoolInfo.trust}</strong> under the visionary guidance of founder director <strong>{schoolInfo.founder}</strong>.
+              <div className="p-3">
+                <p className="small text-muted mb-3" style={{ lineHeight: '1.7' }}>
+                  <strong className="text-dark">{schoolInfo.name}</strong> is operated and managed by <strong className="text-dark">{schoolInfo.trust}</strong> under the visionary guidance of founder director <strong className="text-dark">{schoolInfo.founder}</strong>.
                 </p>
-                <p className="small text-muted mb-0">
-                  Committed to delivering transparent, non-commercialized quality educational services to families in Sasaram and adjoining Rohtas district regions.
-                </p>
+                <div className="p-2 rounded-3 bg-light border text-muted small d-flex align-items-center gap-2">
+                  <span className="material-symbols-outlined text-warning fs-6">verified_user</span>
+                  <span>Non-commercialized educational excellence serving Sasaram &amp; Rohtas region.</span>
+                </div>
               </div>
             </div>
           </div>

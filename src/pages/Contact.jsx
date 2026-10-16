@@ -332,25 +332,27 @@ export default function Contact() {
             </div>
 
             {/* Frequently Asked Questions Accordion */}
-            <div className="card shadow-sm border-0 rounded-3 overflow-hidden border">
-              <div className="card-header bg-light p-3 border-bottom">
-                <h6 className="mb-0 fw-bold text-dark"><i className="fas fa-question-circle text-primary me-2"></i> Frequently Asked Questions</h6>
+            <div className="faq-accordion-card">
+              <div className="faq-accordion-header">
+                <span className="material-symbols-outlined" style={{ color: '#f59e0b' }}>quiz</span>
+                <h6 className="mb-0 fw-bold text-white">Frequently Asked Questions</h6>
               </div>
-              <div className="card-body p-3">
+              <div>
                 {faqs.map((faq, idx) => (
-                  <div key={idx} className="border-bottom py-2">
+                  <div key={idx} className={`faq-item-box ${openFaq === idx ? 'open' : ''}`}>
                     <button
                       onClick={() => toggleFaq(idx)}
-                      className="d-flex justify-content-between align-items-center w-100 text-start text-dark fw-semibold"
-                      style={{ fontSize: '0.9rem' }}
+                      className="faq-question-btn"
                     >
                       <span>{faq.q}</span>
-                      <i className={`fas fa-chevron-${openFaq === idx ? 'up' : 'down'} text-muted small ms-2`}></i>
+                      <span className="faq-chevron">
+                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>expand_more</span>
+                      </span>
                     </button>
                     {openFaq === idx && (
-                      <p className="small text-muted mt-2 mb-1" style={{ lineHeight: '1.7' }}>
+                      <div className="faq-answer-content">
                         {faq.a}
-                      </p>
+                      </div>
                     )}
                   </div>
                 ))}
