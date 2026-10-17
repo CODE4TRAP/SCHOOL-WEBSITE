@@ -3695,13 +3695,13 @@ img {
    PREMIUM OSM PORTAL MODAL (Coming Soon & ERP Showcase)
    ======================================================== */
 .osm-modal-dialog {
-  max-width: 660px;
+  max-width: 680px;
   width: 100%;
   border-radius: 24px;
   overflow: hidden;
   background: #ffffff;
   border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.4), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 25px 70px -10px rgba(7, 42, 77, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2);
   animation: osmModalZoom 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -3718,8 +3718,8 @@ img {
 
 .osm-modal-header {
   position: relative;
-  background: linear-gradient(135deg, #072a4d 0%, #0c4a7e 55%, #1e3a8a 100%);
-  padding: 22px 24px 18px;
+  background: linear-gradient(135deg, #072a4d 0%, #0d47a1 55%, #1e3a8a 100%);
+  padding: 24px 26px 20px;
   color: #ffffff;
   overflow: hidden;
 }
@@ -3729,21 +3729,31 @@ img {
   position: absolute;
   top: -60px;
   right: -60px;
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%);
   pointer-events: none;
+}
+
+.osm-modal-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b 0%, #38bdf8 50%, #10b981 100%);
 }
 
 .osm-modal-close-btn {
   position: absolute;
   top: 16px;
   right: 16px;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   display: flex;
@@ -3751,31 +3761,31 @@ img {
   justify-content: center;
   cursor: pointer;
   backdrop-filter: blur(8px);
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2;
 }
 
 .osm-modal-close-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: rotate(90deg);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.28);
+  transform: rotate(90deg) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .osm-modal-brand-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #fbbf24;
   backdrop-filter: blur(8px);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .osm-modal-logo-ring {
@@ -3783,28 +3793,41 @@ img {
   height: 52px;
   border-radius: 14px;
   background: #ffffff;
-  padding: 5px;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(245, 158, 11, 0.4);
   flex-shrink: 0;
 }
 
 .osm-modal-body {
-  padding: 20px 24px;
+  padding: 22px 26px;
   max-height: 76vh;
   overflow-y: auto;
   background: #f8fafc;
 }
 
+/* Status & Activation Tracker V2 */
 .osm-status-card {
   background: #ffffff;
-  border-radius: 14px;
-  padding: 14px 18px;
+  border-radius: 16px;
+  padding: 18px 20px;
   border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  margin-bottom: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  margin-bottom: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+.osm-status-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #10b981);
 }
 
 .osm-pulse-dot {
@@ -3833,7 +3856,7 @@ img {
 }
 
 .osm-progress-track {
-  height: 7px;
+  height: 8px;
   background: #e2e8f0;
   border-radius: 999px;
   overflow: hidden;
@@ -3845,8 +3868,51 @@ img {
   width: 85%;
   background: linear-gradient(90deg, #f59e0b 0%, #10b981 100%);
   border-radius: 999px;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
 }
 
+/* Step Timeline */
+.osm-timeline-step-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.osm-timeline-step-item {
+  flex: 1;
+  text-align: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+}
+
+.osm-timeline-step-item.is-active {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.osm-timeline-step-item.is-completed {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+/* Section Header */
+.osm-section-heading {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #072a4d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* Features Grid */
 .osm-features-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -3862,45 +3928,167 @@ img {
 
 .osm-feat-card {
   background: #ffffff;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: 14px;
-  padding: 14px 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
 }
 
 .osm-feat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  border-color: #cbd5e1;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(7, 42, 77, 0.07);
+}
+
+.osm-feat-card.feat-attendance {
+  border-top: 3.5px solid #2563eb;
+}
+.osm-feat-card.feat-gradebook {
+  border-top: 3.5px solid #059669;
+}
+.osm-feat-card.feat-fee {
+  border-top: 3.5px solid #d97706;
+}
+.osm-feat-card.feat-homework {
+  border-top: 3.5px solid #7c3aed;
+}
+
+.osm-feat-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .osm-feat-icon {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  flex-shrink: 0;
 }
 
+.feat-attendance .osm-feat-icon {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+.feat-gradebook .osm-feat-icon {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+.feat-fee .osm-feat-icon {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+.feat-homework .osm-feat-icon {
+  background: #f5f3ff;
+  color: #7c3aed;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.osm-feat-tag {
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.feat-attendance .osm-feat-tag { background: #dbeafe; color: #1e40af; }
+.feat-gradebook .osm-feat-tag { background: #d1fae5; color: #065f46; }
+.feat-fee .osm-feat-tag { background: #fef3c7; color: #92400e; }
+.feat-homework .osm-feat-tag { background: #ede9fe; color: #5b21b6; }
+
+.osm-feat-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.osm-feat-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Credentials Info Callout V2 */
+.osm-credentials-callout {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.04);
+}
+
+.osm-cred-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.12);
+}
+
+.osm-cred-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.osm-cred-pill {
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+/* Administrative Helpline V2 */
 .osm-contact-card {
   background: #ffffff;
-  border: 1px dashed #cbd5e1;
-  border-radius: 14px;
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  border-radius: 16px;
   padding: 14px 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .osm-modal-footer {
-  padding: 14px 28px;
+  padding: 16px 28px;
   background: #ffffff;
   border-top: 1px solid #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 
