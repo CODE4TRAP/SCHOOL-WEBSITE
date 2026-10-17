@@ -929,65 +929,96 @@ export default function StudentCorner() {
               </div>
 
               {/* 4 Moral Education Pillars */}
-              <div className="card border-0 shadow-sm rounded-4 p-4" style={{ background: '#f8fafc', borderLeft: '4px solid #3b82f6' }}>
-                <h5 className="fw-bold text-dark d-flex align-items-center gap-2 mb-3">
-                  <span className="material-symbols-outlined text-primary">diversity_3</span>
-                  Our 4 Core Moral Pillars (Sanskar)
-                </h5>
+              <div className="moral-pillar-box">
+                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-3 border-bottom">
+                  <div className="d-flex align-items-center gap-2.5">
+                    <div className="moral-pillar-halo" style={{ background: 'rgba(11, 87, 208, 0.1)', color: '#0b57d0' }}>
+                      <span className="material-symbols-outlined fs-5">diversity_3</span>
+                    </div>
+                    <div>
+                      <h5 className="fw-bold text-dark mb-0">Our 4 Core Moral Pillars (Sanskar)</h5>
+                      <span className="text-muted small">Timeless virtues cultivating moral clarity, humility &amp; character</span>
+                    </div>
+                  </div>
+                  <span className="badge bg-primary-subtle text-primary border border-primary border-opacity-25 px-2.5 py-1 rounded-pill small fw-bold">
+                    Values-Led Holistic Pedagogy
+                  </span>
+                </div>
+
                 <div className="row g-3">
+                  {/* Satya */}
                   <div className="col-md-6 col-12">
-                    <div className="p-3 bg-white rounded-3 shadow-sm border h-100 d-flex align-items-start gap-3">
-                      <div className="rounded-circle p-2 bg-danger-subtle text-danger d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                        <span className="material-symbols-outlined fs-5">favorite</span>
-                      </div>
-                      <div>
-                        <strong className="d-block text-dark small">Satya &amp; Nishtha (Truth &amp; Integrity)</strong>
-                        <span className="text-muted" style={{ fontSize: '0.8rem', lineHeight: '1.45' }}>
-                          Fostering moral courage to speak truth, act honestly, and take accountability for one's choices.
+                    <div className="moral-pillar-card pillar-satya">
+                      <div className="moral-pillar-header">
+                        <div className="moral-pillar-halo" style={{ background: 'rgba(225, 29, 72, 0.1)', color: '#e11d48' }}>
+                          <span className="material-symbols-outlined fs-5">favorite</span>
+                        </div>
+                        <span className="moral-pillar-badge" style={{ background: '#ffe4e6', color: '#be123c' }}>
+                          TRUTH &amp; INTEGRITY
                         </span>
                       </div>
+                      <span className="moral-sanskrit-tag">सत्यं वद धर्मं चर</span>
+                      <h6 className="fw-bold text-dark mb-1">Satya &amp; Nishtha</h6>
+                      <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
+                        Fostering moral courage to speak truth, act honestly, and take accountability for one's choices with sincerity.
+                      </p>
                     </div>
                   </div>
 
+                  {/* Aadar */}
                   <div className="col-md-6 col-12">
-                    <div className="p-3 bg-white rounded-3 shadow-sm border h-100 d-flex align-items-start gap-3">
-                      <div className="rounded-circle p-2 bg-success-subtle text-success d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                        <span className="material-symbols-outlined fs-5">handshake</span>
-                      </div>
-                      <div>
-                        <strong className="d-block text-dark small">Aadar &amp; Vinamrata (Respect &amp; Humility)</strong>
-                        <span className="text-muted" style={{ fontSize: '0.8rem', lineHeight: '1.45' }}>
-                          Touching elders' feet, bowing to teachers, respecting bus staff and acknowledging every worker.
+                    <div className="moral-pillar-card pillar-aadar">
+                      <div className="moral-pillar-header">
+                        <div className="moral-pillar-halo" style={{ background: 'rgba(5, 150, 105, 0.1)', color: '#059669' }}>
+                          <span className="material-symbols-outlined fs-5">handshake</span>
+                        </div>
+                        <span className="moral-pillar-badge" style={{ background: '#d1fae5', color: '#047857' }}>
+                          RESPECT &amp; HUMILITY
                         </span>
                       </div>
+                      <span className="moral-sanskrit-tag">मातृ देवो भव • पितृ देवो भव</span>
+                      <h6 className="fw-bold text-dark mb-1">Aadar &amp; Vinamrata</h6>
+                      <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
+                        Touching elders' feet, bowing to teachers, respecting bus staff, and acknowledging every worker with warmth.
+                      </p>
                     </div>
                   </div>
 
+                  {/* Sahyog */}
                   <div className="col-md-6 col-12">
-                    <div className="p-3 bg-white rounded-3 shadow-sm border h-100 d-flex align-items-start gap-3">
-                      <div className="rounded-circle p-2 bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                        <span className="material-symbols-outlined fs-5">groups</span>
-                      </div>
-                      <div>
-                        <strong className="d-block text-dark small">Sahyog &amp; Karuna (Teamwork &amp; Empathy)</strong>
-                        <span className="text-muted" style={{ fontSize: '0.8rem', lineHeight: '1.45' }}>
-                          Sharing tiffin, lifting up classmates with learning needs, and celebrating peers' accomplishments.
+                    <div className="moral-pillar-card pillar-sahyog">
+                      <div className="moral-pillar-header">
+                        <div className="moral-pillar-halo" style={{ background: 'rgba(37, 99, 235, 0.1)', color: '#2563eb' }}>
+                          <span className="material-symbols-outlined fs-5">groups</span>
+                        </div>
+                        <span className="moral-pillar-badge" style={{ background: '#dbeafe', color: '#1d4ed8' }}>
+                          TEAMWORK &amp; EMPATHY
                         </span>
                       </div>
+                      <span className="moral-sanskrit-tag">वसुधैव कुटुम्बकम्</span>
+                      <h6 className="fw-bold text-dark mb-1">Sahyog &amp; Karuna</h6>
+                      <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
+                        Sharing tiffin, lifting up classmates with learning needs, and celebrating peers' accomplishments together.
+                      </p>
                     </div>
                   </div>
 
+                  {/* Swachhata */}
                   <div className="col-md-6 col-12">
-                    <div className="p-3 bg-white rounded-3 shadow-sm border h-100 d-flex align-items-start gap-3">
-                      <div className="rounded-circle p-2 bg-info-subtle text-info d-flex align-items-center justify-content-center" style={{ width: '40px', height: '40px' }}>
-                        <span className="material-symbols-outlined fs-5">eco</span>
-                      </div>
-                      <div>
-                        <strong className="d-block text-dark small">Swachhata &amp; Paryavaran (Eco-Care)</strong>
-                        <span className="text-muted" style={{ fontSize: '0.8rem', lineHeight: '1.45' }}>
-                          Zero littering, water conservation, garden tending, and plastic-free campus stewardship.
+                    <div className="moral-pillar-card pillar-swachhata">
+                      <div className="moral-pillar-header">
+                        <div className="moral-pillar-halo" style={{ background: 'rgba(217, 119, 6, 0.1)', color: '#d97706' }}>
+                          <span className="material-symbols-outlined fs-5">eco</span>
+                        </div>
+                        <span className="moral-pillar-badge" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          ECO-STEWARDSHIP
                         </span>
                       </div>
+                      <span className="moral-sanskrit-tag">प्रकृति रक्षति रक्षिता</span>
+                      <h6 className="fw-bold text-dark mb-1">Swachhata &amp; Paryavaran</h6>
+                      <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
+                        Zero littering, water conservation, botanical tending, clean desks, and plastic-free campus environmental stewardship.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1014,59 +1045,74 @@ export default function StudentCorner() {
 
               <div className="row g-3 mb-4">
                 <div className="col-md-6">
-                  <div className="guideline-item-box">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-primary fs-5">alarm_on</span>
-                      <h6 className="fw-bold mb-0 text-dark small">Punctuality &amp; Gate Arrival</h6>
+                  <div className="student-guideline-card" style={{ borderLeft: '4px solid #2563eb' }}>
+                    <div className="guideline-header-row">
+                      <div className="guideline-icon-halo" style={{ background: 'rgba(37, 99, 235, 0.1)', color: '#2563eb' }}>
+                        <span className="material-symbols-outlined fs-5">alarm_on</span>
+                      </div>
+                      <span className="guideline-category-tag">TIMINGS &amp; DISCIPLINE</span>
                     </div>
+                    <h6 className="fw-bold text-dark mb-1">Punctuality &amp; Gate Arrival</h6>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
-                      Students must enter the campus 10 minutes prior to the prayer bell. Late arrivals will be recorded in the official school diary.
+                      Students must enter the campus 10 minutes prior to the prayer bell. Late arrivals will be officially recorded in the school diary.
                     </p>
                   </div>
                 </div>
 
                 <div className="col-md-6">
-                  <div className="guideline-item-box">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-success fs-5">auto_stories</span>
-                      <h6 className="fw-bold mb-0 text-dark small">School Diary &amp; Stationery</h6>
+                  <div className="student-guideline-card" style={{ borderLeft: '4px solid #059669' }}>
+                    <div className="guideline-header-row">
+                      <div className="guideline-icon-halo" style={{ background: 'rgba(5, 150, 105, 0.1)', color: '#059669' }}>
+                        <span className="material-symbols-outlined fs-5">auto_stories</span>
+                      </div>
+                      <span className="guideline-category-tag">ACADEMIC KIT</span>
                     </div>
+                    <h6 className="fw-bold text-dark mb-1">School Diary &amp; Stationery</h6>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
-                      The student diary must be carried daily. All books and notebooks must be neatly covered, labeled, and brought as per the daily timetable.
+                      The student diary must be carried daily. All books and notebooks must be neatly covered, labeled, and brought strictly per timetable.
                     </p>
                   </div>
                 </div>
 
                 <div className="col-md-6">
-                  <div className="guideline-item-box">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-danger fs-5">phonelink_erase</span>
-                      <h6 className="fw-bold mb-0 text-dark small">Strict No-Gadgets Policy</h6>
+                  <div className="student-guideline-card" style={{ borderLeft: '4px solid #dc2626' }}>
+                    <div className="guideline-header-row">
+                      <div className="guideline-icon-halo" style={{ background: 'rgba(220, 38, 38, 0.1)', color: '#dc2626' }}>
+                        <span className="material-symbols-outlined fs-5">phonelink_erase</span>
+                      </div>
+                      <span className="guideline-category-tag" style={{ background: '#fee2e2', color: '#b91c1c' }}>DIGITAL DETOX</span>
                     </div>
+                    <h6 className="fw-bold text-dark mb-1">Strict No-Gadgets Policy</h6>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
-                      Mobile phones, smartwatches, digital games, expensive jewelry, and cash exceeding ₹50 are strictly prohibited on school premises.
+                      Mobile phones, smartwatches, digital gaming devices, expensive gold jewelry, and pocket cash exceeding ₹50 are strictly prohibited.
                     </p>
                   </div>
                 </div>
 
                 <div className="col-md-6">
-                  <div className="guideline-item-box">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-warning fs-5">directions_bus</span>
-                      <h6 className="fw-bold mb-0 text-dark small">Transport &amp; Bus Queue Discipline</h6>
+                  <div className="student-guideline-card" style={{ borderLeft: '4px solid #d97706' }}>
+                    <div className="guideline-header-row">
+                      <div className="guideline-icon-halo" style={{ background: 'rgba(217, 119, 6, 0.1)', color: '#d97706' }}>
+                        <span className="material-symbols-outlined fs-5">directions_bus</span>
+                      </div>
+                      <span className="guideline-category-tag">TRANSIT SAFETY</span>
                     </div>
+                    <h6 className="fw-bold text-dark mb-1">Transport &amp; Bus Queue Discipline</h6>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
-                      Students must board and alight calmly under the guidance of the bus attendant. Always remain seated while the vehicle is in motion.
+                      Students must board and alight calmly under the guidance of bus attendants. Always remain seated while the vehicle is in motion.
                     </p>
                   </div>
                 </div>
 
                 <div className="col-md-6">
-                  <div className="guideline-item-box">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-info fs-5">cleaning_services</span>
-                      <h6 className="fw-bold mb-0 text-dark small">Campus Cleanliness &amp; Zero Litter</h6>
+                  <div className="student-guideline-card" style={{ borderLeft: '4px solid #0891b2' }}>
+                    <div className="guideline-header-row">
+                      <div className="guideline-icon-halo" style={{ background: 'rgba(8, 145, 178, 0.1)', color: '#0891b2' }}>
+                        <span className="material-symbols-outlined fs-5">cleaning_services</span>
+                      </div>
+                      <span className="guideline-category-tag">CAMPUS CARE</span>
                     </div>
+                    <h6 className="fw-bold text-dark mb-1">Campus Cleanliness &amp; Zero Litter</h6>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
                       Use segregated dry and wet waste bins. Refrain from scribbling on classroom walls, whiteboards, or desks. Respect institutional property.
                     </p>
@@ -1074,11 +1120,14 @@ export default function StudentCorner() {
                 </div>
 
                 <div className="col-md-6">
-                  <div className="guideline-item-box">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-secondary fs-5">forum</span>
-                      <h6 className="fw-bold mb-0 text-dark small">Polite Language &amp; Respect</h6>
+                  <div className="student-guideline-card" style={{ borderLeft: '4px solid #7c3aed' }}>
+                    <div className="guideline-header-row">
+                      <div className="guideline-icon-halo" style={{ background: 'rgba(124, 58, 237, 0.1)', color: '#7c3aed' }}>
+                        <span className="material-symbols-outlined fs-5">forum</span>
+                      </div>
+                      <span className="guideline-category-tag">COURTESY &amp; VALUES</span>
                     </div>
+                    <h6 className="fw-bold text-dark mb-1">Polite Language &amp; Respect</h6>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
                       Courteous behavior, polite English greetings, and respectful communication with teachers, attendants, and fellow classmates are mandatory.
                     </p>
@@ -1087,13 +1136,47 @@ export default function StudentCorner() {
               </div>
 
               {/* The Swami Shiwanand Student Pledge */}
-              <div className="p-3 px-4 rounded-4 text-white d-flex align-items-center gap-3" style={{ background: 'linear-gradient(135deg, #072a4d 0%, #0c4a7e 100%)' }}>
-                <span className="material-symbols-outlined text-warning" style={{ fontSize: '32px' }}>verified</span>
-                <div>
-                  <h6 className="fw-bold text-white mb-0.5 small">The Swami Shiwanand Student Pledge</h6>
-                  <p className="small text-white-75 mb-0" style={{ fontSize: '0.78rem' }}>
-                    "I pledge to be truthful in word, respectful in deed, diligent in learning, and a loving protector of my school, nature, and country."
+              <div className="student-pledge-royal-card">
+                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                  <div className="d-flex align-items-center gap-3">
+                    <div className="pledge-crest-badge">
+                      <span className="material-symbols-outlined fs-4">verified</span>
+                    </div>
+                    <div>
+                      <h6 className="fw-bold text-white mb-0" style={{ fontSize: '1rem', letterSpacing: '0.2px' }}>
+                        The Swami Shiwanand Student Pledge
+                      </h6>
+                      <span className="text-white-50 small">Recited Daily during Morning Assembly</span>
+                    </div>
+                  </div>
+                  <span className="badge bg-warning text-dark px-3 py-1.5 rounded-pill fw-bold small">
+                    Sacred Oath of Honor
+                  </span>
+                </div>
+
+                <div className="p-3 rounded-3 mb-3" style={{ background: 'rgba(255, 255, 255, 0.08)', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
+                  <p className="pledge-quote-text mb-0">
+                    &ldquo;I pledge to be truthful in word, respectful in deed, diligent in learning, and a loving protector of my school, nature, and country.&rdquo;
                   </p>
+                </div>
+
+                <div className="d-flex align-items-center gap-2 flex-wrap">
+                  <span className="pledge-tag-pill">
+                    <span className="material-symbols-outlined fs-6 text-warning">shield</span>
+                    Truth in Word
+                  </span>
+                  <span className="pledge-tag-pill">
+                    <span className="material-symbols-outlined fs-6 text-warning">handshake</span>
+                    Respect in Deed
+                  </span>
+                  <span className="pledge-tag-pill">
+                    <span className="material-symbols-outlined fs-6 text-warning">school</span>
+                    Diligence in Learning
+                  </span>
+                  <span className="pledge-tag-pill">
+                    <span className="material-symbols-outlined fs-6 text-warning">eco</span>
+                    Protector of Nature &amp; Nation
+                  </span>
                 </div>
               </div>
             </section>
@@ -1117,19 +1200,33 @@ export default function StudentCorner() {
               </div>
 
               {/* 75% Attendance Banner */}
-              <div className="attendance-rule-banner mb-4 shadow-sm">
+              <div className="attendance-rule-banner-v2 mb-4">
                 <div className="d-flex align-items-center gap-3">
-                  <span className="material-symbols-outlined fs-1 text-warning">verified_user</span>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '14px',
+                    background: 'rgba(245, 158, 11, 0.2)',
+                    border: '1px solid rgba(245, 158, 11, 0.45)',
+                    color: '#fbbf24',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <span className="material-symbols-outlined fs-3">verified_user</span>
+                  </div>
                   <div>
                     <h5 className="fw-bold mb-1 text-white">Minimum 75% Attendance Mandatory</h5>
-                    <p className="small text-white-75 mb-0" style={{ maxWidth: '480px' }}>
-                      Regular attendance ensures uninterrupted foundational learning. Students with attendance below 75% will not be permitted to appear in final assessments.
+                    <p className="small text-white-75 mb-0" style={{ maxWidth: '520px', lineHeight: '1.45' }}>
+                      Regular classroom attendance ensures uninterrupted foundational learning. Students with attendance below 75% will not be permitted to appear in final assessments.
                     </p>
                   </div>
                 </div>
-                <div className="text-end">
-                  <span className="badge bg-warning text-dark fw-bold px-3 py-2 rounded-pill fs-6">
-                    CBSE Norm &bull; 75%
+                <div>
+                  <span className="attendance-badge-dial">
+                    <span className="material-symbols-outlined fs-5">fact_check</span>
+                    CBSE NORM &bull; 75%
                   </span>
                 </div>
               </div>
@@ -1137,34 +1234,49 @@ export default function StudentCorner() {
               {/* 4 Attendance Regulations Cards */}
               <div className="row g-3">
                 <div className="col-md-6">
-                  <div className="p-3 bg-white rounded-3 border h-100 shadow-xs">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-primary fs-5">edit_note</span>
-                      <strong className="text-dark small">Leave Application in School Diary</strong>
+                  <div className="attendance-policy-card" style={{ borderLeft: '4px solid #2563eb' }}>
+                    <div className="d-flex align-items-center justify-content-between mb-2">
+                      <div className="d-flex align-items-center gap-2">
+                        <span className="material-symbols-outlined text-primary fs-5">edit_note</span>
+                        <strong className="text-dark small">Leave Application in School Diary</strong>
+                      </div>
+                      <span className="attendance-policy-badge" style={{ background: '#dbeafe', color: '#1d4ed8' }}>
+                        MANDATORY
+                      </span>
                     </div>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.45' }}>
-                      Every leave of absence must be applied for in writing through the "Leave Record" section of the school diary, signed by parents or legal guardians.
+                      Every leave of absence must be applied for in writing through the "Leave Record" section of the school diary, duly signed by parents or legal guardians.
                     </p>
                   </div>
                 </div>
 
                 <div className="col-md-6">
-                  <div className="p-3 bg-white rounded-3 border h-100 shadow-xs">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-danger fs-5">medical_services</span>
-                      <strong className="text-dark small">Medical Leave Certification</strong>
+                  <div className="attendance-policy-card" style={{ borderLeft: '4px solid #e11d48' }}>
+                    <div className="d-flex align-items-center justify-content-between mb-2">
+                      <div className="d-flex align-items-center gap-2">
+                        <span className="material-symbols-outlined text-danger fs-5">medical_services</span>
+                        <strong className="text-dark small">Medical Leave Certification</strong>
+                      </div>
+                      <span className="attendance-policy-badge" style={{ background: '#ffe4e6', color: '#be123c' }}>
+                        2+ DAYS RULE
+                      </span>
                     </div>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.45' }}>
-                      For medical absence exceeding 2 consecutive days, a medical fitness certificate from a registered practitioner must be submitted upon joining.
+                      For medical absence exceeding 2 consecutive days, a medical fitness certificate from a registered practitioner must be submitted upon rejoining school.
                     </p>
                   </div>
                 </div>
 
                 <div className="col-md-6">
-                  <div className="p-3 bg-white rounded-3 border h-100 shadow-xs">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-warning fs-5">report_problem</span>
-                      <strong className="text-dark small">Unexcused Consecutive Absence</strong>
+                  <div className="attendance-policy-card" style={{ borderLeft: '4px solid #d97706' }}>
+                    <div className="d-flex align-items-center justify-content-between mb-2">
+                      <div className="d-flex align-items-center gap-2">
+                        <span className="material-symbols-outlined text-warning fs-5">report_problem</span>
+                        <strong className="text-dark small">Unexcused Consecutive Absence</strong>
+                      </div>
+                      <span className="attendance-policy-badge" style={{ background: '#fef3c7', color: '#b45309' }}>
+                        INQUIRY &bull; 3 DAYS
+                      </span>
                     </div>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.45' }}>
                       Unnotified absence of more than 3 consecutive working days results in a parental inquiry. Continuous absence of 10 days invites striking off the roll.
@@ -1173,10 +1285,15 @@ export default function StudentCorner() {
                 </div>
 
                 <div className="col-md-6">
-                  <div className="p-3 bg-white rounded-3 border h-100 shadow-xs">
-                    <div className="d-flex align-items-center gap-2 mb-2">
-                      <span className="material-symbols-outlined text-success fs-5">sensor_door</span>
-                      <strong className="text-dark small">Early Departure &amp; Gate Pass</strong>
+                  <div className="attendance-policy-card" style={{ borderLeft: '4px solid #059669' }}>
+                    <div className="d-flex align-items-center justify-content-between mb-2">
+                      <div className="d-flex align-items-center gap-2">
+                        <span className="material-symbols-outlined text-success fs-5">sensor_door</span>
+                        <strong className="text-dark small">Early Departure &amp; Gate Pass</strong>
+                      </div>
+                      <span className="attendance-policy-badge" style={{ background: '#d1fae5', color: '#047857' }}>
+                        SECURITY PASS
+                      </span>
                     </div>
                     <p className="text-muted small mb-0" style={{ lineHeight: '1.45' }}>
                       No child will be allowed to leave early unless accompanied by parents bearing an authorized Gate Pass issued by the Principal / Reception.
@@ -1208,150 +1325,210 @@ export default function StudentCorner() {
               <div className="row g-3 mb-4">
                 {/* April & May */}
                 <div className="col-md-6 col-12">
-                  <div className="cca-month-card">
+                  <div className="cca-month-card season-spring">
                     <div className="cca-month-header">
                       <span className="cca-month-name">
                         <span className="material-symbols-outlined text-warning fs-5">wb_sunny</span>
                         April &ndash; May 2026
                       </span>
-                      <span className="badge bg-warning-subtle text-dark small">Term I Kickoff</span>
+                      <span className="badge bg-warning-subtle text-dark border border-warning border-opacity-25 px-2.5 py-1 rounded-pill small fw-bold">
+                        Term I Kickoff
+                      </span>
                     </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Welcome Circle &amp; Rhymes:</strong> Orientation fest for Nursery &amp; Kindergarten toddlers.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Earth Day Poster Making:</strong> Inter-house creative recycled art &amp; green painting contest.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Clay Modeling &amp; Origami:</strong> Fine motor skills workshop before summer break.</span>
+                    <div className="d-flex flex-column gap-2">
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Welcome Circle &amp; Rhymes:</strong> Orientation fest for Nursery &amp; Kindergarten toddlers.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Earth Day Poster Making:</strong> Inter-house creative recycled art &amp; green painting contest.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Clay Modeling &amp; Origami:</strong> Fine motor skills workshop before summer break.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* July & August */}
                 <div className="col-md-6 col-12">
-                  <div className="cca-month-card">
+                  <div className="cca-month-card season-monsoon">
                     <div className="cca-month-header">
                       <span className="cca-month-name">
                         <span className="material-symbols-outlined text-primary fs-5">flag</span>
                         July &ndash; August 2026
                       </span>
-                      <span className="badge bg-primary-subtle text-primary small">National Fests</span>
+                      <span className="badge bg-primary-subtle text-primary border border-primary border-opacity-25 px-2.5 py-1 rounded-pill small fw-bold">
+                        National Fests
+                      </span>
                     </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Independence Day Cultural Fest:</strong> Patriotic song, costume pageant &amp; tricolor march past.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Inter-House Recitation:</strong> English &amp; Hindi elocution and poem recitation competition.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Rakhi &amp; Friendship Craft:</strong> Hand-made eco-friendly thread crafts &amp; card design.</span>
+                    <div className="d-flex flex-column gap-2">
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#dbeafe', color: '#1d4ed8' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Independence Day Cultural Fest:</strong> Patriotic song, costume pageant &amp; tricolor march past.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#dbeafe', color: '#1d4ed8' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Inter-House Recitation:</strong> English &amp; Hindi elocution and poem recitation competition.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#dbeafe', color: '#1d4ed8' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Rakhi &amp; Friendship Craft:</strong> Hand-made eco-friendly thread crafts &amp; card design.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* September & October */}
                 <div className="col-md-6 col-12">
-                  <div className="cca-month-card">
+                  <div className="cca-month-card season-autumn">
                     <div className="cca-month-header">
                       <span className="cca-month-name">
                         <span className="material-symbols-outlined text-success fs-5">celebration</span>
                         September &ndash; October 2026
                       </span>
-                      <span className="badge bg-success-subtle text-success small">Heritage &amp; Arts</span>
+                      <span className="badge bg-success-subtle text-success border border-success border-opacity-25 px-2.5 py-1 rounded-pill small fw-bold">
+                        Heritage &amp; Arts
+                      </span>
                     </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Teachers' Day Homage:</strong> Student-led cultural program honoring educators and mentors.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Hindi Diwas Debate:</strong> Foundational speech, storytelling &amp; shloka recitation.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Dussehra Diya &amp; Rangoli:</strong> Traditional folk colors, festive lamps &amp; cultural stage plays.</span>
+                    <div className="d-flex flex-column gap-2">
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#d1fae5', color: '#047857' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Teachers' Day Homage:</strong> Student-led cultural program honoring educators and mentors.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#d1fae5', color: '#047857' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Hindi Diwas Debate:</strong> Foundational speech, storytelling &amp; shloka recitation.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#d1fae5', color: '#047857' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Dussehra Diya &amp; Rangoli:</strong> Traditional folk colors, festive lamps &amp; cultural stage plays.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* November & December */}
                 <div className="col-md-6 col-12">
-                  <div className="cca-month-card">
+                  <div className="cca-month-card season-winter">
                     <div className="cca-month-header">
                       <span className="cca-month-name">
                         <span className="material-symbols-outlined text-danger fs-5">sports_score</span>
                         November &ndash; December 2026
                       </span>
-                      <span className="badge bg-danger-subtle text-danger small">Sports &amp; Discovery</span>
+                      <span className="badge bg-danger-subtle text-danger border border-danger border-opacity-25 px-2.5 py-1 rounded-pill small fw-bold">
+                        Sports &amp; Discovery
+                      </span>
                     </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Children's Day Sports Carnival:</strong> Track races, sack jumps, relay fun &amp; toddler hurdles.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Science Discovery Corner Expo:</strong> Junior science models, plant germination &amp; sensory puzzles.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Handwriting &amp; Spell-Bee:</strong> Calligraphy mastery and spelling championship for Std I–V.</span>
+                    <div className="d-flex flex-column gap-2">
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#ffe4e6', color: '#be123c' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Children's Day Sports Carnival:</strong> Track races, sack jumps, relay fun &amp; toddler hurdles.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#ffe4e6', color: '#be123c' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Science Discovery Corner Expo:</strong> Junior science models, plant germination &amp; sensory puzzles.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#ffe4e6', color: '#be123c' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Handwriting &amp; Spell-Bee:</strong> Calligraphy mastery and spelling championship for Std I–V.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* January & February */}
                 <div className="col-md-6 col-12">
-                  <div className="cca-month-card">
+                  <div className="cca-month-card season-sanskriti">
                     <div className="cca-month-header">
                       <span className="cca-month-name">
-                        <span className="material-symbols-outlined text-info fs-5">stars</span>
+                        <span className="material-symbols-outlined text-purple fs-5">stars</span>
                         January &ndash; February 2027
                       </span>
-                      <span className="badge bg-info-subtle text-info small">Sanskriti &amp; Math</span>
+                      <span className="badge bg-purple-subtle text-purple border border-purple border-opacity-25 px-2.5 py-1 rounded-pill small fw-bold" style={{ background: '#ede9fe', color: '#6d28d9' }}>
+                        Sanskriti &amp; Math
+                      </span>
                     </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Republic Day Parade:</strong> Grand salute, scout drills, national songs &amp; tableaux.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Saraswati Puja Mahotsav:</strong> Sacred prayer, classical kid dance &amp; educational blessings.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Mental Math Olympiad:</strong> Speedy tables, abacus counting &amp; logical reasoning trophy.</span>
+                    <div className="d-flex flex-column gap-2">
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#ede9fe', color: '#6d28d9' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Republic Day Parade:</strong> Grand salute, scout drills, national songs &amp; tableaux.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#ede9fe', color: '#6d28d9' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Saraswati Puja Mahotsav:</strong> Sacred prayer, classical kid dance &amp; educational blessings.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#ede9fe', color: '#6d28d9' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Mental Math Olympiad:</strong> Speedy tables, abacus counting &amp; logical reasoning trophy.</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
                 {/* March */}
                 <div className="col-md-6 col-12">
-                  <div className="cca-month-card">
+                  <div className="cca-month-card season-finale">
                     <div className="cca-month-header">
                       <span className="cca-month-name">
                         <span className="material-symbols-outlined text-warning fs-5">workspace_premium</span>
                         March 2027
                       </span>
-                      <span className="badge bg-warning-subtle text-dark small">Grand Finale</span>
+                      <span className="badge bg-warning-subtle text-dark border border-warning border-opacity-25 px-2.5 py-1 rounded-pill small fw-bold">
+                        Grand Finale
+                      </span>
                     </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Annual Prize Distribution:</strong> Awarding academic rank holders, best turnout &amp; 100% attendance.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>KG Graduation Ceremony:</strong> UKG toddlers graduating into Class I with ceremonial scrolls.</span>
-                    </div>
-                    <div className="cca-event-item">
-                      <span className="cca-event-bullet"></span>
-                      <span><strong>Inter-House Champion Trophy:</strong> Overall rolling shield awarded to the winning House Guild.</span>
+                    <div className="d-flex flex-column gap-2">
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Annual Prize Distribution:</strong> Awarding academic rank holders, best turnout &amp; 100% attendance.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>KG Graduation Ceremony:</strong> UKG toddlers graduating into Class I with ceremonial scrolls.</span>
+                      </div>
+                      <div className="cca-event-item-v2">
+                        <span className="cca-event-dot-halo" style={{ background: '#fef3c7', color: '#b45309' }}>
+                          <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
+                        </span>
+                        <span><strong>Inter-House Champion Trophy:</strong> Overall rolling shield awarded to the winning House Guild.</span>
+                      </div>
                     </div>
                   </div>
                 </div>

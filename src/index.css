@@ -8301,30 +8301,385 @@ img {
   gap: 6px;
 }
 
-.cca-event-item {
+/* ════════════════════════════════════════════════════════
+   MORAL PILLARS (SANSKAR) ENHANCEMENTS
+   ════════════════════════════════════════════════════════ */
+.moral-pillar-box {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.moral-pillar-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  height: 100%;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 8px;
-  font-size: 0.82rem;
-  color: #475569;
-  line-height: 1.45;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
-.cca-event-item:last-child {
-  margin-bottom: 0;
+.moral-pillar-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
 }
 
-.cca-event-bullet {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #f59e0b;
-  margin-top: 6px;
+.moral-pillar-card.pillar-satya {
+  border-top: 4px solid #e11d48;
+}
+.moral-pillar-card.pillar-satya:hover {
+  border-color: #e11d48;
+}
+
+.moral-pillar-card.pillar-aadar {
+  border-top: 4px solid #059669;
+}
+.moral-pillar-card.pillar-aadar:hover {
+  border-color: #059669;
+}
+
+.moral-pillar-card.pillar-sahyog {
+  border-top: 4px solid #2563eb;
+}
+.moral-pillar-card.pillar-sahyog:hover {
+  border-color: #2563eb;
+}
+
+.moral-pillar-card.pillar-swachhata {
+  border-top: 4px solid #d97706;
+}
+.moral-pillar-card.pillar-swachhata:hover {
+  border-color: #d97706;
+}
+
+.moral-sanskrit-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.moral-pillar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.moral-pillar-halo {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
-/* Guidelines and Attendance Cards */
+.moral-pillar-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+/* ════════════════════════════════════════════════════════
+   STUDENT GUIDELINE CARDS (CODE OF CONDUCT)
+   ════════════════════════════════════════════════════════ */
+.student-guideline-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  height: 100%;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.student-guideline-card:hover {
+  transform: translateY(-2px);
+  border-color: #0b57d0;
+  box-shadow: 0 8px 22px rgba(11, 87, 208, 0.08);
+}
+
+.guideline-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.guideline-icon-halo {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.guideline-category-tag {
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+/* ════════════════════════════════════════════════════════
+   ROYAL STUDENT PLEDGE CARD
+   ════════════════════════════════════════════════════════ */
+.student-pledge-royal-card {
+  background: linear-gradient(135deg, #072a4d 0%, #0c4a7e 60%, #072a4d 100%);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  border-radius: 18px;
+  padding: 24px 28px;
+  color: #ffffff;
+  box-shadow: 0 8px 28px rgba(7, 42, 77, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.student-pledge-royal-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+}
+
+.pledge-crest-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pledge-quote-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.6;
+  font-style: italic;
+  letter-spacing: 0.1px;
+}
+
+.pledge-tag-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e2e8f0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ════════════════════════════════════════════════════════
+   ATTENDANCE & LEAVE POLICY CARDS
+   ════════════════════════════════════════════════════════ */
+.attendance-rule-banner-v2 {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #065f46 100%);
+  color: #ffffff;
+  border-radius: 18px;
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  box-shadow: 0 8px 24px rgba(6, 78, 59, 0.25);
+  flex-wrap: wrap;
+}
+
+.attendance-badge-dial {
+  background: rgba(245, 158, 11, 0.22);
+  border: 2px solid #f59e0b;
+  color: #fbbf24;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+}
+
+.attendance-policy-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px 20px;
+  height: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.attendance-policy-card:hover {
+  transform: translateY(-2px);
+  border-color: #059669;
+  box-shadow: 0 8px 22px rgba(5, 150, 105, 0.08);
+}
+
+.attendance-policy-badge {
+  font-size: 0.66rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ════════════════════════════════════════════════════════
+   CCA CALENDAR 2026-27 CARDS
+   ════════════════════════════════════════════════════════ */
+.cca-month-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.22s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.cca-month-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+}
+
+.cca-month-card.season-spring {
+  border-top: 4px solid #f59e0b;
+}
+.cca-month-card.season-spring:hover {
+  border-color: #f59e0b;
+}
+
+.cca-month-card.season-monsoon {
+  border-top: 4px solid #2563eb;
+}
+.cca-month-card.season-monsoon:hover {
+  border-color: #2563eb;
+}
+
+.cca-month-card.season-autumn {
+  border-top: 4px solid #059669;
+}
+.cca-month-card.season-autumn:hover {
+  border-color: #059669;
+}
+
+.cca-month-card.season-winter {
+  border-top: 4px solid #e11d48;
+}
+.cca-month-card.season-winter:hover {
+  border-color: #e11d48;
+}
+
+.cca-month-card.season-sanskriti {
+  border-top: 4px solid #7c3aed;
+}
+.cca-month-card.season-sanskriti:hover {
+  border-color: #7c3aed;
+}
+
+.cca-month-card.season-finale {
+  border-top: 4px solid #d97706;
+}
+.cca-month-card.season-finale:hover {
+  border-color: #d97706;
+}
+
+.cca-month-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cca-month-name {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cca-event-item-v2 {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  background: #f8fafc;
+  font-size: 0.81rem;
+  color: #334155;
+  line-height: 1.45;
+  transition: background 0.15s ease;
+}
+
+.cca-event-item-v2:last-child {
+  margin-bottom: 0;
+}
+
+.cca-event-item-v2:hover {
+  background: #f1f5f9;
+}
+
+.cca-event-dot-halo {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+/* Backward compatibility */
 .guideline-item-box {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -8332,12 +8687,6 @@ img {
   padding: 16px;
   transition: all 0.2s ease;
   height: 100%;
-}
-
-.guideline-item-box:hover {
-  transform: translateY(-2px);
-  border-color: #3b82f6;
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.08);
 }
 
 .attendance-rule-banner {
