@@ -49,13 +49,8 @@ export default function TopBar() {
           </div>
         </div>
 
-        {/* Center: Campus Location & Hours (Eliminates empty middle void) */}
+        {/* Center: School Office Hours */}
         <div className="topbar-center-meta d-none d-xl-flex">
-          <span className="topbar-info-chip" title="Main Campus Location: Sasaram, Rohtas">
-            <span className="material-symbols-outlined text-info" style={{ fontSize: '14px' }}>location_on</span>
-            <span>Sasaram, Bihar</span>
-          </span>
-          <span className="topbar-dot-sep" aria-hidden="true">&bull;</span>
           <span className="topbar-info-chip" title="School Office Hours">
             <span className="material-symbols-outlined text-warning" style={{ fontSize: '14px' }}>schedule</span>
             <span>8:00 AM – 2:00 PM</span>
