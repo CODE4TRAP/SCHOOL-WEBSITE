@@ -45,7 +45,7 @@ export default function TopBar() {
             title="Recognized Institution Founded in 2009"
           >
             <span className="material-symbols-outlined text-warning" style={{ fontSize: '15px' }}>verified</span>
-            <span>Estd. <strong className="text-warning">{schoolInfo.estd}</strong> &bull; Playgroup to Std V</span>
+            <span>Estd. <strong className="text-warning">{schoolInfo.estd}</strong> &bull; Playgroup to Std VI</span>
           </div>
         </div>
 

@@ -1,11 +1,11 @@
 export const noticesData = [
   {
     id: 1,
-    title: 'Admission Notice for Session 2026–27: Playgroup, Nursery, LKG, UKG & Std I–V',
+    title: 'Admission Notice for Session 2026–27: Playgroup, Nursery, LKG, UKG & Std I–VI',
     date: '05-10-2026',
     isNew: true,
     category: 'Admission',
-    desc: 'Admission registration for Academic Session 2026-27 is now officially open for Playgroup, Nursery, LKG, UKG, and Classes I to V. Collect the prospectus along with registration form from the school counter during working hours (8:00 AM – 2:00 PM) or complete your online registration through our official website portal. Limited seats available in pre-primary sections.'
+    desc: 'Admission registration for Academic Session 2026-27 is now officially open for Playgroup, Nursery, LKG, UKG, and Classes I to VI. Collect the prospectus along with registration form from the school counter during working hours (8:00 AM – 2:00 PM) or complete your online registration through our official website portal. Limited seats available in pre-primary sections.'
   },
   {
     id: 2,

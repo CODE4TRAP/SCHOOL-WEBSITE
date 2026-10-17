@@ -447,7 +447,7 @@ export default function About() {
                               <td className="py-2 pe-3">08:30 AM – 01:00 PM</td>
                             </tr>
                             <tr>
-                              <td className="ps-3 py-2 fw-semibold">Primary (Std I to V)</td>
+                              <td className="ps-3 py-2 fw-semibold">Primary &amp; Middle (Std I to VI)</td>
                               <td className="py-2">07:45 AM – 01:30 PM</td>
                               <td className="py-2 pe-3">08:15 AM – 02:00 PM</td>
                             </tr>

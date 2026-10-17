@@ -5,7 +5,7 @@ const tickerItems = [
   {
     tag: 'ADMISSIONS 2026–27',
     tagColor: '#38bdf8',
-    text: 'Admissions Open for Playgroup, Nursery, LKG, UKG, and Std I to V. Limited seats per batch.',
+    text: 'Admissions Open for Playgroup, Nursery, LKG, UKG, and Std I to VI. Limited seats per batch.',
     link: '/admission'
   },
   {

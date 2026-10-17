@@ -40,7 +40,7 @@ export default function Admission() {
     else if (years >= 3 && years < 4) recommendation = 'Nursery';
     else if (years >= 4 && years < 5) recommendation = 'LKG';
     else if (years >= 5 && years < 6) recommendation = 'UKG';
-    else if (years >= 6) recommendation = 'Std I to V';
+    else if (years >= 6) recommendation = 'Std I to VI';
     else recommendation = 'Under 2 years (Parent Infant Club)';
 
     return { years, months, recommendation };
@@ -179,7 +179,7 @@ export default function Admission() {
                     <div>
                       <h3 className="portal-header-title">Online Student Registration Portal</h3>
                       <p className="portal-header-subtitle">
-                        Official admission enrollment application for Playgroup to Class V &bull; Session 2026–27
+                        Official admission enrollment application for Playgroup to Class VI &bull; Session 2026–27
                       </p>
                     </div>
                   </div>
@@ -451,6 +451,7 @@ export default function Admission() {
                               <option value="Std III">Std III (Grade 3)</option>
                               <option value="Std IV">Std IV (Grade 4)</option>
                               <option value="Std V">Std V (Grade 5)</option>
+                              <option value="Std VI">Std VI (Grade 6)</option>
                             </select>
                           </div>
                         </div>
@@ -689,11 +690,11 @@ export default function Admission() {
                         <option value="LKG">LKG (Lower Kindergarten) • Age 4 to 5 Yrs</option>
                         <option value="UKG">UKG (Upper Kindergarten) • Age 5 to 6 Yrs</option>
                         <option value="Std I">Std I (Grade 1) • Age 6+ Yrs</option>
-                        <option value="Std II">Std II to Std V (Primary Wing)</option>
+                        <option value="Std II">Std II to Std VI (Primary &amp; Middle Wing)</option>
                       </select>
                       <div className="estimator-class-tag">
                         <span className="material-symbols-outlined fs-6 text-success">check_circle</span>
-                        <span>Selected Wing: {estimatorClass === 'Std II' ? 'Primary Wing (Classes 2 to 5)' : estimatorClass === 'Std I' ? 'Primary Grade 1' : 'Pre-Primary Early Foundation'}</span>
+                        <span>Selected Wing: {estimatorClass === 'Std II' ? 'Primary & Middle Wing (Classes 2 to 6)' : estimatorClass === 'Std I' ? 'Primary Grade 1' : 'Pre-Primary Early Foundation'}</span>
                       </div>
                     </div>
 
@@ -887,6 +888,11 @@ export default function Admission() {
                       <td className="fw-semibold">Std I (Grade 1)</td>
                       <td>6 Years Completed</td>
                       <td>6 to 7 Years</td>
+                    </tr>
+                    <tr>
+                      <td className="fw-semibold">Std II to Std VI (Primary &amp; Middle)</td>
+                      <td>7+ Years Completed</td>
+                      <td>7 to 11+ Years</td>
                     </tr>
                   </tbody>
                 </table>

@@ -3,7 +3,7 @@ export const schoolInfo = {
   tagline: "Nurturing Little Minds With Values, Wisdom & Playful Discovery",
   estd: "2009",
   founder: "Deepak Kumar",
-  classes: "Playgroup, Nursery, LKG, UKG to Primary (Std I - V)",
+  classes: "Playgroup, Nursery, LKG, UKG to Std VI",
   phones: ["+91 94310 68033", "+91 88092 26820"],
   email: "info@swamishivanandschool.com",
   admissionEmail: "admission@swamishivanandschool.com",
@@ -274,5 +274,5 @@ export const feeStructure = [
   { class: "LKG (Lower Kindergarten)", admissionFee: "₹ 3,000", tuitionMonthly: "₹ 1,000", examAnnual: "₹ 700", activityAnnual: "₹ 800" },
   { class: "UKG (Upper Kindergarten)", admissionFee: "₹ 3,200", tuitionMonthly: "₹ 1,100", examAnnual: "₹ 700", activityAnnual: "₹ 800" },
   { class: "Std I (Grade 1)", admissionFee: "₹ 3,500", tuitionMonthly: "₹ 1,250", examAnnual: "₹ 800", activityAnnual: "₹ 900" },
-  { class: "Std II to Std V", admissionFee: "₹ 3,800", tuitionMonthly: "₹ 1,400", examAnnual: "₹ 900", activityAnnual: "₹ 1,000" }
+  { class: "Std II to Std VI", admissionFee: "₹ 3,800", tuitionMonthly: "₹ 1,400", examAnnual: "₹ 900", activityAnnual: "₹ 1,000" }
 ];

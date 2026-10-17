@@ -51,7 +51,7 @@ export default function Home() {
                   </span>
                   <span className="m3-badge m3-badge-amber">
                     <span className="material-symbols-outlined fs-6">verified</span>
-                    Playgroup to Class V
+                    Playgroup to Class VI
                   </span>
                 </div>
                 <h1 className="m3-hero-heading mb-3">
@@ -106,7 +106,7 @@ export default function Home() {
                     <span className="home-quick-badge">ADMISSION 2026–27</span>
                     <h5 className="home-quick-title">Apply Online</h5>
                     <p className="home-quick-desc">
-                      Admissions open for Playgroup to Class V. Instant online registration.
+                      Admissions open for Playgroup to Class VI. Instant online registration.
                     </p>
                   </div>
                 </div>
@@ -267,9 +267,9 @@ export default function Home() {
                         <div className="admission-tier-header">
                           <span className="admission-tier-title">
                             <span className="material-symbols-outlined" style={{ fontSize: '16px', color: '#16a34a' }}>menu_book</span>
-                            Primary Std I to V
+                            Primary &amp; Middle (Std I to VI)
                           </span>
-                          <span className="admission-tier-age">6+ to 10+ yrs</span>
+                          <span className="admission-tier-age">6+ to 11+ yrs</span>
                         </div>
                         <p className="admission-tier-sub">CBSE Pattern Curriculum &amp; Computer Lab</p>
                       </div>
@@ -527,7 +527,7 @@ export default function Home() {
                           </span>
                         </div>
                         <p className="bulletin-item-desc">
-                          Playgroup to Std V registration counseling active at administrative desk.
+                          Playgroup to Std VI registration counseling active at administrative desk.
                         </p>
                       </div>
                     </div>

@@ -303,8 +303,8 @@ export default function StudentCorner() {
                               <span className="material-symbols-outlined">school</span>
                             </div>
                             <div>
-                              <strong className="d-block text-dark">Primary (Std I to V)</strong>
-                              <span className="text-muted small" style={{ fontSize: '0.75rem' }}>CBSE Pattern Primary Wing</span>
+                              <strong className="d-block text-dark">Primary &amp; Middle (Std I to VI)</strong>
+                              <span className="text-muted small" style={{ fontSize: '0.75rem' }}>CBSE Pattern Curriculum Wing</span>
                             </div>
                           </div>
                         </td>
@@ -477,7 +477,7 @@ export default function StudentCorner() {
                             </div>
                             <div>
                               <h6 className="mb-0 fw-bold text-dark">Boys Turnout</h6>
-                              <span className="text-muted small">Playgroup to Std V</span>
+                              <span className="text-muted small">Playgroup to Std VI</span>
                             </div>
                           </div>
 
@@ -491,7 +491,7 @@ export default function StudentCorner() {
                             <div className="uniform-item-tile">
                               <span className="uniform-tag-pill tag-bottom">BOTTOMS</span>
                               <div className="small text-dark">
-                                <strong>Royal Blue Shorts / Trousers:</strong> Customized shorts for PG to Std II; tailored formal trousers for Std III to V.
+                                <strong>Royal Blue Shorts / Trousers:</strong> Customized shorts for PG to Std II; tailored formal trousers for Std III to VI.
                               </div>
                             </div>
                             <div className="uniform-item-tile">
@@ -519,7 +519,7 @@ export default function StudentCorner() {
                             </div>
                             <div>
                               <h6 className="mb-0 fw-bold text-dark">Girls Turnout</h6>
-                              <span className="text-muted small">Playgroup to Std V</span>
+                              <span className="text-muted small">Playgroup to Std VI</span>
                             </div>
                           </div>
 
@@ -1463,7 +1463,7 @@ export default function StudentCorner() {
                         <span className="cca-event-dot-halo" style={{ background: '#ffe4e6', color: '#be123c' }}>
                           <span className="material-symbols-outlined" style={{ fontSize: '11px' }}>play_arrow</span>
                         </span>
-                        <span><strong>Handwriting &amp; Spell-Bee:</strong> Calligraphy mastery and spelling championship for Std I–V.</span>
+                        <span><strong>Handwriting &amp; Spell-Bee:</strong> Calligraphy mastery and spelling championship for Std I–VI.</span>
                       </div>
                     </div>
                   </div>
@@ -2033,7 +2033,7 @@ export default function StudentCorner() {
                 <i className="fas fa-user-graduate fa-3x text-primary mb-3"></i>
                 <h5 className="fw-bold text-dark">Admissions Open 2026-27</h5>
                 <p className="small text-muted mb-4">
-                  Enroll your child in Playgroup, Nursery, LKG, UKG or Classes I to V.
+                  Enroll your child in Playgroup, Nursery, LKG, UKG or Classes I to VI.
                 </p>
                 <Link to="/admission" className="btn btn-warning w-100 fw-bold py-2 mb-2">
                   <i className="fas fa-edit me-1"></i> Apply Online Now
