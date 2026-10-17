@@ -470,40 +470,78 @@ export default function StudentCorner() {
                     <div className="row g-4">
                       {/* Boys Turnout */}
                       <div className="col-lg-6 col-12">
-                        <div className="uniform-gender-card">
+                        <div className="uniform-gender-card turnout-boys">
                           <div className="uniform-gender-header">
                             <div className="gender-avatar-halo boy">
                               <span className="material-symbols-outlined fs-4">boy</span>
                             </div>
                             <div>
-                              <h6 className="mb-0 fw-bold text-dark">Boys Turnout</h6>
-                              <span className="text-muted small">Playgroup to Std VI</span>
+                              <div className="d-flex align-items-center gap-2">
+                                <h6 className="mb-0 fw-bold text-dark">Boys Turnout</h6>
+                                <span className="turnout-chip chip-boys">Official Standard</span>
+                              </div>
+                              <span className="text-muted small">Playgroup to Std VI &bull; Formal Turnout</span>
                             </div>
                           </div>
 
                           <div className="uniform-item-list">
-                            <div className="uniform-item-tile">
-                              <span className="uniform-tag-pill tag-shirt">SHIRT</span>
-                              <div className="small text-dark">
-                                <strong>Sky Blue Half-Sleeve:</strong> Tailored cotton shirt with fine embroidery of official school crest on left breast pocket.
+                            <div className="uniform-item-tile tile-shirt">
+                              <div className="tile-icon-box box-shirt">
+                                <span className="material-symbols-outlined">checkroom</span>
+                              </div>
+                              <div className="flex-grow-1">
+                                <div className="d-flex align-items-center justify-content-between gap-2 mb-0.5">
+                                  <strong className="text-dark tile-title">Sky Blue Half-Sleeve</strong>
+                                  <span className="uniform-tag-pill tag-shirt">Shirt</span>
+                                </div>
+                                <p className="tile-desc mb-0">
+                                  Tailored cotton shirt with fine embroidery of official school crest on left breast pocket.
+                                </p>
                               </div>
                             </div>
-                            <div className="uniform-item-tile">
-                              <span className="uniform-tag-pill tag-bottom">BOTTOMS</span>
-                              <div className="small text-dark">
-                                <strong>Royal Blue Shorts / Trousers:</strong> Customized shorts for PG to Std II; tailored formal trousers for Std III to VI.
+
+                            <div className="uniform-item-tile tile-bottom">
+                              <div className="tile-icon-box box-bottom">
+                                <span className="material-symbols-outlined">styler</span>
+                              </div>
+                              <div className="flex-grow-1">
+                                <div className="d-flex align-items-center justify-content-between gap-2 mb-0.5">
+                                  <strong className="text-dark tile-title">Royal Blue Shorts / Trousers</strong>
+                                  <span className="uniform-tag-pill tag-bottom">Bottoms</span>
+                                </div>
+                                <p className="tile-desc mb-0">
+                                  Customized shorts for PG to Std II; tailored formal trousers for Std III to VI.
+                                </p>
                               </div>
                             </div>
-                            <div className="uniform-item-tile">
-                              <span className="uniform-tag-pill tag-tie">ACCESSORIES</span>
-                              <div className="small text-dark">
-                                <strong>Belt &amp; Necktie:</strong> Navy woven belt with embossed school brass buckle &amp; official striped patterned necktie.
+
+                            <div className="uniform-item-tile tile-tie">
+                              <div className="tile-icon-box box-tie">
+                                <span className="material-symbols-outlined">workspace_premium</span>
+                              </div>
+                              <div className="flex-grow-1">
+                                <div className="d-flex align-items-center justify-content-between gap-2 mb-0.5">
+                                  <strong className="text-dark tile-title">Belt &amp; Necktie</strong>
+                                  <span className="uniform-tag-pill tag-tie">Accessories</span>
+                                </div>
+                                <p className="tile-desc mb-0">
+                                  Navy woven belt with embossed school brass buckle &amp; official striped patterned necktie.
+                                </p>
                               </div>
                             </div>
-                            <div className="uniform-item-tile">
-                              <span className="uniform-tag-pill tag-shoes">FOOTWEAR</span>
-                              <div className="small text-dark">
-                                <strong>Oxford Shoes &amp; Socks:</strong> Mirror-polished black leather oxford shoes with royal blue socks and double white bands.
+
+                            <div className="uniform-item-tile tile-shoes">
+                              <div className="tile-icon-box box-shoes">
+                                <span className="material-symbols-outlined">hiking</span>
+                              </div>
+                              <div className="flex-grow-1">
+                                <div className="d-flex align-items-center justify-content-between gap-2 mb-0.5">
+                                  <strong className="text-dark tile-title">Oxford Shoes &amp; Socks</strong>
+                                  <span className="uniform-tag-pill tag-shoes">Footwear</span>
+                                </div>
+                                <p className="tile-desc mb-0">
+                                  Mirror-polished black leather oxford shoes with royal blue socks and double white bands.
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -512,40 +550,78 @@ export default function StudentCorner() {
 
                       {/* Girls Turnout */}
                       <div className="col-lg-6 col-12">
-                        <div className="uniform-gender-card">
+                        <div className="uniform-gender-card turnout-girls">
                           <div className="uniform-gender-header">
                             <div className="gender-avatar-halo girl">
                               <span className="material-symbols-outlined fs-4">girl</span>
                             </div>
                             <div>
-                              <h6 className="mb-0 fw-bold text-dark">Girls Turnout</h6>
-                              <span className="text-muted small">Playgroup to Std VI</span>
+                              <div className="d-flex align-items-center gap-2">
+                                <h6 className="mb-0 fw-bold text-dark">Girls Turnout</h6>
+                                <span className="turnout-chip chip-girls">Official Standard</span>
+                              </div>
+                              <span className="text-muted small">Playgroup to Std VI &bull; Formal Turnout</span>
                             </div>
                           </div>
 
                           <div className="uniform-item-list">
-                            <div className="uniform-item-tile">
-                              <span className="uniform-tag-pill tag-shirt">SHIRT</span>
-                              <div className="small text-dark">
-                                <strong>Sky Blue Peter-Pan Blouse:</strong> Crisp collared shirt with embroidered school monogram and neat button placket.
+                            <div className="uniform-item-tile tile-shirt">
+                              <div className="tile-icon-box box-shirt-girl">
+                                <span className="material-symbols-outlined">checkroom</span>
+                              </div>
+                              <div className="flex-grow-1">
+                                <div className="d-flex align-items-center justify-content-between gap-2 mb-0.5">
+                                  <strong className="text-dark tile-title">Sky Blue Peter-Pan Blouse</strong>
+                                  <span className="uniform-tag-pill tag-shirt">Shirt</span>
+                                </div>
+                                <p className="tile-desc mb-0">
+                                  Crisp collared shirt with embroidered school monogram and neat button placket.
+                                </p>
                               </div>
                             </div>
-                            <div className="uniform-item-tile">
-                              <span className="uniform-tag-pill tag-bottom">SKIRT/TUNIC</span>
-                              <div className="small text-dark">
-                                <strong>Knife-Pleated Pinafore:</strong> Royal blue knife-pleated skirt/pinafore falling neatly at knee length with modesty lining.
+
+                            <div className="uniform-item-tile tile-bottom">
+                              <div className="tile-icon-box box-bottom-girl">
+                                <span className="material-symbols-outlined">styler</span>
+                              </div>
+                              <div className="flex-grow-1">
+                                <div className="d-flex align-items-center justify-content-between gap-2 mb-0.5">
+                                  <strong className="text-dark tile-title">Knife-Pleated Pinafore</strong>
+                                  <span className="uniform-tag-pill tag-bottom">Skirt/Tunic</span>
+                                </div>
+                                <p className="tile-desc mb-0">
+                                  Royal blue knife-pleated skirt/pinafore falling neatly at knee length with modesty lining.
+                                </p>
                               </div>
                             </div>
-                            <div className="uniform-item-tile">
-                              <span className="uniform-tag-pill tag-hair">HAIR</span>
-                              <div className="small text-dark">
-                                <strong>Ribbons &amp; Headband:</strong> Hair neatly braided into two plaits with official royal blue satin ribbons or simple blue band.
+
+                            <div className="uniform-item-tile tile-hair">
+                              <div className="tile-icon-box box-hair">
+                                <span className="material-symbols-outlined">face_3</span>
+                              </div>
+                              <div className="flex-grow-1">
+                                <div className="d-flex align-items-center justify-content-between gap-2 mb-0.5">
+                                  <strong className="text-dark tile-title">Ribbons &amp; Headband</strong>
+                                  <span className="uniform-tag-pill tag-hair">Hair</span>
+                                </div>
+                                <p className="tile-desc mb-0">
+                                  Hair neatly braided into two plaits with official royal blue satin ribbons or simple blue band.
+                                </p>
                               </div>
                             </div>
-                            <div className="uniform-item-tile">
-                              <span className="uniform-tag-pill tag-shoes">FOOTWEAR</span>
-                              <div className="small text-dark">
-                                <strong>Buckle Shoes &amp; Socks:</strong> Classic black leather single-buckle school shoes with royal blue knee socks. No heels.
+
+                            <div className="uniform-item-tile tile-shoes">
+                              <div className="tile-icon-box box-shoes-girl">
+                                <span className="material-symbols-outlined">hiking</span>
+                              </div>
+                              <div className="flex-grow-1">
+                                <div className="d-flex align-items-center justify-content-between gap-2 mb-0.5">
+                                  <strong className="text-dark tile-title">Buckle Shoes &amp; Socks</strong>
+                                  <span className="uniform-tag-pill tag-shoes">Footwear</span>
+                                </div>
+                                <p className="tile-desc mb-0">
+                                  Classic black leather single-buckle school shoes with royal blue knee socks. No heels.
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -766,52 +842,155 @@ export default function StudentCorner() {
                 </div>
 
                 <div className="row g-3">
+                  {/* Hair & Headgear */}
                   <div className="col-sm-6 col-12">
                     <div className="grooming-item-card">
-                      <div className="grooming-icon-halo" style={{ background: 'rgba(11, 87, 208, 0.1)', color: '#0b57d0' }}>
-                        <span className="material-symbols-outlined fs-5">face_6</span>
+                      <div className="d-flex align-items-center justify-content-between mb-2">
+                        <div className="d-flex align-items-center gap-2">
+                          <div className="grooming-icon-halo" style={{ background: 'rgba(11, 87, 208, 0.1)', color: '#0b57d0' }}>
+                            <span className="material-symbols-outlined fs-5">face_6</span>
+                          </div>
+                          <div>
+                            <span className="d-block text-muted text-uppercase" style={{ fontSize: '0.66rem', fontWeight: 750, letterSpacing: '0.5px' }}>Turnout Code</span>
+                            <h6 className="fw-bold text-dark mb-0">Hair &amp; Headgear</h6>
+                          </div>
+                        </div>
+                        <span className="badge bg-primary-subtle text-primary border border-primary border-opacity-25 px-2 py-0.5 rounded-pill small fw-bold">
+                          Daily Norm
+                        </span>
                       </div>
-                      <h6 className="fw-bold text-dark mb-1">Hair &amp; Headgear</h6>
-                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
-                        <strong>Boys:</strong> Neat, disciplined short trim. No spikes, funky dyes or gel.<br />
-                        <strong>Girls:</strong> Hair tied neatly with royal blue ribbons or simple hairband.
+                      <p className="small text-muted mb-2.5" style={{ lineHeight: '1.5' }}>
+                        Disciplined hair styling reflects personal pride and school decorum. Clean natural haircut for all students.
                       </p>
+                      <div className="d-flex flex-wrap gap-1.5 mb-2.5">
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-male text-primary me-1"></i>Boys: Short Crew Trim
+                        </span>
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-female text-danger me-1"></i>Girls: Royal Blue Ribbons
+                        </span>
+                        <span className="badge bg-light text-secondary border px-2 py-1 small">
+                          <i className="fas fa-ban text-danger me-1"></i>No Gels / Spikes / Hair Colors
+                        </span>
+                      </div>
+                      <div className="pt-2 border-top d-flex align-items-center gap-1.5 text-muted small" style={{ fontSize: '0.72rem' }}>
+                        <span className="material-symbols-outlined text-success" style={{ fontSize: '14px' }}>verified</span>
+                        <span>Monitored daily during class attendance</span>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Nails & Hand Hygiene */}
                   <div className="col-sm-6 col-12">
                     <div className="grooming-item-card">
-                      <div className="grooming-icon-halo" style={{ background: 'rgba(5, 150, 105, 0.1)', color: '#059669' }}>
-                        <span className="material-symbols-outlined fs-5">clean_hands</span>
+                      <div className="d-flex align-items-center justify-content-between mb-2">
+                        <div className="d-flex align-items-center gap-2">
+                          <div className="grooming-icon-halo" style={{ background: 'rgba(5, 150, 105, 0.1)', color: '#059669' }}>
+                            <span className="material-symbols-outlined fs-5">clean_hands</span>
+                          </div>
+                          <div>
+                            <span className="d-block text-muted text-uppercase" style={{ fontSize: '0.66rem', fontWeight: 750, letterSpacing: '0.5px' }}>Health Protocol</span>
+                            <h6 className="fw-bold text-dark mb-0">Nails &amp; Hand Hygiene</h6>
+                          </div>
+                        </div>
+                        <span className="badge bg-success-subtle text-success border border-success border-opacity-25 px-2 py-0.5 rounded-pill small fw-bold">
+                          Hygiene
+                        </span>
                       </div>
-                      <h6 className="fw-bold text-dark mb-1">Nails &amp; Hand Hygiene</h6>
-                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
-                        Fingernails clipped short and clean. Strictly no nail paint or mehendi during school days. Inspected weekly during Monday assembly.
+                      <p className="small text-muted mb-2.5" style={{ lineHeight: '1.5' }}>
+                        Fingernails must be clipped short and cleaned. Strict prevention of infectious contact and food contamination.
                       </p>
+                      <div className="d-flex flex-wrap gap-1.5 mb-2.5">
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-cut text-success me-1"></i>Clipped Short &amp; Rounded
+                        </span>
+                        <span className="badge bg-light text-secondary border px-2 py-1 small">
+                          <i className="fas fa-times-circle text-danger me-1"></i>No Nail Enamel / Mehendi
+                        </span>
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-soap text-primary me-1"></i>Pre-Tiffin Handwash
+                        </span>
+                      </div>
+                      <div className="pt-2 border-top d-flex align-items-center gap-1.5 text-muted small" style={{ fontSize: '0.72rem' }}>
+                        <span className="material-symbols-outlined text-success" style={{ fontSize: '14px' }}>verified</span>
+                        <span>Inspected during Monday morning assembly</span>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Footwear & Turnout */}
                   <div className="col-sm-6 col-12">
                     <div className="grooming-item-card">
-                      <div className="grooming-icon-halo" style={{ background: 'rgba(217, 119, 6, 0.1)', color: '#d97706' }}>
-                        <span className="material-symbols-outlined fs-5">directions_walk</span>
+                      <div className="d-flex align-items-center justify-content-between mb-2">
+                        <div className="d-flex align-items-center gap-2">
+                          <div className="grooming-icon-halo" style={{ background: 'rgba(217, 119, 6, 0.1)', color: '#d97706' }}>
+                            <span className="material-symbols-outlined fs-5">directions_walk</span>
+                          </div>
+                          <div>
+                            <span className="d-block text-muted text-uppercase" style={{ fontSize: '0.66rem', fontWeight: 750, letterSpacing: '0.5px' }}>Uniform Spec</span>
+                            <h6 className="fw-bold text-dark mb-0">Footwear &amp; Turnout</h6>
+                          </div>
+                        </div>
+                        <span className="badge bg-warning-subtle text-dark border border-warning border-opacity-25 px-2 py-0.5 rounded-pill small fw-bold">
+                          Daily Turnout
+                        </span>
                       </div>
-                      <h6 className="fw-bold text-dark mb-1">Footwear &amp; Turnout</h6>
-                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
-                        Mirror-polished black leather shoes on regular days. Pristine white canvas shoes on sports days. Navy/white socks always pulled up.
+                      <p className="small text-muted mb-2.5" style={{ lineHeight: '1.5' }}>
+                        Clean, well-maintained shoes with matching uniform socks pulled to regulation height at all times.
                       </p>
+                      <div className="d-flex flex-wrap gap-1.5 mb-2.5">
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-shoe-prints text-dark me-1"></i>Polished Black Leather (Mon–Fri)
+                        </span>
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-running text-success me-1"></i>White Canvas Shoes (PT/Sat)
+                        </span>
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-socks text-indigo me-1"></i>Navy Blue Uniform Socks
+                        </span>
+                      </div>
+                      <div className="pt-2 border-top d-flex align-items-center gap-1.5 text-muted small" style={{ fontSize: '0.72rem' }}>
+                        <span className="material-symbols-outlined text-success" style={{ fontSize: '14px' }}>verified</span>
+                        <span>Daily turnout inspection at main campus gate</span>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Identity & Monogram */}
                   <div className="col-sm-6 col-12">
                     <div className="grooming-item-card">
-                      <div className="grooming-icon-halo" style={{ background: 'rgba(225, 29, 72, 0.1)', color: '#e11d48' }}>
-                        <span className="material-symbols-outlined fs-5">badge</span>
+                      <div className="d-flex align-items-center justify-content-between mb-2">
+                        <div className="d-flex align-items-center gap-2">
+                          <div className="grooming-icon-halo" style={{ background: 'rgba(225, 29, 72, 0.1)', color: '#e11d48' }}>
+                            <span className="material-symbols-outlined fs-5">badge</span>
+                          </div>
+                          <div>
+                            <span className="d-block text-muted text-uppercase" style={{ fontSize: '0.66rem', fontWeight: 750, letterSpacing: '0.5px' }}>Safety &amp; ID</span>
+                            <h6 className="fw-bold text-dark mb-0">Identity &amp; Monogram</h6>
+                          </div>
+                        </div>
+                        <span className="badge bg-danger-subtle text-danger border border-danger border-opacity-25 px-2 py-0.5 rounded-pill small fw-bold">
+                          Security
+                        </span>
                       </div>
-                      <h6 className="fw-bold text-dark mb-1">Identity &amp; Monogram</h6>
-                      <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
-                        Official RFID Student ID card with royal blue lanyard must be worn around neck every day. School crest cleanly stitched on left chest pocket.
+                      <p className="small text-muted mb-2.5" style={{ lineHeight: '1.5' }}>
+                        Institutional identification ensures safe campus entry, bus boarding, and emergency contact verification.
                       </p>
+                      <div className="d-flex flex-wrap gap-1.5 mb-2.5">
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-id-card text-danger me-1"></i>RFID Smart ID with Photo
+                        </span>
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-ribbon text-primary me-1"></i>Royal Blue School Lanyard
+                        </span>
+                        <span className="badge bg-light text-dark border px-2 py-1 small">
+                          <i className="fas fa-shield-alt text-amber me-1"></i>Stitched Left Pocket Crest
+                        </span>
+                      </div>
+                      <div className="pt-2 border-top d-flex align-items-center gap-1.5 text-muted small" style={{ fontSize: '0.72rem' }}>
+                        <span className="material-symbols-outlined text-success" style={{ fontSize: '14px' }}>verified</span>
+                        <span>Mandatory for gate entry, library &amp; school transit</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -837,98 +1016,162 @@ export default function StudentCorner() {
               </div>
 
               {/* 5-Step Morning Assembly Journey */}
-              <div className="assembly-roadmap-box mb-4">
-                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-3 border-bottom">
-                  <div className="d-flex align-items-center gap-2">
-                    <div className="assembly-step-badge" style={{ width: '38px', height: '38px' }}>
-                      <span className="material-symbols-outlined fs-5">record_voice_over</span>
+              <div className="m3-assembly-roadmap mb-4">
+                <div className="m3-assembly-header">
+                  <div className="d-flex align-items-center gap-3">
+                    <div className="m3-assembly-header-icon">
+                      <span className="material-symbols-outlined fs-4" style={{ fontVariationSettings: "'FILL' 1" }}>wb_twilight</span>
                     </div>
                     <div>
-                      <h5 className="fw-bold text-dark mb-0">The 5-Step Daily Assembly Sequence (15 Mins)</h5>
-                      <span className="text-muted small">Sacred morning routine awakening discipline, patriotism &amp; intellect</span>
+                      <h5 className="m3-assembly-title">The 5-Step Daily Assembly Sequence</h5>
+                      <p className="m3-assembly-subtitle">
+                        Sacred 15-minute morning routine instilling discipline, cultural values &amp; articulate confidence.
+                      </p>
                     </div>
                   </div>
-                  <span className="assembly-step-time">07:35 AM &ndash; 07:50 AM</span>
+                  <div className="m3-assembly-time-badge">
+                    <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>schedule</span>
+                    <span>07:35 AM &ndash; 07:50 AM &bull; 15 Mins Daily</span>
+                  </div>
                 </div>
 
-                <div className="d-flex flex-column gap-2.5">
-                  <div className="assembly-step-row">
-                    <span className="assembly-step-badge">1</span>
-                    <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
-                          <span className="material-symbols-outlined fs-6 text-warning">self_improvement</span>
-                          Universal Invocations &amp; Meditation
-                        </strong>
-                        <span className="assembly-step-time">07:35 AM</span>
+                <div className="m3-assembly-timeline">
+                  {/* Step 1 */}
+                  <div className="m3-assembly-step step-amber">
+                    <div className="step-number-col">
+                      <span className="step-number-bubble">01</span>
+                      <div className="step-connector-line"></div>
+                    </div>
+                    <div className="step-content-card">
+                      <div className="step-card-header">
+                        <div className="step-title-cluster">
+                          <div className="step-avatar-box avatar-amber">
+                            <span className="material-symbols-outlined">self_improvement</span>
+                          </div>
+                          <div>
+                            <h6 className="step-heading">Universal Invocations &amp; Meditation</h6>
+                            <span className="step-focus-tag tag-amber">Spiritual Awakening &bull; Mental Clarity</span>
+                          </div>
+                        </div>
+                        <span className="step-time-pill">
+                          <span className="material-symbols-outlined" style={{ fontSize: '12px' }}>schedule</span>
+                          07:35 AM &bull; 5 Mins
+                        </span>
                       </div>
-                      <span className="text-muted small d-block mt-0.5">
-                        Gayatri Mantra and Saraswati Vandana chanted collectively to awaken clarity and calm young minds.
-                      </span>
+                      <p className="step-desc">
+                        Sacred chanting of Gayatri Mantra and Saraswati Vandana performed in unison to center concentration, alleviate anxiety, and invoke academic blessing for the day.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="assembly-step-row">
-                    <span className="assembly-step-badge">2</span>
-                    <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
-                          <span className="material-symbols-outlined fs-6 text-primary">front_hand</span>
-                          National Student Pledge
-                        </strong>
-                        <span className="assembly-step-time">07:40 AM</span>
+                  {/* Step 2 */}
+                  <div className="m3-assembly-step step-blue">
+                    <div className="step-number-col">
+                      <span className="step-number-bubble">02</span>
+                      <div className="step-connector-line"></div>
+                    </div>
+                    <div className="step-content-card">
+                      <div className="step-card-header">
+                        <div className="step-title-cluster">
+                          <div className="step-avatar-box avatar-blue">
+                            <span className="material-symbols-outlined">front_hand</span>
+                          </div>
+                          <div>
+                            <h6 className="step-heading">National Student Pledge</h6>
+                            <span className="step-focus-tag tag-blue">Civic Fraternity &bull; Patriotism</span>
+                          </div>
+                        </div>
+                        <span className="step-time-pill">
+                          <span className="material-symbols-outlined" style={{ fontSize: '12px' }}>schedule</span>
+                          07:40 AM &bull; 2 Mins
+                        </span>
                       </div>
-                      <span className="text-muted small d-block mt-0.5">
-                        "India is my country and all Indians are my brothers and sisters..." recited with right hand over heart.
-                      </span>
+                      <p className="step-desc">
+                        Recitation of <em>"India is my country and all Indians are my brothers and sisters..."</em> with right hand held over heart, reinforcing secular brotherhood and moral dedication.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="assembly-step-row">
-                    <span className="assembly-step-badge">3</span>
-                    <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
-                          <span className="material-symbols-outlined fs-6 text-success">psychology</span>
-                          Bilingual Thought for the Day
-                        </strong>
-                        <span className="assembly-step-time">07:42 AM</span>
+                  {/* Step 3 */}
+                  <div className="m3-assembly-step step-emerald">
+                    <div className="step-number-col">
+                      <span className="step-number-bubble">03</span>
+                      <div className="step-connector-line"></div>
+                    </div>
+                    <div className="step-content-card">
+                      <div className="step-card-header">
+                        <div className="step-title-cluster">
+                          <div className="step-avatar-box avatar-emerald">
+                            <span className="material-symbols-outlined">psychology</span>
+                          </div>
+                          <div>
+                            <h6 className="step-heading">Bilingual Thought for the Day</h6>
+                            <span className="step-focus-tag tag-emerald">Moral Character &bull; Public Speaking</span>
+                          </div>
+                        </div>
+                        <span className="step-time-pill">
+                          <span className="material-symbols-outlined" style={{ fontSize: '12px' }}>schedule</span>
+                          07:42 AM &bull; 2 Mins
+                        </span>
                       </div>
-                      <span className="text-muted small d-block mt-0.5">
-                        Delivered alternately in Hindi &amp; English by student representatives to hone public oratory skills.
-                      </span>
+                      <p className="step-desc">
+                        Student leaders articulate an inspiring philosophical quote alternately in Hindi and English with practical context, honing bilingual speech fluency and ethical introspection.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="assembly-step-row">
-                    <span className="assembly-step-badge">4</span>
-                    <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
-                          <span className="material-symbols-outlined fs-6 text-info">lightbulb</span>
-                          Daily GK &amp; Current Affairs Brief
-                        </strong>
-                        <span className="assembly-step-time">07:44 AM</span>
+                  {/* Step 4 */}
+                  <div className="m3-assembly-step step-indigo">
+                    <div className="step-number-col">
+                      <span className="step-number-bubble">04</span>
+                      <div className="step-connector-line"></div>
+                    </div>
+                    <div className="step-content-card">
+                      <div className="step-card-header">
+                        <div className="step-title-cluster">
+                          <div className="step-avatar-box avatar-indigo">
+                            <span className="material-symbols-outlined">lightbulb</span>
+                          </div>
+                          <div>
+                            <h6 className="step-heading">Daily GK &amp; Current Affairs Brief</h6>
+                            <span className="step-focus-tag tag-indigo">Curiosity &bull; National Awareness</span>
+                          </div>
+                        </div>
+                        <span className="step-time-pill">
+                          <span className="material-symbols-outlined" style={{ fontSize: '12px' }}>schedule</span>
+                          07:44 AM &bull; 4 Mins
+                        </span>
                       </div>
-                      <span className="text-muted small d-block mt-0.5">
-                        3 important educational news headlines and science facts curated for young curious learners.
-                      </span>
+                      <p className="step-desc">
+                        Presentation of 3 vetted national/international headlines, scientific breakthroughs, and a "Word of the Day" with etymology to expand worldly curiosity.
+                      </p>
                     </div>
                   </div>
 
-                  <div className="assembly-step-row">
-                    <span className="assembly-step-badge">5</span>
-                    <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
-                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
-                          <span className="material-symbols-outlined fs-6 text-danger">flag</span>
-                          National Anthem ("Jana Gana Mana")
-                        </strong>
-                        <span className="assembly-step-time">07:48 AM</span>
+                  {/* Step 5 */}
+                  <div className="m3-assembly-step step-rose">
+                    <div className="step-number-col">
+                      <span className="step-number-bubble">05</span>
+                    </div>
+                    <div className="step-content-card">
+                      <div className="step-card-header">
+                        <div className="step-title-cluster">
+                          <div className="step-avatar-box avatar-rose">
+                            <span className="material-symbols-outlined">flag</span>
+                          </div>
+                          <div>
+                            <h6 className="step-heading">National Anthem ("Jana Gana Mana")</h6>
+                            <span className="step-focus-tag tag-rose">Sovereign Reverence &bull; National Honor</span>
+                          </div>
+                        </div>
+                        <span className="step-time-pill">
+                          <span className="material-symbols-outlined" style={{ fontSize: '12px' }}>schedule</span>
+                          07:48 AM &bull; 2 Mins
+                        </span>
                       </div>
-                      <span className="text-muted small d-block mt-0.5">
-                        Rendered with solemn attention, discipline, and patriotic pride before students march to classrooms.
-                      </span>
+                      <p className="step-desc">
+                        Sung in crisp unison in strict attention posture under the fluttering Tricolor, culminating in disciplined, silent squad marching toward classrooms.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -963,11 +1206,32 @@ export default function StudentCorner() {
                           TRUTH &amp; INTEGRITY
                         </span>
                       </div>
-                      <span className="moral-sanskrit-tag">सत्यं वद धर्मं चर</span>
+                      <div className="p-1.5 px-2.5 rounded-2 mb-2" style={{ background: '#fff1f2', border: '1px solid #fecdd3' }}>
+                        <span className="fw-bold d-block text-danger" style={{ fontSize: '0.78rem' }}>॥ सत्यं वद धर्मं चर ॥</span>
+                        <span className="text-muted small" style={{ fontSize: '0.69rem' }}>Speak the truth; abide by righteousness</span>
+                      </div>
                       <h6 className="fw-bold text-dark mb-1">Satya &amp; Nishtha</h6>
-                      <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
+                      <p className="text-muted small mb-2.5" style={{ lineHeight: '1.45' }}>
                         Fostering moral courage to speak truth, act honestly, and take accountability for one's choices with sincerity.
                       </p>
+                      <div className="d-flex flex-column gap-1.5 mb-3">
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-danger" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Academic Honesty:</strong> Genuine independent work with zero unfair copying.</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-danger" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Moral Courage:</strong> Owning up to errors openly without fear or deceit.</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-danger" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Steadfast Character:</strong> Upholding discipline when no one is watching.</span>
+                        </div>
+                      </div>
+                      <div className="mt-auto pt-2 border-top d-flex align-items-center justify-content-between text-muted small" style={{ fontSize: '0.71rem' }}>
+                        <span className="fw-semibold text-danger">Pillar 01 • Character Core</span>
+                        <span>Assembly Recognition</span>
+                      </div>
                     </div>
                   </div>
 
@@ -982,11 +1246,32 @@ export default function StudentCorner() {
                           RESPECT &amp; HUMILITY
                         </span>
                       </div>
-                      <span className="moral-sanskrit-tag">मातृ देवो भव • पितृ देवो भव</span>
+                      <div className="p-1.5 px-2.5 rounded-2 mb-2" style={{ background: '#ecfdf5', border: '1px solid #a7f3d0' }}>
+                        <span className="fw-bold d-block text-success" style={{ fontSize: '0.78rem' }}>॥ मातृ देवो भव • पितृ देवो भव ॥</span>
+                        <span className="text-muted small" style={{ fontSize: '0.69rem' }}>Honor mothers, fathers, and teachers as divine</span>
+                      </div>
                       <h6 className="fw-bold text-dark mb-1">Aadar &amp; Vinamrata</h6>
-                      <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
-                        Touching elders' feet, bowing to teachers, respecting bus staff, and acknowledging every worker with warmth.
+                      <p className="text-muted small mb-2.5" style={{ lineHeight: '1.45' }}>
+                        Instilling deep reverence for parents, teachers, elders, and respectful courtesy toward all institutional staff.
                       </p>
+                      <div className="d-flex flex-column gap-1.5 mb-3">
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-success" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Guru Vandana:</strong> Polite folded-hand Namaste and greetings to all mentors.</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-success" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Dignity of Labor:</strong> Warm respect for bus drivers, didis &amp; support helpers.</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-success" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Humble Mindset:</strong> Celebrating victories with modesty and zero arrogance.</span>
+                        </div>
+                      </div>
+                      <div className="mt-auto pt-2 border-top d-flex align-items-center justify-content-between text-muted small" style={{ fontSize: '0.71rem' }}>
+                        <span className="fw-semibold text-success">Pillar 02 • Cultural Heritage</span>
+                        <span>Daily Conduct Code</span>
+                      </div>
                     </div>
                   </div>
 
@@ -1001,11 +1286,32 @@ export default function StudentCorner() {
                           TEAMWORK &amp; EMPATHY
                         </span>
                       </div>
-                      <span className="moral-sanskrit-tag">वसुधैव कुटुम्बकम्</span>
+                      <div className="p-1.5 px-2.5 rounded-2 mb-2" style={{ background: '#eff6ff', border: '1px solid #bfdbfe' }}>
+                        <span className="fw-bold d-block text-primary" style={{ fontSize: '0.78rem' }}>॥ वसुधैव कुटुम्बकम् ॥</span>
+                        <span className="text-muted small" style={{ fontSize: '0.69rem' }}>The world is one interconnected family</span>
+                      </div>
                       <h6 className="fw-bold text-dark mb-1">Sahyog &amp; Karuna</h6>
-                      <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
-                        Sharing tiffin, lifting up classmates with learning needs, and celebrating peers' accomplishments together.
+                      <p className="text-muted small mb-2.5" style={{ lineHeight: '1.45' }}>
+                        Nurturing brotherhood, collaborative teamwork, inclusive classrooms, and compassion for the vulnerable.
                       </p>
+                      <div className="d-flex flex-column gap-1.5 mb-3">
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-primary" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Lunchtime Friendship:</strong> Sharing tiffins and creating a loving classroom bond.</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-primary" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Peer Buddy Support:</strong> Helping classmates navigate academic or language hurdles.</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-primary" style={{ fontSize: '14px' }}>check_circle</span>
+                          <span><strong>Zero Bullying:</strong> Strict kindness, anti-teasing, and standing up for others.</span>
+                        </div>
+                      </div>
+                      <div className="mt-auto pt-2 border-top d-flex align-items-center justify-content-between text-muted small" style={{ fontSize: '0.71rem' }}>
+                        <span className="fw-semibold text-primary">Pillar 03 • Social Harmony</span>
+                        <span>House Teamwork Standard</span>
+                      </div>
                     </div>
                   </div>
 
@@ -1020,11 +1326,32 @@ export default function StudentCorner() {
                           ECO-STEWARDSHIP
                         </span>
                       </div>
-                      <span className="moral-sanskrit-tag">प्रकृति रक्षति रक्षिता</span>
+                      <div className="p-1.5 px-2.5 rounded-2 mb-2" style={{ background: '#fffbeb', border: '1px solid #fde68a' }}>
+                        <span className="fw-bold d-block text-warning" style={{ fontSize: '0.78rem', color: '#b45309' }}>॥ प्रकृति रक्षति रक्षिता ॥</span>
+                        <span className="text-muted small" style={{ fontSize: '0.69rem' }}>Nature protects those who protect her</span>
+                      </div>
                       <h6 className="fw-bold text-dark mb-1">Swachhata &amp; Paryavaran</h6>
-                      <p className="text-muted small mb-0" style={{ lineHeight: '1.5' }}>
-                        Zero littering, water conservation, botanical tending, clean desks, and plastic-free campus environmental stewardship.
+                      <p className="text-muted small mb-2.5" style={{ lineHeight: '1.45' }}>
+                        Cultivating environmental stewardship, personal cleanliness, water conservation, and plastic-free green habits.
                       </p>
+                      <div className="d-flex flex-column gap-1.5 mb-3">
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-warning" style={{ fontSize: '14px', color: '#d97706' }}>check_circle</span>
+                          <span><strong>Clean Desk Mandate:</strong> Segregating waste and leaving desks spotless daily.</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-warning" style={{ fontSize: '14px', color: '#d97706' }}>check_circle</span>
+                          <span><strong>Zero Plastic Culture:</strong> Stainless steel bottles &amp; cloth bags encouraged.</span>
+                        </div>
+                        <div className="d-flex align-items-center gap-2 small text-dark" style={{ fontSize: '0.74rem' }}>
+                          <span className="material-symbols-outlined text-warning" style={{ fontSize: '14px', color: '#d97706' }}>check_circle</span>
+                          <span><strong>Green Campus Care:</strong> Watering courtyard plants and respecting biodiversity.</span>
+                        </div>
+                      </div>
+                      <div className="mt-auto pt-2 border-top d-flex align-items-center justify-content-between text-muted small" style={{ fontSize: '0.71rem' }}>
+                        <span className="fw-semibold text-warning" style={{ color: '#b45309' }}>Pillar 04 • Green Living</span>
+                        <span>Eco-Club Badge</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1238,72 +1565,104 @@ export default function StudentCorner() {
               </div>
 
               {/* 4 Attendance Regulations Cards */}
-              <div className="row g-3">
-                <div className="col-md-6">
-                  <div className="attendance-policy-card" style={{ borderLeft: '4px solid #2563eb' }}>
-                    <div className="d-flex align-items-center justify-content-between mb-2">
-                      <div className="d-flex align-items-center gap-2">
-                        <span className="material-symbols-outlined text-primary fs-5">edit_note</span>
-                        <strong className="text-dark small">Leave Application in School Diary</strong>
+              <div className="row g-4">
+                {/* Policy 1: Leave in Diary */}
+                <div className="col-md-6 col-12">
+                  <div className="attendance-policy-card card-blue">
+                    <div className="policy-header-row">
+                      <div className="policy-title-cluster">
+                        <div className="policy-icon-box">
+                          <span className="material-symbols-outlined">edit_note</span>
+                        </div>
+                        <h6 className="policy-title-text">Leave Application in School Diary</h6>
                       </div>
-                      <span className="attendance-policy-badge" style={{ background: '#dbeafe', color: '#1d4ed8' }}>
-                        MANDATORY
+                      <span className="attendance-policy-badge">
+                        <span className="material-symbols-outlined" style={{ fontSize: '13px' }}>verified</span>
+                        Mandatory
                       </span>
                     </div>
-                    <p className="text-muted small mb-0" style={{ lineHeight: '1.45' }}>
-                      Every leave of absence must be applied for in writing through the "Leave Record" section of the school diary, duly signed by parents or legal guardians.
+                    <p className="policy-desc-text">
+                      Every leave of absence must be applied for in writing through the official <strong>"Leave Record"</strong> section of the school diary, signed by parents or legal guardians.
                     </p>
+                    <div className="policy-action-chip">
+                      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>history_edu</span>
+                      <span>Parent / Guardian Endorsement Required</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="col-md-6">
-                  <div className="attendance-policy-card" style={{ borderLeft: '4px solid #e11d48' }}>
-                    <div className="d-flex align-items-center justify-content-between mb-2">
-                      <div className="d-flex align-items-center gap-2">
-                        <span className="material-symbols-outlined text-danger fs-5">medical_services</span>
-                        <strong className="text-dark small">Medical Leave Certification</strong>
+                {/* Policy 2: Medical Leave */}
+                <div className="col-md-6 col-12">
+                  <div className="attendance-policy-card card-red">
+                    <div className="policy-header-row">
+                      <div className="policy-title-cluster">
+                        <div className="policy-icon-box">
+                          <span className="material-symbols-outlined">medical_services</span>
+                        </div>
+                        <h6 className="policy-title-text">Medical Leave Certification</h6>
                       </div>
-                      <span className="attendance-policy-badge" style={{ background: '#ffe4e6', color: '#be123c' }}>
-                        2+ DAYS RULE
+                      <span className="attendance-policy-badge">
+                        <span className="material-symbols-outlined" style={{ fontSize: '13px' }}>health_and_safety</span>
+                        2+ Days Rule
                       </span>
                     </div>
-                    <p className="text-muted small mb-0" style={{ lineHeight: '1.45' }}>
-                      For medical absence exceeding 2 consecutive days, a medical fitness certificate from a registered practitioner must be submitted upon rejoining school.
+                    <p className="policy-desc-text">
+                      For illness exceeding 2 consecutive days, a certified <strong>Medical Fitness Certificate</strong> from a registered doctor must be submitted upon resuming classes.
                     </p>
+                    <div className="policy-action-chip">
+                      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>local_hospital</span>
+                      <span>Registered Practitioner Slip Required</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="col-md-6">
-                  <div className="attendance-policy-card" style={{ borderLeft: '4px solid #d97706' }}>
-                    <div className="d-flex align-items-center justify-content-between mb-2">
-                      <div className="d-flex align-items-center gap-2">
-                        <span className="material-symbols-outlined text-warning fs-5">report_problem</span>
-                        <strong className="text-dark small">Unexcused Consecutive Absence</strong>
+                {/* Policy 3: Unexcused Absence */}
+                <div className="col-md-6 col-12">
+                  <div className="attendance-policy-card card-amber">
+                    <div className="policy-header-row">
+                      <div className="policy-title-cluster">
+                        <div className="policy-icon-box">
+                          <span className="material-symbols-outlined">warning_amber</span>
+                        </div>
+                        <h6 className="policy-title-text">Unexcused Consecutive Absence</h6>
                       </div>
-                      <span className="attendance-policy-badge" style={{ background: '#fef3c7', color: '#b45309' }}>
-                        INQUIRY &bull; 3 DAYS
+                      <span className="attendance-policy-badge">
+                        <span className="material-symbols-outlined" style={{ fontSize: '13px' }}>notification_important</span>
+                        Inquiry • 3 Days
                       </span>
                     </div>
-                    <p className="text-muted small mb-0" style={{ lineHeight: '1.45' }}>
-                      Unnotified absence of more than 3 consecutive working days results in a parental inquiry. Continuous absence of 10 days invites striking off the roll.
+                    <p className="policy-desc-text">
+                      Unnotified absence of more than 3 consecutive working days results in a parental inquiry. Continuous unexcused absence of 10 days invites striking off the roll.
                     </p>
+                    <div className="policy-action-chip">
+                      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>call</span>
+                      <span>Inquiry at 3 Days • Action at 10 Days</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="col-md-6">
-                  <div className="attendance-policy-card" style={{ borderLeft: '4px solid #059669' }}>
-                    <div className="d-flex align-items-center justify-content-between mb-2">
-                      <div className="d-flex align-items-center gap-2">
-                        <span className="material-symbols-outlined text-success fs-5">sensor_door</span>
-                        <strong className="text-dark small">Early Departure &amp; Gate Pass</strong>
+                {/* Policy 4: Early Departure */}
+                <div className="col-md-6 col-12">
+                  <div className="attendance-policy-card card-emerald">
+                    <div className="policy-header-row">
+                      <div className="policy-title-cluster">
+                        <div className="policy-icon-box">
+                          <span className="material-symbols-outlined">sensor_door</span>
+                        </div>
+                        <h6 className="policy-title-text">Early Departure &amp; Gate Pass</h6>
                       </div>
-                      <span className="attendance-policy-badge" style={{ background: '#d1fae5', color: '#047857' }}>
-                        SECURITY PASS
+                      <span className="attendance-policy-badge">
+                        <span className="material-symbols-outlined" style={{ fontSize: '13px' }}>security</span>
+                        Security Pass
                       </span>
                     </div>
-                    <p className="text-muted small mb-0" style={{ lineHeight: '1.45' }}>
-                      No child will be allowed to leave early unless accompanied by parents bearing an authorized Gate Pass issued by the Principal / Reception.
+                    <p className="policy-desc-text">
+                      No student will be allowed to exit early unless accompanied by registered parents bearing an authorized <strong>Gate Pass</strong> signed by the Principal or Reception.
                     </p>
+                    <div className="policy-action-chip">
+                      <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>badge</span>
+                      <span>Gate Pass Mandatory for Early Campus Exit</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1545,7 +1904,7 @@ export default function StudentCorner() {
                 <div className="guild-showcase-header">
                   <div className="d-flex align-items-center gap-3">
                     <div className="guild-showcase-crest">
-                      <span className="material-symbols-outlined fs-4">shield</span>
+                      <span className="material-symbols-outlined fs-3" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
                     </div>
                     <div>
                       <h5 className="guild-showcase-title">The 4 House Guilds for Inter-School CCA Competitions</h5>
@@ -1972,57 +2331,129 @@ export default function StudentCorner() {
               </div>
             </div>
 
-            {/* Key Statistics Card (Matching About.jsx) */}
-            <div className="modern-sidebar-card mb-4" id="statistics">
-              <div className="modern-sidebar-header amber-theme">
-                <div className="modern-sidebar-title">
-                  <span className="material-symbols-outlined" style={{ color: '#fef08a' }}>analytics</span>
-                  Student Life at a Glance
+            {/* Key Statistics Card (Student Life at a Glance) */}
+            <div className="glance-metrics-widget mb-4" id="statistics">
+              <div className="glance-widget-header">
+                <div className="d-flex align-items-center gap-2.5">
+                  <div className="glance-header-icon">
+                    <span className="material-symbols-outlined">insights</span>
+                  </div>
+                  <div>
+                    <h6 className="glance-widget-title mb-0">Student Life at a Glance</h6>
+                    <span className="glance-widget-sub">Academic Session 2026–27</span>
+                  </div>
                 </div>
-                <span className="modern-sidebar-badge">Active</span>
+                <span className="glance-live-badge">
+                  <span className="glance-pulse-dot"></span>
+                  Active
+                </span>
               </div>
-              <div className="p-2">
-                <div className="modern-stat-row">
-                  <span className="stat-row-label">
-                    <span className="material-symbols-outlined fs-6 text-primary">calendar_month</span>
-                    Year Established
-                  </span>
-                  <span className="stat-row-value">{schoolInfo.estd}</span>
+
+              <div className="glance-widget-body">
+                {/* Year Established */}
+                <div className="glance-item-card">
+                  <div className="glance-item-left">
+                    <div className="glance-avatar-box avatar-blue">
+                      <span className="material-symbols-outlined">calendar_month</span>
+                    </div>
+                    <div>
+                      <span className="glance-item-label">Year Established</span>
+                      <span className="glance-item-desc">Foundational CBSE Legacy</span>
+                    </div>
+                  </div>
+                  <span className="glance-value-pill pill-navy">{schoolInfo.estd}</span>
                 </div>
-                <div className="modern-stat-row">
-                  <span className="stat-row-label">
-                    <span className="material-symbols-outlined fs-6 text-success">groups</span>
-                    Student Body
+
+                {/* Student Body */}
+                <div className="glance-item-card">
+                  <div className="glance-item-left">
+                    <div className="glance-avatar-box avatar-emerald">
+                      <span className="material-symbols-outlined">groups</span>
+                    </div>
+                    <div>
+                      <span className="glance-item-label">Student Body</span>
+                      <span className="glance-item-desc">Nursery to Middle Wing</span>
+                    </div>
+                  </div>
+                  <span className="glance-value-pill pill-emerald">
+                    <span className="mini-status-dot"></span>
+                    500+ Learners
                   </span>
-                  <span className="stat-row-value text-success">500+ Active Learners</span>
                 </div>
-                <div className="modern-stat-row">
-                  <span className="stat-row-label">
-                    <span className="material-symbols-outlined fs-6 text-warning">person_pin</span>
-                    Student-Teacher Ratio
-                  </span>
-                  <span className="stat-row-value text-primary">15 : 1 (Personal Care)</span>
+
+                {/* Student-Teacher Ratio */}
+                <div className="glance-item-card">
+                  <div className="glance-item-left">
+                    <div className="glance-avatar-box avatar-amber">
+                      <span className="material-symbols-outlined">person_pin</span>
+                    </div>
+                    <div>
+                      <span className="glance-item-label">Student-Teacher Ratio</span>
+                      <span className="glance-item-desc">Individual Child Attention</span>
+                    </div>
+                  </div>
+                  <span className="glance-value-pill pill-amber">15 : 1 (Personal Care)</span>
                 </div>
-                <div className="modern-stat-row">
-                  <span className="stat-row-label">
-                    <span className="material-symbols-outlined fs-6 text-info">shield</span>
-                    School Houses
-                  </span>
-                  <span className="stat-row-value">4 Houses (Agni, Vayu, Prithvi, Surya)</span>
+
+                {/* School Houses */}
+                <div className="glance-item-card flex-column align-items-stretch gap-2">
+                  <div className="d-flex align-items-center justify-content-between gap-2">
+                    <div className="glance-item-left flex-grow-1" style={{ minWidth: 0 }}>
+                      <div className="glance-avatar-box avatar-purple">
+                        <span className="material-symbols-outlined">shield</span>
+                      </div>
+                      <div style={{ minWidth: 0 }}>
+                        <span className="glance-item-label">School Houses</span>
+                        <span className="glance-item-desc text-truncate d-block">House Championship</span>
+                      </div>
+                    </div>
+                    <span className="glance-value-pill pill-slate flex-shrink-0">4 Squads</span>
+                  </div>
+                  <div className="house-chips-cluster">
+                    <span className="house-chip house-agni">
+                      <span className="house-dot dot-agni"></span>Agni (Fire)
+                    </span>
+                    <span className="house-chip house-vayu">
+                      <span className="house-dot dot-vayu"></span>Vayu (Air)
+                    </span>
+                    <span className="house-chip house-prithvi">
+                      <span className="house-dot dot-prithvi"></span>Prithvi (Earth)
+                    </span>
+                    <span className="house-chip house-surya">
+                      <span className="house-dot dot-surya"></span>Surya (Sun)
+                    </span>
+                  </div>
                 </div>
-                <div className="modern-stat-row">
-                  <span className="stat-row-label">
-                    <span className="material-symbols-outlined fs-6 text-danger">event_note</span>
-                    Annual Holidays
-                  </span>
-                  <span className="stat-row-value">51 Gazetted Days</span>
+
+                {/* Annual Holidays */}
+                <div className="glance-item-card">
+                  <div className="glance-item-left">
+                    <div className="glance-avatar-box avatar-rose">
+                      <span className="material-symbols-outlined">event_note</span>
+                    </div>
+                    <div>
+                      <span className="glance-item-label">Annual Holidays</span>
+                      <span className="glance-item-desc">Gazetted &amp; Festival Breaks</span>
+                    </div>
+                  </div>
+                  <span className="glance-value-pill pill-rose">51 Gazetted Days</span>
                 </div>
-                <div className="modern-stat-row">
-                  <span className="stat-row-label">
-                    <span className="material-symbols-outlined fs-6 text-secondary">videocam</span>
-                    Campus Safety
+
+                {/* Campus Safety */}
+                <div className="glance-item-card">
+                  <div className="glance-item-left">
+                    <div className="glance-avatar-box avatar-teal">
+                      <span className="material-symbols-outlined">videocam</span>
+                    </div>
+                    <div>
+                      <span className="glance-item-label">Campus Safety</span>
+                      <span className="glance-item-desc">Continuous Supervision</span>
+                    </div>
+                  </div>
+                  <span className="glance-value-pill pill-teal">
+                    <span className="material-symbols-outlined" style={{ fontSize: '13px' }}>verified_user</span>
+                    100% CCTV
                   </span>
-                  <span className="stat-row-value text-success">100% CCTV Monitored</span>
                 </div>
               </div>
             </div>
@@ -2044,14 +2475,14 @@ export default function StudentCorner() {
               </div>
             </div>
 
-            {/* Student Documents Card */}
+            {/* Campus Guidelines & Quick Links */}
             <div className="modern-sidebar-card">
               <div className="modern-sidebar-header emerald-theme">
                 <div className="modern-sidebar-title">
-                  <span className="material-symbols-outlined" style={{ color: '#a7f3d0' }}>download</span>
-                  Student Documents
+                  <span className="material-symbols-outlined" style={{ color: '#a7f3d0' }}>menu_book</span>
+                  Campus Guidelines &amp; Quick Links
                 </div>
-                <span className="modern-sidebar-badge">PDF</span>
+                <span className="modern-sidebar-badge">Quick Portal</span>
               </div>
               <div className="p-3 d-flex flex-column gap-2">
                 <a href="#timings" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
@@ -2059,28 +2490,28 @@ export default function StudentCorner() {
                     <span className="material-symbols-outlined text-warning">schedule</span>
                     <span className="small fw-semibold">Wing Timings Chart 2026–27</span>
                   </div>
-                  <span className="badge bg-light text-muted">Table</span>
+                  <span className="badge bg-primary-subtle text-primary border border-primary border-opacity-25">Schedule</span>
                 </a>
                 <a href="#vacations" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
                   <div className="d-flex align-items-center gap-2">
-                    <span className="material-symbols-outlined text-danger">picture_as_pdf</span>
+                    <span className="material-symbols-outlined text-danger">event_available</span>
                     <span className="small fw-semibold">Holiday Calendar (51 Days)</span>
                   </div>
-                  <span className="badge bg-light text-muted">PDF</span>
+                  <span className="badge bg-danger-subtle text-danger border border-danger border-opacity-25">51 Days</span>
                 </a>
                 <a href="#uniform" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
                   <div className="d-flex align-items-center gap-2">
-                    <span className="material-symbols-outlined text-primary">picture_as_pdf</span>
-                    <span className="small fw-semibold">Uniform Dress Code Chart</span>
+                    <span className="material-symbols-outlined text-primary">checkroom</span>
+                    <span className="small fw-semibold">Uniform &amp; Turnout Standards</span>
                   </div>
-                  <span className="badge bg-light text-muted">PDF</span>
+                  <span className="badge bg-success-subtle text-success border border-success border-opacity-25">Turnout</span>
                 </a>
                 <a href="#cca-calendar" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
                   <div className="d-flex align-items-center gap-2">
-                    <span className="material-symbols-outlined text-success">picture_as_pdf</span>
+                    <span className="material-symbols-outlined text-success">calendar_month</span>
                     <span className="small fw-semibold">CCA Activity Calendar</span>
                   </div>
-                  <span className="badge bg-light text-muted">PDF</span>
+                  <span className="badge bg-warning-subtle text-dark border border-warning border-opacity-25">Session Fest</span>
                 </a>
               </div>
             </div>

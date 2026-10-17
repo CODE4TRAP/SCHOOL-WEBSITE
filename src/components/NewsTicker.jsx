@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const tickerItems = [
@@ -35,8 +35,6 @@ const tickerItems = [
 ];
 
 export default function NewsTicker() {
-  const [isPaused, setIsPaused] = useState(false);
-
   const renderItem = (item, key) => {
     const isInternal = item.link.startsWith('/') && !item.link.includes('#');
     const content = (
@@ -81,12 +79,7 @@ export default function NewsTicker() {
 
           {/* Smooth Continuous Marquee Track with Edge Masking */}
           <div className="ticker-content-track">
-            <div
-              className={`ticker-track-inner ${isPaused ? 'is-paused' : ''}`}
-              style={{
-                animationPlayState: isPaused ? 'paused' : 'running'
-              }}
-            >
+            <div className="ticker-track-inner">
               {/* Primary Sequence */}
               {tickerItems.map((item, idx) => renderItem(item, `orig-${idx}`))}
               {/* Duplicate Sequence for Zero-Jump Infinite Scroll */}
@@ -98,18 +91,6 @@ export default function NewsTicker() {
 
           {/* Right Action Buttons */}
           <div className="ticker-actions-wrap" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <button
-              type="button"
-              className="ticker-ctrl-btn"
-              onClick={() => setIsPaused((prev) => !prev)}
-              title={isPaused ? 'Resume live ticker' : 'Pause ticker'}
-              aria-label={isPaused ? 'Resume live ticker' : 'Pause ticker'}
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>
-                {isPaused ? 'play_arrow' : 'pause'}
-              </span>
-            </button>
-
             <a href="#noticeBoardSection" className="ticker-action-btn">
               <span>Notice Board</span>
               <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>arrow_forward</span>

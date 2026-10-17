@@ -2,6 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { facilitiesList, schoolInfo } from '../data/content';
 
+const FACILITY_ICON_MAP = {
+  'smart-classes': { icon: 'smart_screen', color: '#2563eb', bg: '#eff6ff' },
+  'play-area': { icon: 'smart_toy', color: '#059669', bg: '#ecfdf5' },
+  'science-lab': { icon: 'science', color: '#d97706', bg: '#fffbeb' },
+  'computer-lab': { icon: 'terminal', color: '#7c3aed', bg: '#f5f3ff' },
+  'transport': { icon: 'directions_bus', color: '#0284c7', bg: '#f0f9ff' },
+  'safety': { icon: 'videocam', color: '#dc2626', bg: '#fef2f2' },
+};
+
 export default function Facilities() {
   return (
     <div>
@@ -55,41 +64,52 @@ export default function Facilities() {
 
         {/* Facilities Grid */}
         <div className="row g-4 mb-5">
-          {facilitiesList.map((facility, idx) => (
-            <div key={facility.id} className="col-md-6 col-lg-4" id={facility.id}>
-              <div className="facility-feature-card">
-                <div className="facility-img-wrap">
-                  <img
-                    src={facility.img}
-                    className="facility-img"
-                    alt={facility.title}
-                  />
-                  <div className="facility-floating-badge">
-                    <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px' }}>verified</span>
-                    <span>Facility {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
+          {facilitiesList.map((facility, idx) => {
+            const meta = FACILITY_ICON_MAP[facility.id] || { icon: 'verified', color: '#0b57d0', bg: '#eff6ff' };
+            return (
+              <div key={facility.id} className="col-md-6 col-lg-4" id={facility.id}>
+                <div className="facility-feature-card">
+                  <div className="facility-img-wrap">
+                    <img
+                      src={facility.img}
+                      className="facility-img"
+                      alt={facility.title}
+                    />
+                    <div
+                      className="facility-floating-badge"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.95)',
+                        color: meta.color,
+                        border: `1px solid ${meta.color}40`,
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
+                      }}
+                    >
+                      <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px' }}>{meta.icon}</span>
+                      <span>Facility {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="facility-card-body">
-                  <div>
-                    <h5 className="facility-title">
-                      <span className="material-symbols-outlined" style={{ color: '#0b57d0', fontSize: '20px' }}>check_circle</span>
-                      {facility.title}
-                    </h5>
-                    <p className="facility-desc">
-                      {facility.desc}
-                    </p>
-                  </div>
-                  <div className="facility-footer">
-                    <span className="facility-safe-chip">
-                      <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px', color: '#059669' }}>shield</span>
-                      Child Safe Certified
-                    </span>
-                    <span className="small text-muted fw-bold">Active Campus</span>
+                  <div className="facility-card-body">
+                    <div>
+                      <h5 className="facility-title d-flex align-items-center gap-2">
+                        <span className="material-symbols-outlined" style={{ color: meta.color, fontSize: '22px' }}>{meta.icon}</span>
+                        <span>{facility.title}</span>
+                      </h5>
+                      <p className="facility-desc">
+                        {facility.desc}
+                      </p>
+                    </div>
+                    <div className="facility-footer">
+                      <span className="facility-safe-chip">
+                        <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px', color: '#059669' }}>shield</span>
+                        Child Safe Certified
+                      </span>
+                      <span className="small text-muted fw-bold">Active Campus</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Extra Campus Highlights: Clean Water, Health, Fire Safety */}

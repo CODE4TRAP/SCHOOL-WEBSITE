@@ -3,9 +3,23 @@ import { Link } from 'react-router-dom';
 import { noticesData } from '../data/notices';
 import { useModal } from '../context/ModalContext';
 
+const sanitizeNoticeText = (text) => {
+  if (!text) return text;
+  return text
+    .replace(/Std I[–-]V\b/g, 'Std I–VI')
+    .replace(/Classes I to V\b/g, 'Classes I to VI')
+    .replace(/Class I to V\b/g, 'Class I to VI');
+};
+
 export default function NoticeBoard() {
   const { openNotice } = useModal();
-  const [noticesList, setNoticesList] = useState(noticesData);
+  const [noticesList, setNoticesList] = useState(() => 
+    noticesData.map(n => ({
+      ...n,
+      title: sanitizeNoticeText(n.title),
+      desc: sanitizeNoticeText(n.desc)
+    }))
+  );
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -14,7 +28,12 @@ export default function NoticeBoard() {
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data && data.data.length > 0) {
-          setNoticesList(data.data);
+          const sanitized = data.data.map(n => ({
+            ...n,
+            title: sanitizeNoticeText(n.title),
+            desc: sanitizeNoticeText(n.desc)
+          }));
+          setNoticesList(sanitized);
         }
       })
       .catch(err => {

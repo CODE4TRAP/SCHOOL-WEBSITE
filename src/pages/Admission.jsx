@@ -3,6 +3,69 @@ import { Link } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { feeStructure, schoolInfo } from '../data/content';
 
+export const GRADE_OPTIONS = [
+  {
+    id: 'Playgroup',
+    title: 'Playgroup',
+    subtitle: 'Pre-Nursery',
+    age: '2 – 3 Yrs',
+    tuition: '₹800/mo',
+    wing: 'Pre-Primary Early Foundation',
+    feeKey: 'Playgroup (Pre-Nursery)',
+    formClass: 'Playgroup'
+  },
+  {
+    id: 'Nursery',
+    title: 'Nursery',
+    subtitle: 'Foundation',
+    age: '3 – 4 Yrs',
+    tuition: '₹900/mo',
+    wing: 'Pre-Primary Early Foundation',
+    feeKey: 'Nursery',
+    formClass: 'Nursery'
+  },
+  {
+    id: 'LKG',
+    title: 'LKG',
+    subtitle: 'Jr. KG',
+    age: '4 – 5 Yrs',
+    tuition: '₹1,000/mo',
+    wing: 'Kindergarten Early Years',
+    feeKey: 'LKG (Lower Kindergarten)',
+    formClass: 'LKG'
+  },
+  {
+    id: 'UKG',
+    title: 'UKG',
+    subtitle: 'Sr. KG',
+    age: '5 – 6 Yrs',
+    tuition: '₹1,100/mo',
+    wing: 'Kindergarten Early Years',
+    feeKey: 'UKG (Upper Kindergarten)',
+    formClass: 'UKG'
+  },
+  {
+    id: 'Std I',
+    title: 'Std I',
+    subtitle: 'Grade 1',
+    age: '6+ Yrs',
+    tuition: '₹1,250/mo',
+    wing: 'Primary Foundation Wing',
+    feeKey: 'Std I (Grade 1)',
+    formClass: 'Std I'
+  },
+  {
+    id: 'Std II',
+    title: 'Std II to VI',
+    subtitle: 'Classes 2–6',
+    age: '7 – 11+ Yrs',
+    tuition: '₹1,400/mo',
+    wing: 'Primary & Middle Wing',
+    feeKey: 'Std II to Std VI',
+    formClass: 'Std II'
+  }
+];
+
 export default function Admission() {
   const [formData, setFormData] = useState({
     studentName: '',
@@ -24,6 +87,7 @@ export default function Admission() {
   // Quick Fee Estimator State
   const [estimatorClass, setEstimatorClass] = useState('Nursery');
   const [includeTransport, setIncludeTransport] = useState(false);
+  const [quickAppliedNotice, setQuickAppliedNotice] = useState(null);
 
   const calculateAge = (dobString) => {
     if (!dobString) return null;
@@ -110,19 +174,34 @@ export default function Admission() {
   };
 
   // Estimator calculation with exact class resolution
+  const currentGrade = GRADE_OPTIONS.find(g => g.id === estimatorClass) || GRADE_OPTIONS[1];
   const selectedFee = feeStructure.find(f => {
-    if (estimatorClass === 'Nursery') return f.class === 'Nursery';
-    if (estimatorClass === 'Playgroup') return f.class.startsWith('Playgroup');
-    if (estimatorClass === 'LKG') return f.class.startsWith('LKG');
-    if (estimatorClass === 'UKG') return f.class.startsWith('UKG');
-    if (estimatorClass === 'Std I') return f.class.startsWith('Std I');
-    if (estimatorClass === 'Std II') return f.class.startsWith('Std II');
+    if (currentGrade.feeKey) return f.class === currentGrade.feeKey;
     return f.class.toLowerCase().includes(estimatorClass.toLowerCase());
   }) || feeStructure[1];
+
   const baseAdmissionNum = parseInt(selectedFee.admissionFee.replace(/[^0-9]/g, '')) || 2800;
   const baseTuitionNum = parseInt(selectedFee.tuitionMonthly.replace(/[^0-9]/g, '')) || 900;
+  const examAnnualNum = parseInt(selectedFee.examAnnual?.replace(/[^0-9]/g, '')) || 600;
+  const activityAnnualNum = parseInt(selectedFee.activityAnnual?.replace(/[^0-9]/g, '')) || 700;
   const transportCost = includeTransport ? 600 : 0;
   const firstMonthTotal = baseAdmissionNum + baseTuitionNum + transportCost;
+  const monthlyRecurringTotal = baseTuitionNum + transportCost;
+
+  const handleProceedWithAdmission = (targetClass, transportOpted) => {
+    const selectedOption = GRADE_OPTIONS.find(g => g.id === targetClass);
+    const formClassValue = selectedOption ? selectedOption.formClass : targetClass;
+    setFormData(prev => ({
+      ...prev,
+      applyingClass: formClassValue,
+      transportNeeded: transportOpted ? 'Yes' : 'No'
+    }));
+    setQuickAppliedNotice(`Applied "${selectedOption?.title || targetClass}" and ${transportOpted ? 'Transport (School Bus: Yes)' : 'Transport (Self Conveyance)'} to your registration form below.`);
+    const formEl = document.getElementById('form');
+    if (formEl) {
+      formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <div>
@@ -380,6 +459,21 @@ export default function Admission() {
                     <p className="text-muted small mb-4">
                       Please fill in the candidate and parent details accurately. After submission, you will receive an acknowledgment confirmation slip and our admission office will contact you for interaction scheduling.
                     </p>
+
+                    {quickAppliedNotice && (
+                      <div className="alert alert-success d-flex align-items-center justify-content-between py-2 px-3 mb-4 rounded-3 border-success-subtle shadow-sm">
+                        <div className="d-flex align-items-center gap-2">
+                          <span className="material-symbols-outlined text-success">check_circle</span>
+                          <span className="small fw-semibold text-dark">{quickAppliedNotice}</span>
+                        </div>
+                        <button
+                          type="button"
+                          className="btn-close btn-sm"
+                          aria-label="Close"
+                          onClick={() => setQuickAppliedNotice(null)}
+                        ></button>
+                      </div>
+                    )}
 
                     <form onSubmit={handleSubmit}>
                       {/* Cluster 1: Student Information */}
@@ -648,155 +742,294 @@ export default function Admission() {
               </div>
             </div>
 
-            {/* M3 Interactive Fee Estimator Console Card */}
+            {/* Interactive Fee Estimator Console Card */}
             <div className="estimator-console-card">
               <div className="estimator-console-header">
                 <div className="d-flex align-items-center gap-3">
-                  <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(16, 185, 129, 0.12)', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span className="material-symbols-outlined fs-5">calculate</span>
+                  <div className="estimator-header-icon-box">
+                    <span className="material-symbols-outlined">calculate</span>
                   </div>
                   <div>
-                    <span className="d-block fw-bold" style={{ fontSize: '0.68rem', letterSpacing: '0.6px', color: '#64748b', textTransform: 'uppercase' }}>
-                      Financial Calculator • Session 2026–27
-                    </span>
-                    <h4 className="fw-bold text-dark mb-0" style={{ fontSize: '1.05rem' }}>
+                    <div className="d-flex align-items-center gap-2 flex-wrap">
+                      <span className="estimator-header-sub">
+                        FINANCIAL CALCULATOR • SESSION 2026–27
+                      </span>
+                      <span className="estimator-pill-cbse">CBSE Scale</span>
+                    </div>
+                    <h4 className="estimator-header-title">
                       Admission &amp; Monthly Fee Estimator
                     </h4>
                   </div>
                 </div>
-                <span className="m3-badge m3-badge-tonal">
-                  <span className="material-symbols-outlined fs-6 text-success">verified</span>
-                  Transparent CBSE Pattern Scale
-                </span>
+                <div className="estimator-header-badges">
+                  <span className="estimator-header-guarantee-badge">
+                    <span className="material-symbols-outlined text-success fs-6">verified_user</span>
+                    100% Transparent Fee Scale &bull; Zero Hidden Costs
+                  </span>
+                </div>
               </div>
 
               <div className="estimator-console-body">
                 <div className="estimator-grid">
                   {/* Left Controls */}
-                  <div>
-                    <div className="estimator-control-group">
-                      <label className="estimator-control-label" htmlFor="estimatorClassSelect">
-                        <span className="material-symbols-outlined fs-6 text-primary">school</span>
-                        Select Target Grade / Class:
-                      </label>
-                      <select
-                        id="estimatorClassSelect"
-                        className="estimator-select"
-                        value={estimatorClass}
-                        onChange={(e) => setEstimatorClass(e.target.value)}
-                      >
-                        <option value="Playgroup">Playgroup (Pre-Nursery) • Age 2 to 3 Yrs</option>
-                        <option value="Nursery">Nursery • Age 3 to 4 Yrs</option>
-                        <option value="LKG">LKG (Lower Kindergarten) • Age 4 to 5 Yrs</option>
-                        <option value="UKG">UKG (Upper Kindergarten) • Age 5 to 6 Yrs</option>
-                        <option value="Std I">Std I (Grade 1) • Age 6+ Yrs</option>
-                        <option value="Std II">Std II to Std VI (Primary &amp; Middle Wing)</option>
-                      </select>
-                      <div className="estimator-class-tag">
-                        <span className="material-symbols-outlined fs-6 text-success">check_circle</span>
-                        <span>Selected Wing: {estimatorClass === 'Std II' ? 'Primary & Middle Wing (Classes 2 to 6)' : estimatorClass === 'Std I' ? 'Primary Grade 1' : 'Pre-Primary Early Foundation'}</span>
+                  <div className="estimator-left-pane">
+                    {/* Grade Selection Header */}
+                    <div className="estimator-pane-header">
+                      <div className="d-flex align-items-center justify-content-between mb-2 flex-wrap gap-2">
+                        <label className="estimator-control-label mb-0">
+                          <span className="material-symbols-outlined fs-5 text-primary">school</span>
+                          1. Select Target Grade / Class:
+                        </label>
+                        <span className="estimator-active-badge">
+                          Active: {currentGrade.title}
+                        </span>
                       </div>
+                      <p className="estimator-control-desc">
+                        Tap any grade below to calculate instant one-time admission &amp; monthly tuition fees:
+                      </p>
                     </div>
 
-                    <div className="estimator-control-group mb-0">
-                      <label className="estimator-control-label">
-                        <span className="material-symbols-outlined fs-6 text-success">directions_bus</span>
-                        Optional Transportation Facility:
-                      </label>
+                    {/* Grade Cards Interactive Grid */}
+                    <div className="estimator-grade-grid">
+                      {GRADE_OPTIONS.map((grade) => {
+                        const isSelected = estimatorClass === grade.id;
+                        return (
+                          <div
+                            key={grade.id}
+                            className={`estimator-grade-card ${isSelected ? 'active' : ''}`}
+                            onClick={() => setEstimatorClass(grade.id)}
+                            role="button"
+                            tabIndex="0"
+                            onKeyDown={(e) => {
+                              if (e.key === ' ' || e.key === 'Enter') {
+                                e.preventDefault();
+                                setEstimatorClass(grade.id);
+                              }
+                            }}
+                            title={`Select ${grade.title} (${grade.age})`}
+                          >
+                            <div className="estimator-grade-card-top">
+                              <div className="estimator-grade-title-group">
+                                <span className="estimator-grade-title">{grade.title}</span>
+                                <span className="estimator-grade-subtitle">{grade.subtitle}</span>
+                              </div>
+                              <div className={`estimator-grade-check ${isSelected ? 'checked' : ''}`}>
+                                <span className="material-symbols-outlined">
+                                  {isSelected ? 'check_circle' : 'radio_button_unchecked'}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="estimator-grade-card-bottom">
+                              <span className="estimator-grade-age-pill">{grade.age}</span>
+                              <span className="estimator-grade-fee-pill">{grade.tuition}</span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Selected Wing Info Strip */}
+                    <div className="estimator-wing-strip">
+                      <div className="d-flex align-items-center gap-2">
+                        <span className="material-symbols-outlined text-primary fs-5">school</span>
+                        <div>
+                          <span className="estimator-wing-title">Curriculum Wing:</span>
+                          <strong className="text-dark ms-1">{currentGrade.wing}</strong>
+                          <span className="text-muted small ms-1">&bull; {currentGrade.age}</span>
+                        </div>
+                      </div>
+                      <span className="estimator-wing-tag">Official CBSE Matrix</span>
+                    </div>
+
+                    {/* Optional Transportation Facility */}
+                    <div className="estimator-transport-section">
+                      <div className="d-flex align-items-center justify-content-between mb-2 flex-wrap gap-2">
+                        <label className="estimator-control-label mb-0">
+                          <span className="material-symbols-outlined fs-5 text-success">directions_bus</span>
+                          2. Optional Transportation Facility:
+                        </label>
+                        <span className="estimator-transport-status-badge">
+                          {includeTransport ? 'Bus Facility Opted' : 'Self Conveyance'}
+                        </span>
+                      </div>
+
                       <div
                         className={`estimator-transport-card ${includeTransport ? 'active' : ''}`}
                         onClick={() => setIncludeTransport(!includeTransport)}
                         role="button"
                         tabIndex="0"
-                        title="Click to toggle school bus service"
+                        onKeyDown={(e) => {
+                          if (e.key === ' ' || e.key === 'Enter') {
+                            e.preventDefault();
+                            setIncludeTransport(!includeTransport);
+                          }
+                        }}
+                        title="Click to toggle school bus / van transport service"
                       >
                         <div className="d-flex align-items-center gap-3">
                           <div className={`estimator-transport-icon ${includeTransport ? 'active' : ''}`}>
                             <span className="material-symbols-outlined">directions_bus</span>
                           </div>
                           <div>
-                            <div className="estimator-transport-title">School Van / Bus Service</div>
-                            <div className="estimator-transport-sub">GPS live tracking with certified female attendant</div>
+                            <div className="d-flex align-items-center gap-2 flex-wrap">
+                              <span className="estimator-transport-title">School Van / Bus Service</span>
+                              <span className={`estimator-bus-pill ${includeTransport ? 'active' : ''}`}>
+                                {includeTransport ? 'Opted (+₹600)' : '+₹600 / month'}
+                              </span>
+                            </div>
+                            <div className="estimator-transport-sub">
+                              Doorstep pickup routes &bull; GPS live tracking &bull; Certified female attendant
+                            </div>
                           </div>
                         </div>
-                        <div className="d-flex align-items-center gap-2">
-                          <span className={`estimator-transport-rate ${includeTransport ? 'active' : ''}`}>
-                            {includeTransport ? '+₹ 600 / mo' : 'Optional (+₹ 600)'}
-                          </span>
+
+                        <div className="estimator-switch-container">
                           <div className={`estimator-switch-track ${includeTransport ? 'checked' : ''}`}>
-                            <div className="estimator-switch-thumb"></div>
+                            <div className="estimator-switch-thumb">
+                              {includeTransport && (
+                                <span className="material-symbols-outlined estimator-switch-check">check</span>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Right Summary Panel */}
+                  {/* Right Summary Panel / Digital Receipt */}
                   <div className="estimator-summary-panel">
-                    <div>
+                    <div className="estimator-summary-top">
+                      {/* Receipt Header Badge */}
                       <div className="d-flex align-items-center justify-content-between mb-2">
-                        <span className="estimator-summary-label">Estimated 1st Month Total</span>
+                        <span className="estimator-receipt-badge">
+                          <span className="material-symbols-outlined fs-6">receipt_long</span>
+                          FEE RECEIPT ESTIMATE
+                        </span>
                         <span className="estimator-instant-chip">
-                          <span className="estimator-dot"></span> Instant Calculation
+                          <span className="estimator-dot"></span> LIVE CALCULATION
                         </span>
                       </div>
 
-                      <div className="estimator-grand-total">
-                        ₹ {firstMonthTotal.toLocaleString('en-IN')}
-                      </div>
-                      <div className="estimator-total-hint">
-                        Includes one-time admission + 1st month tuition {includeTransport ? '+ bus facility' : ''}
-                      </div>
-
-                      <div className="estimator-breakdown-list">
-                        <div className="estimator-breakdown-row">
-                          <span>
-                            <span className="material-symbols-outlined fs-6 text-primary me-1 align-middle">how_to_reg</span>
-                            One-Time Admission Fee:
-                          </span>
-                          <span className="estimator-breakdown-val">₹ {baseAdmissionNum.toLocaleString('en-IN')}</span>
+                      {/* Grand Total Hero Display */}
+                      <div className="estimator-grand-hero">
+                        <span className="estimator-grand-label">Estimated 1st Month Total:</span>
+                        <div className="estimator-grand-total">
+                          <span className="estimator-currency">₹</span>
+                          <span className="estimator-amount">{firstMonthTotal.toLocaleString('en-IN')}</span>
                         </div>
-                        <div className="estimator-breakdown-row">
-                          <span>
-                            <span className="material-symbols-outlined fs-6 text-success me-1 align-middle">menu_book</span>
-                            1st Month Tuition:
-                          </span>
-                          <span className="estimator-breakdown-val">₹ {baseTuitionNum.toLocaleString('en-IN')}</span>
-                        </div>
-                        <div className="estimator-breakdown-row">
-                          <span>
-                            <span className="material-symbols-outlined fs-6 text-warning me-1 align-middle">directions_bus</span>
-                            Transport (School Bus):
-                          </span>
-                          <span className="estimator-breakdown-val">
-                            {includeTransport ? '₹ 600' : '₹ 0 (Not Opted)'}
-                          </span>
+                        <div className="estimator-total-hint">
+                          Includes one-time admission + 1st month tuition {includeTransport ? '+ bus facility' : ''}
                         </div>
                       </div>
 
+                      {/* Itemized Line-Item Invoice Box */}
+                      <div className="estimator-breakdown-card">
+                        <div className="estimator-breakdown-card-header">
+                          <span>Fee Component</span>
+                          <span>Amount (INR)</span>
+                        </div>
+
+                        <div className="estimator-breakdown-list">
+                          <div className="estimator-breakdown-row">
+                            <div className="d-flex align-items-center gap-2">
+                              <span className="estimator-row-icon icon-blue">
+                                <span className="material-symbols-outlined">how_to_reg</span>
+                              </span>
+                              <div>
+                                <span className="estimator-row-name">One-Time Admission Fee</span>
+                                <span className="estimator-row-note">Payable once at registration</span>
+                              </div>
+                            </div>
+                            <div className="text-end">
+                              <span className="estimator-breakdown-val">₹ {baseAdmissionNum.toLocaleString('en-IN')}</span>
+                              <span className="estimator-tag-one-time">One-Time</span>
+                            </div>
+                          </div>
+
+                          <div className="estimator-breakdown-row">
+                            <div className="d-flex align-items-center gap-2">
+                              <span className="estimator-row-icon icon-emerald">
+                                <span className="material-symbols-outlined">menu_book</span>
+                              </span>
+                              <div>
+                                <span className="estimator-row-name">1st Month Tuition ({currentGrade.title})</span>
+                                <span className="estimator-row-note">Monthly academic charge</span>
+                              </div>
+                            </div>
+                            <div className="text-end">
+                              <span className="estimator-breakdown-val">₹ {baseTuitionNum.toLocaleString('en-IN')}</span>
+                              <span className="estimator-tag-monthly">Monthly</span>
+                            </div>
+                          </div>
+
+                          <div className={`estimator-breakdown-row ${includeTransport ? 'highlight-transport' : ''}`}>
+                            <div className="d-flex align-items-center gap-2">
+                              <span className="estimator-row-icon icon-amber">
+                                <span className="material-symbols-outlined">directions_bus</span>
+                              </span>
+                              <div>
+                                <span className="estimator-row-name">School Transport (Van/Bus)</span>
+                                <span className="estimator-row-note">{includeTransport ? 'Doorstep pickup opted' : 'Self conveyance selected'}</span>
+                              </div>
+                            </div>
+                            <div className="text-end">
+                              <span className="estimator-breakdown-val">
+                                {includeTransport ? '₹ 600' : '₹ 0'}
+                              </span>
+                              <span className={`estimator-tag-status ${includeTransport ? 'opted' : 'none'}`}>
+                                {includeTransport ? 'Opted' : 'Not Opted'}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Recurring Commitment Box */}
                       <div className="estimator-recurring-box">
-                        <span className="material-symbols-outlined text-success fs-5">event_repeat</span>
-                        <div>
-                          <span className="d-block small text-muted" style={{ fontSize: '0.72rem' }}>
+                        <div className="estimator-recurring-icon">
+                          <span className="material-symbols-outlined">event_repeat</span>
+                        </div>
+                        <div className="flex-grow-1">
+                          <span className="estimator-recurring-label">
                             Recurring Fee from 2nd Month onwards:
                           </span>
-                          <strong className="text-success" style={{ fontSize: '0.92rem' }}>
-                            ₹ {(baseTuitionNum + transportCost).toLocaleString('en-IN')} / month
-                          </strong>
+                          <div className="d-flex align-items-baseline gap-2 flex-wrap">
+                            <strong className="estimator-recurring-val">
+                              ₹ {monthlyRecurringTotal.toLocaleString('en-IN')}
+                            </strong>
+                            <span className="estimator-recurring-unit">/ month</span>
+                            {includeTransport && (
+                              <span className="estimator-recurring-breakdown">(Tuition ₹{baseTuitionNum} + Bus ₹600)</span>
+                            )}
+                          </div>
                         </div>
+                      </div>
+
+                      {/* Transparent Annual Notes */}
+                      <div className="estimator-annual-preview">
+                        <span className="material-symbols-outlined text-muted fs-6">info</span>
+                        <span>
+                          Annual Exam: <strong>₹ {examAnnualNum}</strong> &bull; Activity: <strong>₹ {activityAnnualNum}</strong> (Payable term-wise)
+                        </span>
                       </div>
                     </div>
 
-                    <a href="#form" className="estimator-cta-btn">
-                      <span className="material-symbols-outlined fs-6">how_to_reg</span>
-                      <span>Proceed with {estimatorClass} Admission &rarr;</span>
-                    </a>
+                    {/* Primary Action Button */}
+                    <button
+                      type="button"
+                      className="estimator-cta-btn"
+                      onClick={() => handleProceedWithAdmission(estimatorClass, includeTransport)}
+                    >
+                      <span className="material-symbols-outlined fs-5">how_to_reg</span>
+                      <span>Proceed with {currentGrade.title} Admission &rarr;</span>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Fee Structure Section */}
+            {/* Elevated Fee Schedule Section */}
             <section id="fee-structure" className="mb-5">
               <div className="section-header-box mb-4">
                 <div className="d-flex align-items-center gap-3">
@@ -812,33 +1045,73 @@ export default function Admission() {
                 </div>
               </div>
 
-              <div className="table-responsive">
-                <table className="custom-table">
-                  <thead>
-                    <tr>
-                      <th>Class / Grade</th>
-                      <th>One-Time Admission Fee</th>
-                      <th>Monthly Tuition Fee</th>
-                      <th>Annual Exam Fee</th>
-                      <th>Activity / Sports Fee</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {feeStructure.map((row, idx) => (
-                      <tr key={idx}>
-                        <td className="fw-bold text-primary">{row.class}</td>
-                        <td>{row.admissionFee}</td>
-                        <td className="fw-semibold text-dark">{row.tuitionMonthly}</td>
-                        <td>{row.examAnnual}</td>
-                        <td>{row.activityAnnual}</td>
+              <div className="fee-matrix-card">
+                <div className="table-responsive">
+                  <table className="fee-matrix-table mb-0">
+                    <thead>
+                      <tr>
+                        <th>
+                          <span className="d-flex align-items-center gap-1.5">
+                            <span className="material-symbols-outlined fs-6 text-primary">school</span>
+                            Class / Grade
+                          </span>
+                        </th>
+                        <th>
+                          <div className="d-flex align-items-center gap-1.5">
+                            <span>One-Time Admission</span>
+                            <span className="badge-matrix-sub">At Entry</span>
+                          </div>
+                        </th>
+                        <th>
+                          <div className="d-flex align-items-center gap-1.5">
+                            <span>Monthly Tuition</span>
+                            <span className="badge-matrix-emerald">Per Month</span>
+                          </div>
+                        </th>
+                        <th>Annual Exam Fee</th>
+                        <th>Activity / Sports Fee</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {feeStructure.map((row, idx) => (
+                        <tr key={idx} className={row.class.toLowerCase().includes(estimatorClass.toLowerCase()) ? 'row-highlighted' : ''}>
+                          <td>
+                            <div className="fee-matrix-class-cell">
+                              <span className="fee-matrix-class-name">{row.class}</span>
+                              <span className="fee-matrix-wing-tag">
+                                {idx < 2 ? 'Pre-Primary' : idx < 4 ? 'Kindergarten' : idx === 4 ? 'Primary' : 'Primary & Middle'}
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <strong className="text-dark">{row.admissionFee}</strong>
+                          </td>
+                          <td>
+                            <span className="fee-tuition-highlight">
+                              {row.tuitionMonthly}
+                              <small className="text-muted fw-normal ms-1">/ mo</small>
+                            </span>
+                          </td>
+                          <td className="text-secondary">{row.examAnnual}</td>
+                          <td className="text-secondary">{row.activityAnnual}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="fee-matrix-footer">
+                  <div className="d-flex align-items-center gap-2">
+                    <span className="material-symbols-outlined text-success fs-5">verified</span>
+                    <span className="small text-muted">
+                      <strong>Zero Donation / Capitation Fee Guarantee:</strong> All fees are strictly regulated as per CBSE &amp; Bihar Education Department standards. Term-wise installments available.
+                    </span>
+                  </div>
+                </div>
               </div>
             </section>
 
-            {/* Age Criteria Section */}
+            {/* Elevated Age Criteria Section */}
             <section id="guidelines" className="mb-5">
               <div className="section-header-box mb-4">
                 <div className="d-flex align-items-center gap-3">
@@ -854,48 +1127,139 @@ export default function Admission() {
                 </div>
               </div>
 
-              <div className="table-responsive">
-                <table className="custom-table">
-                  <thead>
-                    <tr>
-                      <th>Class</th>
-                      <th>Minimum Age Required</th>
-                      <th>Recommended Age Range</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="fw-semibold">Playgroup (Pre-Nursery)</td>
-                      <td>2 Years Completed</td>
-                      <td>2 to 3 Years</td>
-                    </tr>
-                    <tr>
-                      <td className="fw-semibold">Nursery</td>
-                      <td>3 Years Completed</td>
-                      <td>3 to 4 Years</td>
-                    </tr>
-                    <tr>
-                      <td className="fw-semibold">LKG (Lower Kindergarten)</td>
-                      <td>4 Years Completed</td>
-                      <td>4 to 5 Years</td>
-                    </tr>
-                    <tr>
-                      <td className="fw-semibold">UKG (Upper Kindergarten)</td>
-                      <td>5 Years Completed</td>
-                      <td>5 to 6 Years</td>
-                    </tr>
-                    <tr>
-                      <td className="fw-semibold">Std I (Grade 1)</td>
-                      <td>6 Years Completed</td>
-                      <td>6 to 7 Years</td>
-                    </tr>
-                    <tr>
-                      <td className="fw-semibold">Std II to Std VI (Primary &amp; Middle)</td>
-                      <td>7+ Years Completed</td>
-                      <td>7 to 11+ Years</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="age-matrix-card">
+                <div className="table-responsive">
+                  <table className="age-matrix-table mb-0">
+                    <thead>
+                      <tr>
+                        <th>
+                          <span className="d-flex align-items-center gap-1.5">
+                            <span className="material-symbols-outlined fs-6 text-primary">child_care</span>
+                            Target Class / Grade
+                          </span>
+                        </th>
+                        <th>
+                          <span className="d-flex align-items-center gap-1.5">
+                            <span className="material-symbols-outlined fs-6 text-warning">event_available</span>
+                            Minimum Age Required (As on 31-Mar-2026)
+                          </span>
+                        </th>
+                        <th>
+                          <span className="d-flex align-items-center gap-1.5">
+                            <span className="material-symbols-outlined fs-6 text-success">date_range</span>
+                            Recommended Age Range
+                          </span>
+                        </th>
+                        <th>Curriculum Stage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div className="d-flex align-items-center gap-2">
+                            <span className="age-bullet bullet-blue"></span>
+                            <strong className="text-dark">Playgroup (Pre-Nursery)</strong>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="age-badge-min">
+                            <span className="material-symbols-outlined fs-6 text-success">check</span>
+                            2 Years Completed
+                          </span>
+                        </td>
+                        <td><span className="age-badge-range">2 to 3 Years</span></td>
+                        <td><span className="age-stage-pill">Early Foundation</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div className="d-flex align-items-center gap-2">
+                            <span className="age-bullet bullet-blue"></span>
+                            <strong className="text-dark">Nursery</strong>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="age-badge-min">
+                            <span className="material-symbols-outlined fs-6 text-success">check</span>
+                            3 Years Completed
+                          </span>
+                        </td>
+                        <td><span className="age-badge-range">3 to 4 Years</span></td>
+                        <td><span className="age-stage-pill">Early Foundation</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div className="d-flex align-items-center gap-2">
+                            <span className="age-bullet bullet-emerald"></span>
+                            <strong className="text-dark">LKG (Lower Kindergarten)</strong>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="age-badge-min">
+                            <span className="material-symbols-outlined fs-6 text-success">check</span>
+                            4 Years Completed
+                          </span>
+                        </td>
+                        <td><span className="age-badge-range">4 to 5 Years</span></td>
+                        <td><span className="age-stage-pill stage-kg">Kindergarten</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div className="d-flex align-items-center gap-2">
+                            <span className="age-bullet bullet-emerald"></span>
+                            <strong className="text-dark">UKG (Upper Kindergarten)</strong>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="age-badge-min">
+                            <span className="material-symbols-outlined fs-6 text-success">check</span>
+                            5 Years Completed
+                          </span>
+                        </td>
+                        <td><span className="age-badge-range">5 to 6 Years</span></td>
+                        <td><span className="age-stage-pill stage-kg">Kindergarten</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div className="d-flex align-items-center gap-2">
+                            <span className="age-bullet bullet-purple"></span>
+                            <strong className="text-dark">Std I (Grade 1)</strong>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="age-badge-min">
+                            <span className="material-symbols-outlined fs-6 text-success">check</span>
+                            6 Years Completed
+                          </span>
+                        </td>
+                        <td><span className="age-badge-range">6 to 7 Years</span></td>
+                        <td><span className="age-stage-pill stage-primary">Primary Wing</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div className="d-flex align-items-center gap-2">
+                            <span className="age-bullet bullet-purple"></span>
+                            <strong className="text-dark">Std II to Std VI (Primary &amp; Middle)</strong>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="age-badge-min">
+                            <span className="material-symbols-outlined fs-6 text-success">check</span>
+                            7+ Years Completed
+                          </span>
+                        </td>
+                        <td><span className="age-badge-range">7 to 11+ Years</span></td>
+                        <td><span className="age-stage-pill stage-middle">Primary &amp; Middle</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="age-matrix-footer">
+                  <span className="material-symbols-outlined text-primary fs-5">info</span>
+                  <span className="small text-muted">
+                    <strong>NEP 2020 Compliance:</strong> Age threshold is calculated strictly as on <strong>31st March 2026</strong>. Age relaxation up to 30 days may be granted by the Academic Council for borderline candidates based on readiness evaluation.
+                  </span>
+                </div>
               </div>
             </section>
 

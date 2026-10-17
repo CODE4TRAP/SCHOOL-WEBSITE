@@ -63,10 +63,10 @@ async function seedInitialData() {
     if (noticeCount === 0) {
       const defaultNotices = [
         {
-          title: 'Admission Notice for Session 2026–27: Playgroup, Nursery, LKG, UKG & Std I–V',
+          title: 'Admission Notice for Session 2026–27: Playgroup, Nursery, LKG, UKG & Std I–VI',
           date: '05-10-2026',
           category: 'Admission',
-          desc: 'Admission registration for Academic Session 2026-27 is now officially open for Playgroup, Nursery, LKG, UKG, and Classes I to V. Collect the prospectus along with registration form from the school counter or complete online registration.',
+          desc: 'Admission registration for Academic Session 2026-27 is now officially open for Playgroup, Nursery, LKG, UKG, and Classes I to VI. Collect the prospectus along with registration form from the school counter or complete online registration.',
           isNew: true
         },
         {
@@ -93,6 +93,17 @@ async function seedInitialData() {
       ];
       await Notice.insertMany(defaultNotices);
       console.log('🌱 Seeded initial notices to MongoDB.');
+    } else {
+      // Auto-migrate any notices with older Std I-V bounds to Std I-VI
+      await Notice.updateMany(
+        { title: /Std I[–-]V/i },
+        {
+          $set: {
+            title: 'Admission Notice for Session 2026–27: Playgroup, Nursery, LKG, UKG & Std I–VI',
+            desc: 'Admission registration for Academic Session 2026-27 is now officially open for Playgroup, Nursery, LKG, UKG, and Classes I to VI. Collect the prospectus along with registration form from the school counter or complete online registration.'
+          }
+        }
+      );
     }
   } catch (err) {
     console.error('Error during initial data seed:', err.message);

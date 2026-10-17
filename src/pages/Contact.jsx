@@ -302,91 +302,164 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Location Map Visual Card - Premium Redesign */}
-            <div className="card shadow-sm border rounded-4 overflow-hidden mb-4" style={{ borderColor: 'rgba(13, 59, 102, 0.12)' }}>
-              {/* Header Strip */}
-              <div
-                className="p-3 text-white d-flex align-items-center justify-content-between flex-wrap gap-2"
-                style={{ background: 'linear-gradient(135deg, #0d3b66 0%, #1a4f8b 100%)' }}
-              >
+            {/* Campus Location & Smart Navigation Hub - Enhanced */}
+            <div className="campus-map-card mb-4">
+              {/* Royal Navy Header Strip */}
+              <div className="campus-map-header">
                 <div className="d-flex align-items-center gap-3">
-                  <div
-                    className="rounded-3 d-flex align-items-center justify-content-center"
-                    style={{ width: '42px', height: '42px', background: 'rgba(255, 255, 255, 0.15)', color: '#fbbf24' }}
-                  >
-                    <span className="material-symbols-outlined fs-5">explore</span>
+                  <div className="campus-map-icon-halo">
+                    <span className="material-symbols-outlined fs-4">explore</span>
                   </div>
                   <div>
-                    <h6 className="mb-0 fw-bold text-white d-flex align-items-center gap-2">
-                      Campus Location &amp; Navigation
-                      <span className="badge bg-warning text-dark small" style={{ fontSize: '10px', padding: '2px 8px' }}>
+                    <div className="d-flex align-items-center gap-2 flex-wrap">
+                      <h6 className="campus-map-title mb-0">Campus Location &amp; Navigation</h6>
+                      <span className="campus-gps-badge">
+                        <span className="campus-gps-dot"></span>
                         LIVE GPS
                       </span>
-                    </h6>
-                    <span className="small text-white-50">Sasaram, Rohtas District, Bihar &bull; NH-19 Access</span>
+                    </div>
+                    <span className="campus-map-subtitle">
+                      Geeta Ghat Dhayan Kendra (Belarhi Branch), Sasaram, Bihar &bull; NH-19 Access
+                    </span>
                   </div>
                 </div>
+
                 <a
-                  href="https://maps.google.com/?q=Sasaram,+Bihar"
+                  href="https://www.google.com/maps/dir/?api=1&destination=24.9536,84.0315"
                   target="_blank"
                   rel="noreferrer"
-                  className="btn btn-warning btn-sm fw-semibold rounded-pill px-3 d-inline-flex align-items-center gap-1 shadow-sm"
+                  className="campus-directions-btn"
+                  title="Open driving directions in Google Maps"
                 >
-                  <span className="material-symbols-outlined fs-6">near_me</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>near_me</span>
                   <span>Get Directions</span>
                 </a>
               </div>
 
-              {/* Map Canvas with Floating Geo Coordinates */}
-              <div className="position-relative" style={{ height: '280px', background: '#e2e8f0' }}>
+              {/* Map Canvas with Floating Interactive Badges */}
+              <div className="campus-map-canvas-wrap">
                 <iframe
                   title="School Location Map"
                   src="https://maps.google.com/maps?q=Sasaram%2C%20Rohtas%2C%20Bihar&t=&z=13&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
-                  style={{ border: 0, filter: 'contrast(1.02) saturate(1.05)' }}
+                  className="campus-map-iframe"
                   allowFullScreen=""
                   loading="lazy"
                 ></iframe>
-                <div
-                  className="position-absolute top-0 start-0 m-2 px-2 py-1 rounded-pill small fw-semibold text-white d-flex align-items-center gap-1 shadow-sm"
-                  style={{ background: 'rgba(15, 23, 42, 0.78)', backdropFilter: 'blur(8px)', fontSize: '11px', letterSpacing: '0.3px' }}
+
+                {/* Floating Campus Overlay Badge */}
+                <div className="campus-floating-pin-card d-none d-sm-flex">
+                  <div className="campus-pin-logo">
+                    <span className="material-symbols-outlined fs-5">school</span>
+                  </div>
+                  <div>
+                    <div className="campus-pin-name">Swami Shiwanand Academy</div>
+                    <div className="campus-pin-addr">Belarhi Campus, Sasaram - 821305</div>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Swami+Shiwanand+Academy+Sasaram"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="campus-pin-action"
+                    title="Open Pin in Google Maps"
+                  >
+                    <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>open_in_new</span>
+                  </a>
+                </div>
+
+                {/* Floating GPS Coordinates Pill with Copy Action */}
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard('24.9536, 84.0315', 'coords')}
+                  className="campus-floating-coords-btn"
+                  title="Click to copy exact GPS Coordinates"
                 >
-                  <span className="material-symbols-outlined fs-6 text-warning">pin_drop</span>
-                  <span>24.9536&deg; N, 84.0315&deg; E</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: '14px', color: '#fbbf24' }}>
+                    {copiedItem === 'coords' ? 'check_circle' : 'pin_drop'}
+                  </span>
+                  <span>{copiedItem === 'coords' ? 'Coordinates Copied!' : '24.9536° N, 84.0315° E'}</span>
+                  <span className="material-symbols-outlined" style={{ fontSize: '12px', opacity: 0.7 }}>content_copy</span>
+                </button>
+              </div>
+
+              {/* Transit & Distance Matrix Grid */}
+              <div className="campus-transit-matrix">
+                <div className="campus-transit-item">
+                  <div className="transit-icon-box train">
+                    <span className="material-symbols-outlined">train</span>
+                  </div>
+                  <div>
+                    <div className="transit-name">Sasaram Jn Railway</div>
+                    <div className="transit-dist">3.2 km &bull; ~8 mins</div>
+                  </div>
+                </div>
+
+                <div className="campus-transit-item">
+                  <div className="transit-icon-box bus">
+                    <span className="material-symbols-outlined">directions_bus</span>
+                  </div>
+                  <div>
+                    <div className="transit-name">Old GT Road Bus Stand</div>
+                    <div className="transit-dist">2.1 km &bull; ~5 mins</div>
+                  </div>
+                </div>
+
+                <div className="campus-transit-item">
+                  <div className="transit-icon-box highway">
+                    <span className="material-symbols-outlined">add_road</span>
+                  </div>
+                  <div>
+                    <div className="transit-name">NH-19 Highway Access</div>
+                    <div className="transit-dist">1.4 km &bull; ~3 mins</div>
+                  </div>
+                </div>
+
+                <div className="campus-transit-item">
+                  <div className="transit-icon-box monument">
+                    <span className="material-symbols-outlined">account_balance</span>
+                  </div>
+                  <div>
+                    <div className="transit-name">Shershah Tomb Landmark</div>
+                    <div className="transit-dist">3.5 km &bull; ~10 mins</div>
+                  </div>
                 </div>
               </div>
 
               {/* Campus Amenities & Parking Badges */}
-              <div className="p-3 bg-white border-top">
-                <div className="d-flex flex-wrap gap-2 mb-3">
-                  <span className="badge bg-light text-secondary border px-2 py-2 d-inline-flex align-items-center gap-1 fw-normal" style={{ fontSize: '11px' }}>
-                    <i className="fas fa-car text-primary"></i> Ample Visitor Parking
+              <div className="campus-amenities-bar">
+                <div className="campus-amenities-tags">
+                  <span className="campus-amenity-chip">
+                    <span className="material-symbols-outlined" style={{ fontSize: '14px', color: '#0284c7' }}>local_parking</span>
+                    <span>Dedicated Visitor Parking</span>
                   </span>
-                  <span className="badge bg-light text-secondary border px-2 py-2 d-inline-flex align-items-center gap-1 fw-normal" style={{ fontSize: '11px' }}>
-                    <i className="fas fa-bus text-success"></i> School Bus Drop Bay
+                  <span className="campus-amenity-chip">
+                    <span className="material-symbols-outlined" style={{ fontSize: '14px', color: '#16a34a' }}>airport_shuttle</span>
+                    <span>School Bus Pick/Drop Bay</span>
                   </span>
-                  <span className="badge bg-light text-secondary border px-2 py-2 d-inline-flex align-items-center gap-1 fw-normal" style={{ fontSize: '11px' }}>
-                    <i className="fas fa-wheelchair text-info"></i> Wheelchair Ramp
+                  <span className="campus-amenity-chip">
+                    <span className="material-symbols-outlined" style={{ fontSize: '14px', color: '#9333ea' }}>accessible</span>
+                    <span>Wheelchair Ramp Access</span>
                   </span>
-                  <span className="badge bg-light text-secondary border px-2 py-2 d-inline-flex align-items-center gap-1 fw-normal" style={{ fontSize: '11px' }}>
-                    <i className="fas fa-shield-alt text-warning"></i> 24x7 Security Gate
+                  <span className="campus-amenity-chip">
+                    <span className="material-symbols-outlined" style={{ fontSize: '14px', color: '#d97706' }}>security</span>
+                    <span>24x7 Guarded Security Gate</span>
                   </span>
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center pt-2 border-top">
-                  <span className="small text-muted d-flex align-items-center gap-1">
-                    <span className="material-symbols-outlined fs-6 text-primary">distance</span>
-                    <span>3.2 km from Sasaram Railway Station</span>
+                <div className="campus-map-footer-links">
+                  <span className="campus-footer-note">
+                    <span className="material-symbols-outlined" style={{ fontSize: '15px', color: '#16a34a' }}>verified</span>
+                    <span>Direct highway connectivity with asphalt roads to campus gate</span>
                   </span>
                   <a
                     href="https://maps.google.com/?q=Sasaram,+Bihar"
                     target="_blank"
                     rel="noreferrer"
-                    className="small fw-bold text-primary text-decoration-none d-flex align-items-center gap-1"
+                    className="campus-open-maps-btn"
                   >
-                    <span>Open in Google Maps</span>
-                    <span className="material-symbols-outlined fs-6">open_in_new</span>
+                    <span>Open in Google Maps App</span>
+                    <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>open_in_new</span>
                   </a>
                 </div>
               </div>
@@ -421,8 +494,8 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column: Inquiry Form */}
-          <div className="col-lg-5">
+          {/* Right Column: Inquiry Form - Sticky Elevation */}
+          <div className="col-lg-5" style={{ position: 'sticky', top: '90px', alignSelf: 'flex-start' }}>
             {/* Inquiry Form Header in Dedicated Box */}
             <div className="section-header-box mb-4">
               <div className="d-flex align-items-center gap-3">

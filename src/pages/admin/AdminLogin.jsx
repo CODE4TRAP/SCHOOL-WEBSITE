@@ -6,15 +6,16 @@ export default function AdminLogin() {
   const [username, setUsername] = useState('shiva@mail.com');
   const [password, setPassword] = useState('check123');
   const [showPassword, setShowPassword] = useState(false);
-  const [selectedRole, setSelectedRole] = useState('Super Admin');
   const [rememberMe, setRememberMe] = useState(true);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [infoMsg, setInfoMsg] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     if (e) e.preventDefault();
     setErrorMsg('');
+    setInfoMsg('');
     setLoading(true);
 
     const cleanUser = username.trim().toLowerCase();
@@ -31,7 +32,7 @@ export default function AdminLogin() {
         const data = await res.json();
         if (data.success) {
           localStorage.setItem('ssa_admin_token', data.token || 'jwt_session_' + Date.now());
-          localStorage.setItem('ssa_admin_user', JSON.stringify(data.admin || { email: cleanUser, role: selectedRole }));
+          localStorage.setItem('ssa_admin_user', JSON.stringify(data.admin || { email: cleanUser, role: 'Super Admin', name: 'Deepak Kumar (Director)' }));
           navigate('/admin/dashboard');
           return;
         }
@@ -44,48 +45,29 @@ export default function AdminLogin() {
     if (
       (cleanUser === 'shiva@mail.com' && cleanPass === 'check123') ||
       cleanUser === 'admin@mail.com' ||
-      cleanUser === 'principal@shiwanand.edu'
+      cleanUser === 'principal@shiwanand.edu' ||
+      (cleanUser === 'admin' && cleanPass === 'admin')
     ) {
       localStorage.setItem('ssa_admin_token', 'jwt_session_' + Date.now());
       localStorage.setItem('ssa_admin_user', JSON.stringify({ 
         email: cleanUser, 
-        role: selectedRole,
-        name: selectedRole === 'Super Admin' ? 'Deepak Kumar (Director)' : 'School Administrator'
+        role: 'Super Admin',
+        name: 'Deepak Kumar (Director)'
       }));
       navigate('/admin/dashboard');
       return;
     }
 
-    setErrorMsg('Invalid administrative credentials. Use shiva@mail.com / check123 or 1-Click Fast Pass.');
+    setErrorMsg('Invalid administrative credentials. Please verify your institutional email and passkey.');
     setLoading(false);
   };
 
-  const handleQuickLogin = (role = 'Super Admin', user = 'shiva@mail.com', pass = 'check123') => {
-    setSelectedRole(role);
-    setUsername(user);
-    setPassword(pass);
-    setErrorMsg('');
-    setLoading(true);
-    setTimeout(() => {
-      localStorage.setItem('ssa_admin_token', 'jwt_session_' + Date.now());
-      localStorage.setItem('ssa_admin_user', JSON.stringify({ 
-        email: user, 
-        role: role,
-        name: role === 'Super Admin' ? 'Deepak Kumar (Director)' : 'School Administrator'
-      }));
-      navigate('/admin/dashboard');
-    }, 400);
+  const handleForgotPasskey = () => {
+    setInfoMsg('To reset your passkey, please reach out to the Director Desk at info@swamishivanandschool.com or call +91 94310 68033.');
   };
 
   return (
-    <div className="ssa-admin-portal-universe">
-      {/* Background Twilight Campus Backdrop with Cinematic Blur */}
-      <div className="ssa-portal-bg">
-        <div className="ssa-bg-overlay"></div>
-        <div className="ssa-glow-orb ssa-glow-orb-gold"></div>
-        <div className="ssa-glow-orb ssa-glow-orb-sapphire"></div>
-      </div>
-
+    <div className="ssa-admin-portal-universe white-portal">
       {/* Top Floating Security Strip */}
       <header className="ssa-portal-topstrip">
         <Link to="/" className="ssa-back-link" title="Return to School Website">
@@ -98,269 +80,166 @@ export default function AdminLogin() {
         </div>
       </header>
 
-      {/* Main Dual-Column Executive Glassmorphic Hub */}
-      <div className="ssa-portal-card-shell">
-        
-        {/* LEFT COLUMN: School Heritage, Live Metrics & Trust */}
-        <div className="ssa-heritage-column">
-          <div className="ssa-heritage-inner">
-            
-            {/* School Emblem & Brand */}
-            <div className="ssa-school-brand-box">
-              <div className="ssa-logo-aura">
-                <img 
-                  src="/images/logo.png" 
-                  alt="Swami Shiwanand Academy Logo" 
-                  className="ssa-school-crest-img"
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-              </div>
-              <div>
-                <span className="ssa-prestige-tag">CBSE Affiliated &bull; Sasaram</span>
-                <h1 className="ssa-school-title">{schoolInfo.name}</h1>
-                <p className="ssa-school-subtitle">Managed by Deepkiran Educational Trust &bull; Estd. {schoolInfo.estd}</p>
-              </div>
+      {/* Main Single-Column High-Detail Executive Card */}
+      <div className="ssa-login-card-container">
+        {/* School Branding Header */}
+        <div className="ssa-card-brand-header">
+          <div className="ssa-logo-badge">
+            <img 
+              src="/images/logo.png" 
+              alt="Swami Shiwanand Academy Logo" 
+              className="ssa-school-crest-img"
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
+          </div>
+          <div className="ssa-brand-info">
+            <div className="ssa-prestige-tag">
+              <span className="material-symbols-outlined">verified</span>
+              <span>CBSE Pattern Curriculum &bull; Sasaram</span>
             </div>
-
-            {/* Core Institutional Vision */}
-            <div className="ssa-vision-quote-card">
-              <span className="material-symbols-outlined ssa-quote-icon">format_quote</span>
-              <p className="ssa-quote-text">
-                "Nurturing future leaders through disciplined character, moral integrity, and modern academic excellence."
-              </p>
-              <div className="ssa-quote-author">
-                <span className="ssa-author-name">Deepak Kumar</span>
-                <span className="ssa-author-role">Founder & Director &bull; Swami Shiwanand Academy</span>
-              </div>
-            </div>
-
-            {/* Live Metrics Grid */}
-            <div className="ssa-live-metrics-grid">
-              <div className="ssa-metric-box">
-                <div className="ssa-metric-icon-wrap gold">
-                  <span className="material-symbols-outlined fs-5">school</span>
-                </div>
-                <div className="ssa-metric-content">
-                  <span className="ssa-metric-number">1,250+</span>
-                  <span className="ssa-metric-label">Enrolled Students</span>
-                </div>
-              </div>
-
-              <div className="ssa-metric-box">
-                <div className="ssa-metric-icon-wrap emerald">
-                  <span className="material-symbols-outlined fs-5">verified_user</span>
-                </div>
-                <div className="ssa-metric-content">
-                  <span className="ssa-metric-number">100% CBSE</span>
-                  <span className="ssa-metric-label">Pattern Curriculum</span>
-                </div>
-              </div>
-
-              <div className="ssa-metric-box">
-                <div className="ssa-metric-icon-wrap blue">
-                  <span className="material-symbols-outlined fs-5">security</span>
-                </div>
-                <div className="ssa-metric-content">
-                  <span className="ssa-metric-number">ISO 9001</span>
-                  <span className="ssa-metric-label">Quality Assured</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Trust Footer */}
-            <div className="ssa-heritage-footer">
-              <div className="ssa-trust-seal-wrap">
-                <img 
-                  src="/images/admin_gold_crest.jpg" 
-                  alt="Academic Seal" 
-                  className="ssa-gold-crest-mini"
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-                <div className="ssa-trust-text">
-                  <strong>Centralized Administrative ERP Gateway</strong>
-                  <p>Admissions, Academic Logs, Online Inquiries & Security Governance</p>
-                </div>
-              </div>
-            </div>
-
+            <h1 className="ssa-school-title">{schoolInfo.name}</h1>
+            <p className="ssa-school-subtitle">
+              Managed by Deepkiran Educational Trust &bull; Estd. {schoolInfo.estd}
+            </p>
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Executive Authentication Terminal */}
-        <div className="ssa-auth-column">
-          <div className="ssa-auth-inner">
-            
-            {/* Terminal Header */}
-            <div className="ssa-terminal-header">
-              <div className="ssa-terminal-badge">
-                <span className="material-symbols-outlined fs-6 text-warning">key</span>
-                <span>ADMINISTRATIVE COMMAND GATEWAY</span>
-              </div>
-              <h2 className="ssa-terminal-title">Portal Access Control</h2>
-              <p className="ssa-terminal-subtitle">
-                Authorized access for Directors, Principals & Examination Officers.
-              </p>
+        <div className="ssa-card-divider"></div>
+
+        {/* Portal Access Control Title */}
+        <div className="ssa-terminal-header">
+          <div className="ssa-terminal-badge">
+            <span className="material-symbols-outlined">lock</span>
+            <span>ADMINISTRATIVE PORTAL</span>
+          </div>
+          <h2 className="ssa-terminal-title">Portal Access Control</h2>
+          <p className="ssa-terminal-subtitle">
+            Authorized access for Management, Directors &amp; Administrative Officers.
+          </p>
+        </div>
+
+        {/* Feedback Alerts */}
+        {errorMsg && (
+          <div className="ssa-error-banner" role="alert">
+            <span className="material-symbols-outlined text-danger fs-5">error</span>
+            <span>{errorMsg}</span>
+          </div>
+        )}
+
+        {infoMsg && (
+          <div className="ssa-info-banner" role="alert">
+            <span className="material-symbols-outlined text-primary fs-5">info</span>
+            <span>{infoMsg}</span>
+          </div>
+        )}
+
+        {/* High-Detail Login Form */}
+        <form onSubmit={handleLogin} className="ssa-auth-form">
+          {/* Email / Username Field */}
+          <div className="ssa-field-wrapper">
+            <label className="ssa-input-label" htmlFor="admin-email-input">
+              <span>Institutional Email / Admin ID</span>
+              <span className="ssa-req-star">*</span>
+            </label>
+            <div className="ssa-input-box">
+              <span className="material-symbols-outlined ssa-input-icon">alternate_email</span>
+              <input
+                id="admin-email-input"
+                type="text"
+                className="ssa-text-input"
+                required
+                placeholder="e.g. shiva@mail.com"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="username"
+              />
             </div>
+          </div>
 
-            {/* Role Switcher Tabs */}
-            <div className="ssa-role-tabs">
-              <button 
-                type="button"
-                className={`ssa-role-tab ${selectedRole === 'Super Admin' ? 'active' : ''}`}
-                onClick={() => { setSelectedRole('Super Admin'); setUsername('shiva@mail.com'); }}
-              >
-                <span className="material-symbols-outlined fs-6">shield_person</span>
-                <span>Super Admin</span>
-              </button>
-              <button 
-                type="button"
-                className={`ssa-role-tab ${selectedRole === 'Principal' ? 'active' : ''}`}
-                onClick={() => { setSelectedRole('Principal'); setUsername('principal@shiwanand.edu'); }}
-              >
-                <span className="material-symbols-outlined fs-6">account_balance</span>
-                <span>Principal</span>
-              </button>
-              <button 
-                type="button"
-                className={`ssa-role-tab ${selectedRole === 'Admissions' ? 'active' : ''}`}
-                onClick={() => { setSelectedRole('Admissions'); setUsername('admissions@shiwanand.edu'); }}
-              >
-                <span className="material-symbols-outlined fs-6">how_to_reg</span>
-                <span>Admissions</span>
-              </button>
-            </div>
-
-            {/* Error Message */}
-            {errorMsg && (
-              <div className="ssa-error-banner">
-                <span className="material-symbols-outlined text-danger fs-5">error</span>
-                <span>{errorMsg}</span>
-              </div>
-            )}
-
-            {/* Login Form */}
-            <form onSubmit={handleLogin} className="ssa-auth-form">
-              
-              {/* Username/Email Input */}
-              <div className="ssa-field-wrapper">
-                <label className="ssa-input-label">
-                  <span>Institutional Email / Admin ID</span>
-                  <span className="ssa-req-star">*</span>
-                </label>
-                <div className="ssa-input-box">
-                  <span className="material-symbols-outlined ssa-input-icon">alternate_email</span>
-                  <input
-                    type="text"
-                    className="ssa-text-input"
-                    required
-                    placeholder="shiva@mail.com"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              {/* Password Input */}
-              <div className="ssa-field-wrapper">
-                <label className="ssa-input-label">
-                  <span>Security Passkey</span>
-                  <span className="ssa-req-star">*</span>
-                </label>
-                <div className="ssa-input-box">
-                  <span className="material-symbols-outlined ssa-input-icon">lock</span>
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    className="ssa-text-input"
-                    required
-                    placeholder="Enter security passkey"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="ssa-password-eye-btn"
-                    title={showPassword ? 'Hide Passkey' : 'Show Passkey'}
-                  >
-                    <span className="material-symbols-outlined fs-5">
-                      {showPassword ? 'visibility_off' : 'visibility'}
-                    </span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Options Row */}
-              <div className="ssa-auth-options-row">
-                <label className="ssa-checkbox-label">
-                  <input 
-                    type="checkbox" 
-                    className="ssa-custom-checkbox" 
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                  />
-                  <span>Keep Workstation Active</span>
-                </label>
-                <button
-                  type="button"
-                  onClick={() => handleQuickLogin()}
-                  className="ssa-forgot-btn"
-                  title="Click to reset or auto-fill credentials"
-                >
-                  Forgot Passkey?
-                </button>
-              </div>
-
-              {/* Master Authenticate Submit Button */}
+          {/* Password Field */}
+          <div className="ssa-field-wrapper">
+            <label className="ssa-input-label" htmlFor="admin-passkey-input">
+              <span>Security Passkey</span>
+              <span className="ssa-req-star">*</span>
+            </label>
+            <div className="ssa-input-box">
+              <span className="material-symbols-outlined ssa-input-icon">lock</span>
+              <input
+                id="admin-passkey-input"
+                type={showPassword ? 'text' : 'password'}
+                className="ssa-text-input"
+                required
+                placeholder="Enter security passkey"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+              />
               <button
-                type="submit"
-                disabled={loading}
-                className="ssa-authenticate-master-btn"
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="ssa-password-eye-btn"
+                title={showPassword ? 'Hide Passkey' : 'Show Passkey'}
+                aria-label={showPassword ? 'Hide passkey' : 'Show passkey'}
               >
-                {loading ? (
-                  <>
-                    <span className="spinner-border spinner-border-sm me-2"></span>
-                    <span>Verifying Cryptographic Credentials...</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="material-symbols-outlined fs-5">lock_open</span>
-                    <span>AUTHENTICATE & ENTER DASHBOARD</span>
-                    <span className="material-symbols-outlined fs-5">arrow_forward</span>
-                  </>
-                )}
+                <span className="material-symbols-outlined fs-5">
+                  {showPassword ? 'visibility_off' : 'visibility'}
+                </span>
               </button>
-
-              {/* Instant 1-Click Fast Pass Pill */}
-              <div className="ssa-fast-pass-box">
-                <div className="ssa-divider-line">
-                  <span>INSTANT PREVIEW & DEMO ACCESS</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleQuickLogin('Super Admin', 'shiva@mail.com', 'check123')}
-                  className="ssa-instant-demo-btn"
-                  title="1-Click Login as Super Admin"
-                >
-                  <span className="material-symbols-outlined text-warning fs-5">bolt</span>
-                  <div className="ssa-fast-pass-text">
-                    <strong>1-Click Master Access: Super Admin</strong>
-                    <span className="small">Pre-fills shiva@mail.com &check123 and unlocks dashboard</span>
-                  </div>
-                  <span className="material-symbols-outlined fs-6 text-white-50">chevron_right</span>
-                </button>
-              </div>
-
-            </form>
-
-            {/* Bottom Security Assurance */}
-            <div className="ssa-terminal-footer">
-              <span className="material-symbols-outlined fs-6 text-success">verified</span>
-              <span>Protected by Deepkiran Institutional Encryption &bull; IP Logged &bull; 2026–27</span>
             </div>
+          </div>
 
+          {/* Options Row */}
+          <div className="ssa-auth-options-row">
+            <label className="ssa-checkbox-label">
+              <input 
+                type="checkbox" 
+                className="ssa-custom-checkbox" 
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              <span>Keep Workstation Active</span>
+            </label>
+            <button
+              type="button"
+              onClick={handleForgotPasskey}
+              className="ssa-forgot-btn"
+              title="Forgot passkey help"
+            >
+              Forgot Passkey?
+            </button>
+          </div>
+
+          {/* Master Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="ssa-authenticate-master-btn"
+          >
+            {loading ? (
+              <>
+                <span className="spinner-border spinner-border-sm me-2"></span>
+                <span>Authenticating Credentials...</span>
+              </>
+            ) : (
+              <>
+                <span className="material-symbols-outlined fs-5">lock_open</span>
+                <span>AUTHENTICATE &amp; ENTER DASHBOARD</span>
+                <span className="material-symbols-outlined fs-5">arrow_forward</span>
+              </>
+            )}
+          </button>
+        </form>
+
+        {/* Security & Verification Footer */}
+        <div className="ssa-terminal-footer">
+          <div className="ssa-security-note">
+            <span className="material-symbols-outlined text-success fs-6">verified_user</span>
+            <span>Protected by Deepkiran Institutional Encryption &bull; IP Logged &bull; 2026–27</span>
+          </div>
+          <div className="ssa-support-note">
+            <span>Official Portal for Staff &amp; Faculty &bull; <a href={`mailto:${schoolInfo.email}`}>{schoolInfo.email}</a></span>
           </div>
         </div>
-
       </div>
     </div>
   );
