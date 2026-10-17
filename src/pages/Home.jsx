@@ -195,79 +195,113 @@ export default function Home() {
               <NoticeBoard />
             </div>
 
-            {/* Right Column: Quick Admission Card */}
+            {/* Right Column: Prestige Admissions Showcase Card */}
             <div className="col-lg-4 col-md-12">
-              <div
-                className="m3-card h-100 p-0"
-                style={{
-                  background: 'var(--md-surface)',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-              >
-                <div
-                  className="p-3 d-flex align-items-center justify-content-between"
-                  style={{ background: 'var(--md-primary-container)', borderBottom: '1px solid var(--md-outline-variant)' }}
-                >
-                  <h4 className="mb-0 fw-bold fs-5 text-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span className="material-symbols-outlined">school</span> Admissions 2026–27
+              <div className="prestige-admission-card">
+                {/* Royal Navy Header */}
+                <div className="prestige-admission-header">
+                  <h4>
+                    <span className="material-symbols-outlined" style={{ color: '#fbbf24', fontSize: '22px' }}>school</span>
+                    Admissions 2026–27
                   </h4>
-                  <span className="m3-badge m3-badge-amber">Open</span>
+                  <span className="prestige-open-badge">
+                    ★ Open Now
+                  </span>
                 </div>
-                <div className="card-body p-4 d-flex flex-column justify-content-between flex-grow-1">
+
+                {/* Urgency Alert Strip */}
+                <div className="admission-urgency-banner">
+                  <span className="notice-live-dot" style={{ width: '6px', height: '6px' }}></span>
+                  <span>Limited Seats Remaining per Batch (2026–27)</span>
+                </div>
+
+                {/* Card Body */}
+                <div className="admission-card-body">
                   <div>
-                    <span
-                      className="m3-badge mb-2 px-3 py-1 fw-bold"
-                      style={{ background: '#ffdad6', color: '#ba1a1a', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
-                    >
-                      <span className="material-symbols-outlined fs-6">priority_high</span> Limited Seats Available
-                    </span>
-                    <h5 className="fw-bold text-primary mb-2">Give Your Child The Best Foundation!</h5>
-                    <p className="text-muted small mb-3">
+                    <h5 className="admission-headline">Give Your Child The Best Foundation!</h5>
+                    <p className="admission-lead-text">
                       Swami Shiwanand Academy provides a joyful, caring, and vibrant learning atmosphere designed for early childhood cognitive and social growth.
                     </p>
 
-                    <div className="p-3 mb-3 border rounded-3" style={{ background: 'var(--md-surface-container-low)' }}>
-                      <div className="d-flex align-items-center justify-content-between mb-2">
-                        <span className="fw-bold small text-dark d-flex align-items-center gap-1">
-                          <span className="material-symbols-outlined fs-6 text-success">check_circle</span> Playgroup &amp; Nursery
-                        </span>
-                        <span className="m3-badge m3-badge-tonal">
-                          2+ to 3+ yrs
-                        </span>
+                    {/* 3 Metric Pills */}
+                    <div className="admission-metrics-row">
+                      <div className="admission-metric-box">
+                        <span className="admission-metric-val">15+ Yrs</span>
+                        <span className="admission-metric-label">Legacy</span>
                       </div>
-                      <div className="d-flex align-items-center justify-content-between mb-2">
-                        <span className="fw-bold small text-dark d-flex align-items-center gap-1">
-                          <span className="material-symbols-outlined fs-6 text-success">check_circle</span> LKG &amp; UKG
-                        </span>
-                        <span className="m3-badge m3-badge-tonal">
-                          4+ to 5+ yrs
-                        </span>
+                      <div className="admission-metric-box">
+                        <span className="admission-metric-val">15:1</span>
+                        <span className="admission-metric-label">Teacher Ratio</span>
                       </div>
-                      <div className="d-flex align-items-center justify-content-between">
-                        <span className="fw-bold small text-dark d-flex align-items-center gap-1">
-                          <span className="material-symbols-outlined fs-6 text-success">check_circle</span> Primary Std I to V
-                        </span>
-                        <span className="m3-badge m3-badge-tonal">
-                          6+ to 10+ yrs
-                        </span>
+                      <div className="admission-metric-box">
+                        <span className="admission-metric-val">100%</span>
+                        <span className="admission-metric-label">Safe Campus</span>
                       </div>
+                    </div>
+
+                    {/* Grade Tiers */}
+                    <div className="admission-tiers-wrap">
+                      <div className="admission-tier-card">
+                        <div className="admission-tier-header">
+                          <span className="admission-tier-title">
+                            <span className="material-symbols-outlined" style={{ fontSize: '16px', color: '#0284c7' }}>child_care</span>
+                            Playgroup &amp; Nursery
+                          </span>
+                          <span className="admission-tier-age">2+ to 3+ yrs</span>
+                        </div>
+                        <p className="admission-tier-sub">Montessori Playway &amp; Sensory Activity Rooms</p>
+                      </div>
+
+                      <div className="admission-tier-card">
+                        <div className="admission-tier-header">
+                          <span className="admission-tier-title">
+                            <span className="material-symbols-outlined" style={{ fontSize: '16px', color: '#d97706' }}>draw</span>
+                            LKG &amp; UKG
+                          </span>
+                          <span className="admission-tier-age">4+ to 5+ yrs</span>
+                        </div>
+                        <p className="admission-tier-sub">Phonics, English Speaking, Numbers &amp; Rhymes</p>
+                      </div>
+
+                      <div className="admission-tier-card">
+                        <div className="admission-tier-header">
+                          <span className="admission-tier-title">
+                            <span className="material-symbols-outlined" style={{ fontSize: '16px', color: '#16a34a' }}>menu_book</span>
+                            Primary Std I to V
+                          </span>
+                          <span className="admission-tier-age">6+ to 10+ yrs</span>
+                        </div>
+                        <p className="admission-tier-sub">CBSE Pattern Curriculum &amp; Computer Lab</p>
+                      </div>
+                    </div>
+
+                    {/* Quick Perks Strip */}
+                    <div className="admission-perks-row">
+                      <span>✓ Zero Capitation Fee</span>
+                      <span>✓ GPS Bus Routes</span>
+                      <span>✓ CCTV Monitored</span>
                     </div>
                   </div>
 
-                  <div className="d-flex flex-column gap-2 mt-3">
-                    <Link
-                      to="/admission"
-                      className="m3-btn m3-btn-filled w-100"
-                    >
-                      <span className="material-symbols-outlined">send</span> Apply For Admission Online
+                  {/* High-Conversion Actions */}
+                  <div className="admission-actions-stack">
+                    <Link to="/admission" className="admission-apply-btn">
+                      <span>Apply For Admission Online</span>
+                      <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
                     </Link>
-                    <Link
-                      to="/admission#fee-structure"
-                      className="m3-btn m3-btn-outlined w-100"
-                    >
-                      <span className="material-symbols-outlined">payments</span> View Fee Structure (2026-27)
+
+                    <Link to="/admission#fee-structure" className="admission-fee-btn">
+                      <span className="material-symbols-outlined" style={{ fontSize: '18px', color: '#0b57d0' }}>payments</span>
+                      <span>View Fee Structure (2026-27)</span>
                     </Link>
+
+                    <div className="admission-helpline-row">
+                      <span>Admissions Help Desk:</span>
+                      <a href="tel:+919431068033" className="admission-helpline-link">
+                        <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>call</span>
+                        +91 94310 68033
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
