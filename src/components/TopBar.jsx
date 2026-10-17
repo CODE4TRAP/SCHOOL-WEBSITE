@@ -80,7 +80,7 @@ export default function TopBar() {
               <span className="topbar-beacon-ring"></span>
               <span className="topbar-beacon-dot"></span>
             </span>
-            <span>Admissions 2026–27 Open</span>
+            <span>Admissions Open</span>
             <span className="material-symbols-outlined" style={{ fontSize: '13px' }}>arrow_forward</span>
           </Link>
 
