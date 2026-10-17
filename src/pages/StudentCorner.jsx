@@ -10,18 +10,24 @@ export default function StudentCorner() {
   const periodSchedule = [
     {
       id: 'assembly',
+      periodLabel: 'Assembly',
       type: 'assembly',
-      time: '07:35 AM',
+      timeRange: '07:35 AM – 07:50 AM',
+      icon: 'record_voice_over',
+      time: 'Assembly',
       duration: '15 Mins',
       title: 'Morning Assembly & Spiritual Invocations',
       desc: 'Gayatri Mantra, Saraswati Vandana, National Student Pledge, Thought for the Day & GK digest.',
-      color: '#64748b',
-      badgeBg: 'bg-secondary-subtle',
-      badgeText: 'text-secondary'
+      color: '#f59e0b',
+      badgeBg: 'bg-warning-subtle',
+      badgeText: 'text-warning-emphasis'
     },
     {
       id: 'p1',
+      periodLabel: 'Period 1',
       type: 'academic',
+      timeRange: '07:50 AM – 08:30 AM',
+      icon: 'auto_stories',
       time: 'Period 1',
       duration: '40 Mins',
       title: 'Foundational Language & Phonics',
@@ -32,7 +38,10 @@ export default function StudentCorner() {
     },
     {
       id: 'p2',
+      periodLabel: 'Period 2',
       type: 'academic',
+      timeRange: '08:30 AM – 09:10 AM',
+      icon: 'calculate',
       time: 'Period 2',
       duration: '40 Mins',
       title: 'Mathematics & Logical Numeracy',
@@ -43,7 +52,10 @@ export default function StudentCorner() {
     },
     {
       id: 'p3',
+      periodLabel: 'Period 3',
       type: 'academic',
+      timeRange: '09:10 AM – 09:50 AM',
+      icon: 'psychology',
       time: 'Period 3',
       duration: '40 Mins',
       title: 'Environmental Studies (EVS) & Nature Corner',
@@ -54,7 +66,10 @@ export default function StudentCorner() {
     },
     {
       id: 'recess',
+      periodLabel: 'Recess Break',
       type: 'break',
+      timeRange: '09:50 AM – 10:15 AM',
+      icon: 'lunch_dining',
       time: '10:00 AM',
       duration: '25 Mins',
       title: 'Supervised Nutrition & Recess Break',
@@ -66,7 +81,10 @@ export default function StudentCorner() {
     },
     {
       id: 'p4',
+      periodLabel: 'Period 4',
       type: 'creative',
+      timeRange: '10:15 AM – 10:50 AM',
+      icon: 'palette',
       time: 'Period 4',
       duration: '35 Mins',
       title: 'Creative Art, Origami & Clay Craft',
@@ -77,7 +95,10 @@ export default function StudentCorner() {
     },
     {
       id: 'p5',
+      periodLabel: 'Period 5',
       type: 'academic',
+      timeRange: '10:50 AM – 11:25 AM',
+      icon: 'computer',
       time: 'Period 5',
       duration: '35 Mins',
       title: "Kid's Digital Computer Lab & Multimedia",
@@ -89,7 +110,10 @@ export default function StudentCorner() {
     },
     {
       id: 'p6',
+      periodLabel: 'Period 6',
       type: 'activity',
+      timeRange: '11:25 AM – 12:00 PM',
+      icon: 'sports_soccer',
       time: 'Period 6',
       duration: '35 Mins',
       title: 'Physical Training (PT), Sports & Yoga',
@@ -101,7 +125,10 @@ export default function StudentCorner() {
     },
     {
       id: 'p7',
+      periodLabel: 'Period 7',
       type: 'wrapup',
+      timeRange: '12:00 PM – 12:25 PM',
+      icon: 'checklist_rtl',
       time: 'Period 7',
       duration: '25 Mins',
       title: 'School Diary Notation, Wrap-up & Bus Queue',
@@ -115,7 +142,7 @@ export default function StudentCorner() {
   const filteredPeriods = periodSchedule.filter(p => {
     if (periodFilter === 'all') return true;
     if (periodFilter === 'academic') return p.type === 'academic';
-    if (periodFilter === 'activity') return p.type === 'activity' || p.type === 'creative' || p.type === 'break';
+    if (periodFilter === 'activity') return p.type === 'activity' || p.type === 'creative' || p.type === 'break' || p.type === 'assembly' || p.type === 'wrapup';
     return true;
   });
 
@@ -302,22 +329,24 @@ export default function StudentCorner() {
               </div>
 
               {/* Day Period Distribution Timeline Cards */}
-              <div className="card border shadow-sm rounded-4 overflow-hidden mb-4">
-                <div className="card-header bg-white py-3 px-4 d-flex align-items-center justify-content-between flex-wrap gap-2 border-bottom">
-                  <div>
-                    <h6 className="mb-0 fw-bold text-dark d-flex align-items-center gap-2">
-                      <span className="material-symbols-outlined text-primary">view_timeline</span>
-                      Academic Period Schedule &amp; Daily Flow
-                    </h6>
-                    <span className="text-muted small">Balanced cognitive, linguistic, creative &amp; physical periods</span>
+              <div className="digital-timetable-card mb-4">
+                <div className="timetable-header">
+                  <div className="d-flex align-items-center gap-3">
+                    <div className="timetable-icon-badge">
+                      <span className="material-symbols-outlined fs-5">view_timeline</span>
+                    </div>
+                    <div>
+                      <div className="timetable-title">Academic Period Schedule &amp; Daily Flow</div>
+                      <span className="timetable-sub">Balanced cognitive, linguistic, creative &amp; physical periods</span>
+                    </div>
                   </div>
                   {/* Filter Pills */}
-                  <div className="d-flex align-items-center gap-1.5">
+                  <div className="d-flex align-items-center gap-2">
                     <button
                       className={`period-filter-pill ${periodFilter === 'all' ? 'active' : ''}`}
                       onClick={() => setPeriodFilter('all')}
                     >
-                      All (7 Periods)
+                      All (7 Periods + Break)
                     </button>
                     <button
                       className={`period-filter-pill ${periodFilter === 'academic' ? 'active' : ''}`}
@@ -334,39 +363,39 @@ export default function StudentCorner() {
                   </div>
                 </div>
 
-                <div className="p-3 p-md-4 bg-light">
-                  <div className="d-flex flex-column gap-3">
+                <div className="timetable-body">
+                  <div className="d-flex flex-column gap-2.5">
                     {filteredPeriods.map(item => (
                       <div
                         key={item.id}
-                        className={`p-3 bg-white rounded-3 border d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 shadow-xs ${item.isRecess ? 'border-warning' : ''}`}
-                        style={{
-                          borderLeft: `5px solid ${item.color}`,
-                          background: item.isRecess ? 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)' : '#ffffff'
-                        }}
+                        className={`period-row-card ${item.isRecess ? 'is-recess' : ''}`}
+                        style={{ borderLeft: `5px solid ${item.color}` }}
                       >
-                        <div className="d-flex align-items-center gap-3">
-                          <span
-                            className={`badge px-3 py-2 rounded-pill fw-bold ${item.badgeBg} ${item.badgeText}`}
-                            style={{ minWidth: '85px', textAlign: 'center', ...(item.badgeCustom || {}) }}
-                          >
-                            {item.time}
+                        <div className="period-time-block">
+                          <span className="period-label-tag d-flex align-items-center gap-1">
+                            <span className="material-symbols-outlined fs-6">{item.icon}</span>
+                            {item.periodLabel}
                           </span>
-                          <div>
-                            <div className="d-flex align-items-center gap-2">
-                              <h6 className="mb-0 fw-bold text-dark">{item.title}</h6>
-                              {item.isRecess && (
-                                <span className="badge bg-warning text-dark small" style={{ fontSize: '10px' }}>
-                                  RECESS
-                                </span>
-                              )}
-                            </div>
-                            <span className="text-muted small">{item.desc}</span>
-                          </div>
+                          <span className="period-clock-time">{item.timeRange}</span>
                         </div>
-                        <span className="badge bg-light text-dark border px-3 py-1 rounded-pill small fw-semibold">
+
+                        <div className="period-info-block">
+                          <div className="d-flex align-items-center gap-2 flex-wrap mb-1">
+                            <h6 className="mb-0 period-subject-title">{item.title}</h6>
+                            {item.isRecess && (
+                              <span className="recess-pill">
+                                <span className="material-symbols-outlined fs-6">restaurant</span>
+                                NUTRITION RECESS
+                              </span>
+                            )}
+                          </div>
+                          <p className="mb-0 period-subject-desc">{item.desc}</p>
+                        </div>
+
+                        <div className="period-duration-badge">
+                          <span className="material-symbols-outlined fs-6">timer</span>
                           {item.duration}
-                        </span>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -419,64 +448,101 @@ export default function StudentCorner() {
 
               {/* Uniform Detail Cards */}
               {uniformTab === 'regular' && (
-                <div className="card border-0 shadow-sm rounded-4 overflow-hidden mb-4" style={{ background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', border: '1px solid #bae6fd' }}>
-                  <div className="p-4">
-                    <div className="d-flex align-items-center justify-content-between mb-3">
-                      <span className="badge bg-primary px-3 py-1.5 rounded-pill fw-bold">MONDAY, TUESDAY, THURSDAY &amp; FRIDAY</span>
-                      <span className="small text-primary fw-bold">Mandatory Formal Turnout</span>
+                <div className="uniform-showcase-box mb-4">
+                  <div className="uniform-showcase-header">
+                    <div className="d-flex align-items-center gap-2">
+                      <span className="material-symbols-outlined text-warning fs-5">dry_cleaning</span>
+                      <div>
+                        <strong className="text-white d-block" style={{ fontSize: '0.98rem' }}>Regular Weekday Academic Attire</strong>
+                        <span className="text-white-50 small">Monday, Tuesday, Thursday &amp; Friday &bull; Standard Formal Turnout</span>
+                      </div>
                     </div>
+                    <span className="uniform-showcase-badge">Mandatory Formal Uniform</span>
+                  </div>
+
+                  <div className="uniform-showcase-body">
                     <div className="row g-4">
-                      <div className="col-md-6 col-12">
-                        <div className="p-3 bg-white rounded-3 shadow-xs border h-100">
-                          <div className="d-flex align-items-center gap-2 mb-2">
-                            <span className="material-symbols-outlined text-primary fs-5">boy</span>
-                            <h6 className="mb-0 fw-bold text-dark">Boys (Playgroup to Std V)</h6>
+                      {/* Boys Turnout */}
+                      <div className="col-lg-6 col-12">
+                        <div className="uniform-gender-card">
+                          <div className="uniform-gender-header">
+                            <div className="gender-avatar-halo boy">
+                              <span className="material-symbols-outlined fs-4">boy</span>
+                            </div>
+                            <div>
+                              <h6 className="mb-0 fw-bold text-dark">Boys Turnout</h6>
+                              <span className="text-muted small">Playgroup to Std V</span>
+                            </div>
                           </div>
-                          <ul className="list-unstyled small text-muted mb-0 d-flex flex-column gap-2" style={{ lineHeight: '1.45' }}>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Shirt:</strong> Sky blue half-sleeve shirt with embroidered school crest on left pocket.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Shorts/Trousers:</strong> Royal blue customized shorts (PG to Std II) / Trousers (Std III to V).</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Belt &amp; Tie:</strong> Navy woven belt with school buckle &amp; official patterned school necktie.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Footwear:</strong> Black leather oxford shoes (polished daily) with royal blue socks with white stripes.</span>
-                            </li>
-                          </ul>
+
+                          <div className="uniform-item-list">
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-shirt">SHIRT</span>
+                              <div className="small text-dark">
+                                <strong>Sky Blue Half-Sleeve:</strong> Tailored cotton shirt with fine embroidery of official school crest on left breast pocket.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-bottom">BOTTOMS</span>
+                              <div className="small text-dark">
+                                <strong>Royal Blue Shorts / Trousers:</strong> Customized shorts for PG to Std II; tailored formal trousers for Std III to V.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-tie">ACCESSORIES</span>
+                              <div className="small text-dark">
+                                <strong>Belt &amp; Necktie:</strong> Navy woven belt with embossed school brass buckle &amp; official striped patterned necktie.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-shoes">FOOTWEAR</span>
+                              <div className="small text-dark">
+                                <strong>Oxford Shoes &amp; Socks:</strong> Mirror-polished black leather oxford shoes with royal blue socks and double white bands.
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
-                      <div className="col-md-6 col-12">
-                        <div className="p-3 bg-white rounded-3 shadow-xs border h-100">
-                          <div className="d-flex align-items-center gap-2 mb-2">
-                            <span className="material-symbols-outlined text-danger fs-5">girl</span>
-                            <h6 className="mb-0 fw-bold text-dark">Girls (Playgroup to Std V)</h6>
+                      {/* Girls Turnout */}
+                      <div className="col-lg-6 col-12">
+                        <div className="uniform-gender-card">
+                          <div className="uniform-gender-header">
+                            <div className="gender-avatar-halo girl">
+                              <span className="material-symbols-outlined fs-4">girl</span>
+                            </div>
+                            <div>
+                              <h6 className="mb-0 fw-bold text-dark">Girls Turnout</h6>
+                              <span className="text-muted small">Playgroup to Std V</span>
+                            </div>
                           </div>
-                          <ul className="list-unstyled small text-muted mb-0 d-flex flex-column gap-2" style={{ lineHeight: '1.45' }}>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Shirt:</strong> Sky blue shirt with peter-pan collar &amp; school monogram.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Skirt/Tunic:</strong> Royal blue knife-pleated skirt/pinafore falling neatly just at knee level.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Hair Accessories:</strong> Hair neatly tied in two plaits/ponytails with royal blue ribbons or band.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Footwear:</strong> Black buckle shoes with royal blue socks. No heels or decorative slippers.</span>
-                            </li>
-                          </ul>
+
+                          <div className="uniform-item-list">
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-shirt">SHIRT</span>
+                              <div className="small text-dark">
+                                <strong>Sky Blue Peter-Pan Blouse:</strong> Crisp collared shirt with embroidered school monogram and neat button placket.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-bottom">SKIRT/TUNIC</span>
+                              <div className="small text-dark">
+                                <strong>Knife-Pleated Pinafore:</strong> Royal blue knife-pleated skirt/pinafore falling neatly at knee length with modesty lining.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-hair">HAIR</span>
+                              <div className="small text-dark">
+                                <strong>Ribbons &amp; Headband:</strong> Hair neatly braided into two plaits with official royal blue satin ribbons or simple blue band.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-shoes">FOOTWEAR</span>
+                              <div className="small text-dark">
+                                <strong>Buckle Shoes &amp; Socks:</strong> Classic black leather single-buckle school shoes with royal blue knee socks. No heels.
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -485,51 +551,120 @@ export default function StudentCorner() {
               )}
 
               {uniformTab === 'sports' && (
-                <div className="card border-0 shadow-sm rounded-4 overflow-hidden mb-4" style={{ background: 'linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)', border: '1px solid #a7f3d0' }}>
-                  <div className="p-4">
-                    <div className="d-flex align-items-center justify-content-between mb-3">
-                      <span className="badge bg-success px-3 py-1.5 rounded-pill fw-bold">WEDNESDAY &amp; SATURDAY</span>
-                      <span className="small text-success fw-bold">House Sports &amp; Yoga Attire</span>
+                <div className="uniform-showcase-box mb-4">
+                  <div className="uniform-showcase-header">
+                    <div className="d-flex align-items-center gap-2">
+                      <span className="material-symbols-outlined text-warning fs-5">sports_handball</span>
+                      <div>
+                        <strong className="text-white d-block" style={{ fontSize: '0.98rem' }}>House Sports &amp; Yoga Attire</strong>
+                        <span className="text-white-50 small">Wednesday &amp; Saturday &bull; Athletic PT, Drill &amp; House Competitions</span>
+                      </div>
                     </div>
+                    <span className="uniform-showcase-badge">House Identity Day</span>
+                  </div>
+
+                  <div className="uniform-showcase-body">
+                    {/* 4 House Swatches */}
+                    <div className="row g-3 mb-4">
+                      <div className="col-sm-6 col-md-3">
+                        <div className="p-3 rounded-3 bg-white border border-danger border-opacity-25 shadow-xs text-center h-100">
+                          <div className="d-inline-flex align-items-center justify-content-center p-2 rounded-circle bg-danger bg-opacity-10 text-danger mb-2">
+                            <span className="material-symbols-outlined fs-5">local_fire_department</span>
+                          </div>
+                          <h6 className="fw-bold text-danger mb-1">Agni House</h6>
+                          <span className="badge bg-danger text-white mb-2" style={{ fontSize: '10px' }}>Red Polo T-Shirt</span>
+                          <p className="text-muted small mb-0" style={{ fontSize: '0.78rem' }}>Motto: Courage &amp; Valour</p>
+                        </div>
+                      </div>
+
+                      <div className="col-sm-6 col-md-3">
+                        <div className="p-3 rounded-3 bg-white border border-primary border-opacity-25 shadow-xs text-center h-100">
+                          <div className="d-inline-flex align-items-center justify-content-center p-2 rounded-circle bg-primary bg-opacity-10 text-primary mb-2">
+                            <span className="material-symbols-outlined fs-5">air</span>
+                          </div>
+                          <h6 className="fw-bold text-primary mb-1">Vayu House</h6>
+                          <span className="badge bg-primary text-white mb-2" style={{ fontSize: '10px' }}>Blue Polo T-Shirt</span>
+                          <p className="text-muted small mb-0" style={{ fontSize: '0.78rem' }}>Motto: Agility &amp; Vision</p>
+                        </div>
+                      </div>
+
+                      <div className="col-sm-6 col-md-3">
+                        <div className="p-3 rounded-3 bg-white border border-success border-opacity-25 shadow-xs text-center h-100">
+                          <div className="d-inline-flex align-items-center justify-content-center p-2 rounded-circle bg-success bg-opacity-10 text-success mb-2">
+                            <span className="material-symbols-outlined fs-5">eco</span>
+                          </div>
+                          <h6 className="fw-bold text-success mb-1">Prithvi House</h6>
+                          <span className="badge bg-success text-white mb-2" style={{ fontSize: '10px' }}>Green Polo T-Shirt</span>
+                          <p className="text-muted small mb-0" style={{ fontSize: '0.78rem' }}>Motto: Harmony &amp; Growth</p>
+                        </div>
+                      </div>
+
+                      <div className="col-sm-6 col-md-3">
+                        <div className="p-3 rounded-3 bg-white border border-warning border-opacity-50 shadow-xs text-center h-100">
+                          <div className="d-inline-flex align-items-center justify-content-center p-2 rounded-circle bg-warning bg-opacity-15 text-warning mb-2">
+                            <span className="material-symbols-outlined fs-5">wb_sunny</span>
+                          </div>
+                          <h6 className="fw-bold text-warning-emphasis mb-1">Surya House</h6>
+                          <span className="badge bg-warning text-dark mb-2" style={{ fontSize: '10px' }}>Gold Polo T-Shirt</span>
+                          <p className="text-muted small mb-0" style={{ fontSize: '0.78rem' }}>Motto: Wisdom &amp; Brilliance</p>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="row g-4">
                       <div className="col-md-6 col-12">
-                        <div className="p-3 bg-white rounded-3 shadow-xs border h-100">
-                          <div className="d-flex align-items-center gap-2 mb-2">
-                            <span className="material-symbols-outlined text-success fs-5">fitness_center</span>
-                            <h6 className="mb-0 fw-bold text-dark">House Color Sports T-Shirt</h6>
+                        <div className="uniform-gender-card">
+                          <div className="uniform-gender-header">
+                            <div className="gender-avatar-halo boy">
+                              <span className="material-symbols-outlined fs-4">fitness_center</span>
+                            </div>
+                            <div>
+                              <h6 className="mb-0 fw-bold text-dark">Sports Tops &amp; Collared Polos</h6>
+                              <span className="text-muted small">Breathable High-Performance Cotton</span>
+                            </div>
                           </div>
-                          <p className="small text-muted mb-2" style={{ lineHeight: '1.45' }}>
-                            Breathable cotton collared polo sports T-shirt featuring the student's allocated House crest on the left chest:
-                          </p>
-                          <div className="d-flex flex-wrap gap-1.5 mt-2">
-                            <span className="badge bg-danger text-white">Agni (Red)</span>
-                            <span className="badge bg-primary text-white">Vayu (Blue)</span>
-                            <span className="badge bg-success text-white">Prithvi (Green)</span>
-                            <span className="badge bg-warning text-dark">Surya (Yellow)</span>
+                          <div className="uniform-item-list">
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-shirt">HOUSE CREST</span>
+                              <div className="small text-dark">
+                                <strong>Embroidered Emblem:</strong> Each student wears their allocated House color polo with the golden school emblem embroidered on the chest.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-shirt">FABRIC SPEC</span>
+                              <div className="small text-dark">
+                                <strong>Sweat-Wicking Cotton:</strong> 100% combed breathable cotton engineered for heat dissipation during athletics &amp; yoga.
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
 
                       <div className="col-md-6 col-12">
-                        <div className="p-3 bg-white rounded-3 shadow-xs border h-100">
-                          <div className="d-flex align-items-center gap-2 mb-2">
-                            <span className="material-symbols-outlined text-success fs-5">roller_skating</span>
-                            <h6 className="mb-0 fw-bold text-dark">Track Pants &amp; White Canvas Shoes</h6>
+                        <div className="uniform-gender-card">
+                          <div className="uniform-gender-header">
+                            <div className="gender-avatar-halo girl">
+                              <span className="material-symbols-outlined fs-4">directions_run</span>
+                            </div>
+                            <div>
+                              <h6 className="mb-0 fw-bold text-dark">Track Pants &amp; White Canvas</h6>
+                              <span className="text-muted small">Flexibility, Safety &amp; Agility</span>
+                            </div>
                           </div>
-                          <ul className="list-unstyled small text-muted mb-0 d-flex flex-column gap-2" style={{ lineHeight: '1.45' }}>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Bottom:</strong> All-white comfortable sports track pant with elastic drawstring.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Shoes:</strong> Pristine clean white canvas PT shoes / sneakers.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Socks:</strong> Plain white ankle-high sports socks.</span>
-                            </li>
-                          </ul>
+                          <div className="uniform-item-list">
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-bottom">BOTTOMS</span>
+                              <div className="small text-dark">
+                                <strong>White Sports Track Pants:</strong> Pristine all-white relaxed-fit track pants with elastic waist and reinforced knee seams.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-shoes">SHOES &amp; SOCKS</span>
+                              <div className="small text-dark">
+                                <strong>White Canvas PT Shoes:</strong> Spotlessly clean white rubber-sole PT shoes with cushioned white athletic ankle socks.
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -538,48 +673,73 @@ export default function StudentCorner() {
               )}
 
               {uniformTab === 'winter' && (
-                <div className="card border-0 shadow-sm rounded-4 overflow-hidden mb-4" style={{ background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)', border: '1px solid #fecaca' }}>
-                  <div className="p-4">
-                    <div className="d-flex align-items-center justify-content-between mb-3">
-                      <span className="badge bg-danger px-3 py-1.5 rounded-pill fw-bold">WINTER SEASON (NOV &ndash; FEB)</span>
-                      <span className="small text-danger fw-bold">Cold Wave Thermal Shield</span>
+                <div className="uniform-showcase-box mb-4">
+                  <div className="uniform-showcase-header">
+                    <div className="d-flex align-items-center gap-2">
+                      <span className="material-symbols-outlined text-warning fs-5">ac_unit</span>
+                      <div>
+                        <strong className="text-white d-block" style={{ fontSize: '0.98rem' }}>Winter Season Thermal Uniform</strong>
+                        <span className="text-white-50 small">November through February &bull; Complete Thermal Protection &amp; Elegance</span>
+                      </div>
                     </div>
+                    <span className="uniform-showcase-badge">Winter Shield Attire</span>
+                  </div>
+
+                  <div className="uniform-showcase-body">
                     <div className="row g-4">
                       <div className="col-md-6 col-12">
-                        <div className="p-3 bg-white rounded-3 shadow-xs border h-100">
-                          <div className="d-flex align-items-center gap-2 mb-2">
-                            <span className="material-symbols-outlined text-danger fs-5">ac_unit</span>
-                            <h6 className="mb-0 fw-bold text-dark">Pullover &amp; School Blazer</h6>
+                        <div className="uniform-gender-card">
+                          <div className="uniform-gender-header">
+                            <div className="gender-avatar-halo boy">
+                              <span className="material-symbols-outlined fs-4">dry_cleaning</span>
+                            </div>
+                            <div>
+                              <h6 className="mb-0 fw-bold text-dark">Woolen Pullover &amp; School Blazer</h6>
+                              <span className="text-muted small">Standard Cold Weather Layers</span>
+                            </div>
                           </div>
-                          <ul className="list-unstyled small text-muted mb-0 d-flex flex-column gap-2" style={{ lineHeight: '1.45' }}>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Pullover:</strong> Navy blue V-neck woolen sweater with yellow trim along collar &amp; cuffs.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Blazer:</strong> Navy blue single-breasted school blazer with gold-embroidered school emblem.</span>
-                            </li>
-                          </ul>
+                          <div className="uniform-item-list">
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-warm">SWEATER</span>
+                              <div className="small text-dark">
+                                <strong>V-Neck Woolen Pullover:</strong> Navy blue pure wool V-neck sweater with woven school crest and contrasting gold stripe along neck and cuffs.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-warm">BLAZER</span>
+                              <div className="small text-dark">
+                                <strong>Formal School Blazer:</strong> Navy blue single-breasted twill blazer with brass monogrammed school buttons and golden bullion crest.
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
                       <div className="col-md-6 col-12">
-                        <div className="p-3 bg-white rounded-3 shadow-xs border h-100">
-                          <div className="d-flex align-items-center gap-2 mb-2">
-                            <span className="material-symbols-outlined text-danger fs-5">accessibility_new</span>
-                            <h6 className="mb-0 fw-bold text-dark">Thermal Tights &amp; Head Cap</h6>
+                        <div className="uniform-gender-card">
+                          <div className="uniform-gender-header">
+                            <div className="gender-avatar-halo girl">
+                              <span className="material-symbols-outlined fs-4">accessibility_new</span>
+                            </div>
+                            <div>
+                              <h6 className="mb-0 fw-bold text-dark">Thermal Leggings &amp; Headgear</h6>
+                              <span className="text-muted small">Fog &amp; Cold Wave Defense</span>
+                            </div>
                           </div>
-                          <ul className="list-unstyled small text-muted mb-0 d-flex flex-column gap-2" style={{ lineHeight: '1.45' }}>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Girls:</strong> Warm navy blue wool stockings or thermal leggings under pleated skirt.</span>
-                            </li>
-                            <li className="d-flex align-items-start gap-2">
-                              <span className="material-symbols-outlined text-success fs-6 mt-0.5">check</span>
-                              <span><strong>Cap/Scarf:</strong> Navy blue wool beanie cap or monkey cap during extreme foggy cold wave days.</span>
-                            </li>
-                          </ul>
+                          <div className="uniform-item-list">
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-bottom">LEGGINGS</span>
+                              <div className="small text-dark">
+                                <strong>Navy Thermal Stockings:</strong> For girls, opaque thermal wool navy stockings or warm fleece-lined tights worn underneath skirt.
+                              </div>
+                            </div>
+                            <div className="uniform-item-tile">
+                              <span className="uniform-tag-pill tag-hair">CAP / SCARF</span>
+                              <div className="small text-dark">
+                                <strong>Woolen Beanie / Cap:</strong> Solid navy blue warm woolen beanie or monkey cap permitted during chilly morning transit.
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -588,52 +748,61 @@ export default function StudentCorner() {
               )}
 
               {/* Grooming & Turnout Guidelines */}
-              <div className="card border shadow-sm rounded-4 p-4 bg-light">
-                <h6 className="fw-bold text-dark d-flex align-items-center gap-2 mb-3">
-                  <span className="material-symbols-outlined text-primary">verified</span>
-                  Personal Grooming, Identity &amp; Hygiene Standards
-                </h6>
+              <div className="grooming-container-card mb-4">
+                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                  <h6 className="fw-bold text-dark d-flex align-items-center gap-2 mb-0">
+                    <span className="material-symbols-outlined text-primary">verified_user</span>
+                    Personal Grooming, Identity &amp; Hygiene Standards
+                  </h6>
+                  <span className="badge bg-primary-subtle text-primary border border-primary border-opacity-25 px-2.5 py-1 rounded-pill small fw-semibold">
+                    Monitored Weekly in Monday Assembly
+                  </span>
+                </div>
+
                 <div className="row g-3">
                   <div className="col-sm-6 col-12">
-                    <div className="p-3 rounded-3 bg-white border h-100 shadow-xs">
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-primary fs-5">face</span>
-                        <h6 className="mb-0 fw-bold small text-dark">Hair &amp; Headgear</h6>
+                    <div className="grooming-item-card">
+                      <div className="grooming-icon-halo" style={{ background: 'rgba(11, 87, 208, 0.1)', color: '#0b57d0' }}>
+                        <span className="material-symbols-outlined fs-5">face_6</span>
                       </div>
+                      <h6 className="fw-bold text-dark mb-1">Hair &amp; Headgear</h6>
                       <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
                         <strong>Boys:</strong> Neat, disciplined short trim. No spikes, funky dyes or gel.<br />
                         <strong>Girls:</strong> Hair tied neatly with royal blue ribbons or simple hairband.
                       </p>
                     </div>
                   </div>
+
                   <div className="col-sm-6 col-12">
-                    <div className="p-3 rounded-3 bg-white border h-100 shadow-xs">
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-success fs-5">hygiene</span>
-                        <h6 className="mb-0 fw-bold small text-dark">Nails &amp; Hand Hygiene</h6>
+                    <div className="grooming-item-card">
+                      <div className="grooming-icon-halo" style={{ background: 'rgba(5, 150, 105, 0.1)', color: '#059669' }}>
+                        <span className="material-symbols-outlined fs-5">clean_hands</span>
                       </div>
+                      <h6 className="fw-bold text-dark mb-1">Nails &amp; Hand Hygiene</h6>
                       <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
                         Fingernails clipped short and clean. Strictly no nail paint or mehendi during school days. Inspected weekly during Monday assembly.
                       </p>
                     </div>
                   </div>
+
                   <div className="col-sm-6 col-12">
-                    <div className="p-3 rounded-3 bg-white border h-100 shadow-xs">
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-info fs-5">steps</span>
-                        <h6 className="mb-0 fw-bold small text-dark">Footwear &amp; Turnout</h6>
+                    <div className="grooming-item-card">
+                      <div className="grooming-icon-halo" style={{ background: 'rgba(217, 119, 6, 0.1)', color: '#d97706' }}>
+                        <span className="material-symbols-outlined fs-5">directions_walk</span>
                       </div>
+                      <h6 className="fw-bold text-dark mb-1">Footwear &amp; Turnout</h6>
                       <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
                         Mirror-polished black leather shoes on regular days. Pristine white canvas shoes on sports days. Navy/white socks always pulled up.
                       </p>
                     </div>
                   </div>
+
                   <div className="col-sm-6 col-12">
-                    <div className="p-3 rounded-3 bg-white border h-100 shadow-xs">
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <span className="material-symbols-outlined text-danger fs-5">badge</span>
-                        <h6 className="mb-0 fw-bold small text-dark">Identity &amp; Monogram</h6>
+                    <div className="grooming-item-card">
+                      <div className="grooming-icon-halo" style={{ background: 'rgba(225, 29, 72, 0.1)', color: '#e11d48' }}>
+                        <span className="material-symbols-outlined fs-5">badge</span>
                       </div>
+                      <h6 className="fw-bold text-dark mb-1">Identity &amp; Monogram</h6>
                       <p className="small text-muted mb-0" style={{ lineHeight: '1.5' }}>
                         Official RFID Student ID card with royal blue lanyard must be worn around neck every day. School crest cleanly stitched on left chest pocket.
                       </p>
@@ -662,78 +831,96 @@ export default function StudentCorner() {
               </div>
 
               {/* 5-Step Morning Assembly Journey */}
-              <div className="card border-0 shadow-sm rounded-4 p-4 mb-4" style={{ background: '#f8fafc', borderLeft: '4px solid #f59e0b' }}>
-                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                  <h5 className="fw-bold text-dark d-flex align-items-center gap-2 mb-0">
-                    <span className="material-symbols-outlined text-warning">record_voice_over</span>
-                    The 5-Step Daily Assembly Sequence (15 Mins)
-                  </h5>
-                  <span className="badge bg-warning-subtle text-dark border px-2.5 py-1 rounded-pill small fw-semibold">
-                    07:35 AM &ndash; 07:50 AM
-                  </span>
+              <div className="assembly-roadmap-box mb-4">
+                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-3 border-bottom">
+                  <div className="d-flex align-items-center gap-2">
+                    <div className="assembly-step-badge" style={{ width: '38px', height: '38px' }}>
+                      <span className="material-symbols-outlined fs-5">record_voice_over</span>
+                    </div>
+                    <div>
+                      <h5 className="fw-bold text-dark mb-0">The 5-Step Daily Assembly Sequence (15 Mins)</h5>
+                      <span className="text-muted small">Sacred morning routine awakening discipline, patriotism &amp; intellect</span>
+                    </div>
+                  </div>
+                  <span className="assembly-step-time">07:35 AM &ndash; 07:50 AM</span>
                 </div>
 
                 <div className="d-flex flex-column gap-2.5">
-                  <div className="assembly-step-card d-flex align-items-center gap-3">
-                    <span className="assembly-step-num">1</span>
+                  <div className="assembly-step-row">
+                    <span className="assembly-step-badge">1</span>
                     <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between">
-                        <strong className="text-dark small">Universal Invocations &amp; Meditation</strong>
-                        <span className="badge bg-light text-muted border small">07:35 AM</span>
+                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
+                          <span className="material-symbols-outlined fs-6 text-warning">self_improvement</span>
+                          Universal Invocations &amp; Meditation
+                        </strong>
+                        <span className="assembly-step-time">07:35 AM</span>
                       </div>
-                      <span className="text-muted small">
+                      <span className="text-muted small d-block mt-0.5">
                         Gayatri Mantra and Saraswati Vandana chanted collectively to awaken clarity and calm young minds.
                       </span>
                     </div>
                   </div>
 
-                  <div className="assembly-step-card d-flex align-items-center gap-3">
-                    <span className="assembly-step-num">2</span>
+                  <div className="assembly-step-row">
+                    <span className="assembly-step-badge">2</span>
                     <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between">
-                        <strong className="text-dark small">National Student Pledge</strong>
-                        <span className="badge bg-light text-muted border small">07:40 AM</span>
+                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
+                          <span className="material-symbols-outlined fs-6 text-primary">front_hand</span>
+                          National Student Pledge
+                        </strong>
+                        <span className="assembly-step-time">07:40 AM</span>
                       </div>
-                      <span className="text-muted small">
+                      <span className="text-muted small d-block mt-0.5">
                         "India is my country and all Indians are my brothers and sisters..." recited with right hand over heart.
                       </span>
                     </div>
                   </div>
 
-                  <div className="assembly-step-card d-flex align-items-center gap-3">
-                    <span className="assembly-step-num">3</span>
+                  <div className="assembly-step-row">
+                    <span className="assembly-step-badge">3</span>
                     <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between">
-                        <strong className="text-dark small">Bilingual Thought for the Day</strong>
-                        <span className="badge bg-light text-muted border small">07:42 AM</span>
+                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
+                          <span className="material-symbols-outlined fs-6 text-success">psychology</span>
+                          Bilingual Thought for the Day
+                        </strong>
+                        <span className="assembly-step-time">07:42 AM</span>
                       </div>
-                      <span className="text-muted small">
+                      <span className="text-muted small d-block mt-0.5">
                         Delivered alternately in Hindi &amp; English by student representatives to hone public oratory skills.
                       </span>
                     </div>
                   </div>
 
-                  <div className="assembly-step-card d-flex align-items-center gap-3">
-                    <span className="assembly-step-num">4</span>
+                  <div className="assembly-step-row">
+                    <span className="assembly-step-badge">4</span>
                     <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between">
-                        <strong className="text-dark small">Daily GK &amp; Current Affairs Brief</strong>
-                        <span className="badge bg-light text-muted border small">07:44 AM</span>
+                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
+                          <span className="material-symbols-outlined fs-6 text-info">lightbulb</span>
+                          Daily GK &amp; Current Affairs Brief
+                        </strong>
+                        <span className="assembly-step-time">07:44 AM</span>
                       </div>
-                      <span className="text-muted small">
+                      <span className="text-muted small d-block mt-0.5">
                         3 important educational news headlines and science facts curated for young curious learners.
                       </span>
                     </div>
                   </div>
 
-                  <div className="assembly-step-card d-flex align-items-center gap-3">
-                    <span className="assembly-step-num">5</span>
+                  <div className="assembly-step-row">
+                    <span className="assembly-step-badge">5</span>
                     <div className="flex-grow-1">
-                      <div className="d-flex align-items-center justify-content-between">
-                        <strong className="text-dark small">National Anthem ("Jana Gana Mana")</strong>
-                        <span className="badge bg-light text-muted border small">07:48 AM</span>
+                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <strong className="text-dark d-flex align-items-center gap-1.5" style={{ fontSize: '0.88rem' }}>
+                          <span className="material-symbols-outlined fs-6 text-danger">flag</span>
+                          National Anthem ("Jana Gana Mana")
+                        </strong>
+                        <span className="assembly-step-time">07:48 AM</span>
                       </div>
-                      <span className="text-muted small">
+                      <span className="text-muted small d-block mt-0.5">
                         Rendered with solemn attention, discipline, and patriotic pride before students march to classrooms.
                       </span>
                     </div>

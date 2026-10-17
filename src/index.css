@@ -7635,24 +7635,174 @@ img {
   background: #ffffff;
   color: #475569;
   font-size: 0.82rem;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
 }
 
 .attire-tab-btn:hover {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: #f8fafc;
+  color: #0b57d0;
+  border-color: #93c5fd;
 }
 
 .attire-tab-btn.active {
-  background: #0284c7;
+  background: #0b57d0;
   color: #ffffff;
-  border-color: #0284c7;
-  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+  border-color: #0b57d0;
+  box-shadow: 0 4px 14px rgba(11, 87, 208, 0.32);
+}
+
+/* Uniform Wardrobe Master Cards */
+.uniform-showcase-box {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.uniform-showcase-header {
+  background: linear-gradient(135deg, #072a4d 0%, #0d3b66 100%);
+  color: #ffffff;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #f59e0b;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.uniform-showcase-badge {
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fbbf24;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.uniform-showcase-body {
+  padding: 22px;
+  background: #f8fafc;
+}
+
+.uniform-gender-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 20px;
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.uniform-gender-card:hover {
+  transform: translateY(-2px);
+  border-color: #0b57d0;
+  box-shadow: 0 8px 24px rgba(11, 87, 208, 0.08);
+}
+
+.uniform-gender-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.gender-avatar-halo {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gender-avatar-halo.boy {
+  background: rgba(11, 87, 208, 0.12);
+  color: #0b57d0;
+  border: 1px solid rgba(11, 87, 208, 0.25);
+}
+
+.gender-avatar-halo.girl {
+  background: rgba(225, 29, 72, 0.12);
+  color: #e11d48;
+  border: 1px solid rgba(225, 29, 72, 0.25);
+}
+
+.uniform-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.uniform-item-tile {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.18s ease;
+}
+
+.uniform-item-tile:hover {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+.uniform-tag-pill {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.uniform-tag-pill.tag-shirt {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.uniform-tag-pill.tag-bottom {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.uniform-tag-pill.tag-tie {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.uniform-tag-pill.tag-shoes {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.uniform-tag-pill.tag-hair {
+  background: #fce7f3;
+  color: #be185d;
+}
+
+.uniform-tag-pill.tag-warm {
+  background: #fee2e2;
+  color: #b91c1c;
 }
 
 /* Assembly Step Cards */
@@ -7737,24 +7887,259 @@ img {
 .period-filter-pill {
   padding: 5px 14px;
   border-radius: 999px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   background: #ffffff;
-  color: #64748b;
+  color: #475569;
   font-size: 0.76rem;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .period-filter-pill:hover {
   background: #f1f5f9;
-  color: #1e293b;
+  color: #0b57d0;
+  border-color: #93c5fd;
 }
 
 .period-filter-pill.active {
-  background: #0284c7;
+  background: #0b57d0;
   color: #ffffff;
-  border-color: #0284c7;
+  border-color: #0b57d0;
+  box-shadow: 0 2px 8px rgba(11, 87, 208, 0.28);
+}
+
+/* Digital Timetable Card */
+.digital-timetable-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.timetable-header {
+  background: linear-gradient(135deg, #072a4d 0%, #0d3b66 100%);
+  color: #ffffff;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #f59e0b;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.timetable-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.timetable-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.timetable-sub {
+  font-size: 0.74rem;
+  color: #cbd5e1;
+  display: block;
+}
+
+.timetable-body {
+  padding: 18px 20px;
+  background: #f8fafc;
+}
+
+.period-row-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.period-row-card:hover {
+  transform: translateY(-2px);
+  border-color: #0b57d0;
+  box-shadow: 0 6px 18px rgba(11, 87, 208, 0.08);
+}
+
+.period-row-card.is-recess {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-color: #fde68a;
+}
+
+.period-time-block {
+  min-width: 125px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.period-label-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #0b57d0;
+  letter-spacing: 0.4px;
+}
+
+.period-row-card.is-recess .period-label-tag {
+  color: #b45309;
+}
+
+.period-clock-time {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.period-info-block {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.period-subject-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.period-subject-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.recess-pill {
+  font-size: 0.66rem;
+  font-weight: 800;
+  color: #92400e;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 2px 7px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.period-duration-badge {
+  flex-shrink: 0;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #334155;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Assembly Roadmap Steps */
+.assembly-roadmap-box {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.assembly-step-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.assembly-step-row:hover {
+  background: #ffffff;
+  border-color: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.12);
+  transform: translateY(-1px);
+}
+
+.assembly-step-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.35);
+}
+
+.assembly-step-time {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #475569;
+}
+
+/* Personal Grooming Cards */
+.grooming-container-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.grooming-item-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px;
+  height: 100%;
+  transition: all 0.2s ease;
+}
+
+.grooming-item-card:hover {
+  background: #ffffff;
+  border-color: #0b57d0;
+  box-shadow: 0 6px 16px rgba(11, 87, 208, 0.08);
+  transform: translateY(-2px);
+}
+
+.grooming-icon-halo {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 /* Live Bell Pill */
@@ -8282,7 +8667,8 @@ img {
 }
 
 .modern-sidebar-header.amber-theme {
-  background: linear-gradient(135deg, #78350f 0%, #d97706 100%);
+  background: linear-gradient(135deg, #072a4d 0%, #0d47a1 100%);
+  border-bottom: 2px solid #f59e0b;
 }
 
 .modern-sidebar-header.emerald-theme {
