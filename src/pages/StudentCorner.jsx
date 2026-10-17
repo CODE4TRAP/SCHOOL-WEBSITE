@@ -189,11 +189,11 @@ export default function StudentCorner() {
                 SECTION 1: SCHOOL TIMING & ROUTINE
                ═══════════════════════════════════════ */}
             <section id="timings" className="mb-5 pt-2">
-              <div className="section-header-box mb-4">
-                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
+              <div className="section-header-box timing-header-box mb-4">
+                <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 w-100">
                   <div className="d-flex align-items-center gap-3">
-                    <div className="header-icon-box" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#d97706' }}>
-                      <span className="material-symbols-outlined">schedule</span>
+                    <div className="header-icon-box">
+                      <span className="material-symbols-outlined fs-4">schedule</span>
                     </div>
                     <div>
                       <h3 className="header-title">School Timing &amp; Routine</h3>
@@ -202,10 +202,16 @@ export default function StudentCorner() {
                       </p>
                     </div>
                   </div>
-                  <span className="live-bell-pulse">
-                    <span className="live-bell-dot"></span>
-                    <span>School Routine Active</span>
-                  </span>
+                  <div className="header-status-cluster">
+                    <span className="timing-season-badge">
+                      <span className="material-symbols-outlined text-warning" style={{ fontSize: '15px' }}>wb_sunny</span>
+                      Dual Season Timings
+                    </span>
+                    <span className="live-bell-pulse">
+                      <span className="live-bell-dot"></span>
+                      <span>School Routine Active</span>
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -407,10 +413,10 @@ export default function StudentCorner() {
                 SECTION 2: SCHOOL UNIFORM
                ═══════════════════════════════════════ */}
             <section id="uniform" className="mb-5 pt-2">
-              <div className="section-header-box mb-4">
+              <div className="section-header-box uniform-header-box mb-4">
                 <div className="d-flex align-items-center gap-3">
-                  <div className="header-icon-box" style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#2563eb' }}>
-                    <span className="material-symbols-outlined">checkroom</span>
+                  <div className="header-icon-box">
+                    <span className="material-symbols-outlined fs-4">checkroom</span>
                   </div>
                   <div>
                     <h3 className="header-title">School Uniform</h3>
@@ -816,10 +822,10 @@ export default function StudentCorner() {
                 SECTION 3: ASSEMBLY & MORAL EDUCATION
                ═══════════════════════════════════════ */}
             <section id="moral" className="mb-5 pt-2">
-              <div className="section-header-box mb-4">
+              <div className="section-header-box assembly-header-box mb-4">
                 <div className="d-flex align-items-center gap-3">
-                  <div className="header-icon-box" style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#059669' }}>
-                    <span className="material-symbols-outlined">volunteer_activism</span>
+                  <div className="header-icon-box">
+                    <span className="material-symbols-outlined fs-4">volunteer_activism</span>
                   </div>
                   <div>
                     <h3 className="header-title">Assembly &amp; Moral Education</h3>
@@ -1535,80 +1541,189 @@ export default function StudentCorner() {
               </div>
 
               {/* 4 House Guilds Showcase */}
-              <div className="card border-0 shadow-sm rounded-4 p-4 bg-light mb-4">
-                <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-                  <h6 className="fw-bold mb-0 text-dark d-flex align-items-center gap-2">
-                    <span className="material-symbols-outlined text-primary">shield</span>
-                    The 4 House Guilds for Inter-School CCA Competitions
-                  </h6>
-                  <span className="badge bg-white text-muted border small">Championship 2026–27</span>
+              <div className="house-guilds-royal-showcase">
+                <div className="guild-showcase-header">
+                  <div className="d-flex align-items-center gap-3">
+                    <div className="guild-showcase-crest">
+                      <span className="material-symbols-outlined fs-4">shield</span>
+                    </div>
+                    <div>
+                      <h5 className="guild-showcase-title">The 4 House Guilds for Inter-School CCA Competitions</h5>
+                      <p className="guild-showcase-subtitle">
+                        Fostering leadership, fraternal camaraderie, sportsmanship &amp; cultural brilliance (चतुर्-सदन प्रणाली).
+                      </p>
+                    </div>
+                  </div>
+                  <div className="guild-badge-cluster">
+                    <span className="guild-status-badge badge-gold">
+                      <span className="material-symbols-outlined text-warning" style={{ fontSize: '15px' }}>emoji_events</span>
+                      Annual Shield &bull; Session 2026&ndash;27
+                    </span>
+                    <span className="guild-status-badge">
+                      <span className="material-symbols-outlined text-primary" style={{ fontSize: '15px' }}>military_tech</span>
+                      4-Guild System (Est. 2009)
+                    </span>
+                  </div>
                 </div>
+
                 <div className="row g-3">
+                  {/* Agni House */}
                   <div className="col-sm-6 col-12">
-                    <div className="house-guild-card house-agni p-3">
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <div className="rounded-circle d-flex align-items-center justify-content-center text-white" style={{ background: '#ef4444', width: '36px', height: '36px' }}>
-                          <span className="material-symbols-outlined fs-6">local_fire_department</span>
+                    <div className="house-guild-card-v2 house-card-agni">
+                      <div className="guild-card-top-row">
+                        <div className="guild-identity-wrap">
+                          <div className="guild-crest-halo">
+                            <span className="material-symbols-outlined fs-5">local_fire_department</span>
+                          </div>
+                          <div>
+                            <h6 className="guild-name-title">Agni House</h6>
+                            <span className="guild-element-pill">Tejas &bull; Red Guild</span>
+                          </div>
                         </div>
-                        <div>
-                          <strong className="text-danger small d-block">Agni House (Red)</strong>
-                          <span className="text-muted" style={{ fontSize: '11px' }}>Courage &bull; Annual Sports Champions</span>
-                        </div>
+                        <span className="guild-sanskrit-tag" title="Sanskrit Motto">तेजस्वी नावधीतमस्तु</span>
                       </div>
-                      <p className="text-muted small mb-0" style={{ fontSize: '0.78rem' }}>
-                        Fosters boldness, energy, athletics, and unyielding determination in sports &amp; track competitions.
+
+                      <div className="guild-champion-strip">
+                        <span className="material-symbols-outlined fs-6">military_tech</span>
+                        <span>Courage &bull; Annual Sports Champions</span>
+                      </div>
+
+                      <p className="guild-desc-text">
+                        Fosters boldness, boundless energy, athletic speed, physical discipline, and unyielding grit across field, track, and sports leagues.
                       </p>
+
+                      <div className="guild-strengths-row">
+                        <span className="guild-strength-chip"><i className="fas fa-bolt text-danger"></i> Sprint &amp; Relay</span>
+                        <span className="guild-strength-chip"><i className="fas fa-bullseye text-danger"></i> Tug of War</span>
+                        <span className="guild-strength-chip"><i className="fas fa-running text-danger"></i> Cross Country</span>
+                        <span className="guild-strength-chip"><i className="fas fa-shield-alt text-danger"></i> March Past Drill</span>
+                      </div>
+
+                      <div className="guild-meta-footer">
+                        <span><strong>Mascot:</strong> Phoenix</span>
+                        <span><strong>Color:</strong> Crimson Red</span>
+                        <span><strong>Virtue:</strong> Valour</span>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Vayu House */}
                   <div className="col-sm-6 col-12">
-                    <div className="house-guild-card house-vayu p-3">
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <div className="rounded-circle d-flex align-items-center justify-content-center text-white" style={{ background: '#3b82f6', width: '36px', height: '36px' }}>
-                          <span className="material-symbols-outlined fs-6">air</span>
+                    <div className="house-guild-card-v2 house-card-vayu">
+                      <div className="guild-card-top-row">
+                        <div className="guild-identity-wrap">
+                          <div className="guild-crest-halo">
+                            <span className="material-symbols-outlined fs-5">air</span>
+                          </div>
+                          <div>
+                            <h6 className="guild-name-title">Vayu House</h6>
+                            <span className="guild-element-pill">Marut &bull; Blue Guild</span>
+                          </div>
                         </div>
-                        <div>
-                          <strong className="text-primary small d-block">Vayu House (Blue)</strong>
-                          <span className="text-muted" style={{ fontSize: '11px' }}>Wisdom &bull; Quiz &amp; Math Champions</span>
-                        </div>
+                        <span className="guild-sanskrit-tag" title="Sanskrit Motto">ज्ञानेन शोभते विद्या</span>
                       </div>
-                      <p className="text-muted small mb-0" style={{ fontSize: '0.78rem' }}>
-                        Encourages intellectual agility, logical deduction, scientific inquiry, and swift sportsmanship.
+
+                      <div className="guild-champion-strip">
+                        <span className="material-symbols-outlined fs-6">psychology</span>
+                        <span>Wisdom &bull; Quiz &amp; Math Champions</span>
+                      </div>
+
+                      <p className="guild-desc-text">
+                        Encourages lightning intellectual agility, analytical deduction, scientific inquiry, chess mastery, and swift collaborative sportsmanship.
                       </p>
+
+                      <div className="guild-strengths-row">
+                        <span className="guild-strength-chip"><i className="fas fa-brain text-primary"></i> Science Expo</span>
+                        <span className="guild-strength-chip"><i className="fas fa-calculator text-primary"></i> Speed Math</span>
+                        <span className="guild-strength-chip"><i className="fas fa-chess text-primary"></i> Chess League</span>
+                        <span className="guild-strength-chip"><i className="fas fa-microphone-alt text-primary"></i> Debate &amp; MUN</span>
+                      </div>
+
+                      <div className="guild-meta-footer">
+                        <span><strong>Mascot:</strong> Falcon</span>
+                        <span><strong>Color:</strong> Cobalt Blue</span>
+                        <span><strong>Virtue:</strong> Intellect</span>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Prithvi House */}
                   <div className="col-sm-6 col-12">
-                    <div className="house-guild-card house-prithvi p-3">
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <div className="rounded-circle d-flex align-items-center justify-content-center text-white" style={{ background: '#10b981', width: '36px', height: '36px' }}>
-                          <span className="material-symbols-outlined fs-6">public</span>
+                    <div className="house-guild-card-v2 house-card-prithvi">
+                      <div className="guild-card-top-row">
+                        <div className="guild-identity-wrap">
+                          <div className="guild-crest-halo">
+                            <span className="material-symbols-outlined fs-5">public</span>
+                          </div>
+                          <div>
+                            <h6 className="guild-name-title">Prithvi House</h6>
+                            <span className="guild-element-pill">Bhoomi &bull; Green Guild</span>
+                          </div>
                         </div>
-                        <div>
-                          <strong className="text-success small d-block">Prithvi House (Green)</strong>
-                          <span className="text-muted" style={{ fontSize: '11px' }}>Perseverance &bull; Eco-Club Champions</span>
-                        </div>
+                        <span className="guild-sanskrit-tag" title="Sanskrit Motto">धृतिः क्षमा दमोऽस्तेयं</span>
                       </div>
-                      <p className="text-muted small mb-0" style={{ fontSize: '0.78rem' }}>
-                        Symbolizes stability, nature stewardship, empathy, clean campus drives, and steady perseverance.
+
+                      <div className="guild-champion-strip">
+                        <span className="material-symbols-outlined fs-6">eco</span>
+                        <span>Perseverance &bull; Eco-Club Champions</span>
+                      </div>
+
+                      <p className="guild-desc-text">
+                        Symbolizes grounded stability, environmental care, tree stewardship, campus cleanliness drives, and quiet, unwavering perseverance.
                       </p>
+
+                      <div className="guild-strengths-row">
+                        <span className="guild-strength-chip"><i className="fas fa-seedling text-success"></i> Tree Drives</span>
+                        <span className="guild-strength-chip"><i className="fas fa-recycle text-success"></i> Zero Litter</span>
+                        <span className="guild-strength-chip"><i className="fas fa-tint text-success"></i> Water Care</span>
+                        <span className="guild-strength-chip"><i className="fas fa-hands-helping text-success"></i> Social Service</span>
+                      </div>
+
+                      <div className="guild-meta-footer">
+                        <span><strong>Mascot:</strong> Elephant</span>
+                        <span><strong>Color:</strong> Forest Green</span>
+                        <span><strong>Virtue:</strong> Stability</span>
+                      </div>
                     </div>
                   </div>
 
+                  {/* Surya House */}
                   <div className="col-sm-6 col-12">
-                    <div className="house-guild-card house-surya p-3">
-                      <div className="d-flex align-items-center gap-2 mb-2">
-                        <div className="rounded-circle d-flex align-items-center justify-content-center text-white" style={{ background: '#f59e0b', width: '36px', height: '36px' }}>
-                          <span className="material-symbols-outlined fs-6">wb_sunny</span>
+                    <div className="house-guild-card-v2 house-card-surya">
+                      <div className="guild-card-top-row">
+                        <div className="guild-identity-wrap">
+                          <div className="guild-crest-halo">
+                            <span className="material-symbols-outlined fs-5">wb_sunny</span>
+                          </div>
+                          <div>
+                            <h6 className="guild-name-title">Surya House</h6>
+                            <span className="guild-element-pill">Bhaskar &bull; Yellow Guild</span>
+                          </div>
                         </div>
-                        <div>
-                          <strong className="text-warning small d-block">Surya House (Yellow)</strong>
-                          <span className="text-muted" style={{ fontSize: '11px' }}>Radiance &bull; Cultural Arts Champions</span>
-                        </div>
+                        <span className="guild-sanskrit-tag" title="Sanskrit Motto">तमसो मा ज्योतिर्गमय</span>
                       </div>
-                      <p className="text-muted small mb-0" style={{ fontSize: '0.78rem' }}>
-                        Celebrates warmth, optimism, theatrical drama, vocal music, creative arts, and joyful elocution.
+
+                      <div className="guild-champion-strip">
+                        <span className="material-symbols-outlined fs-6">palette</span>
+                        <span>Radiance &bull; Cultural Arts Champions</span>
+                      </div>
+
+                      <p className="guild-desc-text">
+                        Celebrates warmth, boundless optimism, stage drama, classical Indian vocal melodies, folk dance, fine calligraphy, and joyful elocution.
                       </p>
+
+                      <div className="guild-strengths-row">
+                        <span className="guild-strength-chip"><i className="fas fa-theater-masks text-warning"></i> Stage Drama</span>
+                        <span className="guild-strength-chip"><i className="fas fa-music text-warning"></i> Choral Singing</span>
+                        <span className="guild-strength-chip"><i className="fas fa-paint-brush text-warning"></i> Rangoli &amp; Art</span>
+                        <span className="guild-strength-chip"><i className="fas fa-pen-nib text-warning"></i> Calligraphy</span>
+                      </div>
+
+                      <div className="guild-meta-footer">
+                        <span><strong>Mascot:</strong> Sun Lion</span>
+                        <span><strong>Color:</strong> Radiant Gold</span>
+                        <span><strong>Virtue:</strong> Optimism</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1619,10 +1734,10 @@ export default function StudentCorner() {
                 SECTION 7: VACATIONS & HOLIDAYS
                ═══════════════════════════════════════ */}
             <section id="vacations" className="mb-5 pt-2">
-              <div className="section-header-box mb-4">
+              <div className="section-header-box vacation-header-box mb-4">
                 <div className="d-flex align-items-center gap-3">
-                  <div className="header-icon-box" style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#059669' }}>
-                    <span className="material-symbols-outlined">calendar_month</span>
+                  <div className="header-icon-box">
+                    <span className="material-symbols-outlined fs-4">calendar_month</span>
                   </div>
                   <div>
                     <h3 className="header-title">Vacations &amp; Holidays</h3>
