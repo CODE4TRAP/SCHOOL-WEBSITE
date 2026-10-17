@@ -274,13 +274,6 @@ export default function Home() {
                         <p className="admission-tier-sub">CBSE Pattern Curriculum &amp; Computer Lab</p>
                       </div>
                     </div>
-
-                    {/* Quick Perks Strip */}
-                    <div className="admission-perks-row">
-                      <span>✓ Zero Capitation Fee</span>
-                      <span>✓ GPS Bus Routes</span>
-                      <span>✓ CCTV Monitored</span>
-                    </div>
                   </div>
 
                   {/* High-Conversion Actions */}

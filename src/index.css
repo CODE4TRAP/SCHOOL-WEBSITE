@@ -2566,21 +2566,6 @@ img {
   padding-left: 20px;
 }
 
-.admission-perks-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4px;
-  padding: 7px 10px;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  border-radius: 8px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #166534;
-  margin-bottom: 14px;
-}
-
 .admission-actions-stack {
   display: flex;
   flex-direction: column;
@@ -2679,11 +2664,6 @@ img {
   }
   .admission-metrics-row {
     grid-template-columns: 1fr 1fr 1fr;
-  }
-  .admission-perks-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
   }
 }
 
