@@ -7704,6 +7704,46 @@ img {
   color: #0f172a;
 }
 
+.modern-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  text-decoration: none;
+  color: #334155;
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.modern-nav-row:last-child {
+  border-bottom: none;
+}
+
+.modern-nav-row:hover {
+  background: #f8fafc;
+  color: var(--md-primary, #0b57d0);
+  padding-left: 22px;
+}
+
+.modern-nav-row .nav-row-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modern-nav-row .material-symbols-outlined {
+  font-size: 1.15rem;
+  transition: transform 0.2s ease;
+}
+
+.modern-nav-row:hover .material-symbols-outlined.nav-arrow {
+  transform: translateX(3px);
+  color: var(--md-primary, #0b57d0);
+}
+
+
 /* ========================================================
    FACILITIES 6 FEATURE CARDS
    ======================================================== */

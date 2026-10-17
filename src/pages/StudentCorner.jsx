@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { schoolInfo } from '../data/content';
 
 export default function StudentCorner() {
   const [uniformTab, setUniformTab] = useState('regular');
@@ -119,115 +120,43 @@ export default function StudentCorner() {
   });
 
   return (
-    <div className="student-corner-page">
-      {/* ─── Hero Banner & Institutional Meta ─── */}
-      <section className="student-hero-banner text-white py-5">
-        <div className="container position-relative" style={{ zIndex: 2 }}>
-          {/* Breadcrumb Navigation */}
-          <div className="d-flex align-items-center gap-2 mb-3 text-white-50" style={{ fontSize: '0.825rem' }}>
-            <Link to="/" className="text-white-50 text-decoration-none d-flex align-items-center gap-1 hover-white">
-              <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>home</span>
-              <span>Home</span>
-            </Link>
-            <span className="material-symbols-outlined" style={{ fontSize: '14px', opacity: 0.6 }}>chevron_right</span>
-            <span className="text-white fw-semibold">Student Corner</span>
-          </div>
-
-          <div className="row align-items-center g-4">
-            <div className="col-lg-7 col-12">
-              <div className="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-white bg-opacity-10 text-warning small fw-bold mb-3 border border-white border-opacity-15" style={{ backdropFilter: 'blur(8px)', fontSize: '11px' }}>
-                <span className="material-symbols-outlined fs-6">school</span>
-                STUDENT LIFE &bull; DISCIPLINE &amp; VALUES &bull; SESSION 2026–27
-              </div>
-              <h1 className="h1 fw-bold text-white mb-2" style={{ letterSpacing: '-0.5px' }}>
-                Student Corner &amp; Campus Life
-              </h1>
-              <p className="text-white-75 mb-4" style={{ fontSize: '0.98rem', lineHeight: '1.65', maxWidth: '640px' }}>
-                Official routines, school dress code, morning assembly, guidelines for students, attendance regulations, CCA activities calendar, and holiday schedules for Swami Shiwanand Academy, Sasaram.
-              </p>
-
-              {/* 4 Live Stats Chips */}
-              <div className="d-flex align-items-center gap-2 flex-wrap">
-                <div className="student-stat-chip">
-                  <span className="student-stat-number">3</span>
-                  <div className="student-stat-label">
-                    School<br />Wings
-                  </div>
-                </div>
-                <div className="student-stat-chip">
-                  <span className="student-stat-number">4</span>
-                  <div className="student-stat-label">
-                    School<br />Houses
-                  </div>
-                </div>
-                <div className="student-stat-chip">
-                  <span className="student-stat-number">51</span>
-                  <div className="student-stat-label">
-                    Annual<br />Holidays
-                  </div>
-                </div>
-                <div className="student-stat-chip">
-                  <span className="student-stat-number" style={{ color: '#4ade80' }}>100%</span>
-                  <div className="student-stat-label">
-                    CCTV<br />Safe
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-5 col-12 text-lg-end">
-              <div className="d-inline-flex flex-column gap-2 text-start p-4 rounded-4 bg-white bg-opacity-10 border border-white border-opacity-15 shadow-sm" style={{ backdropFilter: 'blur(10px)', maxWidth: '360px' }}>
-                <div className="d-flex align-items-center justify-content-between mb-1">
-                  <span className="live-bell-pulse" style={{ background: 'rgba(245, 158, 11, 0.2)', color: '#fbbf24', borderColor: 'rgba(245, 158, 11, 0.4)' }}>
-                    <span className="live-bell-dot" style={{ background: '#fbbf24' }}></span>
-                    SESSION 2026–27 CALENDAR
-                  </span>
-                </div>
-                <h6 className="fw-bold text-white mb-1">Admissions &amp; Academic Inquiries</h6>
-                <p className="small text-white-75 mb-3" style={{ fontSize: '0.8rem', lineHeight: '1.5' }}>
-                  Playgroup, Nursery &amp; Std I to V enrollment counseling desk is active Monday–Saturday (8 AM – 2 PM).
-                </p>
-                <Link to="/admission" className="btn btn-warning fw-bold py-2 px-3 rounded-pill d-flex align-items-center justify-content-center gap-2 shadow-sm text-dark">
-                  <span>Apply for Admission</span>
-                  <span className="material-symbols-outlined fs-6">arrow_forward</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Quick Nav Anchor Strip (Matches the 7 Canonical Existing Sections) ─── */}
-      <div className="bg-white border-bottom sticky-top shadow-sm py-2.5" style={{ zIndex: 10 }}>
+    <div>
+      {/* ─── M3 Page Header in Separate Structured Boxes (Identical to About, Facilities, Contact) ─── */}
+      <div className="m3-page-header">
         <div className="container">
-          <div className="d-flex align-items-center gap-2 overflow-x-auto pb-1" style={{ whiteSpace: 'nowrap' }}>
-            <a href="#timings" className="btn btn-sm btn-outline-primary rounded-pill d-inline-flex align-items-center gap-1.5 fw-semibold px-3">
-              <span className="material-symbols-outlined fs-6">schedule</span> School Timing &amp; Routine
-            </a>
-            <a href="#uniform" className="btn btn-sm btn-outline-primary rounded-pill d-inline-flex align-items-center gap-1.5 fw-semibold px-3">
-              <span className="material-symbols-outlined fs-6">checkroom</span> School Uniform
-            </a>
-            <a href="#moral" className="btn btn-sm btn-outline-primary rounded-pill d-inline-flex align-items-center gap-1.5 fw-semibold px-3">
-              <span className="material-symbols-outlined fs-6">volunteer_activism</span> Assembly &amp; Moral Education
-            </a>
-            <a href="#guidelines-students" className="btn btn-sm btn-outline-primary rounded-pill d-inline-flex align-items-center gap-1.5 fw-semibold px-3">
-              <span className="material-symbols-outlined fs-6">menu_book</span> Guidelines For Students
-            </a>
-            <a href="#attendance" className="btn btn-sm btn-outline-primary rounded-pill d-inline-flex align-items-center gap-1.5 fw-semibold px-3">
-              <span className="material-symbols-outlined fs-6">how_to_reg</span> Attendance &amp; Leave Rules
-            </a>
-            <a href="#cca-calendar" className="btn btn-sm btn-outline-primary rounded-pill d-inline-flex align-items-center gap-1.5 fw-semibold px-3">
-              <span className="material-symbols-outlined fs-6">event_upcoming</span> CCA Calendar 2026–27
-            </a>
-            <a href="#vacations" className="btn btn-sm btn-outline-primary rounded-pill d-inline-flex align-items-center gap-1.5 fw-semibold px-3">
-              <span className="material-symbols-outlined fs-6">calendar_month</span> Vacations &amp; Holidays
-            </a>
+          <div className="m3-header-container">
+            <div className="m3-header-badges-box">
+              <span className="m3-badge m3-badge-tonal">
+                <span className="material-symbols-outlined fs-6">school</span> Student Corner
+              </span>
+              <span className="m3-badge m3-badge-amber">
+                <span className="material-symbols-outlined fs-6">verified</span> Session 2026–27
+              </span>
+            </div>
+            <div className="m3-header-title-box">
+              <h2 className="m3-page-header-title mb-0">Student Corner &amp; Campus Routine</h2>
+            </div>
+            <div className="m3-header-breadcrumb-box">
+              <nav aria-label="breadcrumb">
+                <ol className="m3-breadcrumb">
+                  <li>
+                    <Link to="/">
+                      <span className="material-symbols-outlined fs-6 me-1">home</span>Home
+                    </Link>
+                    <span>/</span>
+                  </li>
+                  <li className="active">Student Corner</li>
+                </ol>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
 
+      {/* ─── Main Content Layout matching About.jsx and Facilities.jsx ─── */}
       <div className="container py-5">
         <div className="row g-5">
+          {/* Left Content Column */}
           <div className="col-lg-8">
             {/* ═══════════════════════════════════════
                 SECTION 1: SCHOOL TIMING & ROUTINE
@@ -1500,86 +1429,180 @@ export default function StudentCorner() {
             </section>
           </div>
 
-          {/* Right Sidebar: Downloads & Quick Links */}
+          {/* Right Sidebar Column matching About.jsx */}
           <div className="col-lg-4">
-            <div className="sticky-top" style={{ top: '80px' }}>
-              {/* Quick Downloads Card */}
-              <div className="card border-0 shadow-sm rounded-4 overflow-hidden mb-4" style={{ background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)', border: '1px solid rgba(0,0,0,0.06)' }}>
-                <div className="p-3 bg-primary text-white d-flex align-items-center justify-content-between">
-                  <div className="d-flex align-items-center gap-2">
-                    <span className="material-symbols-outlined">download</span>
-                    <h6 className="mb-0 fw-bold">Student Documents &amp; Forms</h6>
-                  </div>
-                  <span className="badge bg-white bg-opacity-20 text-white" style={{ fontSize: '10px' }}>PDF</span>
+            {/* Quick Section Navigation Card (In This Section) */}
+            <div className="modern-sidebar-card mb-4" id="section-nav">
+              <div className="modern-sidebar-header">
+                <div className="modern-sidebar-title">
+                  <span className="material-symbols-outlined" style={{ color: '#f59e0b' }}>list_alt</span>
+                  In This Section
                 </div>
-                <div className="p-3 d-flex flex-column gap-2">
-                  <a href="#timings" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
-                    <div className="d-flex align-items-center gap-2">
-                      <span className="material-symbols-outlined text-warning">schedule</span>
-                      <span className="small fw-semibold">Wing Timings Chart 2026–27</span>
-                    </div>
-                    <span className="badge bg-light text-muted">Table</span>
-                  </a>
-                  <a href="#vacations" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
-                    <div className="d-flex align-items-center gap-2">
-                      <span className="material-symbols-outlined text-danger">picture_as_pdf</span>
-                      <span className="small fw-semibold">Holiday Calendar (51 Days)</span>
-                    </div>
-                    <span className="badge bg-light text-muted">PDF</span>
-                  </a>
-                  <a href="#uniform" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
-                    <div className="d-flex align-items-center gap-2">
-                      <span className="material-symbols-outlined text-primary">picture_as_pdf</span>
-                      <span className="small fw-semibold">Uniform Dress Code Chart</span>
-                    </div>
-                    <span className="badge bg-light text-muted">PDF</span>
-                  </a>
-                  <a href="#cca-calendar" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
-                    <div className="d-flex align-items-center gap-2">
-                      <span className="material-symbols-outlined text-success">picture_as_pdf</span>
-                      <span className="small fw-semibold">CCA Activity Calendar</span>
-                    </div>
-                    <span className="badge bg-light text-muted">PDF</span>
-                  </a>
+                <span className="modern-sidebar-badge">Navigation</span>
+              </div>
+              <div className="p-0">
+                <a href="#moral" className="modern-nav-row">
+                  <span className="nav-row-left">
+                    <span className="material-symbols-outlined text-success">volunteer_activism</span>
+                    Assembly &amp; Moral Education
+                  </span>
+                  <span className="material-symbols-outlined nav-arrow text-muted">arrow_forward_ios</span>
+                </a>
+                <a href="#uniform" className="modern-nav-row">
+                  <span className="nav-row-left">
+                    <span className="material-symbols-outlined text-primary">checkroom</span>
+                    School Uniform
+                  </span>
+                  <span className="material-symbols-outlined nav-arrow text-muted">arrow_forward_ios</span>
+                </a>
+                <a href="#guidelines-students" className="modern-nav-row">
+                  <span className="nav-row-left">
+                    <span className="material-symbols-outlined text-indigo" style={{ color: '#6366f1' }}>menu_book</span>
+                    Guidelines For Students
+                  </span>
+                  <span className="material-symbols-outlined nav-arrow text-muted">arrow_forward_ios</span>
+                </a>
+                <a href="#timings" className="modern-nav-row">
+                  <span className="nav-row-left">
+                    <span className="material-symbols-outlined text-warning">schedule</span>
+                    School Timing &amp; Routine
+                  </span>
+                  <span className="material-symbols-outlined nav-arrow text-muted">arrow_forward_ios</span>
+                </a>
+                <a href="#attendance" className="modern-nav-row">
+                  <span className="nav-row-left">
+                    <span className="material-symbols-outlined text-teal" style={{ color: '#0d9488' }}>how_to_reg</span>
+                    Attendance &amp; Leave Rules
+                  </span>
+                  <span className="material-symbols-outlined nav-arrow text-muted">arrow_forward_ios</span>
+                </a>
+                <a href="#cca-calendar" className="modern-nav-row">
+                  <span className="nav-row-left">
+                    <span className="material-symbols-outlined text-orange" style={{ color: '#ea580c' }}>event_upcoming</span>
+                    CCA Calendar 2026–27
+                  </span>
+                  <span className="material-symbols-outlined nav-arrow text-muted">arrow_forward_ios</span>
+                </a>
+                <a href="#vacations" className="modern-nav-row">
+                  <span className="nav-row-left">
+                    <span className="material-symbols-outlined text-danger">calendar_month</span>
+                    Vacations &amp; Holidays
+                  </span>
+                  <span className="material-symbols-outlined nav-arrow text-muted">arrow_forward_ios</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Key Statistics Card (Matching About.jsx) */}
+            <div className="modern-sidebar-card mb-4" id="statistics">
+              <div className="modern-sidebar-header amber-theme">
+                <div className="modern-sidebar-title">
+                  <span className="material-symbols-outlined" style={{ color: '#fef08a' }}>analytics</span>
+                  Student Life at a Glance
+                </div>
+                <span className="modern-sidebar-badge">Active</span>
+              </div>
+              <div className="p-2">
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-primary">calendar_month</span>
+                    Year Established
+                  </span>
+                  <span className="stat-row-value">{schoolInfo.estd}</span>
+                </div>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-success">groups</span>
+                    Student Body
+                  </span>
+                  <span className="stat-row-value text-success">500+ Active Learners</span>
+                </div>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-warning">person_pin</span>
+                    Student-Teacher Ratio
+                  </span>
+                  <span className="stat-row-value text-primary">15 : 1 (Personal Care)</span>
+                </div>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-info">shield</span>
+                    School Houses
+                  </span>
+                  <span className="stat-row-value">4 Houses (Agni, Vayu, Prithvi, Surya)</span>
+                </div>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-danger">event_note</span>
+                    Annual Holidays
+                  </span>
+                  <span className="stat-row-value">51 Gazetted Days</span>
+                </div>
+                <div className="modern-stat-row">
+                  <span className="stat-row-label">
+                    <span className="material-symbols-outlined fs-6 text-secondary">videocam</span>
+                    Campus Safety
+                  </span>
+                  <span className="stat-row-value text-success">100% CCTV Monitored</span>
                 </div>
               </div>
+            </div>
 
-              {/* Admissions CTA */}
-              <div className="card border-0 shadow-lg rounded-4 overflow-hidden text-white p-4 text-center position-relative" style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%)', boxShadow: '0 12px 30px rgba(15, 23, 42, 0.25)' }}>
-                <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill border text-warning small fw-bold mb-3 mx-auto" style={{ background: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.18)', backdropFilter: 'blur(8px)', fontSize: '11px' }}>
-                  <span className="spinner-grow spinner-grow-sm text-warning" style={{ width: '8px', height: '8px' }}></span>
-                  SESSION 2026–27 ADMISSIONS OPEN
-                </div>
-                <div className="mb-3">
-                  <div className="d-inline-flex align-items-center justify-content-center rounded-circle p-3 mb-2" style={{ width: '60px', height: '60px', background: 'rgba(255,255,255,0.1)' }}>
-                    <span className="material-symbols-outlined text-warning" style={{ fontSize: '32px' }}>school</span>
-                  </div>
-                  <h5 className="fw-bold text-white mb-1">Begin Your Child's Journey</h5>
-                  <p className="text-white-50 small mb-0">Playgroup &amp; Nursery up to Class V</p>
-                </div>
-
-                <div className="p-3 rounded-3 mb-3 text-start small" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
-                  <div className="d-flex align-items-center gap-2 mb-2 text-white">
-                    <span className="material-symbols-outlined text-success fs-6">verified</span>
-                    <span className="small">CBSE Pattern English Medium</span>
-                  </div>
-                  <div className="d-flex align-items-center gap-2 mb-2 text-white">
-                    <span className="material-symbols-outlined text-success fs-6">verified</span>
-                    <span className="small">Holistic Academics + Moral Values</span>
-                  </div>
-                  <div className="d-flex align-items-center gap-2 text-white">
-                    <span className="material-symbols-outlined text-success fs-6">verified</span>
-                    <span className="small">Safe Bus Facility in Sasaram &amp; Belharhi</span>
-                  </div>
-                </div>
-
-                <Link to="/admission" className="btn btn-warning fw-bold py-2.5 w-100 rounded-pill shadow-sm d-flex align-items-center justify-content-center gap-2">
-                  <span>Register Online Now</span>
-                  <span className="material-symbols-outlined fs-6">arrow_forward</span>
+            {/* Quick Admission CTA matching About.jsx */}
+            <div className="card shadow-sm border-0 rounded-3 mb-4 overflow-hidden bg-light border">
+              <div className="card-body p-4 text-center">
+                <i className="fas fa-user-graduate fa-3x text-primary mb-3"></i>
+                <h5 className="fw-bold text-dark">Admissions Open 2026-27</h5>
+                <p className="small text-muted mb-4">
+                  Enroll your child in Playgroup, Nursery, LKG, UKG or Classes I to V.
+                </p>
+                <Link to="/admission" className="btn btn-warning w-100 fw-bold py-2 mb-2">
+                  <i className="fas fa-edit me-1"></i> Apply Online Now
                 </Link>
-                <span className="d-block mt-2 text-white-50" style={{ fontSize: '11px' }}>
-                  Offline forms also available at school reception (9 AM &ndash; 2 PM)
-                </span>
+                <Link to="/contact" className="btn btn-outline-primary w-100 fw-bold py-2 small">
+                  <i className="fas fa-phone-alt me-1"></i> Contact Admission Desk
+                </Link>
+              </div>
+            </div>
+
+            {/* Student Documents Card */}
+            <div className="modern-sidebar-card">
+              <div className="modern-sidebar-header emerald-theme">
+                <div className="modern-sidebar-title">
+                  <span className="material-symbols-outlined" style={{ color: '#a7f3d0' }}>download</span>
+                  Student Documents
+                </div>
+                <span className="modern-sidebar-badge">PDF</span>
+              </div>
+              <div className="p-3 d-flex flex-column gap-2">
+                <a href="#timings" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
+                  <div className="d-flex align-items-center gap-2">
+                    <span className="material-symbols-outlined text-warning">schedule</span>
+                    <span className="small fw-semibold">Wing Timings Chart 2026–27</span>
+                  </div>
+                  <span className="badge bg-light text-muted">Table</span>
+                </a>
+                <a href="#vacations" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
+                  <div className="d-flex align-items-center gap-2">
+                    <span className="material-symbols-outlined text-danger">picture_as_pdf</span>
+                    <span className="small fw-semibold">Holiday Calendar (51 Days)</span>
+                  </div>
+                  <span className="badge bg-light text-muted">PDF</span>
+                </a>
+                <a href="#uniform" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
+                  <div className="d-flex align-items-center gap-2">
+                    <span className="material-symbols-outlined text-primary">picture_as_pdf</span>
+                    <span className="small fw-semibold">Uniform Dress Code Chart</span>
+                  </div>
+                  <span className="badge bg-light text-muted">PDF</span>
+                </a>
+                <a href="#cca-calendar" className="d-flex align-items-center justify-content-between p-2 rounded-3 border bg-white text-decoration-none text-dark hover-shadow">
+                  <div className="d-flex align-items-center gap-2">
+                    <span className="material-symbols-outlined text-success">picture_as_pdf</span>
+                    <span className="small fw-semibold">CCA Activity Calendar</span>
+                  </div>
+                  <span className="badge bg-light text-muted">PDF</span>
+                </a>
               </div>
             </div>
           </div>
