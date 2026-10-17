@@ -882,13 +882,13 @@ img {
 /* TopBar Single-Line Desktop Container */
 .topbar-container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   white-space: nowrap;
 }
 
@@ -897,7 +897,7 @@ img {
   color: #cbd5e1;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: nowrap;
 }
 
@@ -906,7 +906,7 @@ img {
   color: #cbd5e1;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   text-decoration: none;
   font-size: 0.77rem;
   font-weight: 500;
@@ -972,12 +972,64 @@ img {
   letter-spacing: 0.01em;
 }
 
+/* Center Institutional Info (Fills empty void & reduces horizontal gap) */
+.topbar-center-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-info-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #cbd5e1;
+  font-size: 0.74rem;
+  font-weight: 500;
+  padding: 2.5px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.topbar-info-chip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 /* Right Actions Container */
 .topbar-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: nowrap;
+}
+
+/* Parent Portal Button */
+.topbar-portal-btn {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  color: #7dd3fc !important;
+  padding: 3.5px 12px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.01em;
+}
+
+.topbar-portal-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(56, 189, 248, 0.22);
+  border-color: rgba(56, 189, 248, 0.45);
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(56, 189, 248, 0.25);
 }
 
 /* Admissions Live CTA Button */

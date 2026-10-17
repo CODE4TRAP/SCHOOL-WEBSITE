@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { schoolInfo } from '../data/content';
+import { useModal } from '../context/ModalContext';
 
 export default function TopBar() {
+  const { openPortal } = useModal();
+
   return (
     <div className="m3-top-bar" role="region" aria-label="Top Utility and Contact Navigation">
       <div className="topbar-container">
@@ -42,12 +45,36 @@ export default function TopBar() {
             title="Recognized Institution Founded in 2009"
           >
             <span className="material-symbols-outlined text-warning" style={{ fontSize: '15px' }}>verified</span>
-            <span>Estd. <strong className="text-warning">{schoolInfo.estd}</strong> &bull; Playgroup to Class V</span>
+            <span>Estd. <strong className="text-warning">{schoolInfo.estd}</strong> &bull; Playgroup to Std V</span>
           </div>
+        </div>
+
+        {/* Center: Campus Location & Hours (Eliminates empty middle void) */}
+        <div className="topbar-center-meta d-none d-xl-flex">
+          <span className="topbar-info-chip" title="Main Campus Location: Sasaram, Rohtas">
+            <span className="material-symbols-outlined text-info" style={{ fontSize: '14px' }}>location_on</span>
+            <span>Sasaram, Bihar</span>
+          </span>
+          <span className="topbar-dot-sep" aria-hidden="true">&bull;</span>
+          <span className="topbar-info-chip" title="School Office Hours">
+            <span className="material-symbols-outlined text-warning" style={{ fontSize: '14px' }}>schedule</span>
+            <span>8:00 AM – 2:00 PM</span>
+          </span>
         </div>
 
         {/* Right: Actions with distinct hierarchy */}
         <div className="topbar-actions">
+          {/* Interactive Parent Portal Button */}
+          <button
+            type="button"
+            onClick={() => openPortal('Parent & Student Portal', '2026-27', 'Access digital report cards, fee receipts, homework and daily attendance.')}
+            className="topbar-portal-btn d-none d-sm-inline-flex"
+            title="Access Online School Management (OSM) Portal"
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>cloud_sync</span>
+            <span>Parent Portal</span>
+          </button>
+
           {/* Admissions Live CTA */}
           <Link
             to="/admission"
