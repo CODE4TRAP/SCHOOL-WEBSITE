@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { noticesData } from '../data/notices';
 import { useModal } from '../context/ModalContext';
 
@@ -267,14 +268,14 @@ export default function NoticeBoard() {
             </button>
           )}
 
-          <a
-            href="/admission#notices"
+          <Link
+            to="/admission"
             className="m3-btn m3-btn-tonal py-1 px-3"
             style={{ fontSize: '0.78rem', textDecoration: 'none' }}
           >
             <span>Notice Archive</span>
             <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>open_in_new</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
