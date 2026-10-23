@@ -932,31 +932,38 @@ export default function Admission() {
                           </div>
                         )}
 
-                        {/* Simple, Modern Submit Button */}
+                        {/* Enhanced High-Impact Master Submit Banner */}
                         <button
                           type="submit"
-                          className="btn btn-primary btn-lg w-100 py-3 fw-bold d-flex align-items-center justify-content-center gap-2 rounded-3 shadow-sm"
+                          className="admission-master-submit-btn"
                           disabled={isSubmitting}
                           style={{
-                            background: '#0b57d0',
-                            borderColor: '#0b57d0',
-                            fontSize: '1.05rem',
-                            letterSpacing: '0.3px',
-                            minHeight: '52px',
+                            opacity: isSubmitting ? 0.88 : 1,
                             cursor: isSubmitting ? 'wait' : 'pointer'
                           }}
                         >
-                          {isSubmitting ? (
-                            <>
-                              <span className="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
-                              <span>Saving Registration...</span>
-                            </>
-                          ) : (
-                            <>
-                              <span className="material-symbols-outlined fs-5">send</span>
-                              <span>Submit Registration Application</span>
-                            </>
-                          )}
+                          <div className="btn-left-content">
+                            <div className="btn-icon-bubble">
+                              {isSubmitting ? (
+                                <span className="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
+                              ) : (
+                                <span className="material-symbols-outlined fs-4">send</span>
+                              )}
+                            </div>
+                            <div>
+                              <div className="btn-title-main">
+                                {isSubmitting ? 'Saving Registration to Database...' : 'Submit Registration Application'}
+                              </div>
+                              <div className="btn-title-sub">
+                                Instant central database registration &bull; Admin direct review
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="btn-session-badge">
+                            <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px' }}>school</span>
+                            <span>Session 2026–27</span>
+                          </div>
                         </button>
 
                         {/* 3 Guarantees Row (No PDF download required) */}
