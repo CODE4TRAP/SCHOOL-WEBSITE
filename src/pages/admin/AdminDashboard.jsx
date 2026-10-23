@@ -14,6 +14,98 @@ import {
   serverTimestamp
 } from 'firebase/firestore';
 
+const INQUIRY_STATUS_OPTIONS = [
+  { value: 'New', label: 'New', color: '#f59e0b', bg: '#f59e0b18', border: '#f59e0b35' },
+  { value: 'Responded', label: 'Responded', color: '#10b981', bg: '#10b98118', border: '#10b98135' },
+  { value: 'Archived', label: 'Archived', color: '#94a3b8', bg: '#94a3b818', border: '#94a3b835' }
+];
+
+const ADMISSION_STATUS_OPTIONS = [
+  { value: 'Pending', label: 'Pending', color: '#f59e0b', bg: '#f59e0b18', border: '#f59e0b35' },
+  { value: 'Approved', label: 'Approved', color: '#10b981', bg: '#10b98118', border: '#10b98135' },
+  { value: 'Contacted', label: 'Contacted', color: '#3b82f6', bg: '#3b82f618', border: '#3b82f635' },
+  { value: 'Rejected', label: 'Rejected', color: '#ef4444', bg: '#ef444418', border: '#ef444435' }
+];
+
+function StatusDropdown({ value, onChange, options }) {
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [open]);
+
+  const current = options.find(o => o.value === value) || options[0] || { label: value, color: '#94a3b8', bg: '#94a3b814', border: '#94a3b840' };
+
+  return (
+    <div className="adm-status-dropdown-wrap" ref={dropdownRef}>
+      <button
+        type="button"
+        className="adm-status-trigger"
+        style={{
+          color: current.color,
+          background: current.bg,
+          borderColor: current.border
+        }}
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen(!open);
+        }}
+      >
+        <span
+          className="adm-status-dot-indicator"
+          style={{ background: current.color, boxShadow: `0 0 6px ${current.color}` }}
+        ></span>
+        <span>{current.label}</span>
+        <span
+          className={`material-symbols-outlined adm-status-chevron ${open ? 'open' : ''}`}
+          style={{ fontSize: '15px', marginLeft: 'auto' }}
+        >
+          expand_more
+        </span>
+      </button>
+
+      {open && (
+        <div className="adm-status-menu" onClick={(e) => e.stopPropagation()}>
+          {options.map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              className={`adm-status-item ${opt.value === value ? 'active' : ''}`}
+              onClick={() => {
+                onChange(opt.value);
+                setOpen(false);
+              }}
+            >
+              <span
+                className="adm-status-dot-indicator"
+                style={{ background: opt.color, boxShadow: `0 0 6px ${opt.color}` }}
+              ></span>
+              <span>{opt.label}</span>
+              {opt.value === value && (
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: '15px', marginLeft: 'auto', color: opt.color }}
+                >
+                  check
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('admissions');
@@ -551,21 +643,11 @@ export default function AdminDashboard() {
                             </td>
                             <td className="adm-cell-muted">{adm.transportNeeded}</td>
                             <td>
-                              <select
-                                className="adm-status-select"
-                                style={{
-                                  color: statusColor(adm.status).text,
-                                  background: statusColor(adm.status).bg,
-                                  borderColor: statusColor(adm.status).border
-                                }}
+                              <StatusDropdown
                                 value={adm.status}
-                                onChange={(e) => updateAdmissionStatus(adm._id, e.target.value)}
-                              >
-                                <option value="Pending">⏳ Pending</option>
-                                <option value="Approved">✅ Approved</option>
-                                <option value="Contacted">📞 Contacted</option>
-                                <option value="Rejected">❌ Rejected</option>
-                              </select>
+                                onChange={(newStatus) => updateAdmissionStatus(adm._id, newStatus)}
+                                options={ADMISSION_STATUS_OPTIONS}
+                              />
                             </td>
                             <td>
                               <div className="adm-action-group">
@@ -648,19 +730,11 @@ export default function AdminDashboard() {
                             <td style={{ color: '#2563eb', fontWeight: 600 }}>{inq.childAge || '—'}</td>
                             <td className="adm-cell-muted" style={{ maxWidth: '280px' }}>{inq.message}</td>
                             <td>
-                              <select
-                                className="adm-status-select"
-                                style={{
-                                  color: inq.status === 'Responded' ? '#059669' : inq.status === 'Archived' ? '#64748b' : '#f59e0b',
-                                  background: inq.status === 'Responded' ? '#05966914' : inq.status === 'Archived' ? '#64748b14' : '#f59e0b14'
-                                }}
+                              <StatusDropdown
                                 value={inq.status}
-                                onChange={(e) => updateInquiryStatus(inq._id, e.target.value)}
-                              >
-                                <option value="New">🔴 New</option>
-                                <option value="Responded">🟢 Responded</option>
-                                <option value="Archived">⚪ Archived</option>
-                              </select>
+                                onChange={(newStatus) => updateInquiryStatus(inq._id, newStatus)}
+                                options={INQUIRY_STATUS_OPTIONS}
+                              />
                             </td>
                             <td>
                               <div className="adm-action-group">
@@ -713,22 +787,11 @@ export default function AdminDashboard() {
             <div style={{ background: '#f8fafc', padding: '12px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
               <div className="d-flex align-items-center gap-2">
                 <span className="small fw-bold text-dark">Admission Status:</span>
-                <select
-                  className="adm-status-select"
-                  style={{
-                    color: statusColor(selectedAdmission.status).text,
-                    background: statusColor(selectedAdmission.status).bg,
-                    borderColor: statusColor(selectedAdmission.status).border,
-                    fontWeight: 700
-                  }}
+                <StatusDropdown
                   value={selectedAdmission.status}
-                  onChange={(e) => updateAdmissionStatus(selectedAdmission._id, e.target.value)}
-                >
-                  <option value="Pending">⏳ Pending Review</option>
-                  <option value="Approved">✅ Approved (Confirmed Seat)</option>
-                  <option value="Contacted">📞 Contacted Parent</option>
-                  <option value="Rejected">❌ Rejected</option>
-                </select>
+                  onChange={(newStatus) => updateAdmissionStatus(selectedAdmission._id, newStatus)}
+                  options={ADMISSION_STATUS_OPTIONS}
+                />
               </div>
 
               <div className="d-flex align-items-center gap-2">
