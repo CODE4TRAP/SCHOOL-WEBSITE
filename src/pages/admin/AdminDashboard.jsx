@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { schoolInfo } from '../../data/content';
-import OfficialAdmissionSlip from '../../components/OfficialAdmissionSlip';
 import { auth, db } from '../../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {
@@ -88,50 +87,22 @@ export default function AdminDashboard() {
     navigate('/admin/login');
   };
 
-  // Helper for authenticated administrative API fallback
-  const authFetch = async (url, options = {}) => {
-    const token = localStorage.getItem('ssa_admin_token');
-    const headers = {
-      ...(options.headers || {}),
-      Authorization: `Bearer ${token}`
-    };
-    const res = await fetch(url, { ...options, headers });
-    if (res.status === 401) {
-      localStorage.removeItem('ssa_admin_token');
-      localStorage.removeItem('ssa_admin_user');
-      navigate('/admin/login');
-      throw new Error('Administrative session expired or unauthorized.');
-    }
-    return res;
-  };
-
-  // Fetch Institutional Statistics
+  // Fetch Institutional Statistics from Cloud Firestore
   const fetchStats = async () => {
     try {
       if (db) {
-        const [admSnap, inqSnap, notSnap] = await Promise.all([
+        const [admSnap, inqSnap] = await Promise.all([
           getDocs(collection(db, 'admissions')),
-          getDocs(collection(db, 'inquiries')),
-          getDocs(collection(db, 'notices'))
+          getDocs(collection(db, 'inquiries'))
         ]);
         const totalAdmissions = admSnap.size;
         const pendingAdmissions = admSnap.docs.filter(d => (d.data().status || 'Pending') === 'Pending').length;
         const totalInquiries = inqSnap.size;
         const newInquiries = inqSnap.docs.filter(d => (d.data().status || 'New') === 'New').length;
-        const totalNotices = notSnap.size;
-        setStats({ totalAdmissions, pendingAdmissions, totalInquiries, newInquiries, totalNotices });
-        return;
+        setStats({ totalAdmissions, pendingAdmissions, totalInquiries, newInquiries, totalNotices: 0 });
       }
     } catch (err) {
-      console.warn('Firestore stats notice, attempting API fallback:', err);
-    }
-
-    try {
-      const res = await authFetch('/api/admin/stats');
-      const data = await res.json();
-      if (data.success) setStats(data.stats);
-    } catch (err) {
-      console.error('Failed to fetch stats:', err);
+      console.error('Failed to fetch Firestore stats:', err);
     }
   };
 
@@ -140,14 +111,21 @@ export default function AdminDashboard() {
     setAdmLoading(true);
     try {
       if (db) {
-        const q = query(collection(db, 'admissions'), orderBy('createdAt', 'desc'));
-        const snap = await getDocs(q);
-        let list = snap.docs.map(d => ({
-          _id: d.id,
-          id: d.id,
-          ...d.data(),
-          createdAt: d.data().createdAt?.toDate ? d.data().createdAt.toDate().toISOString() : d.data().createdAt
-        }));
+        const snap = await getDocs(collection(db, 'admissions'));
+        let list = snap.docs.map(d => {
+          const data = d.data();
+          const createdVal = data.createdAt;
+          const createdStr = createdVal?.toDate ? createdVal.toDate().toISOString() : (createdVal ? String(createdVal) : new Date(0).toISOString());
+          return {
+            _id: d.id,
+            id: d.id,
+            ...data,
+            createdAt: createdStr
+          };
+        });
+
+        // In-memory sort descending by creation date
+        list.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
 
         if (admStatusFilter !== 'All') {
           list = list.filter(a => a.status === admStatusFilter);
@@ -164,28 +142,10 @@ export default function AdminDashboard() {
           );
         }
 
-        if (list.length > 0 || snap.size > 0) {
-          setAdmissions(list);
-          setAdmLoading(false);
-          return;
-        }
+        setAdmissions(list);
       }
     } catch (err) {
-      console.warn('Firestore admissions notice, attempting API fallback:', err);
-    }
-
-    try {
-      let url = '/api/admissions';
-      const params = new URLSearchParams();
-      if (admStatusFilter !== 'All') params.append('status', admStatusFilter);
-      if (admSearch) params.append('search', admSearch);
-      if (params.toString()) url += `?${params.toString()}`;
-
-      const res = await authFetch(url);
-      const data = await res.json();
-      if (data.success) setAdmissions(data.data);
-    } catch (err) {
-      console.error('Error fetching admissions:', err);
+      console.error('Error fetching admissions from Firestore:', err);
     } finally {
       setAdmLoading(false);
     }
@@ -203,27 +163,9 @@ export default function AdminDashboard() {
           setSelectedAdmission(prev => ({ ...prev, status: newStatus }));
         }
         fetchStats();
-        return;
       }
     } catch (err) {
-      console.warn('Firestore admission status update notice, using fallback:', err);
-    }
-
-    try {
-      const res = await authFetch(`/api/admissions/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus })
-      });
-      const data = await res.json();
-      if (data.success) {
-        setAdmissions(prev => prev.map(a => (a._id === id ? data.data : a)));
-        if (selectedAdmission && selectedAdmission._id === id) {
-          setSelectedAdmission(data.data);
-        }
-        fetchStats();
-      }
-    } catch (err) {
+      console.error('Failed to update admission status:', err);
       alert('Failed to update status');
     }
   };
@@ -235,20 +177,9 @@ export default function AdminDashboard() {
         await deleteDoc(doc(db, 'admissions', id));
         setAdmissions(prev => prev.filter(a => a._id !== id && a.id !== id));
         fetchStats();
-        return;
       }
     } catch (err) {
-      console.warn('Firestore admission delete notice, using fallback:', err);
-    }
-
-    try {
-      const res = await authFetch(`/api/admissions/${id}`, { method: 'DELETE' });
-      const data = await res.json();
-      if (data.success) {
-        setAdmissions(prev => prev.filter(a => a._id !== id));
-        fetchStats();
-      }
-    } catch (err) {
+      console.error('Failed to delete admission:', err);
       alert('Failed to delete admission');
     }
   };
@@ -258,30 +189,25 @@ export default function AdminDashboard() {
     setInqLoading(true);
     try {
       if (db) {
-        const q = query(collection(db, 'inquiries'), orderBy('createdAt', 'desc'));
-        const snap = await getDocs(q);
-        const list = snap.docs.map(d => ({
-          _id: d.id,
-          id: d.id,
-          ...d.data(),
-          createdAt: d.data().createdAt?.toDate ? d.data().createdAt.toDate().toISOString() : d.data().createdAt
-        }));
-        if (list.length > 0 || snap.size > 0) {
-          setInquiries(list);
-          setInqLoading(false);
-          return;
-        }
+        const snap = await getDocs(collection(db, 'inquiries'));
+        let list = snap.docs.map(d => {
+          const data = d.data();
+          const createdVal = data.createdAt;
+          const createdStr = createdVal?.toDate ? createdVal.toDate().toISOString() : (createdVal ? String(createdVal) : new Date(0).toISOString());
+          return {
+            _id: d.id,
+            id: d.id,
+            ...data,
+            createdAt: createdStr
+          };
+        });
+
+        // In-memory sort descending by creation date
+        list.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+        setInquiries(list);
       }
     } catch (err) {
-      console.warn('Firestore inquiries notice, attempting API fallback:', err);
-    }
-
-    try {
-      const res = await authFetch('/api/inquiries');
-      const data = await res.json();
-      if (data.success) setInquiries(data.data);
-    } catch (err) {
-      console.error('Error fetching inquiries:', err);
+      console.error('Error fetching inquiries from Firestore:', err);
     } finally {
       setInqLoading(false);
     }
@@ -296,24 +222,9 @@ export default function AdminDashboard() {
         });
         setInquiries(prev => prev.map(i => (i._id === id || i.id === id ? { ...i, status } : i)));
         fetchStats();
-        return;
       }
     } catch (err) {
-      console.warn('Firestore inquiry status update notice, using fallback:', err);
-    }
-
-    try {
-      const res = await authFetch(`/api/inquiries/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status })
-      });
-      const data = await res.json();
-      if (data.success) {
-        setInquiries(prev => prev.map(i => (i._id === id ? data.data : i)));
-        fetchStats();
-      }
-    } catch (err) {
+      console.error('Failed to update inquiry status:', err);
       alert('Failed to update status');
     }
   };
@@ -325,20 +236,9 @@ export default function AdminDashboard() {
         await deleteDoc(doc(db, 'inquiries', id));
         setInquiries(prev => prev.filter(i => i._id !== id && i.id !== id));
         fetchStats();
-        return;
       }
     } catch (err) {
-      console.warn('Firestore inquiry delete notice, using fallback:', err);
-    }
-
-    try {
-      const res = await authFetch(`/api/inquiries/${id}`, { method: 'DELETE' });
-      const data = await res.json();
-      if (data.success) {
-        setInquiries(prev => prev.filter(i => i._id !== id));
-        fetchStats();
-      }
-    } catch (err) {
+      console.error('Failed to delete inquiry:', err);
       alert('Failed to delete inquiry');
     }
   };
@@ -437,7 +337,7 @@ export default function AdminDashboard() {
             </div>
             <div className="adm-db-status">
               <span className="adm-status-dot"></span>
-              <span>MongoDB Atlas</span>
+              <span>Cloud Firestore</span>
             </div>
             <div className="adm-user-chip">
               <div className="adm-user-avatar">
@@ -508,11 +408,11 @@ export default function AdminDashboard() {
               </div>
               <div className="adm-stat-info">
                 <span className="adm-stat-number" style={{ fontSize: '1.4rem' }}>Cloud DB</span>
-                <span className="adm-stat-label">MongoDB Atlas</span>
+                <span className="adm-stat-label">Cloud Firestore</span>
               </div>
               <div className="adm-stat-footer">
                 <span className="adm-status-dot" style={{ width: '8px', height: '8px' }}></span>
-                <span>Cluster Online</span>
+                <span>Firestore Connected</span>
               </div>
             </div>
           </div>
@@ -527,7 +427,7 @@ export default function AdminDashboard() {
                   <span className="material-symbols-outlined adm-panel-icon">how_to_reg</span>
                   <div>
                     <h2 className="adm-panel-title">Registration Details &amp; Applications</h2>
-                    <p className="adm-panel-subtitle">Review student registration details, update admission approval status, and print slips</p>
+                    <p className="adm-panel-subtitle">Review student registration details and update admission approval status</p>
                   </div>
                 </div>
 
@@ -596,7 +496,7 @@ export default function AdminDashboard() {
                               <span className="adm-badge adm-badge-id">{adm.appNumber}</span>
                             </td>
                             <td className="adm-cell-primary">
-                              <span style={{ fontWeight: 700, cursor: 'pointer', color: '#1e3a8a' }} onClick={() => setSelectedAdmission(adm)} title="Click to view official admission slip">
+                              <span style={{ fontWeight: 700, cursor: 'pointer', color: '#1e3a8a' }} onClick={() => setSelectedAdmission(adm)} title="Click to view candidate record">
                                 {adm.studentName}
                               </span>
                               {adm.gender && <div className="small text-muted" style={{ fontSize: '11px' }}>{adm.gender}</div>}
@@ -672,7 +572,7 @@ export default function AdminDashboard() {
                                 <button
                                   onClick={() => setSelectedAdmission(adm)}
                                   className="adm-action-btn adm-action-view"
-                                  title="View Official Admission Slip & Details"
+                                  title="View Candidate Record & Details"
                                   style={{ background: '#0b57d018', color: '#0b57d0' }}
                                 >
                                   <span className="material-symbols-outlined">description</span>
@@ -790,17 +690,17 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* ─── OFFICIAL PHYSICAL ADMISSION SLIP MODAL ─── */}
+      {/* ─── CANDIDATE ADMISSION RECORD MODAL ─── */}
       {selectedAdmission && (
         <div className="adm-modal-overlay" onClick={() => setSelectedAdmission(null)}>
-          <div className="adm-modal" style={{ maxWidth: '920px' }} onClick={(e) => e.stopPropagation()}>
+          <div className="adm-modal" style={{ maxWidth: '840px' }} onClick={(e) => e.stopPropagation()}>
             <div className="adm-modal-header">
               <div className="adm-modal-title-group">
-                <span className="material-symbols-outlined" style={{ color: '#f59e0b', fontSize: '26px' }}>description</span>
+                <span className="material-symbols-outlined" style={{ color: '#0b57d0', fontSize: '26px' }}>assignment_ind</span>
                 <div>
-                  <h3 style={{ margin: 0 }}>Official Candidate Admission Record</h3>
+                  <h3 style={{ margin: 0 }}>Candidate Admission Record</h3>
                   <div className="small text-muted">
-                    {selectedAdmission.studentName} &bull; App Ref: <strong className="text-primary">{selectedAdmission.appNumber}</strong>
+                    {selectedAdmission.studentName} &bull; App No: <strong className="text-primary">{selectedAdmission.appNumber}</strong>
                   </div>
                 </div>
               </div>
@@ -812,7 +712,7 @@ export default function AdminDashboard() {
             {/* Quick Admin Actions Strip */}
             <div style={{ background: '#f8fafc', padding: '12px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
               <div className="d-flex align-items-center gap-2">
-                <span className="small fw-bold text-dark">Update Admission Status:</span>
+                <span className="small fw-bold text-dark">Admission Status:</span>
                 <select
                   className="adm-status-select"
                   style={{
@@ -850,27 +750,138 @@ export default function AdminDashboard() {
                 >
                   <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>call</span> Call
                 </a>
-                <button
-                  onClick={() => window.print()}
-                  className="btn btn-sm btn-primary fw-bold d-inline-flex align-items-center gap-1"
-                  title="Print Official Slip (A4)"
-                >
-                  <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>print</span> Print Slip
-                </button>
               </div>
             </div>
 
-            <div className="adm-modal-body" style={{ background: '#f1f5f9', padding: '24px' }}>
-              <OfficialAdmissionSlip data={selectedAdmission} formTitle="Re-Admission Form" />
+            <div className="adm-modal-body" style={{ background: '#f8fafc', padding: '24px', maxHeight: '70vh', overflowY: 'auto' }}>
+              <div className="row g-4">
+                {/* Section 1: Candidate Profile */}
+                <div className="col-12">
+                  <div className="p-3 bg-white rounded-3 shadow-sm border">
+                    <h5 className="fw-bold text-primary mb-3 d-flex align-items-center gap-2 border-bottom pb-2">
+                      <span className="material-symbols-outlined fs-5">school</span>
+                      1. Student Academic &amp; Personal Profile
+                    </h5>
+                    <div className="row g-3">
+                      <div className="col-12 col-md-4">
+                        <span className="text-muted small d-block">Candidate Full Name</span>
+                        <strong className="text-dark fs-6">{selectedAdmission.studentName}</strong>
+                      </div>
+                      <div className="col-6 col-md-4">
+                        <span className="text-muted small d-block">Applying For Class</span>
+                        <span className="badge bg-primary text-white fw-bold px-2 py-1">{selectedAdmission.applyingClass}</span>
+                      </div>
+                      <div className="col-6 col-md-4">
+                        <span className="text-muted small d-block">Gender</span>
+                        <strong className="text-dark">{selectedAdmission.gender || '—'}</strong>
+                      </div>
+                      <div className="col-6 col-md-4">
+                        <span className="text-muted small d-block">Date of Birth</span>
+                        <strong className="text-dark">{selectedAdmission.dob || '—'}</strong>
+                      </div>
+                      <div className="col-6 col-md-4">
+                        <span className="text-muted small d-block">Calculated Age</span>
+                        <span className="text-dark">{selectedAdmission.ageYear ? `${selectedAdmission.ageYear} Yrs ` : ''}{selectedAdmission.ageMonth ? `${selectedAdmission.ageMonth} Mos` : '—'}</span>
+                      </div>
+                      <div className="col-6 col-md-4">
+                        <span className="text-muted small d-block">Social Category / Caste</span>
+                        <strong className="text-dark">{selectedAdmission.category || selectedAdmission.caste || '—'}</strong>
+                      </div>
+                      <div className="col-12 col-md-6">
+                        <span className="text-muted small d-block">Previous School Attended</span>
+                        <span className="text-dark">{selectedAdmission.prevSchool || 'None / Fresh Admission'}</span>
+                      </div>
+                      <div className="col-12 col-md-6">
+                        <span className="text-muted small d-block">School Transport Required</span>
+                        <span className="text-dark">{selectedAdmission.transportNeeded === 'Yes' ? `Yes (${selectedAdmission.busStop || 'Stop TBD'})` : 'No (Self Conveyance)'}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section 2: Parents & Contact Info */}
+                <div className="col-12">
+                  <div className="p-3 bg-white rounded-3 shadow-sm border">
+                    <h5 className="fw-bold text-success mb-3 d-flex align-items-center gap-2 border-bottom pb-2">
+                      <span className="material-symbols-outlined fs-5">family_restroom</span>
+                      2. Parent &amp; Family Details
+                    </h5>
+                    <div className="row g-3">
+                      <div className="col-12 col-md-6">
+                        <span className="text-muted small d-block">Father / Guardian Name</span>
+                        <strong className="text-dark">{selectedAdmission.fatherName}</strong>
+                        {selectedAdmission.fatherOccupation && (
+                          <div className="small text-muted">Occupation: {selectedAdmission.fatherOccupation}</div>
+                        )}
+                      </div>
+                      <div className="col-12 col-md-6">
+                        <span className="text-muted small d-block">Mother's Name</span>
+                        <strong className="text-dark">{selectedAdmission.motherName || '—'}</strong>
+                        {selectedAdmission.motherOccupation && (
+                          <div className="small text-muted">Occupation: {selectedAdmission.motherOccupation}</div>
+                        )}
+                      </div>
+                      <div className="col-6 col-md-4">
+                        <span className="text-muted small d-block">Primary Contact Number</span>
+                        <a href={`tel:${selectedAdmission.mobile}`} className="fw-bold text-primary text-decoration-none">{selectedAdmission.mobile}</a>
+                      </div>
+                      <div className="col-6 col-md-4">
+                        <span className="text-muted small d-block">WhatsApp Number</span>
+                        <span className="text-dark">{selectedAdmission.whatsapp || selectedAdmission.mobile || '—'}</span>
+                      </div>
+                      <div className="col-12 col-md-4">
+                        <span className="text-muted small d-block">Email Address</span>
+                        <span className="text-dark">{selectedAdmission.email || 'Not Provided'}</span>
+                      </div>
+                      <div className="col-12">
+                        <span className="text-muted small d-block">Residential Address</span>
+                        <span className="text-dark">{selectedAdmission.address || '—'}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section 3: Central Database Record Information */}
+                <div className="col-12">
+                  <div className="p-3 bg-white rounded-3 shadow-sm border">
+                    <h5 className="fw-bold text-dark mb-3 d-flex align-items-center gap-2 border-bottom pb-2">
+                      <span className="material-symbols-outlined fs-5">dns</span>
+                      3. Central Database Record Details
+                    </h5>
+                    <div className="row g-3">
+                      <div className="col-6 col-md-3">
+                        <span className="text-muted small d-block">Permanent App No</span>
+                        <strong className="text-primary">{selectedAdmission.appNumber}</strong>
+                      </div>
+                      <div className="col-6 col-md-3">
+                        <span className="text-muted small d-block">Current Status</span>
+                        <span className="badge" style={{ ...statusColor(selectedAdmission.status), border: `1px solid ${statusColor(selectedAdmission.status).border}` }}>
+                          {selectedAdmission.status}
+                        </span>
+                      </div>
+                      <div className="col-12 col-md-3">
+                        <span className="text-muted small d-block">Submission Timestamp</span>
+                        <span className="small text-dark">{selectedAdmission.createdAt ? new Date(selectedAdmission.createdAt).toLocaleString('en-IN') : '—'}</span>
+                      </div>
+                      <div className="col-12 col-md-3">
+                        <span className="text-muted small d-block">Firestore Document ID</span>
+                        <span className="small font-monospace text-muted">{selectedAdmission._id || selectedAdmission.id}</span>
+                      </div>
+                      {selectedAdmission.remarks && (
+                        <div className="col-12">
+                          <span className="text-muted small d-block">Special Notes / Medical Remarks</span>
+                          <span className="text-dark">{selectedAdmission.remarks}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="adm-modal-footer">
               <button className="adm-secondary-btn" onClick={() => setSelectedAdmission(null)}>
                 Close
-              </button>
-              <button className="adm-primary-btn" onClick={() => window.print()}>
-                <span className="material-symbols-outlined">print</span>
-                <span>Print Official Admission Slip</span>
               </button>
             </div>
           </div>

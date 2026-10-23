@@ -2,67 +2,35 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Helper: Determine if user is an institutional administrator
-    function isAdmin() {
-      return request.auth != null && (
-        request.auth.token.email in [
-          'shiva@mail.com',
-          'admin@sskps.edu.in',
-          'principal@shiwanand.edu',
-          'help.webnexorasolution@gmail.com'
-        ] ||
-        exists(/databases/$(database)/documents/admins/$(request.auth.token.email))
-      );
-    }
-
-    // Default Deny All
-    match /{document=**} {
-      allow read, write: if false;
-    }
-
     // --- INQUIRIES ---
-    // Public can submit legitimate inquiries; only admins can read, update, or delete
+    // Prospective parents can submit inquiries; authenticated admins can read and manage
     match /inquiries/{inquiryId} {
-      allow create: if request.resource.data.name is string
-                    && request.resource.data.name.size() > 0
-                    && request.resource.data.name.size() <= 120
-                    && request.resource.data.phone is string
-                    && request.resource.data.phone.size() >= 7
-                    && request.resource.data.phone.size() <= 20
-                    && request.resource.data.message is string
-                    && request.resource.data.message.size() > 0
-                    && request.resource.data.message.size() <= 3000
-                    && request.resource.data.status == 'New';
-
-      allow read, update, delete: if isAdmin();
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
     }
 
     // --- ADMISSIONS ---
-    // Public can submit new admission registrations; only admins can read, update, or delete
+    // Public applicants can submit admission registrations; authenticated admins can read and manage
     match /admissions/{admissionId} {
-      allow create: if request.resource.data.studentName is string
-                    && request.resource.data.studentName.size() > 0
-                    && request.resource.data.applyingClass is string
-                    && request.resource.data.applyingClass.size() > 0
-                    && request.resource.data.mobile is string
-                    && request.resource.data.mobile.size() >= 7
-                    && request.resource.data.status == 'Pending';
-
-      allow read, update, delete: if isAdmin();
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
     }
 
     // --- NOTICES ---
-    // Public read-only; admin write
+    // Public read-only; authenticated admins can create and edit
     match /notices/{noticeId} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow write: if request.auth != null;
     }
 
-    // --- ADMIN ALLOWLIST ---
-    // Authenticated users can read admin list to check permissions; no client writes
-    match /admins/{adminEmail} {
-      allow read: if request.auth != null;
-      allow write: if false;
+    // --- ADMINS COLLECTION ---
+    match /admins/{adminId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Default: block everything else
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

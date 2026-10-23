@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import { feeStructure, schoolInfo } from '../data/content';
-import OfficialAdmissionSlip from '../components/OfficialAdmissionSlip';
 import { db } from '../firebase';
 import { collection, addDoc, getCountFromServer, serverTimestamp } from 'firebase/firestore';
 
@@ -414,12 +413,38 @@ export default function Admission() {
                       Thank you for applying to <strong>{schoolInfo.name}</strong>. Your registration is permanently stored in our central admissions database under Application Number: <strong className="text-primary">{submittedReceipt.appNumber}</strong>. School Administration has direct access to your details for verification and seat allotment.
                     </p>
 
-                    {/* Official Physical Admission Slip Component */}
-                    <div className="my-4 text-start">
-                      <OfficialAdmissionSlip data={submittedReceipt} formTitle="Re-Admission Form" />
+                    {/* Application Details Summary Box */}
+                    <div className="card border-0 shadow-sm p-4 text-start my-4" style={{ background: '#f8fafc', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                      <div className="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 pb-3 border-bottom">
+                        <div>
+                          <span className="text-muted small text-uppercase fw-bold">Permanent Application Number</span>
+                          <h4 className="fw-bold text-primary mb-0">{submittedReceipt.appNumber}</h4>
+                        </div>
+                        <span className="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 fw-bold">
+                          ✓ Saved in Central Database
+                        </span>
+                      </div>
+                      <div className="row g-3">
+                        <div className="col-12 col-md-6">
+                          <span className="text-muted small">Candidate Name:</span>
+                          <div className="fw-bold text-dark">{submittedReceipt.studentName}</div>
+                        </div>
+                        <div className="col-12 col-md-6">
+                          <span className="text-muted small">Class Applying For:</span>
+                          <div className="fw-bold text-dark">{submittedReceipt.applyingClass}</div>
+                        </div>
+                        <div className="col-12 col-md-6">
+                          <span className="text-muted small">Father's Name:</span>
+                          <div className="fw-bold text-dark">{submittedReceipt.fatherName}</div>
+                        </div>
+                        <div className="col-12 col-md-6">
+                          <span className="text-muted small">Registered Contact:</span>
+                          <div className="fw-bold text-dark">{submittedReceipt.mobile}</div>
+                        </div>
+                      </div>
                     </div>
 
-                    {/* Fast-Track WhatsApp Desk (No PDF upload required) */}
+                    {/* Fast-Track WhatsApp Desk (Direct database record lookup) */}
                     <div className="whatsapp-drop-card text-start my-4">
                       <div className="d-flex align-items-start gap-3 flex-wrap flex-md-nowrap">
                         <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: '#22c55e', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 4px 12px rgba(34, 197, 94, 0.35)' }}>
@@ -431,7 +456,7 @@ export default function Admission() {
                             <span className="badge bg-success text-white px-2 py-1 small">Official Admissions Desk</span>
                           </div>
                           <p className="small text-muted mb-3" style={{ lineHeight: '1.65' }}>
-                            Your application is directly recorded in our database. You can instantly share your <strong>Application Number ({submittedReceipt.appNumber})</strong> with our school admissions desk (<strong className="text-dark">+91 94310 68033</strong>) for rapid seat confirmation and interaction scheduling.
+                            Your application is directly recorded in our database. You can instantly notify our school admissions desk (<strong className="text-dark">+91 94310 68033</strong>) with your <strong>Application Number ({submittedReceipt.appNumber})</strong> for rapid seat confirmation and interaction scheduling.
                           </p>
                           <div className="d-flex align-items-center gap-2 flex-wrap">
                             <a
@@ -459,14 +484,8 @@ export default function Admission() {
                     {/* Actions Row */}
                     <div className="d-flex justify-content-center gap-3 flex-wrap mt-4">
                       <button
-                        onClick={() => window.print()}
-                        className="btn btn-primary d-flex align-items-center gap-2 px-4 py-2"
-                      >
-                        <span className="material-symbols-outlined fs-6">print</span> Print Official Admission Slip
-                      </button>
-                      <button
                         onClick={resetForm}
-                        className="btn btn-outline-secondary d-flex align-items-center gap-2 px-3 py-2"
+                        className="btn btn-primary d-flex align-items-center gap-2 px-4 py-2"
                       >
                         <span className="material-symbols-outlined fs-6">add_circle</span> Submit Another Application
                       </button>
@@ -475,7 +494,7 @@ export default function Admission() {
                 ) : (
                   <>
                     <p className="text-muted small mb-4">
-                      Please fill in the candidate and parent details accurately. After submission, you will receive an acknowledgment confirmation slip and our admission office will contact you for interaction scheduling.
+                      Please fill in the candidate and parent details accurately. After submission, your application is saved directly into our central admissions database, and our admission office will contact you for interaction scheduling.
                     </p>
 
                     {quickAppliedNotice && (
@@ -893,7 +912,7 @@ export default function Admission() {
                             </div>
                             <div>
                               <div className="btn-title-main">Submit Registration (Direct Database Save)</div>
-                              <div className="btn-title-sub">Instant acknowledgement slip generation &bull; Admin direct review</div>
+                              <div className="btn-title-sub">Instant central database registration &bull; Admin direct review</div>
                             </div>
                           </div>
 
@@ -1545,11 +1564,11 @@ export default function Admission() {
                         </div>
                         <div>
                           <div className="fw-bold text-dark" style={{ fontSize: '0.92rem' }}>Official Accounts WhatsApp Desk</div>
-                          <div className="small text-muted">WhatsApp transaction receipt for instant admission slip</div>
+                          <div className="small text-muted">WhatsApp transaction receipt for instant fee verification</div>
                         </div>
                       </div>
                       <a
-                        href="https://wa.me/919431068033?text=Hello%20Swami%20Shiwanand%20Academy,%20I%20have%20transferred%20the%20fees.%20Here%20is%20the%20payment%20slip."
+                        href="https://wa.me/919431068033?text=Hello%20Swami%20Shiwanand%20Academy,%20I%20have%20transferred%20the%20fees.%20Here%20is%20the%20payment%20confirmation."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="whatsapp-action-btn"
@@ -1660,7 +1679,7 @@ export default function Admission() {
                       </div>
                       <span className="remittance-step-badge badge-amber">Step 02 of 03</span>
                     </div>
-                    <h6 className="remittance-step-title">2. Capture Transaction Slip</h6>
+                    <h6 className="remittance-step-title">2. Capture Payment Receipt</h6>
                     <p className="remittance-step-text">
                       Take a clear screenshot showing the 12-digit UTR reference or bank transaction confirmation number.
                     </p>
