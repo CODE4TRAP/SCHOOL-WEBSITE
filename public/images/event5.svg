@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 350" width="500" height="350">
+  <defs>
+    <linearGradient id="g_event5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00897B" />
+      <stop offset="100%" stop-color="#004D40" />
+    </linearGradient>
+    <filter id="shadow_event5" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="500" height="350" fill="url(#g_event5)" rx="16" />
+  <rect x="16" y="16" width="468" height="318" rx="12" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-width="2" stroke-opacity="0.3"/>
+  <circle cx="250" cy="140" r="65" fill="#ffffff" fill-opacity="0.18" filter="url(#shadow_event5)"/>
+  <!-- Tree &amp; Sprout Icon -->
+  <g transform="translate(250, 140)">
+    <circle cx="0" cy="-14" r="28" fill="#66BB6A" />
+    <circle cx="-16" cy="-2" r="20" fill="#4CAF50" />
+    <circle cx="16" cy="-2" r="20" fill="#4CAF50" />
+    <rect x="-6" y="8" width="12" height="28" rx="2" fill="#795548"/>
+  </g>
+  <rect x="30" y="245" width="440" height="58" rx="10" fill="#000000" fill-opacity="0.65" filter="url(#shadow_event5)"/>
+  <text x="250" y="278" font-family="'Poppins', sans-serif" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">Tree Plantation &amp; Eco Club Drive</text>
+  <text x="250" y="296" font-family="'Poppins', sans-serif" font-size="11" font-weight="500" fill="#B2DFDB" text-anchor="middle">Green Campus &amp; Environmental Care</text>
+</svg>

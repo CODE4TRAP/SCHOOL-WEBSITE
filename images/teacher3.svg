@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="t3-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe4e6" />
+      <stop offset="100%" stop-color="#fecdd3" />
+    </linearGradient>
+    <linearGradient id="t3-attire" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9f1239" />
+      <stop offset="100%" stop-color="#881337" />
+    </linearGradient>
+    <clipPath id="circle-clip-t3">
+      <circle cx="100" cy="100" r="95" />
+    </clipPath>
+  </defs>
+
+  <!-- Circular Base -->
+  <circle cx="100" cy="100" r="95" fill="url(#t3-bg)" />
+
+  <g clip-path="url(#circle-clip-t3)">
+    <!-- Back Hair Volume (Wavy Long Hair) -->
+    <path d="M 52 80 C 46 120 48 165 62 195 C 68 165 72 130 70 95 Z" fill="#1e293b" />
+    <path d="M 148 80 C 154 120 152 165 138 195 C 132 165 128 130 130 95 Z" fill="#1e293b" />
+
+    <!-- Shoulders & Rich Maroon Saree / Attire -->
+    <path d="M 12 200 C 22 138 58 126 100 126 C 142 126 178 138 188 200 Z" fill="url(#t3-attire)" />
+
+    <!-- Golden Zari Border Pallu (Diagonal Saree Drape) -->
+    <path d="M 68 134 Q 92 160 124 200 L 146 200 Q 110 150 82 130 Z" fill="#f59e0b" />
+    <path d="M 72 136 Q 94 162 126 200" stroke="#fef08a" stroke-width="2" fill="none" />
+
+    <!-- White Inner Collar / Blouse Edge -->
+    <polygon points="84,126 100,158 116,126" fill="#fff1f2" />
+
+    <!-- Delicate Gold Necklace Accent -->
+    <path d="M 88 126 Q 100 144 112 126" stroke="#f59e0b" stroke-width="2.5" fill="none" />
+    <circle cx="100" cy="136" r="3" fill="#d97706" />
+
+    <!-- Neck -->
+    <rect x="88" y="106" width="24" height="24" fill="#fed7aa" rx="3" />
+
+    <!-- Head / Face -->
+    <circle cx="100" cy="78" r="38" fill="#ffedd5" />
+
+    <!-- Cheerful Eyes (Phonics & Storytelling warmth) -->
+    <circle cx="86" cy="74" r="3.5" fill="#1e293b" />
+    <circle cx="114" cy="74" r="3.5" fill="#1e293b" />
+    <circle cx="87.5" cy="72.5" r="1.2" fill="#ffffff" />
+    <circle cx="115.5" cy="72.5" r="1.2" fill="#ffffff" />
+
+    <!-- Elegant Arched Eyebrows -->
+    <path d="M 79 65 Q 86 61 93 65" stroke="#334155" stroke-width="2.4" fill="none" stroke-linecap="round" />
+    <path d="M 107 65 Q 114 61 121 65" stroke="#334155" stroke-width="2.4" fill="none" stroke-linecap="round" />
+
+    <!-- Rosy Cheeks -->
+    <circle cx="77" cy="85" r="5" fill="#fb7185" fill-opacity="0.5" />
+    <circle cx="123" cy="85" r="5" fill="#fb7185" fill-opacity="0.5" />
+
+    <!-- Red Bindi -->
+    <circle cx="100" cy="65" r="2.5" fill="#be123c" />
+
+    <!-- Warm Storyteller Smile -->
+    <path d="M 90 91 Q 100 102 110 91" stroke="#e11d48" stroke-width="2.8" fill="none" stroke-linecap="round" />
+
+    <!-- Front Hair Frame (Elegant Waves) -->
+    <path d="M 62 82 C 60 46 80 38 100 38 C 120 38 140 46 138 82 C 126 52 110 48 100 50 C 90 48 74 52 62 82 Z" fill="#1e293b" />
+
+    <!-- Gold Earrings (Jhumkas) -->
+    <circle cx="61" cy="82" r="3.5" fill="#f59e0b" />
+    <polygon points="58,85 64,85 61,91" fill="#d97706" />
+    <circle cx="139" cy="82" r="3.5" fill="#f59e0b" />
+    <polygon points="136,85 142,85 139,91" fill="#d97706" />
+  </g>
+
+  <!-- Border Ring on Top -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#fb7185" stroke-width="4" />
+</svg>

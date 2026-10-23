@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production
+dist/
+dist-ssr/
+build/
+
+# Archives & Large Files
+*.zip
+*.tar.gz
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS and Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local Environment Overrides & Confidential Secrets
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+*.local
+!.env.example

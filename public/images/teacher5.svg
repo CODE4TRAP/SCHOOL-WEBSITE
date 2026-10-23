@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="t5-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ede9fe" />
+      <stop offset="100%" stop-color="#ddd6fe" />
+    </linearGradient>
+    <linearGradient id="t5-attire" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6b21a8" />
+      <stop offset="100%" stop-color="#581c87" />
+    </linearGradient>
+    <clipPath id="circle-clip-t5">
+      <circle cx="100" cy="100" r="95" />
+    </clipPath>
+  </defs>
+
+  <!-- Circular Base -->
+  <circle cx="100" cy="100" r="95" fill="url(#t5-bg)" />
+
+  <g clip-path="url(#circle-clip-t5)">
+    <!-- Back Hair Bun Volume -->
+    <ellipse cx="100" cy="44" rx="22" ry="14" fill="#1e293b" />
+    <!-- Artistic Flower Clip in Bun -->
+    <circle cx="120" cy="44" r="7" fill="#f43f5e" />
+    <circle cx="120" cy="44" r="3" fill="#fef08a" />
+
+    <!-- Shoulders & Purple Artistic Attire -->
+    <path d="M 12 200 C 22 138 58 126 100 126 C 142 126 178 138 188 200 Z" fill="url(#t5-attire)" />
+
+    <!-- Vibrant Artistic Floral Stole / Scarf -->
+    <path d="M 72 130 C 80 155 86 185 82 200 L 98 200 C 104 175 96 150 88 126 Z" fill="#f43f5e" />
+    <path d="M 128 130 C 120 155 114 185 118 200 L 102 200 C 96 175 104 150 112 126 Z" fill="#fb7185" />
+    <!-- Gold Tassel on Scarf -->
+    <circle cx="90" cy="170" r="3" fill="#fbbf24" />
+    <circle cx="110" cy="170" r="3" fill="#fbbf24" />
+
+    <!-- White Inner V-Neck -->
+    <polygon points="86,126 100,154 114,126" fill="#ffffff" />
+
+    <!-- Neck -->
+    <rect x="88" y="106" width="24" height="24" fill="#fed7aa" rx="3" />
+
+    <!-- Head / Face -->
+    <circle cx="100" cy="78" r="38" fill="#ffedd5" />
+
+    <!-- Expressive Artistic Eyes -->
+    <circle cx="86" cy="74" r="3.5" fill="#1e293b" />
+    <circle cx="114" cy="74" r="3.5" fill="#1e293b" />
+    <circle cx="87.5" cy="72.5" r="1.2" fill="#ffffff" />
+    <circle cx="115.5" cy="72.5" r="1.2" fill="#ffffff" />
+
+    <!-- Graceful Eyebrows -->
+    <path d="M 79 64 Q 86 60 93 64" stroke="#334155" stroke-width="2.4" fill="none" stroke-linecap="round" />
+    <path d="M 107 64 Q 114 60 121 64" stroke="#334155" stroke-width="2.4" fill="none" stroke-linecap="round" />
+
+    <!-- Cheerful Cheeks -->
+    <circle cx="77" cy="85" r="5" fill="#f472b6" fill-opacity="0.5" />
+    <circle cx="123" cy="85" r="5" fill="#f472b6" fill-opacity="0.5" />
+
+    <!-- Small Maroon Bindi -->
+    <circle cx="100" cy="65" r="2.5" fill="#881337" />
+
+    <!-- Warm Creative Smile -->
+    <path d="M 90 91 Q 100 102 110 91" stroke="#e11d48" stroke-width="2.8" fill="none" stroke-linecap="round" />
+
+    <!-- Front Hair Frame (Elegant Waves) -->
+    <path d="M 62 82 C 60 48 80 40 100 40 C 120 40 140 48 138 82 C 126 54 110 50 100 52 C 90 50 74 54 62 82 Z" fill="#1e293b" />
+
+    <!-- Purple Gem Stud Earrings -->
+    <circle cx="62" cy="82" r="3.5" fill="#9333ea" stroke="#ffffff" stroke-width="1" />
+    <circle cx="138" cy="82" r="3.5" fill="#9333ea" stroke="#ffffff" stroke-width="1" />
+  </g>
+
+  <!-- Border Ring on Top -->
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#a855f7" stroke-width="4" />
+</svg>

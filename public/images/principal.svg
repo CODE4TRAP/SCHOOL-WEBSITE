@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <linearGradient id="pGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f4f8" />
+      <stop offset="100%" stop-color="#d9e2ec" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#pGrad)" />
+  <!-- Frame &amp; Backdrop -->
+  <circle cx="200" cy="110" r="60" fill="#0C58A2" />
+  <!-- Educator Avatar Illustration -->
+  <circle cx="200" cy="100" r="36" fill="#FBD38D" />
+  <!-- Hair &amp; Spectacles -->
+  <path d="M 164,95 Q 200,60 236,95 Q 215,75 164,95 Z" fill="#2D3748" />
+  <!-- Spectacles -->
+  <rect x="180" y="94" width="16" height="12" rx="3" fill="none" stroke="#2D3748" stroke-width="2" />
+  <rect x="204" y="94" width="16" height="12" rx="3" fill="none" stroke="#2D3748" stroke-width="2" />
+  <line x1="196" y1="100" x2="204" y2="100" stroke="#2D3748" stroke-width="2" />
+  <!-- Smile -->
+  <path d="M 192,120 Q 200,126 208,120" stroke="#C53030" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Suit / Body -->
+  <path d="M 130,240 C 130,175 165,160 200,160 C 235,160 270,175 270,240 Z" fill="#1A365D" />
+  <polygon points="185,160 200,205 215,160" fill="#ffffff" />
+  <polygon points="196,170 200,230 204,170" fill="#C53030" />
+  <!-- Badge badge -->
+  <rect x="80" y="240" width="240" height="42" rx="21" fill="#0C58A2" />
+  <text x="200" y="266" font-family="'Poppins', sans-serif" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">Principal / Director</text>
+</svg>

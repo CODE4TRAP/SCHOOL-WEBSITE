@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <rect width="300" height="200" rx="12" fill="#073361" />
+  <circle cx="150" cy="75" r="45" fill="#FFA500" />
+  <circle cx="150" cy="70" r="30" fill="#FFE0B2" />
+  <path d="M 100,165 C 100,120 125,110 150,110 C 175,110 200,120 200,165 Z" fill="#ffffff" />
+  <rect x="30" y="145" width="240" height="36" rx="18" fill="#FFB703" />
+  <text x="150" y="168" font-family="'Poppins', sans-serif" font-size="13" font-weight="bold" fill="#073361" text-anchor="middle">Educational Trust Board</text>
+</svg>

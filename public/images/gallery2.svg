@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="g2-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff7ed" />
+      <stop offset="50%" stop-color="#fed7aa" />
+      <stop offset="100%" stop-color="#fdba74" />
+    </linearGradient>
+    <linearGradient id="g2-canvas" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+    <filter id="g2-shadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect width="500" height="400" fill="url(#g2-bg)" />
+  <!-- Studio Table Base -->
+  <rect x="0" y="320" width="500" height="80" fill="#92400e" />
+  <rect x="0" y="320" width="500" height="12" fill="#b45309" />
+  <!-- Easel Wooden Stand -->
+  <line x1="250" y1="50" x2="180" y2="340" stroke="#78350f" stroke-width="12" stroke-linecap="round" />
+  <line x1="250" y1="50" x2="320" y2="340" stroke="#78350f" stroke-width="12" stroke-linecap="round" />
+  <line x1="250" y1="40" x2="250" y2="340" stroke="#92400e" stroke-width="8" />
+  <rect x="150" y="240" width="200" height="14" rx="4" fill="#78350f" />
+  <!-- Canvas Board -->
+  <rect x="160" y="90" width="180" height="140" rx="8" fill="url(#g2-canvas)" stroke="#e2e8f0" stroke-width="3" filter="url(#g2-shadow)" />
+  <!-- Painting on Canvas: Rainbow & Happy Sun -->
+  <circle cx="295" cy="125" r="16" fill="#facc15" />
+  <path d="M 180 190 Q 220 130 260 190" stroke="#ef4444" stroke-width="8" fill="none" stroke-linecap="round" />
+  <path d="M 185 190 Q 220 142 255 190" stroke="#f59e0b" stroke-width="8" fill="none" stroke-linecap="round" />
+  <path d="M 190 190 Q 220 154 250 190" stroke="#10b981" stroke-width="8" fill="none" stroke-linecap="round" />
+  <path d="M 195 190 Q 220 166 245 190" stroke="#3b82f6" stroke-width="8" fill="none" stroke-linecap="round" />
+  <!-- Artist Palette on Table -->
+  <ellipse cx="120" cy="310" rx="60" ry="32" fill="#d97706" filter="url(#g2-shadow)" />
+  <circle cx="90" cy="305" r="9" fill="#ef4444" />
+  <circle cx="115" cy="295" r="9" fill="#3b82f6" />
+  <circle cx="140" cy="305" r="9" fill="#10b981" />
+  <circle cx="130" cy="325" r="9" fill="#eab308" />
+  <circle cx="100" cy="325" r="9" fill="#a855f7" />
+  <ellipse cx="155" cy="315" rx="7" ry="10" fill="#78350f" />
+  <!-- Paint Brush -->
+  <line x1="160" y1="330" x2="220" y2="280" stroke="#475569" stroke-width="6" stroke-linecap="round" />
+  <polygon points="220,280 230,272 225,285" fill="#f59e0b" />
+  <!-- Color Splashes -->
+  <circle cx="70" cy="110" r="14" fill="#ec4899" fill-opacity="0.8" />
+  <circle cx="430" cy="140" r="18" fill="#8b5cf6" fill-opacity="0.8" />
+  <circle cx="400" cy="240" r="12" fill="#06b6d4" fill-opacity="0.8" />
+  <circle cx="90" cy="210" r="8" fill="#eab308" />
+</svg>
