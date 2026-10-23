@@ -21161,3 +21161,74 @@ html, body, #root, .app-layout {
   border-radius: 8px;
   margin-bottom: 8px;
 }
+
+/* ─── AGE AUTO-CALCULATED SEGMENTED CONTROL ─── */
+.age-segmented-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 4px 14px;
+  transition: all 0.2s ease;
+}
+
+.age-segmented-box:focus-within {
+  background: #ffffff;
+  border-color: #0b57d0;
+  box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.12);
+}
+
+.age-segment {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.age-segment-input {
+  width: 40px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: #0b57d0;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0;
+}
+
+.age-segment-input::placeholder {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.age-segment-unit {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  user-select: none;
+}
+
+.age-segment-divider {
+  color: #cbd5e1;
+  font-weight: 800;
+  font-size: 14px;
+  user-select: none;
+}
+
+.age-recommendation-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  margin-top: 6px;
+}

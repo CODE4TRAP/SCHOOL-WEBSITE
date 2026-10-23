@@ -557,7 +557,10 @@ export default function Admission() {
                           </div>
 
                           <div className="col-md-6">
-                            <label className="form-label">Date of Birth <span className="text-danger">*</span></label>
+                            <label className="form-label d-flex justify-content-between align-items-center">
+                              <span>Date of Birth <span className="text-danger">*</span></span>
+                              <span className="small text-muted" style={{ fontSize: '11px' }}>DD-MM-YYYY</span>
+                            </label>
                             <input
                               type="date"
                               name="dob"
@@ -566,49 +569,70 @@ export default function Admission() {
                               value={formData.dob}
                               onChange={handleChange}
                             />
-                            {calculatedAge && (
-                              <div className="small text-success mt-1 fw-semibold">
-                                <i className="fas fa-info-circle me-1"></i> Age as on 01-Apr-2026: {calculatedAge.years} yrs, {calculatedAge.months} mos, {calculatedAge.days} days &bull; Recommended: <strong>{calculatedAge.recommendation}</strong>
+                            {calculatedAge ? (
+                              <div className="age-recommendation-chip">
+                                <span className="material-symbols-outlined fs-6 text-success">verified</span>
+                                <span>Eligible Grade: <strong>{calculatedAge.recommendation}</strong> ({calculatedAge.years}y {calculatedAge.months}m)</span>
+                              </div>
+                            ) : (
+                              <div className="text-muted small mt-1" style={{ fontSize: '11px' }}>
+                                <i className="fas fa-info-circle me-1"></i> Auto-calculates age as of 01-Apr-2026
                               </div>
                             )}
                           </div>
 
                           <div className="col-md-6">
-                            <label className="form-label">Age (as of 1st April 2026)</label>
-                            <div className="d-flex gap-2">
-                              <div className="input-group input-group-sm">
-                                <span className="input-group-text">Day</span>
+                            <label className="form-label d-flex justify-content-between align-items-center">
+                              <span>Age (as of 1st April 2026)</span>
+                              <span className="badge bg-primary-subtle text-primary border border-primary-subtle py-0 px-2 fw-semibold" style={{ fontSize: '10.5px' }}>
+                                Auto-Calculated
+                              </span>
+                            </label>
+                            <div className="age-segmented-box">
+                              <div className="age-segment">
                                 <input
-                                  type="text"
-                                  name="ageDay"
-                                  className="form-control"
-                                  placeholder="DD"
-                                  value={formData.ageDay}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                              <div className="input-group input-group-sm">
-                                <span className="input-group-text">Month</span>
-                                <input
-                                  type="text"
-                                  name="ageMonth"
-                                  className="form-control"
-                                  placeholder="MM"
-                                  value={formData.ageMonth}
-                                  onChange={handleChange}
-                                />
-                              </div>
-                              <div className="input-group input-group-sm">
-                                <span className="input-group-text">Year</span>
-                                <input
-                                  type="text"
+                                  type="number"
                                   name="ageYear"
-                                  className="form-control"
-                                  placeholder="YY"
+                                  min="0"
+                                  max="20"
+                                  className="age-segment-input"
+                                  placeholder="0"
                                   value={formData.ageYear}
                                   onChange={handleChange}
                                 />
+                                <span className="age-segment-unit">Years</span>
                               </div>
+                              <span className="age-segment-divider">:</span>
+                              <div className="age-segment">
+                                <input
+                                  type="number"
+                                  name="ageMonth"
+                                  min="0"
+                                  max="11"
+                                  className="age-segment-input"
+                                  placeholder="0"
+                                  value={formData.ageMonth}
+                                  onChange={handleChange}
+                                />
+                                <span className="age-segment-unit">Months</span>
+                              </div>
+                              <span className="age-segment-divider">:</span>
+                              <div className="age-segment">
+                                <input
+                                  type="number"
+                                  name="ageDay"
+                                  min="0"
+                                  max="31"
+                                  className="age-segment-input"
+                                  placeholder="0"
+                                  value={formData.ageDay}
+                                  onChange={handleChange}
+                                />
+                                <span className="age-segment-unit">Days</span>
+                              </div>
+                            </div>
+                            <div className="text-muted small mt-1" style={{ fontSize: '11px' }}>
+                              Calculated automatically from Date of Birth
                             </div>
                           </div>
 
@@ -628,24 +652,24 @@ export default function Admission() {
                           </div>
 
                           <div className="col-md-4">
-                            <label className="form-label">Current / Previous School</label>
+                            <label className="form-label">Previous School Attended</label>
                             <input
                               type="text"
                               name="currentSchool"
                               className="form-control"
-                              placeholder="Name of school previously attended"
+                              placeholder="Previous school name (if any)"
                               value={formData.currentSchool}
                               onChange={handleChange}
                             />
                           </div>
 
                           <div className="col-md-4">
-                            <label className="form-label">Current Standard</label>
+                            <label className="form-label">Current Standard / Class</label>
                             <input
                               type="text"
                               name="currentStandard"
                               className="form-control"
-                              placeholder="e.g. Nursery / LKG / Class 1"
+                              placeholder="e.g. Nursery, LKG, Class 1"
                               value={formData.currentStandard}
                               onChange={handleChange}
                             />
