@@ -932,38 +932,23 @@ export default function Admission() {
                           </div>
                         )}
 
-                        {/* Enhanced High-Impact Master Submit Banner */}
+                        {/* Simple, Clean Submit Button */}
                         <button
                           type="submit"
-                          className="admission-master-submit-btn"
+                          className="adm-simple-submit-btn"
                           disabled={isSubmitting}
-                          style={{
-                            opacity: isSubmitting ? 0.88 : 1,
-                            cursor: isSubmitting ? 'wait' : 'pointer'
-                          }}
                         >
-                          <div className="btn-left-content">
-                            <div className="btn-icon-bubble">
-                              {isSubmitting ? (
-                                <span className="spinner-border spinner-border-sm text-light" role="status" aria-hidden="true"></span>
-                              ) : (
-                                <span className="material-symbols-outlined fs-4">send</span>
-                              )}
-                            </div>
-                            <div>
-                              <div className="btn-title-main">
-                                {isSubmitting ? 'Saving Registration to Database...' : 'Submit Registration Application'}
-                              </div>
-                              <div className="btn-title-sub">
-                                Instant central database registration &bull; Admin direct review
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="btn-session-badge">
-                            <span className="material-symbols-outlined fs-6" style={{ fontSize: '15px' }}>school</span>
-                            <span>Session 2026–27</span>
-                          </div>
+                          {isSubmitting ? (
+                            <>
+                              <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                              <span>Submitting Application</span>
+                            </>
+                          ) : (
+                            <>
+                              <span>Submit Registration Application</span>
+                              <span className="material-symbols-outlined" style={{ fontSize: '19px' }}>arrow_forward</span>
+                            </>
+                          )}
                         </button>
 
                         {/* 3 Guarantees Row (No PDF download required) */}
@@ -1599,7 +1584,7 @@ export default function Admission() {
                     <p className="small text-muted mb-3" style={{ lineHeight: '1.7' }}>
                       Parents can remit school fees via direct NEFT/RTGS bank transfer or any UPI QR application (Google Pay, PhonePe, Paytm, BHIM). After initiating payment, please send the transaction screenshot along with student name and class to our verified WhatsApp to receive an instant digital receipt.
                     </p>
-                    
+
                     {/* Dedicated WhatsApp Action Card */}
                     <div className="whatsapp-action-box">
                       <div className="d-flex align-items-center gap-3">
