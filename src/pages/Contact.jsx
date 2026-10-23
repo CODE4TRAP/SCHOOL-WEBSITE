@@ -14,6 +14,8 @@ export default function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
   const [copiedItem, setCopiedItem] = useState(null);
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -35,9 +37,10 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.phone || !formData.message) return;
+    setLoading(true);
+    setErrorMsg(null);
 
     try {
-      // 1. Primary: Save directly to Cloud Firestore
       await addDoc(collection(db, 'inquiries'), {
         name: formData.name.trim(),
         phone: formData.phone.trim(),
@@ -45,25 +48,11 @@ export default function Contact() {
         childAge: (formData.childAge || '').trim(),
         message: formData.message.trim(),
         status: 'New',
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp()
+        createdAt: new Date().toISOString(),
+        timestamp: serverTimestamp()
       });
-    } catch (err) {
-      console.warn('Firestore direct write notice, attempting API fallback:', err);
-      try {
-        await fetch('/api/inquiries', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
-        });
-      } catch (apiErr) {
-        console.warn('Inquiry API fallback notice:', apiErr);
-      }
-    }
 
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+      setSubmitted(true);
       setFormData({
         name: '',
         phone: '',
@@ -71,7 +60,16 @@ export default function Contact() {
         childAge: '',
         message: ''
       });
-    }, 5000);
+    } catch (err) {
+      console.error('Firestore inquiry write error:', err);
+      if (err.code === 'permission-denied') {
+        setErrorMsg('Firebase Permission Error: Please allow writes in Firebase Console rules.');
+      } else {
+        setErrorMsg(`Failed to send inquiry: ${err.message || 'Please check your connection.'}`);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const faqs = [
@@ -611,10 +609,21 @@ export default function Contact() {
                         ></textarea>
                       </div>
 
-                      <button type="submit" className="btn btn-warning w-100 fw-bold py-3 fs-6">
-                        <i className="fas fa-paper-plane me-2"></i> Send Inquiry Message
-                      </button>
-                    </form>
+                        {errorMsg && (
+                          <div className="alert alert-danger py-2 px-3 small mb-3 rounded-3">
+                            {errorMsg}
+                          </div>
+                        )}
+
+                        <button
+                          type="submit"
+                          className="btn btn-warning w-100 fw-bold py-3 fs-6"
+                          disabled={loading}
+                        >
+                          <i className={`fas ${loading ? 'fa-spinner fa-spin' : 'fa-paper-plane'} me-2`}></i>
+                          {loading ? 'Sending to Database...' : 'Send Inquiry Message'}
+                        </button>
+                      </form>
                   </>
                 )}
 

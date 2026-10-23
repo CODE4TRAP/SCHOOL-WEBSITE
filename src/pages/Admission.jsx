@@ -101,6 +101,8 @@ export default function Admission() {
   const [sameAddress, setSameAddress] = useState(true);
   const [submittedReceipt, setSubmittedReceipt] = useState(null);
   const [calculatedAge, setCalculatedAge] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   // Quick Fee Estimator State
   const [estimatorClass, setEstimatorClass] = useState('Nursery');
@@ -189,12 +191,15 @@ export default function Admission() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError(null);
+
     let appNumber = `SSKPS-2026-${Math.floor(1000 + Math.random() * 9000)}`;
 
     const submissionData = {
       ...formData,
-      address: formData.currentAddress || formData.permanentAddress || formData.address,
-      mobile: formData.mobile || formData.fatherContact || formData.motherContact
+      address: formData.currentAddress || formData.permanentAddress || formData.address || '',
+      mobile: formData.mobile || formData.fatherContact || formData.motherContact || ''
     };
 
     try {
@@ -213,41 +218,36 @@ export default function Admission() {
         appNumber,
         status: 'Pending',
         notes: '',
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp()
+        createdAt: new Date().toISOString(),
+        timestamp: serverTimestamp()
+      });
+
+      // 3. Only on real success show confirmation
+      try {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      } catch {
+        // fallback
+      }
+
+      setSubmittedReceipt({
+        appNumber,
+        date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+        ...submissionData
       });
     } catch (err) {
-      console.warn('Firestore admission save notice, attempting API fallback:', err);
-      try {
-        const res = await fetch('/api/admissions', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(submissionData)
-        });
-        const data = await res.json();
-        if (data.success && data.data?.appNumber) {
-          appNumber = data.data.appNumber;
-        }
-      } catch (apiErr) {
-        console.warn('API save fallback notice:', apiErr);
+      console.error('Firestore save failed:', err);
+      if (err.code === 'permission-denied') {
+        setSubmitError('Permission Denied by Firestore: Security rules in Firebase Console must be set to allow writes. Please publish rules in Firebase Console.');
+      } else {
+        setSubmitError(`Failed to save application: ${err.message || 'Please check your internet connection.'}`);
       }
+    } finally {
+      setIsSubmitting(false);
     }
-
-    try {
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 }
-      });
-    } catch {
-      // fallback
-    }
-
-    setSubmittedReceipt({
-      appNumber,
-      date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
-      ...submissionData
-    });
   };
 
   const resetForm = () => {
@@ -901,17 +901,28 @@ export default function Admission() {
                           </div>
                         </div>
 
+                        {submitError && (
+                          <div className="alert alert-danger d-flex align-items-center gap-2 mb-3 shadow-sm py-3 px-4 rounded-3 border-danger-subtle">
+                            <span className="material-symbols-outlined text-danger fs-4">error</span>
+                            <div className="small fw-semibold">{submitError}</div>
+                          </div>
+                        )}
+
                         {/* Master Submit Button */}
                         <button
                           type="submit"
                           className="admission-master-submit-btn"
+                          disabled={isSubmitting}
+                          style={{ opacity: isSubmitting ? 0.8 : 1, cursor: isSubmitting ? 'wait' : 'pointer' }}
                         >
                           <div className="btn-left-content">
                             <div className="btn-icon-bubble">
-                              <span className="material-symbols-outlined fs-4">send</span>
+                              <span className="material-symbols-outlined fs-4">{isSubmitting ? 'hourglass_top' : 'send'}</span>
                             </div>
                             <div>
-                              <div className="btn-title-main">Submit Registration (Direct Database Save)</div>
+                              <div className="btn-title-main">
+                                {isSubmitting ? 'Saving to Database...' : 'Submit Registration (Direct Database Save)'}
+                              </div>
                               <div className="btn-title-sub">Instant central database registration &bull; Admin direct review</div>
                             </div>
                           </div>
